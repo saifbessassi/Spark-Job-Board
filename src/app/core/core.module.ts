@@ -6,7 +6,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.guard';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
-import { SharedModule } from '../shared/shared.module';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 
@@ -20,7 +20,7 @@ import { SharedModule } from '../shared/shared.module';
     CommonModule,
     RouterModule,
     HttpClientModule,
-    SharedModule
+    ReactiveFormsModule,
   ],
   exports: [
     HttpClientModule
