@@ -1,0 +1,28 @@
+.container {
+    max-width: 1140px;
+}
+
+.navbar-nav .dropdown-menu:before {
+    background: #ba0000;
+}
+
+.dropdown-menu {
+    background-color: #ba0000 !important;
+}
+
+.navbar-nav .nav-link {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0 1rem;
+}
+
+.background-color-red-dark {
+    background-color: #ba0000db;
+}
+
+.social-network-header {
+    font-size: 20px; 
+    color: #59595c;
+    vertical-align: middle;
+}
+
