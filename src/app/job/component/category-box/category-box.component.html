@@ -1,0 +1,17 @@
+<!-- <div class="col-lg-3 col-md-6 max-width-50"> -->
+    <div class="box background-color-white-light">
+        <div class="circle">
+            <img src="assets/images/icone/{{categoriesCount?.label}}.png" alt="categorie">
+        </div>
+        <h6>{{categoriesCount?.label}}</h6>
+        <button 
+            (click)="viewJobsByCategory(categoriesCount?.label)" 
+            type="button" 
+            class="button job_post" 
+            data-hover="View Jobs"
+            [disabled]="categoriesCount?.count == 0">
+
+            <span>{{categoriesCount?.count}} Job Posts</span>
+        </button>
+    </div>
+<!-- </div> -->
