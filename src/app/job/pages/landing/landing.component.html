@@ -56,23 +56,10 @@
         <h3 class="text-center">Choose Job By Category</h3>
         <div class="vertical-space-30"></div>
         <div class="row">
-            <div class="col-lg-3 col-md-6 max-width-50" *ngFor="let category of nbJobsPerCategory?.categories">
-                <div class="box background-color-white-light">
-                    <div class="circle">
-                        <img src="assets/images/icone/{{category?.label}}.png" alt="categorie">
-                    </div>
-                    <h6>{{category?.label}}</h6>
-                    <button 
-                        (click)="viewJobsByCategory(category?.label)" 
-                        type="button" 
-                        class="button job_post" 
-                        data-hover="View Jobs"
-                        [disabled]="category?.count == 0">
-
-                        <span>{{category?.count}} Job Posts</span>
-                    </button>
-                </div>
+            <div class="col-lg-3 col-md-6 max-width-50" *ngFor="let category of nbJobsPerCategory?.categories" >
+                <sp-category-box [categoriesCount]=category></sp-category-box>
             </div>
+            
         </div>
         <div class="vertical-space-40"></div>
         <a [routerLink]="['/cand/jobs']" class="Brows-All-Category">Browse All Category</a>
@@ -92,29 +79,7 @@
                 <h5 *ngIf="msg_error">{{msg_error}}</h5>
                 <h5 *ngIf="!recentJobs.length && !msg_error && !isLoading">There are no job offers at the moment.</h5>
                 
-                <div class="detail" *ngFor="let job of recentJobs">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <img src="assets/images/job-post-icone-1.png" alt="John Doe" class="mr-3 ">
-                        </div>
-                        <div class="col-md-7 text-left">
-                            <h6>{{job?.title}}</h6>
-                            <i class="fa fa-briefcase" style="margin-right: 1%;"></i>
-                            <span class="text"> {{job?.employmentType}}</span>
-                        <br>
-                            <i class="fa fa-map-marker" style="margin-right: 1%;"></i>
-                            <span class="text font-size">  {{job?.location}}</span>
-                        <br>
-                        <p style="margin-bottom: 0;">{{job?.description | characters:60}}</p>
-                        </div>
-                        <div class="col-md-3" style="display:flex;justify-content:flex-end;align-items:center;">
-                            <div>
-                                <a href="#" class="part-full-time">View job</a>
-                                <p class="date-time">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <sp-job-post *ngFor="let job of recentJobs" [job]=job></sp-job-post>
                 
                 <div class="vertical-space-20"></div>
                 
