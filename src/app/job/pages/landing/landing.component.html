@@ -1,19 +1,8 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 
 <section id="intro">
-    <div class="carousel-item active">
-        <div class="carousel-background">
-            <img src="assets/images/slider1.jpg" alt="table coffee computer">
-        </div>
-        <div class="carousel-container">
-            <div class="carousel-content">
-                <h2 class="font-color-white">Find Jobs Now more Easy Way</h2>
-                <p class="font-color-white">Spark-it is a digital services company. We offer digital development and consulting solutions for all market players: Start-up, SMEs and large groups. </p>
-            </div>
-        </div>
-    </div>
+    <sp-carousel [title]="title" [text]="text"></sp-carousel>
 </section>
-    
     
 <div id="search-box">
     <div class="container search-box">
@@ -50,6 +39,7 @@
     </div>
 </div>
 
+<!-- <sp-search-bar></sp-search-bar> -->
 
 <section id="Job-Category">
     <div class="container">

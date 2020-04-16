@@ -6,10 +6,11 @@ import { SharedModule } from '../shared/shared.module';
 import { CategoryBoxComponent } from './component/category-box/category-box.component';
 import { JobPostComponent } from './component/job-post/job-post.component';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
+import { CarouselComponent } from './component/carousel/carousel.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent],
+  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent],
   imports: [
     JobRoutingModule,
     SharedModule

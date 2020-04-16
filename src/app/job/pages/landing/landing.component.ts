@@ -12,6 +12,9 @@ import { JobService } from 'src/app/core/services/job/job.service';
 })
 export class LandingComponent implements OnInit {
 
+  title = "Find Jobs Now more Easy Way";
+  text = "Spark-it is a digital services company. We offer digital development and consulting solutions for all market players: Start-up, SMEs and large groups.";
+  
   isLoading = false;
   isLoadingCategory = false
   recentJobs: Job[] = [];
