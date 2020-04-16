@@ -1,4 +1,6 @@
-
+.container {
+    max-width: 1140px;
+}
 .navbar-nav .dropdown-menu:before {
     background: #ba0000;
 }
@@ -10,7 +12,6 @@
 .navbar-nav .nav-link {
     font-size: 1rem;
     font-weight: bold;
-    padding: 0 1rem;
 }
 
 .background-color-red-dark {
@@ -23,3 +24,10 @@
     vertical-align: middle;
 }
 
+.navbar {
+    padding: 0;
+}
+
+.nav-link {
+    text-transform: none;
+}
