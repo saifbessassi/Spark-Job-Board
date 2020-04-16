@@ -1,15 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { JobRoutingModule } from './job-routing.module';
 import { LandingComponent } from './pages/landing/landing.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [LandingComponent],
   imports: [
-    CommonModule,
-    JobRoutingModule
+    JobRoutingModule,
+    SharedModule
   ]
 })
 export class JobModule { }

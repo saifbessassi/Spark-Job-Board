@@ -1,0 +1,160 @@
+<section id="intro">
+    <div class="carousel-item active">
+        <div class="carousel-background">
+            <img src="assets/images/slider1.jpg" alt="table coffee computer">
+        </div>
+        <div class="carousel-container">
+            <div class="carousel-content">
+                <h2 class="font-color-white">Find Jobs Now more Easy Way</h2>
+                <p class="font-color-white">Spark-it is a digital services company. We offer digital development and consulting solutions for all market players: Start-up, SMEs and large groups. </p>
+            </div>
+        </div>
+    </div>
+</section>
+    
+    
+<div id="search-box">
+    <div class="container search-box">
+        <form
+            [formGroup]="searchForm"
+            (ngSubmit)="onSearchSubmit()"
+            id="search-box_search_form_3" 
+            class="search-box_search_form d-flex flex-lg-row flex-column align-items-center">
+            <div class="d-flex flex-row align-items-center justify-content-start inline-block">
+                <span class="large material-icons search"><i class="fa fa-search"></i></span>
+                <input
+                    formControlName="title"
+                    class="search-box_search_input" 
+                    placeholder="Search Keyword" 
+                    type="search">
+                <select
+                    formControlName="category"
+                    class="dropdown_item_select search-box_search_input">
+
+                    <option>Sales and Marketing</option>
+                    <option>Computer Programing</option>
+                    <option>Design & Multimedia</option>
+                    <option>Web Development</option>
+                </select>
+                <span class="large material-icons search"><i class="fa fa-map-marker"></i></span>
+                <input
+                    formControlName="location"
+                    class="search-box_search_input" 
+                    placeholder="Location" 
+                    type="search">
+            </div>
+            <button type="submit" class="search-box_search_button">Search Jobs</button>
+        </form>
+    </div>
+</div>
+
+
+<section id="Job-Category">
+    <div class="container">
+        <h3 class="text-center">Choose Job By Category</h3>
+        <div class="vertical-space-30"></div>
+        <div class="row">
+            <div class="col-lg-3 col-md-6 max-width-50" *ngFor="let category of nbJobsPerCategory?.categories">
+                <div class="box background-color-white-light">
+                    <div class="circle">
+                        <img src="assets/images/icone/{{category?.label}}.png" alt="categorie">
+                    </div>
+                    <h6>{{category?.label}}</h6>
+                    <button 
+                        (click)="viewJobsByCategory(category?.label)" 
+                        type="button" 
+                        class="button job_post" 
+                        data-hover="View Jobs"
+                        [disabled]="category?.count == 0">
+
+                        <span>{{category?.count}} Job Posts</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="vertical-space-40"></div>
+        <a [routerLink]="['/cand/jobs']" class="Brows-All-Category">Browse All Category</a>
+    </div>
+    <div class="vertical-space-85"></div>
+</section>
+    
+    
+<section id="resent-job-post" class="background-color-white">
+    <div class="vertical-space-85"></div>
+    <div class="container text-center">
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+        
+                <h3 class="text-center">Recent Job Post</h3>
+                <div class="vertical-space-60"></div>
+                <h5 *ngIf="msg_error">{{msg_error}}</h5>
+                <h5 *ngIf="!recentJobs.length && !msg_error && !isLoading">There are no job offers at the moment.</h5>
+                
+                <div class="detail" *ngFor="let job of recentJobs">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <img src="assets/images/job-post-icone-1.png" alt="John Doe" class="mr-3 ">
+                        </div>
+                        <div class="col-md-7 text-left">
+                            <h6>{{job?.title}}</h6>
+                            <i class="fa fa-briefcase" style="margin-right: 1%;"></i>
+                            <span class="text"> {{job?.employmentType}}</span>
+                        <br>
+                            <i class="fa fa-map-marker" style="margin-right: 1%;"></i>
+                            <span class="text font-size">  {{job?.location}}</span>
+                        <br>
+                        <p style="margin-bottom: 0;">{{job?.description | characters:60}}</p>
+                        </div>
+                        <div class="col-md-3" style="display:flex;justify-content:flex-end;align-items:center;">
+                            <div>
+                                <a href="#" class="part-full-time">View job</a>
+                                <p class="date-time">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="vertical-space-20"></div>
+                
+            </div>
+        </div>
+        <div class="job-list">
+            <a [routerLink]="['/cand/jobs']" class="Open-Jobs-Page margin-auto">Open Jobs Page <i class="fa fa-long-arrow-right"></i></a>
+        </div>
+    </div>
+    <div class="vertical-space-60"></div>
+</section>
+    
+    
+<section id="Jobtend">
+    <div class="container">
+        <div class="vertical-space-85"></div>
+        <div class="row">
+            <div class="col-lg-9 col-md-6  align-self-center">
+                <h3 class="title">Spark-it - Best Place to Find Jobs</h3>
+                <div class="vertical-space-30"></div>
+                <p class="max-width">
+                    Young and dynamic, Spark-it has very quickly developed its activity by leveraging the experience of 
+                    developers who are now employees within our company. Their continuous training, professionalism and 
+                    expertise are all guarantees of results in the implementation of effective solutions for our customers.
+                </p>
+                <div class="vertical-space-30"></div>
+                <h4>Why we are the best</h4>
+                <div class="vertical-space-30"></div>
+                <ul>
+                    <li class="list-item1 ">
+                        We encourage career growth and we  give the tools and guidance to achieve subject matter expertise.
+                    </li>
+                    <li class="list-item1 ">We have a fun environment to work in where you are surrounded by like-minded people who are passionate about tech.</li>
+                    <li class="list-item1 ">We give opportunity to work on projects abroad with some of the world's leading brands.</li>
+                </ul>
+                <div class="vertical-space-30"></div>
+                <a [routerLink]="['/cand/jobs']" class="Explore-New-Jobs">Explore New Jobs</a>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <img src="assets/images/man.png" alt="man image" class="man-img">
+            </div>
+            <div class="vertical-space-60"></div>
+        </div>
+    </div>
+</section>
