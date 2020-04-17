@@ -34,13 +34,13 @@
                     <div class="col-md-6">
                         <h6 class="text-left" style="float: left;"><b>{{nb_jobs}}</b> results</h6>
                     </div>
-                    <div class="col-md-6">
-                        <select class="form-control form-control-sm" style="width: 30%; float: right;">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                    <div class="col-md-6 text-right">
+                        <label style="margin-right: 3%;">Sorted by: </label>
+                        <select class="form-control form-control-sm" (change)="order($event)" style="width: 50%; float: right; background-color: transparent;">
+                            <option value="order[createdAt]=desc" selected>Date: newest</option>
+                            <option value="order[createdAt]=asc">Date: oldest</option>
+                            <option value="order[deadline]=asc">Deadline: soonest</option>
+                            <option value="order[deadline]=desc">Deadline: farest</option>
                         </select>
                     </div>
                 </div>

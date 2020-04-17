@@ -20,6 +20,7 @@ export class AllJobsComponent implements OnInit {
   getFilters_error: string;
   filterOptions: any;
   filterParams: FilterChoice[] = [];
+  orderParam: string = "";
   checkedCategory: string;
   filterChoice: FilterChoice;
 
@@ -37,7 +38,7 @@ export class AllJobsComponent implements OnInit {
     }
 
     // Get jobs
-    this.getJobs(this.filterParams);
+    this.getJobs(this.filterParams, this.orderParam);
 
     // Get filter options with jobs count
     this.jobService.getFilterOptions().subscribe( res => {
@@ -48,9 +49,9 @@ export class AllJobsComponent implements OnInit {
     
   }
 
-  getJobs(params?) {
+  getJobs(params, orderParam) {
     this.isLoading = true;
-    this.jobService.getJobs(params).subscribe( res => {
+    this.jobService.getJobs(params, orderParam).subscribe( res => {
       this.jobs = res;
       this.nb_jobs = this.jobs.length;
       this.isLoading = false;
@@ -70,7 +71,12 @@ export class AllJobsComponent implements OnInit {
       this.filterParams.push(this.filterChoice);
     }
 
-    this.getJobs(this.filterParams);
+    this.getJobs(this.filterParams, this.orderParam);
+  }
+
+  order($event) {
+    this.orderParam = $event.target.value;
+    this.getJobs(this.filterParams, this.orderParam);
   }
 
 }
