@@ -11,7 +11,7 @@
     <div id="{{removeSpace(filterName)}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
         <div class="card-body">
             <ul>
-                <li *ngFor="let choice of filterChoices">
+                <li *ngFor="let choice of filterPossibilities">
                     <div class="checkbox">
                         <input type="checkbox" class="option-input checkbox" [checked]="checkedValue === choice?.label" />
                         <label class="checkbox-label">{{choice?.label | titlecase }}</label>

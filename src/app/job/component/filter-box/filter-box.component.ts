@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FilterChoice } from 'src/app/core/models/filter-choice.model';
+import { FilterPossibility } from 'src/app/core/models/filter-possibility.model';
 
 @Component({
   selector: 'sp-filter-box',
@@ -8,7 +8,7 @@ import { FilterChoice } from 'src/app/core/models/filter-choice.model';
 })
 export class FilterBoxComponent implements OnInit {
 
-  @Input() filterChoices: FilterChoice[];
+  @Input() filterPossibilities: FilterPossibility[];
   @Input() filterName: string;
   @Input() checkedValue: string;
 

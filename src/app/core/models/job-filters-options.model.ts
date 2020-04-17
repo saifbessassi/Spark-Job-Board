@@ -1,9 +1,9 @@
-import { FilterChoice } from './filter-choice.model';
+import { FilterPossibility } from './filter-possibility.model';
 
 export class JobFiltersOptions {
-    categories: FilterChoice[];
-    skills: FilterChoice[];
-    experiences: FilterChoice[];
-    types: FilterChoice[];
-    categolocationsries: FilterChoice[];
+    categories: FilterPossibility[];
+    skills: FilterPossibility[];
+    experiences: FilterPossibility[];
+    types: FilterPossibility[];
+    categolocationsries: FilterPossibility[];
   }
