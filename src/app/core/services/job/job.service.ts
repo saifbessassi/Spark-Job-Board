@@ -17,8 +17,9 @@ export class JobService {
   }
 
 
-  getJobs(options: {key: string, value: string}[], orderParam?: string) {
+  getCandidateJobs(options: {key: string, value: string}[], pageNb: number, orderParam?: string) {
     let filter = '';
+    let pageParam = '';
     if(options) {
       options.forEach(option => {
         filter += '&' + option.key + '[]=' + option.value;
@@ -27,8 +28,11 @@ export class JobService {
     if(orderParam) {
       orderParam = '&' + orderParam;
     }
+    if (pageNb) {
+      pageParam = '&_page=' + pageNb;
+    }
     
-    return this.http.get<Job[]>(API_URL + '/api/jobs.json?status=open' + filter + orderParam);
+    return this.http.get(API_URL + '/api/jobs?status=open' + filter + orderParam + pageParam);
   }
 
   getNbJobsPerCategory() {

@@ -10,10 +10,11 @@ import { CarouselComponent } from './component/carousel/carousel.component';
 import { JobsFiltersComponent } from './component/jobs-filters/jobs-filters.component';
 import { AllJobsComponent } from './pages/all-jobs/all-jobs.component';
 import { FilterBoxComponent } from './component/filter-box/filter-box.component';
+import { PaginationComponent } from './component/pagination/pagination.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent, JobsFiltersComponent, AllJobsComponent, FilterBoxComponent],
+  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent, JobsFiltersComponent, AllJobsComponent, FilterBoxComponent, PaginationComponent],
   imports: [
     JobRoutingModule,
     SharedModule

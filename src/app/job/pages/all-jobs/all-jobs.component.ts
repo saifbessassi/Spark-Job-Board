@@ -13,6 +13,7 @@ export class AllJobsComponent implements OnInit {
   title = "Our Available Offers";
   text = "";
   nb_jobs: number;
+  nb_jobs_per_page: number = 10;
   isLoading = false;
   jobs: Job[] = [];
   category_filter_param;
@@ -21,6 +22,7 @@ export class AllJobsComponent implements OnInit {
   filterOptions: any;
   filterParams: FilterChoice[] = [];
   orderParam: string = "";
+  pageParam: number = 1;
   checkedCategory: string;
   filterChoice: FilterChoice;
 
@@ -38,7 +40,7 @@ export class AllJobsComponent implements OnInit {
     }
 
     // Get jobs
-    this.getJobs(this.filterParams, this.orderParam);
+    this.getJobs();
 
     // Get filter options with jobs count
     this.jobService.getFilterOptions().subscribe( res => {
@@ -49,11 +51,11 @@ export class AllJobsComponent implements OnInit {
     
   }
 
-  getJobs(params, orderParam) {
+  getJobs() {
     this.isLoading = true;
-    this.jobService.getJobs(params, orderParam).subscribe( res => {
-      this.jobs = res;
-      this.nb_jobs = this.jobs.length;
+    this.jobService.getCandidateJobs(this.filterParams, this.pageParam, this.orderParam).subscribe( res => {
+      this.jobs = res['hydra:member'];
+      this.nb_jobs = res['hydra:totalItems'];
       this.isLoading = false;
     }, err => {
       this.getJobs_error = err.statusText + '! Please try again later.';
@@ -62,6 +64,7 @@ export class AllJobsComponent implements OnInit {
   }
 
   addFilter($event) {
+    this.pageParam = 1;
     this.filterChoice = $event;
     const index = this.filterParams.findIndex(element => element.value === this.filterChoice.value);
 
@@ -71,12 +74,17 @@ export class AllJobsComponent implements OnInit {
       this.filterParams.push(this.filterChoice);
     }
 
-    this.getJobs(this.filterParams, this.orderParam);
+    this.getJobs();
   }
 
-  order($event) {
+  onOrder($event) {
     this.orderParam = $event.target.value;
-    this.getJobs(this.filterParams, this.orderParam);
+    this.getJobs();
+  }
+
+  onPage($event) {
+    this.pageParam = $event;
+    this.getJobs();
   }
 
 }

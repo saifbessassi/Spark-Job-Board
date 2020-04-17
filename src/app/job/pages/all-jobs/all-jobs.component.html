@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-md-6 text-right">
                         <label style="margin-right: 3%;">Sorted by: </label>
-                        <select class="form-control form-control-sm" (change)="order($event)" style="width: 50%; float: right; background-color: transparent;">
+                        <select class="form-control form-control-sm" (change)="onOrder($event)" style="width: 50%; float: right; background-color: transparent;">
                             <option value="order[createdAt]=desc" selected>Date: newest</option>
                             <option value="order[createdAt]=asc">Date: oldest</option>
                             <option value="order[deadline]=asc">Deadline: soonest</option>
@@ -47,7 +47,13 @@
                 <h5 *ngIf="!jobs.length && !getJobs_error">There are no job offers at the moment.</h5>
                 <sp-job-post  *ngFor="let job of jobs" [job]="job"></sp-job-post>
                 <div class="vertical-space-20"></div>
-            
+                <sp-pagination
+                    *ngIf="nb_jobs > nb_jobs_per_page"
+                    (pageNumber)="onPage($event)" 
+                    [nbItems]="nb_jobs" 
+                    [nbItemsPerPage]="nb_jobs_per_page" 
+                    [currentPage]="pageParam">
+                </sp-pagination>
             </div>
 
         </div>
