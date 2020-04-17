@@ -9,13 +9,14 @@ const routes: Routes = [
     path: '',
     children: [
       {
-        path: '',
+        path: 'home',
         component: LandingComponent
       },
       {
         path: 'jobs',
         component: AllJobsComponent
-      }
+      },
+      { path: '', redirectTo: 'home', pathMatch: 'full' },
     ]
   }
 ];
