@@ -2,10 +2,31 @@
 
 <!-- <div class="container"> -->
     <div id="accordion" id="accordionExample">
-        <sp-filter-box [filterPossibilities]="filterOptions?.categories"  [filterName]="'Job Category'" [checkedValue]="checkedValue"></sp-filter-box>
-        <sp-filter-box [filterPossibilities]="filterOptions?.skills"  [filterName]="'Job Skills'"></sp-filter-box>
-        <sp-filter-box [filterPossibilities]="filterOptions?.experiences"  [filterName]="'Job Experience'"></sp-filter-box>
-        <sp-filter-box [filterPossibilities]="filterOptions?.types"  [filterName]="'Job Type'"></sp-filter-box>
-        <sp-filter-box [filterPossibilities]="filterOptions?.locations"  [filterName]="'Job Location'"></sp-filter-box>
+        <sp-filter-box 
+            [filterPossibilities]="filterOptions?.categories" 
+            [filterName]="'Job Category'" 
+            [checkedValue]="checkedValue"
+            (filterChoice)="filter($event)">
+        </sp-filter-box>
+        <sp-filter-box 
+            [filterPossibilities]="filterOptions?.skills"  
+            [filterName]="'Job Skills'"
+            (filterChoice)="filter($event)">
+        </sp-filter-box>
+        <sp-filter-box 
+            [filterPossibilities]="filterOptions?.experiences" 
+            [filterName]="'Job Experience'"
+            (filterChoice)="filter($event)">
+        </sp-filter-box>
+        <sp-filter-box 
+            [filterPossibilities]="filterOptions?.types" 
+            [filterName]="'Job Type'"
+            (filterChoice)="filter($event)">
+        </sp-filter-box>
+        <sp-filter-box 
+            [filterPossibilities]="filterOptions?.locations"
+            [filterName]="'Job Location'"
+            (filterChoice)="filter($event)">
+        </sp-filter-box>
     </div>
 <!-- </div> -->

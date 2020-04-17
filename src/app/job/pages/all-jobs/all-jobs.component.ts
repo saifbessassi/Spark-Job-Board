@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Job } from 'src/app/core/models/job';
 import { JobService } from 'src/app/core/services/job/job.service';
+import { FilterChoice } from 'src/app/core/models/filter-choice.model';
 
 @Component({
   selector: 'sp-all-jobs',
@@ -18,8 +19,9 @@ export class AllJobsComponent implements OnInit {
   getJobs_error: string;
   getFilters_error: string;
   filterOptions: any;
-  filterParams: any[] = [];
+  filterParams: FilterChoice[] = [];
   checkedCategory: string;
+  filterChoice: FilterChoice;
 
   constructor(
     private jobService: JobService
@@ -58,13 +60,15 @@ export class AllJobsComponent implements OnInit {
     })
   }
 
-  addFilter(key, value) {
-    const index = this.filterParams.findIndex(element => element.value === value);
+  addFilter($event) {
+    this.filterChoice = $event;
+    console.log(this.filterChoice)
+    const index = this.filterParams.findIndex(element => element.value === this.filterChoice.value);
 
     if (index > -1) {
       this.filterParams.splice(index, 1);
     } else {
-      this.filterParams.push({key, value})
+      this.filterParams.push(this.filterChoice);
     }
 
     this.getJobs(this.filterParams);
