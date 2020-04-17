@@ -62,7 +62,6 @@ export class AllJobsComponent implements OnInit {
 
   addFilter($event) {
     this.filterChoice = $event;
-    console.log(this.filterChoice)
     const index = this.filterParams.findIndex(element => element.value === this.filterChoice.value);
 
     if (index > -1) {
