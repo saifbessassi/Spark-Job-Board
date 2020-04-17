@@ -1,0 +1,49 @@
+<section id="intro">
+    <sp-carousel [title]="title" [text]="text"></sp-carousel>
+</section>
+
+
+
+<section id="resent-job-post" class="background-color-white-drak">
+    <div class="container text-center">
+        
+        <div class="vertical-space-30"></div>
+        <h3 class="text-center">Filter Jobs Result</h3>
+
+        <div class="row">
+    
+            <!-- Filters -->
+            <div class="col-lg-4 col-md-12">
+                <div class="vertical-space-30"></div>
+                <sp-jobs-filters [filterOptions]="filterOptions" [checkedValue]="checkedValue"></sp-jobs-filters>
+            </div>
+
+            <!-- Jobs results -->
+            <div class="col-lg-8 col-md-12">
+                <div class="vertical-space-30"></div>
+                <div class="detail" *ngIf="!isLoading && getJobs_error">
+                    <h5 *ngIf="getJobs_error">{{getJobs_error}}</h5>
+                </div>
+                <div *ngIf="jobs.length && !getJobs_error" class="row" style="padding: 1%;">
+                    <div class="col-md-6">
+                        <h6 class="text-left" style="float: left;"><b>{{nb_jobs}}</b> results</h6>
+                    </div>
+                    <div class="col-md-6">
+                        <select class="form-control form-control-sm" style="width: 30%; float: right;">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+                <h5 *ngIf="!jobs.length && !getJobs_error">There are no job offers at the moment.</h5>
+                <sp-job-post  *ngFor="let job of jobs" [job]="job"></sp-job-post>
+                <div class="vertical-space-20"></div>
+            
+            </div>
+
+        </div>
+    </div>
+</section>
