@@ -1,0 +1,25 @@
+<div class="card text-left">
+    <div class="card-header" id="headingOne">
+        <h5 class="mb-0">
+            <button class="btn btn-link btn-block filter-title" style="text-align: left;" data-toggle="collapse"  [attr.data-target]="'#' + removeSpace(filterName)" aria-expanded="true" aria-controls="collapseOne">
+                {{filterName}}
+                <i class="fa fa-sort-down" style="float: right;"></i>
+            </button>
+        </h5>
+    </div>
+
+    <div id="{{removeSpace(filterName)}}" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body">
+            <ul>
+                <li *ngFor="let choice of filterChoices">
+                    <div class="checkbox">
+                        <input type="checkbox" class="option-input checkbox" [checked]="checkedValue === category?.label" />
+                        <label class="checkbox-label">{{choice?.label | titlecase }}</label>
+                        <label class="form-check-label count">  ({{choice?.count}})</label>
+                    </div>
+                    
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

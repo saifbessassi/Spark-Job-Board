@@ -7,10 +7,13 @@ import { CategoryBoxComponent } from './component/category-box/category-box.comp
 import { JobPostComponent } from './component/job-post/job-post.component';
 import { SearchBarComponent } from './component/search-bar/search-bar.component';
 import { CarouselComponent } from './component/carousel/carousel.component';
+import { JobsFiltersComponent } from './component/jobs-filters/jobs-filters.component';
+import { AllJobsComponent } from './pages/all-jobs/all-jobs.component';
+import { FilterBoxComponent } from './component/filter-box/filter-box.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent],
+  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent, JobsFiltersComponent, AllJobsComponent, FilterBoxComponent],
   imports: [
     JobRoutingModule,
     SharedModule
