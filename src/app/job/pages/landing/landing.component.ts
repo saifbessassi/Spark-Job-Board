@@ -31,7 +31,7 @@ export class LandingComponent implements OnInit {
     // Get recent jobs
     this.isLoading = true;
     this.jobService.getRecentJobs().subscribe( res => {
-      this.recentJobs = res;
+      this.recentJobs = res['hydra:member'];
       this.isLoading = false;
     }, err => {
       this.isLoading = false;
