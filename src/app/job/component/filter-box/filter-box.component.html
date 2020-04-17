@@ -13,7 +13,7 @@
             <ul>
                 <li *ngFor="let choice of filterChoices">
                     <div class="checkbox">
-                        <input type="checkbox" class="option-input checkbox" [checked]="checkedValue === category?.label" />
+                        <input type="checkbox" class="option-input checkbox" [checked]="checkedValue === choice?.label" />
                         <label class="checkbox-label">{{choice?.label | titlecase }}</label>
                         <label class="form-check-label count">  ({{choice?.count}})</label>
                     </div>

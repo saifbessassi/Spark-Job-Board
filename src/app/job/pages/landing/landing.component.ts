@@ -75,9 +75,6 @@ export class LandingComponent implements OnInit {
     this.router.navigate(['/cand/jobs'], { state: {data: params} });
   }
 
-  viewJobsByCategory(category: string) {
-    const params = [{key: 'category.label', value: category}];
-    this.router.navigate(['/cand/jobs'], { state: {data: params} });
-  }
+  
 
 }
