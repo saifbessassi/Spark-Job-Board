@@ -1,0 +1,10 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
+
+<section id="intro">
+    <sp-carousel [title]="title" [text]="text"></sp-carousel>
+</section>
+
+<section id="job-Details" class="background-color-white-drak" style="padding: 5%;">
+    <sp-error-msg [error_msg]="getJob_error" *ngIf="!isLoading && getJob_error"></sp-error-msg>
+    <sp-job-card-detail [job]="job" *ngIf="!getJob_error && !isLoading"></sp-job-card-detail>
+</section>

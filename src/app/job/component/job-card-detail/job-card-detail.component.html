@@ -1,0 +1,42 @@
+
+    <div class="container background-color-full-white job-Details">
+        <div class="Exclusive-Product">
+            <h3>{{job?.title | titlecase }}</h3>
+            <a href="#" class="Apply-Now">Apply Now</a>
+            <p> </p>
+            <p>
+                <i class="fas fa-map-marked-alt"></i>
+                <span class="text">  Location: {{job?.location | titlecase }}</span>
+            </p>
+            <p>
+                <i class="fas fa-file-signature"></i>
+                <span class="text">  Job Type: {{job?.employmentType | titlecase }}</span>
+            </p>
+            <p>
+                <i class="fas fa-user-shield"></i>
+                <span class="text">  Experience: {{job?.seniorityLevel | titlecase }}</span>
+            </p>
+            <p>
+                <i class="far fa-clock"></i>
+                <span class="text">  Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</span>
+            </p>
+            
+        </div>
+        <img src="assets/images/job-detail.jpg" alt="" class="job-detail-img">
+        <div class="Job-Description">
+            <h4>Job Description / Responsibility</h4>
+            <p>{{job?.description}}</p>
+            <div class="vertical-space-20"></div>
+            <h4>Skills & Requirement</h4>
+            <ul>
+                <li class="list-style" *ngFor="let skill of job?.skills">
+                    {{skill?.label}}
+                </li>
+            </ul>
+            <div class="text-center">
+            <a href="#" class="Apply-Now-Bottom">Apply Now</a>
+            </div>
+        </div>
+    </div>
+
+    

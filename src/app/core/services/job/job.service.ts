@@ -12,6 +12,10 @@ export class JobService {
 
   constructor(private http: HttpClient) { }
 
+  getOneJob(id: number) {
+    return this.http.get<Job>(API_URL + '/api/jobs/' + id +'.json');
+  }
+
   getRecentJobs() {
     return this.http.get(API_URL + '/api/jobs?status=open&order[createdAt]=desc&itemsPerPage=5');
   }
