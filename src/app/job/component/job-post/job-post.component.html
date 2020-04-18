@@ -15,7 +15,7 @@
         </div>
         <div class="col-md-3" style="display:flex;justify-content:flex-end;align-items:center;">
             <div>
-                <a href="#" class="part-full-time">View job</a>
+                <a type="button" [routerLink]="['/jobs', job.id]" routerLinkActive="router-link-active"  class="part-full-time">View job</a>
                 <p class="date-time">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</p>
             </div>
         </div>
