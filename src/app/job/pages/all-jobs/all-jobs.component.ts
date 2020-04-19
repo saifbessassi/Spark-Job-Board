@@ -23,7 +23,7 @@ export class AllJobsComponent implements OnInit {
   filterParams: FilterChoice[] = [];
   orderParam: string = "";
   pageParam: number = 1;
-  checkedCategory: string;
+  checkedValues: string[] = [];
   filterChoice: FilterChoice;
 
   constructor(
@@ -32,11 +32,14 @@ export class AllJobsComponent implements OnInit {
 
   ngOnInit() {
     if (history.state.data) {
-      this.category_filter_param = history.state.data[0];
-      const key = this.category_filter_param.key;
-      const value = this.category_filter_param.value;
-      this.checkedCategory = value;
-      this.filterParams.push({key, value});
+      // this.category_filter_param = history.state.data[0];
+      // const key = this.category_filter_param.key;
+      // const value = this.category_filter_param.value;
+      // this.checkedValue = value;
+      history.state.data.forEach(element => {
+        this.checkedValues.push(element.value)
+      });
+      this.filterParams = (history.state.data);
     }
 
     // Get jobs

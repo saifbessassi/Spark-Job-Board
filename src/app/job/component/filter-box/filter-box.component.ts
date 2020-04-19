@@ -13,7 +13,7 @@ export class FilterBoxComponent implements OnInit {
 
   @Input() filterPossibilities: FilterPossibility[];
   @Input() filterName: string;
-  @Input() checkedValue: string;
+  @Input() checkedValues: string[];
 
   constructor() { }
 

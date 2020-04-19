@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Job } from '../../models/job';
+import { JobFiltersOptions } from '../../models/job-filters-options.model';
 
 const API_URL = environment.API_URL;
 
@@ -44,7 +45,7 @@ export class JobService {
   }
 
   getFilterOptions() {
-    return this.http.get(API_URL + '/api/jobs/filter-options');
+    return this.http.get<JobFiltersOptions>(API_URL + '/api/jobs/filter-options');
   }
  
   applyForJob(jobId: number, candidateId: number) {

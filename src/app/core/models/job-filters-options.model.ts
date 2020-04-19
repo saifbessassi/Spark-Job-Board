@@ -5,5 +5,5 @@ export class JobFiltersOptions {
     skills: FilterPossibility[];
     experiences: FilterPossibility[];
     types: FilterPossibility[];
-    categolocationsries: FilterPossibility[];
+    locations: FilterPossibility[];
   }

@@ -3,43 +3,11 @@
 <section id="intro">
     <sp-carousel [title]="title" [text]="text"></sp-carousel>
 </section>
-    
-<div id="search-box">
-    <div class="container search-box">
-        <form
-            [formGroup]="searchForm"
-            (ngSubmit)="onSearchSubmit()"
-            id="search-box_search_form_3" 
-            class="search-box_search_form d-flex flex-lg-row flex-column align-items-center">
-            <div class="d-flex flex-row align-items-center justify-content-start inline-block">
-                <span class="large material-icons search"><i class="fa fa-search"></i></span>
-                <input
-                    formControlName="title"
-                    class="search-box_search_input" 
-                    placeholder="Search Keyword" 
-                    type="search">
-                <select
-                    formControlName="category"
-                    class="dropdown_item_select search-box_search_input">
 
-                    <option>Sales and Marketing</option>
-                    <option>Computer Programing</option>
-                    <option>Design & Multimedia</option>
-                    <option>Web Development</option>
-                </select>
-                <span class="large material-icons search"><i class="fa fa-map-marker-alt"></i></span>
-                <input
-                    formControlName="location"
-                    class="search-box_search_input" 
-                    placeholder="Location" 
-                    type="search">
-            </div>
-            <button type="submit" class="search-box_search_button">Search Jobs</button>
-        </form>
-    </div>
-</div>
+<sp-search-bar [filterOptions]="filterOptions" style="position: relative; top: -40px;"></sp-search-bar>
+<div class="vertical-space-30"></div>
 
-<!-- <sp-search-bar></sp-search-bar> -->
+
 
 <section id="Job-Category">
     <div class="container">

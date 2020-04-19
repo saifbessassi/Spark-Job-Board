@@ -1,0 +1,53 @@
+.search-bar {
+    padding: 1%;
+    box-shadow: 0 6px 11px 0 #e4e4e4;
+    border-radius: 10px;
+    text-align: center;
+    align-items: center;
+    background: #fff;
+}
+
+.search-slt{
+    padding: 0 5% !important;
+    line-height: 1.5;
+    color: #55595c;
+    height: calc(3rem + 2px) !important;
+    border: 0;
+}
+
+.wrn-btn{
+    width: 100%;
+    font-size: 20px;
+    font-weight: 500;
+    text-transform: capitalize;
+    border-radius: 5px;
+    background: #ba0000;
+    letter-spacing: .1em;
+    font-family: proxima nova alt rg;
+    padding: 14px;
+    color: #fff;
+}
+
+@media (max-width: 768px) {
+    .btn-col {
+      padding: 10px;
+    }
+  }
+
+.form-group {
+    margin-bottom: 0 !important;
+}
+
+.border-right {
+    border-right: solid 1px #e5e5e5;
+}
+
+.col-sm-10 {
+    padding-left: 0;
+}
+
+.form-control {
+    font-size: 20px;
+    font-family: proxima nova;
+    font-weight: 400;
+}

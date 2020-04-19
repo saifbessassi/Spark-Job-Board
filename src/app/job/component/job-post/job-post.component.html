@@ -4,12 +4,12 @@
             <img src="assets/images/job-post-icone-1.png" alt="" class="mr-3 ">
         </div>
         <div class="col-md-7 text-left">
-            <h6>{{job?.title}}</h6>
+            <h6>{{job?.title | titlecase }}</h6>
             <i class="fa fa-briefcase" style="margin-right: 1%;"></i>
-            <span class="text"> {{job?.employmentType}}</span>
+            <span class="text"> {{job?.employmentType | titlecase }}</span>
         <br>
             <i class="fa fa-map-marker-alt" style="margin-right: 1%;"></i>
-            <span class="text font-size">  {{job?.location}}</span>
+            <span class="text font-size">  {{job?.location | titlecase }}</span>
         <br>
         <p style="margin-bottom: 0;">{{job?.description | characters:60}}</p>
         </div>

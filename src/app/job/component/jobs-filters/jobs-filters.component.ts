@@ -12,7 +12,7 @@ export class JobsFiltersComponent implements OnInit {
   @Output() filterChoice = new EventEmitter<FilterChoice>();
 
   @Input() filterOptions: JobFiltersOptions;
-  @Input() checkedValue: string;
+  @Input() checkedValues: string[];
 
   constructor() { }
 

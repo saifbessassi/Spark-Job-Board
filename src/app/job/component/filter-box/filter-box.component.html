@@ -15,7 +15,7 @@
                     <div class="checkbox">
                         <input
                             (click)="onCheckBox(filterName, choice?.label)"
-                            [checked]="checkedValue === choice?.label"
+                            [checked]="checkedValues?.includes(choice?.label)"
                             type="checkbox" 
                             class="option-input checkbox"/>
                         <label class="checkbox-label">{{choice?.label | titlecase }}</label>

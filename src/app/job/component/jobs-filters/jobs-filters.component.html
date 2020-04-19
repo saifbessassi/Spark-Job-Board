@@ -5,27 +5,31 @@
         <sp-filter-box 
             [filterPossibilities]="filterOptions?.categories" 
             [filterName]="'Job Category'" 
-            [checkedValue]="checkedValue"
+            [checkedValues]="checkedValues"
             (filterChoice)="filter($event)">
         </sp-filter-box>
         <sp-filter-box 
             [filterPossibilities]="filterOptions?.skills"  
             [filterName]="'Job Skills'"
+            [checkedValues]="checkedValues"
             (filterChoice)="filter($event)">
         </sp-filter-box>
         <sp-filter-box 
             [filterPossibilities]="filterOptions?.experiences" 
             [filterName]="'Job Experience'"
+            [checkedValues]="checkedValues"
             (filterChoice)="filter($event)">
         </sp-filter-box>
         <sp-filter-box 
             [filterPossibilities]="filterOptions?.types" 
             [filterName]="'Job Type'"
+            [checkedValues]="checkedValues"
             (filterChoice)="filter($event)">
         </sp-filter-box>
         <sp-filter-box 
             [filterPossibilities]="filterOptions?.locations"
             [filterName]="'Job Location'"
+            [checkedValues]="checkedValues"
             (filterChoice)="filter($event)">
         </sp-filter-box>
     </div>

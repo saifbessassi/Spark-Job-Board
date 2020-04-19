@@ -4,6 +4,8 @@ import { FormGroup, FormControl } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Job } from 'src/app/core/models/job';
 import { JobService } from 'src/app/core/services/job/job.service';
+import { FilterChoice } from 'src/app/core/models/filter-choice.model';
+import { JobFiltersOptions } from 'src/app/core/models/job-filters-options.model';
 
 @Component({
   selector: 'sp-landing',
@@ -21,6 +23,7 @@ export class LandingComponent implements OnInit {
   searchForm: FormGroup;
   nbJobsPerCategory: any;
   msg_error: string;
+  filterOptions: JobFiltersOptions;
 
   constructor(
     private jobService: JobService,
@@ -45,6 +48,12 @@ export class LandingComponent implements OnInit {
       this.isLoadingCategory = false;
     }, err => {
       this.isLoadingCategory = false;
+    })
+
+    // Get filter options with jobs count
+    this.jobService.getFilterOptions().subscribe( res => {
+      this.filterOptions = res;
+    }, err => {
     })
 
     // Initialise search form
