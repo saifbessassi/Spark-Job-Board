@@ -13,10 +13,11 @@ import { FilterBoxComponent } from './component/filter-box/filter-box.component'
 import { PaginationComponent } from './component/pagination/pagination.component';
 import { DetailJobComponent } from './pages/detail-job/detail-job.component';
 import { JobCardDetailComponent } from './component/job-card-detail/job-card-detail.component';
+import { ApplyModalComponent } from './component/apply-modal/apply-modal.component';
 
 
 @NgModule({
-  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent, JobsFiltersComponent, AllJobsComponent, FilterBoxComponent, PaginationComponent, DetailJobComponent, JobCardDetailComponent],
+  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent, JobsFiltersComponent, AllJobsComponent, FilterBoxComponent, PaginationComponent, DetailJobComponent, JobCardDetailComponent, ApplyModalComponent],
   imports: [
     JobRoutingModule,
     SharedModule
