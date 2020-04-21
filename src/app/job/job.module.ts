@@ -17,10 +17,26 @@ import { ApplyModalComponent } from './component/apply-modal/apply-modal.compone
 
 
 @NgModule({
-  declarations: [LandingComponent, CategoryBoxComponent, JobPostComponent, SearchBarComponent, CarouselComponent, JobsFiltersComponent, AllJobsComponent, FilterBoxComponent, PaginationComponent, DetailJobComponent, JobCardDetailComponent, ApplyModalComponent],
+  declarations: [
+    LandingComponent, 
+    CategoryBoxComponent, 
+    JobPostComponent, 
+    SearchBarComponent, 
+    CarouselComponent, 
+    JobsFiltersComponent, 
+    AllJobsComponent, 
+    FilterBoxComponent, 
+    PaginationComponent, 
+    DetailJobComponent, 
+    JobCardDetailComponent, 
+    ApplyModalComponent,
+  ],
   imports: [
     JobRoutingModule,
     SharedModule
+  ],
+  entryComponents: [
+    ApplyModalComponent,
   ]
 })
 export class JobModule { }

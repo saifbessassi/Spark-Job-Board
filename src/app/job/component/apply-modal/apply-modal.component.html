@@ -1,5 +1,5 @@
 
-<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+<!-- <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
   <div class="modal-content">
     <div class="modal-header">
       <h5 class="modal-title" id="exampleModalCenterTitle">Apply For Job</h5>
@@ -46,4 +46,74 @@
       <button type="button" class="btn">Save changes</button>
     </div>
   </div>
+</div> -->
+
+<!-- <div class="modal-header">
+    <h4 class="modal-title">Hi there!</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div> -->
+
+
+<div class="modal-body">
+        
+    <div id="stepper1" class="bs-stepper">
+        <!-- Stepper header -->
+        <div class="bs-stepper-header">
+            <div class="step" data-target="#test-l-1">
+            <button class="step-trigger">
+                <span class="bs-stepper-circle">1</span>
+                <span class="bs-stepper-label">Sign In</span>
+            </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-2">
+            <button class="step-trigger">
+                <span class="bs-stepper-circle">2</span>
+                <span class="bs-stepper-label">Information</span>
+            </button>
+            </div>
+            <div class="line"></div>
+            <div class="step" data-target="#test-l-3">
+            <button class="step-trigger">
+                <span class="bs-stepper-circle">3</span>
+                <span class="bs-stepper-label">Validate</span>
+            </button>
+            </div>
+        </div>
+
+        <!-- Stepper content -->
+        <div class="bs-stepper-content">
+            <form (ngSubmit)="onSubmit()">
+                <!-- Step 1 -->
+                <!-- <div id="test-l-1" class="content">
+                    <div class="form-group row">
+                        <label for="staticEmail" class="col-sm-3 col-form-label">Sign In</label>
+                        <div class="col-sm-9">
+                            <input type="text" class="form-control" id="staticEmail">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-outline-dark"  (click)="activeModal.close('Close click')">Close</button>
+                    <button (click)="next()" class="btn btn-primary">Next</button>
+                </div> -->
+                <h1>The user must sign in to continue for appling</h1>
+                <!-- Step 2 -->
+                <div id="test-l-2" class="content">
+                    <div class="form-group">
+                    <label for="exampleInputPassword1">Password</label>
+                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
+                    </div>
+                    <button type="button" class="btn btn-outline-dark"  (click)="activeModal.close('Close click')">Close</button>
+                    <button (click)="next()" class="btn btn-primary">Next</button>
+                </div>
+                <!-- Step 3 -->
+                <div id="test-l-3" class="content text-center">
+                    <button type="submit" class="btn btn-primary mt-5">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+      
+      
 </div>
