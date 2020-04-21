@@ -1,45 +1,5 @@
 <nav class="sticky-top">
-    <div class="top_bar d-none d-lg-block" style="background: white; padding: 1.5%;">
-        <div class="top_bar_container">
-            <div class="container">
-                <div class="row">
-                    <div class="col">
-                        <div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
-                            <ul class="top_bar_contact_list" style="margin: 0;">
-                                <li>
-                                    <a class="navbar-brand" href="#">
-                                        <img src="assets/logo/spark-logo.png" style="height: 80px;" alt="spark-it logo">
-                                    </a>
-                                </li>       
-                            </ul>
-                            <div class=" ml-auto">
-                                <ul class="top_bar_contact_list" style="margin: 0;">
-                                    <li>
-                                        <a class="navbar-brand" href="https://www.facebook.com/sparkittunisia" target="blank" style="vertical-align: middle;">
-                                            <i class="fab fa-facebook-f social-network-header"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="navbar-brand" href="https://www.instagram.com/sparkit_tunisie/" target="blank" style="vertical-align: middle;">
-                                            <i class="fab fa-instagram social-network-header"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="navbar-brand" href="https://www.linkedin.com/company/spark-it-france/" target="blank" style="vertical-align: middle;">
-                                            <i class="fab fa-linkedin-in social-network-header"></i>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <img src="assets/logo/microsoft-partner-logo.svg" style="height: 40px;vertical-align: middle;" alt="microsoft partner logo">   
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <sp-top-bar></sp-top-bar>
     <div class="header_container background-color-red-dark">
         <nav id="navbar-main" class="navbar navbar-expand-lg ml-auto">
             <div class="container">
@@ -50,10 +10,10 @@
                 <div class="collapse navbar-collapse" id="navbar_global">
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center mr-auto main_nav">
                         <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/home']">Home</a>
+                            <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" [routerLink]="['/jobs']">Jobs</a>
+                            <a class="nav-link" [routerLink]="['/jobs']" routerLinkActive="router-link-active">Jobs</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">About</a>
@@ -82,7 +42,7 @@
                           </li>
                     </ul>
                     <div class="Post-Jobs" style="font-weight: bold;">
-                        <a href="">Sign in</a>
+                        <a type="button" [routerLink]="['/auth/signin']" routerLinkActive="router-link-active">Sign in</a>
                     </div>
                 </div>
             </div>

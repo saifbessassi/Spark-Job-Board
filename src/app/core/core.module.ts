@@ -7,6 +7,7 @@ import { EnsureModuleLoadedOnceGuard } from './guards/ensure-module-loaded-once.
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { TopBarComponent } from './components/top-bar/top-bar.component';
 
 
 
@@ -14,7 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
   declarations: [
     AppLayoutComponent, 
     HeaderComponent, 
-    FooterComponent
+    FooterComponent,
+    TopBarComponent
   ],
   imports: [
     CommonModule,
