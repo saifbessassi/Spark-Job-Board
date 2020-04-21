@@ -1,0 +1,38 @@
+section {
+    padding: 5% 0;
+    background-color: #59595c;
+    background-image: url(src/assets/images/auth-background.jpg);
+    background-attachment: fixed;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.bg {
+    
+}
+
+.auth-layout {
+    box-shadow: 0 6px 11px 0 #484646;
+    border-radius: 10px;
+    text-align: center;
+    background: #f5f5f5;
+}
+
+.card-header {
+    padding: 1rem 1.5rem;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+i {
+    font-size: 2rem;
+    vertical-align: middle;
+    color: #ba0000;
+}
+
+.social-network-header {
+    font-size: 20px; 
+    color: #59595c;
+    vertical-align: middle;
+}
