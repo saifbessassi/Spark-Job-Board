@@ -19,6 +19,15 @@ export class AuthenticationService {
     return this.http.post<{token: string, refresh_token: string}>(API_URL + '/api/login_check', user);
   }
 
+  // To change provider's token for our application's token
+  socialLogin(token, provider: string) {
+    const request_data = {
+      'token': token,
+      'provider': provider,
+    };
+    return this.http.post(API_URL + '/social/login', request_data);
+  }
+
   signup(candidate) {
     return this.http.post(API_URL + '/api/candidates', candidate);
   }

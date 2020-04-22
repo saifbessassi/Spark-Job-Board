@@ -4,10 +4,10 @@
     <h3>Sign In</h3>
     <div class="vertical-space-30"></div>
     <div class="row justify-content-center">  
-        <button type="button" class="sp-btn btn-facebook">
+        <button (click)="socialSignIn('facebook')" type="button" class="sp-btn btn-facebook">
             <i class="fab fa-facebook-square"></i>  Login with facebook
         </button>
-        <button type="button" class="sp-btn btn-google">
+        <button (click)="socialSignIn('google')" type="button" class="sp-btn btn-google">
             <i class="fab fa-google"></i>  Login with google
         </button>  
     </div>

@@ -5,16 +5,39 @@ import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { SigninComponent } from './components/signin/signin.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+
+let config = new AuthServiceConfig([
+  {
+    id: GoogleLoginProvider.PROVIDER_ID,
+    provider: new GoogleLoginProvider("269859930617-4k67asoa2fhi3fun17j4lkppvcgaennp.apps.googleusercontent.com")
+  },
+  {
+    id: FacebookLoginProvider.PROVIDER_ID,
+    provider: new FacebookLoginProvider("643671699786946")
+  }
+]);
+export function provideConfig() {
+  return config;
+}
 
 
 @NgModule({
   declarations: [
     SigninComponent, 
-    AuthLayoutComponent],
+    AuthLayoutComponent, SignupComponent],
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
-    SharedModule
+    SharedModule,
+    SocialLoginModule
+  ],
+  providers: [
+    {
+      provide: AuthServiceConfig,
+      useFactory: provideConfig
+    }
   ]
 })
 export class AuthenticationModule { }
