@@ -25,3 +25,25 @@
 .nav-link {
     text-transform: none;
 }
+
+#profile-picture-lettre-container {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: 0.05rem solid #fff;
+    border-radius: 50%;
+    text-align: center;
+    display: inline-block;
+    line-height: 2.25rem;
+    font-size: 1rem;
+    font-weight: bold;
+    font-family: "Open Sans", sans-serif;
+    color: #fff;
+}
+
+@media (max-width: 991.98px) {
+    #profile-picture-lettre-container {
+        border: 0.05rem solid #020202;
+        color: #020202;
+    }
+  }
+

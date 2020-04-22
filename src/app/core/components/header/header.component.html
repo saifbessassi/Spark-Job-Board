@@ -21,29 +21,26 @@
                         <li class="nav-item">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
+                        
+                        
+                    </ul>
+                    <div *ngIf="!isValid" class="Post-Jobs" style="font-weight: bold;">
+                        <a type="button" [routerLink]="['/auth/signin']" routerLinkActive="router-link-active">Sign in</a>
+                    </div>
+                    <ul *ngIf="isValid" class="navbar-nav align-items-lg-center main_nav">
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
-                                aria-haspopup="true" aria-expanded="false" style="color: #fff;">
-                                Profile </a>
+                            <a type="button" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" style="color: #fff;padding: 0;">
+                                <div *ngIf="!photo" id="profile-picture-lettre-container">{{nameTwoLetter | uppercase}}</div>
+                                <img *ngIf="photo" src="{{photo}}" class="img-fluid rounded-circle shadow-lg" style="width: 2.5rem;">
+                                {{fullname}}
+                            </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
                                 <a class="dropdown-item" href="#">My account</a>
                                 <a class="dropdown-item" href="#">Log out</a>
                             </div>
                         </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Dropdown link
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                              <a class="dropdown-item" href="#">Action</a>
-                              <a class="dropdown-item" href="#">Another action</a>
-                              <a class="dropdown-item" href="#">Something else here</a>
-                            </div>
-                          </li>
                     </ul>
-                    <div class="Post-Jobs" style="font-weight: bold;">
-                        <a type="button" [routerLink]="['/auth/signin']" routerLinkActive="router-link-active">Sign in</a>
-                    </div>
                 </div>
             </div>
         </nav>
