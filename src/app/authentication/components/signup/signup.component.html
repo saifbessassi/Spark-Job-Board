@@ -15,8 +15,9 @@
     <h5>Or Sign Up with your email</h5>
     <div class="vertical-space-30"></div>
     <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
-    <div *ngIf="login_error?.length">
-        <sp-error-msg *ngFor="let error of login_error" [error_msg]="error"></sp-error-msg>
+    <h4 *ngIf="success_msg"  class="success-msg">{{success_msg}}</h4>
+    <div *ngIf="signup_error?.length">
+        <sp-error-msg *ngFor="let error of signup_error" [error_msg]="error"></sp-error-msg>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -31,7 +32,8 @@
                       <input
                         formControlName="fullname"
                         class="form-control sp-input-white"
-                        placeholder="Full name" 
+                        placeholder="Full name"
+                        pattern="[a-zA-Z]+\s[a-zA-Z]+(\s[a-zA-Z]+)?"
                         type="text" 
                         (focus)="focus=true" 
                         (blur)="focus=false">
@@ -42,6 +44,11 @@
                         *ngIf="signupForm.get('fullname').errors.required">
                         Full name is required !
                       </span>
+                      <span 
+                            class="help-block"
+                            *ngIf="signupForm.get('fullname').errors.pattern">
+                            Full name must contains 2 or 3 words and only alphabetic characters !
+                        </span>
                     </div>
                 </div>
 
