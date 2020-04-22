@@ -20,12 +20,12 @@ export class AuthenticationService {
   }
 
   // To change provider's token for our application's token
-  socialLogin(token, provider: string) {
+  socialLogin(token: string, provider: string) {
     const request_data = {
       'token': token,
       'provider': provider,
     };
-    return this.http.post(API_URL + '/social/login', request_data);
+    return this.http.post(API_URL + '/api/candidate/social-login', request_data);
   }
 
   signup(candidate) {
