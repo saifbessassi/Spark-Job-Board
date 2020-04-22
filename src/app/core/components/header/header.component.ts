@@ -32,8 +32,12 @@ export class HeaderComponent implements OnInit {
       } else {
         this.nameTwoLetter = this.fullname[0] + this.fullname[1];
       }
-      
     }
+  }
+
+  logout() {
+    this.tokenService.clear();
+    this.isValid = false;
   }
 
 }

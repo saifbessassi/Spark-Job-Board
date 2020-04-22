@@ -26,6 +26,45 @@
     text-transform: none;
 }
 
+.profile-dropdown-link {
+    color: #fff !important;
+}
+
+.profile-dropdown-link:hover {
+    color: #59595c !important;
+    background: #fff !important;
+}
+
+.signin-btn {
+    width: 122px;
+    height: 44px;
+    border: 1px solid;
+    border-radius: 41px;
+    color: #fff;
+    background-color: #fff;
+    text-align: center;
+    transition: .3s;
+    margin-left: 24px;
+    cursor: pointer;
+    display: inline-block;
+    transition: all .5s ease 0s;
+    line-height: 2.6;
+}
+
+.signin-btn:hover {
+    color: #fff;
+    background-color: #ba0000;
+}
+
+.signin-btn a {
+    color: #ba0000;
+}
+
+.signin-btn:hover a {
+    color: #fff;
+}
+
+
 #profile-picture-lettre-container {
     width: 2.5rem;
     height: 2.5rem;
