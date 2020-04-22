@@ -53,29 +53,17 @@ export class SigninComponent implements OnInit {
 
   socialSignIn(socialProvider: string) {
     let socialPlatformProvider;
-    switch (socialProvider) {
-      case 'google':
-        socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
-        break;
-      case 'facebook':
-        socialPlatformProvider = FacebookLoginProvider.PROVIDER_ID;
-        break;
-      default:
-        break;
-    }
+    socialPlatformProvider = GoogleLoginProvider.PROVIDER_ID;
+  
     this.isLoading = true;
-    this.OAuth.signIn(socialPlatformProvider).then(user => {
-      console.log(user)
-      
-      this.authenticationService.socialLogin(user.idToken, 'socialProvider').subscribe( (res: {access_token: string, refresh_token: string}) => {
+    this.OAuth.signIn(socialPlatformProvider).then(user => { 
+      this.authenticationService.socialLogin(user.idToken, socialProvider).subscribe( (res: {access_token: string, refresh_token: string}) => {
         this.tokenService.setToken(res.access_token);
         this.tokenService.setRefreshToken(res.refresh_token);
-        setTimeout(() => {
-          this.router.navigate(['/']);
-        }, 3000);
+        this.router.navigate(['/']);
         this.isLoading = false;
       }, err => {
-        this.error_msg = err;
+        this.error_msg = err.error;
         this.isLoading = false;
       });
 
