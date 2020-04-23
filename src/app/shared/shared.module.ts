@@ -4,6 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TruncatePipesModule } from 'angular-truncate-pipes';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
+import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,9 @@ import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
   imports: [
     CommonModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbModalModule,
+    NgbModule
   ],
   exports: [
     CommonModule,
@@ -21,7 +24,9 @@ import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
     ReactiveFormsModule,
     TruncatePipesModule,
     SpinnerComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    NgbModalModule,
+    NgbModule
   ],
 })
 export class SharedModule { }
