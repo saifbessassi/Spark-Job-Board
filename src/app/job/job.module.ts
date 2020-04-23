@@ -14,6 +14,7 @@ import { PaginationComponent } from './component/pagination/pagination.component
 import { DetailJobComponent } from './pages/detail-job/detail-job.component';
 import { JobCardDetailComponent } from './component/job-card-detail/job-card-detail.component';
 import { ApplyModalComponent } from './component/apply-modal/apply-modal.component';
+import { AuthenticationModule } from '../authentication/authentication.module';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { ApplyModalComponent } from './component/apply-modal/apply-modal.compone
   ],
   imports: [
     JobRoutingModule,
-    SharedModule
+    SharedModule,
+    AuthenticationModule
   ],
   entryComponents: [
     ApplyModalComponent,

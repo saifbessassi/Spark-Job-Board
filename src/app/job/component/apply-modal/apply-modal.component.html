@@ -54,8 +54,10 @@
       <span aria-hidden="true">&times;</span>
     </button>
 </div> -->
-
-
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document" style="margin: 0vh;">
+    <div class="modal-content">
+       
+<!-- <div class="container"> -->
 <div class="modal-body">
 
     <div id="stepper1" class="bs-stepper">
@@ -82,19 +84,42 @@
                 </button>
             </div>
         </div>
+        <hr style="margin-top: 0;">
 
         <!-- Stepper content -->
         <div class="bs-stepper-content">
-            <form (ngSubmit)="onSubmit()">
+            <!-- <form (ngSubmit)="onSubmit()"></form> -->
                 <!-- Step 1 -->
                 <div id="test-l-1" class="content">
-                    <div class="form-group">
-                        <label for="exampleInputEmail1">Email address</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" />
+                    <!-- <div class="row justify-content-center">
+                        <div class="col text-center">
+                            <h4>Feature available for registred users only</h4>
+                        </div>
                     </div>
-                    <button (click)="next()" class="btn btn-primary">Next</button>
+                    <div class="vertical-space-30"></div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8">
+                            <button (click)="goSignin()" class="btn btn-outline btn-block">I already have an account</button>
+                        </div>
+                    </div>
+                    <div class="vertical-space-30"></div>
+                    <div class="row justify-content-center">
+                        <div class="col text-center">
+                            <h4>Or</h4>
+                        </div>
+                    </div>
+                    <div class="vertical-space-30"></div>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6 col-md-8">
+                            <button (click)="next()" class="btn btn-block">Register</button>
+                        </div>
+                    </div> -->
+                    <sp-signin 
+                        [location]="'apply'"
+                        (outputAuth)="getAuthResult($event)">
+                    </sp-signin>
                 </div>
-
+                
                 <!-- Step 2 -->
                 <div id="test-l-2" class="content">
                 <div class="form-group">
@@ -108,9 +133,11 @@
                 <div id="test-l-3" class="content text-center">
                 <button type="submit" class="btn btn-primary mt-5">Submit</button>
                 </div>
-            </form>
+            <!-- </form> -->
         </div>
-      </div>
+    </div>
       
       
+</div>
+</div>
 </div>
