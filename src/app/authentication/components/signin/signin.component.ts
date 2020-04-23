@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { TokenService } from 'src/app/core/services/token/token.service';
@@ -11,6 +11,9 @@ import { AuthService as SocialAuthService, GoogleLoginProvider, SocialUser, Face
   styleUrls: ['./signin.component.scss']
 })
 export class SigninComponent implements OnInit {
+
+  @Input() location: string = 'signin';
+  @Output() outputAuth = new EventEmitter<boolean>();
 
   focus;
   focus1;
@@ -43,7 +46,12 @@ export class SigninComponent implements OnInit {
     this.authenticationService.signin(candidate).subscribe(res => {
       this.tokenService.setToken(res.token);
       this.tokenService.setRefreshToken(res.refresh_token);
-      this.router.navigate(['/']);
+      if (this.location === 'signin') {
+        this.router.navigate(['/']);
+      } else if (this.location === 'apply') {
+        this.outputAuth.emit(true);
+      }
+      
       this.isLoading = false;
     }, errors => {
       this.login_error.push(errors.error.message);
@@ -51,43 +59,15 @@ export class SigninComponent implements OnInit {
     });
   }
 
-  socialSignIn(provider: string) {
-    this.isLoading = true;
-    let providerID;
-    switch (provider) {
-      case 'google':
-        providerID = GoogleLoginProvider.PROVIDER_ID;
-        break;
-      case 'facebook':
-        providerID = FacebookLoginProvider.PROVIDER_ID;
-        break;
-      default:
-        break;
-    }
-    
-    this.OAuth.signIn(providerID).then(user => {
-      let token = user.authToken;
-      if(provider === 'google') {
-        token = user.idToken;
-      }
-      this.socialSigninReq(token, provider);
-    }, err => {
-      this.error_msg = err;
-      this.isLoading = false;
-    });
+  getSocialAuthIsLoading($event) {
+    this.isLoading = $event;
   }
 
-  socialSigninReq(token: string, provider: string) {
-    this.authenticationService.socialLogin(token, provider).subscribe( (res: {access_token: string, refresh_token: string}) => {
-      this.tokenService.setToken(res.access_token);
-      this.tokenService.setRefreshToken(res.refresh_token);
-      this.router.navigate(['/']);
-      this.isLoading = false;
-    }, err => {
-      console.log('ok')
-      this.error_msg = err.error;
-      this.isLoading = false;
-    });
+  getSocialAuthError_msg($event) {
+    this.error_msg = $event;
   }
-
+  
+  getSocialAuthTrue($event) {
+    this.outputAuth.emit($event);
+  }
 }
