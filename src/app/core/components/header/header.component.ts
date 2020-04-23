@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../services/token/token.service';
 import { Router } from '@angular/router';
+import { UserService } from '../../services/user/user.service';
 
 @Component({
   selector: 'sp-header',
@@ -12,17 +13,18 @@ export class HeaderComponent implements OnInit {
   fullname: string;
   email: string;
   photo: string;
-  isValid: boolean;
+  isConnected: boolean;
   nameTwoLetter: string;
   
   constructor(
     private router: Router,
     private tokenService: TokenService,
+    private userService: UserService,
   ) { }
 
   ngOnInit() {
-    this.isValid = this.tokenService.isValid();
-    if (this.isValid) {
+    this.isConnected = this.userService.isConnected();
+    if (this.isConnected) {
       const payload = this.tokenService.getPayload();
       this.email = payload['username'];
       this.fullname = payload['fullname'];
@@ -37,7 +39,7 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.tokenService.clear();
-    this.isValid = false;
+    this.isConnected = false;
   }
 
 }

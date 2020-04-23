@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TokenService } from '../token/token.service';
+import { UserService } from '../user/user.service';
 
 const API_URL = environment.API_URL;
 
@@ -13,6 +14,7 @@ export class AuthenticationService {
   constructor(
     private http: HttpClient,
     private tokenService: TokenService,
+    private userService: UserService,
   ) { }
 
   signin(user) {
@@ -33,7 +35,7 @@ export class AuthenticationService {
   }
 
   changePassword(passwords) {
-    const id = this.tokenService.getId();
+    const id = this.userService.getId();
     return this.http.put<{token: string, refresh_token: string}>(API_URL + '/api/users/' + id + '/reset-password', passwords);
   }
 }
