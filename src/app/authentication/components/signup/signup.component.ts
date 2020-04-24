@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { Router } from '@angular/router';
@@ -13,6 +13,8 @@ import { PasswordValidator } from 'src/app/core/services/auth/passwordValidator.
 })
 export class SignupComponent implements OnInit {
 
+  @Input() location: string;
+  
   focus;
   focus1;
   focus2;
@@ -106,6 +108,14 @@ export class SignupComponent implements OnInit {
       this.error_msg = err.error;
       this.isLoading = false;
     });
+  }
+
+  getSocialAuthIsLoading($event) {
+    this.isLoading = $event;
+  }
+
+  getSocialAuthError_msg($event) {
+    this.error_msg = $event;
   }
 
 }

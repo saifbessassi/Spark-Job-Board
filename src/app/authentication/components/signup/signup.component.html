@@ -1,9 +1,15 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 
 <div class="card-body">
-    <h3>Sign Up</h3>
-    <div class="vertical-space-30"></div>
-    <div class="row justify-content-center">  
+    <h1 class="text-center">Sign Up</h1>
+
+    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
+    <div *ngIf="signup_error?.length">
+        <sp-error-msg *ngFor="let error of signup_error" [error_msg]="error"></sp-error-msg>
+    </div>
+    <h4 *ngIf="success_msg"  class="success-msg">{{success_msg}}</h4>
+
+    <!-- <div class="row justify-content-center">  
         <button (click)="socialSignUp('facebook')" type="button" class="sp-btn btn-facebook">
             <i class="fab fa-facebook-square"></i>  Sign Up with facebook
         </button>
@@ -12,157 +18,131 @@
         </button>  
     </div>
     <hr>
-    <h5>Or Sign Up with your email</h5>
-    <div class="vertical-space-30"></div>
-    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
-    <h4 *ngIf="success_msg"  class="success-msg">{{success_msg}}</h4>
-    <div *ngIf="signup_error?.length">
-        <sp-error-msg *ngFor="let error of signup_error" [error_msg]="error"></sp-error-msg>
-    </div>
+    <h5>Or Sign Up with your email</h5> -->
+    
     <div class="row justify-content-center">
         <div class="col-md-8">
             <form role="form" [formGroup]="signupForm" (ngSubmit)="signup()">
 
                 <!-- Full name -->
-                <div class="form-group mb-3" [ngClass]="{'focused':focus===true}">
-                    <div class="input-group input-group-alternative sp-border">
-                      <div class="input-group-prepend">
-                        <span class="input-group-text sp-input-white"><i class="fas fa-user"></i></span>
-                      </div>
-                      <input
+                <div class="form-control-group text-left mb-3">
+                    <label for="fullNameInput">Full name:</label>
+                    <input 
                         formControlName="fullname"
-                        class="form-control sp-input-white"
+                        class="form-control"
                         placeholder="Full name"
                         pattern="[a-zA-Z]+\s[a-zA-Z]+(\s[a-zA-Z]+)?"
-                        type="text" 
-                        (focus)="focus=true" 
-                        (blur)="focus=false">
-                    </div>
-                    <div class="text-left" *ngIf="signupForm.get('fullname').touched && signupForm.get('fullname').errors">
-                      <span 
-                        class="help-block"
-                        *ngIf="signupForm.get('fullname').errors.required">
-                        Full name is required !
-                      </span>
-                      <span 
-                            class="help-block"
+                        type="text">
+                    <div *ngIf="signupForm.get('fullname').touched && signupForm.get('fullname').errors">
+                        <p 
+                            class="text-danger"
+                            *ngIf="signupForm.get('fullname').errors.required">
+                            Full name is required !
+                        </p>
+                        <p 
+                            class="text-danger"
                             *ngIf="signupForm.get('fullname').errors.pattern">
                             Full name must contains 2 or 3 words and only alphabetic characters !
-                        </span>
+                        </p>
                     </div>
                 </div>
 
                 <!-- Email address -->
-                <div class="form-group mb-3" [ngClass]="{'focused':focus1===true}">
-                    <div class="input-group input-group-alternative sp-border">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text sp-input-white"><i class="fas fa-envelope"></i></span>
-                        </div>
-                        <input
-                            formControlName="email"
-                            class="form-control sp-input-white"
-                            placeholder="Email address"
-                            pattern=".+@.+\..+"
-                            type="email"
-                            (focus)="focus1=true"
-                            (blur)="focus1=false">
-                    </div>
-                    <div class=" text-left" *ngIf="signupForm.get('email').touched && signupForm.get('email').errors">
-                        <span 
-                            class="help-block"
+                <div class="form-control-group text-left mb-3">
+                    <label for="emailInput">Email address:</label>
+                    <input 
+                        type="email"
+                        class="form-control"
+                        placeholder="Enter email"
+                        formControlName="email"
+                        pattern=".+@.+\..+">
+                    <div *ngIf="signupForm.get('email').touched && signupForm.get('email').errors">
+                        <p 
+                            class="text-danger"
                             *ngIf="signupForm.get('email').errors.required">
                             Email is required !
-                        </span>
-                        <span 
-                            class="help-block"
+                        </p>
+                        <p 
+                            class="text-danger"
                             *ngIf="signupForm.get('email').errors.pattern">
                             Email must be a valid email address !
-                        </span>
-                    </div>  
+                        </p>
+                    </div>
                 </div>
 
                 <!-- Password -->
-                <div class="form-group" [ngClass]="{'focused':focus2===true}">
-                    <div class="input-group input-group-alternative sp-border">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text sp-input-white"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input
-                            formControlName="password"
-                            class="form-control sp-input-white"
-                            placeholder="Password"
-                            type="password"
-                            (focus)="focus2=true"
-                            (blur)="focus2=false">
-                    </div>
-                    <div class=" text-left" *ngIf="signupForm.get('password').touched && signupForm.get('password').errors">
-                        <span 
-                            class="help-block"
+                <div class="form-control-group text-left mb-3">
+                    <label for="passwordInput">Password:</label>
+                    <input
+                        type="password"
+                        class="form-control"
+                        placeholder="Password"
+                        formControlName="password">
+                    <div *ngIf="signupForm.get('password').touched && signupForm.get('password').errors">
+                        <p 
+                            class="text-danger"
                             *ngIf="signupForm.get('password').errors.required">
                             Password is required !
-                        </span>
-                        <span 
-                            class="help-block"
+                        </p>
+                        <p 
+                            class="text-danger"
                             *ngIf="signupForm.get('password').errors.minlength">
                             Password must be at least 8 characters !
-                        </span>
+                        </p>
                     </div>
                 </div>
 
                 <!-- Retyped password -->
-                <div class="form-group" [ngClass]="{'focused':focus3===true}">
-                    <div class="input-group input-group-alternative sp-border">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text sp-input-white"><i class="fas fa-lock"></i></span>
-                        </div>
-                        <input
-                            formControlName="retypedPassword"
-                            class="form-control sp-input-white"
-                            placeholder="Retype password"
-                            type="password"
-                            (focus)="focus3=true"
-                            (blur)="focus3=false">
-                    </div>
-                    <div class="text-left" *ngIf="signupForm.get('retypedPassword').touched && signupForm.get('retypedPassword').errors">
-                        <span 
-                            class="help-block"
+                <div class="form-control-group text-left mb-3">
+                    <label for="RetypedPasswordInput">Repeat password:</label>
+                    <input
+                        type="isAgree"
+                        class="form-control"
+                        placeholder="Confirm Password"
+                        formControlName="retypedPassword">
+                    <div *ngIf="signupForm.get('retypedPassword').touched && signupForm.get('retypedPassword').errors">
+                        <p 
+                            class="text-danger"
                             *ngIf="signupForm.get('retypedPassword').errors.required">
-                            Confirm Password is required !
-                        </span>
-                        <span 
-                            class="help-block"
+                            Password confirmation is required !
+                        </p>
+                        <p 
+                            class="text-danger"
                             *ngIf="signupForm.get('retypedPassword').errors.mustMatch">
                             Passwords must match !
-                        </span>
+                        </p>
                     </div>
                 </div>
 
                 <!-- Agree -->
-                <div class="row my-4">
-                    <div class="col-12">
-                        <div class="custom-control custom-control-alternative custom-checkbox text-left">
-                            <input
-                            formControlName="isAgree"
-                            class="custom-control-input"
-                            id="customCheckRegister" 
-                            type="checkbox">
-                            <label class="custom-control-label" for="customCheckRegister">
-                            <span>
-                                I agree to let Spark-it keep my information for future purposes.
-                            </span>
-                            </label>
-                        </div>
-                        <div *ngIf="signupForm.get('isAgree').touched && !signupForm.get('isAgree').value">You Should agree to let Spark-it keep your information for future purposes !</div>
+                <div class="form-control-group form-check text-left mb-3">
+                    <input 
+                        type="checkbox"
+                        class="form-check-input"
+                        formControlName="isAgree">
+                    <label for="agreeInput" class="form-check-label">
+                        I agree to let Spark-it keep my information for future purposes.
+                    </label>
+                    <div *ngIf="signupForm.get('isAgree').touched && !signupForm.get('isAgree').value">
+                        <p class="text-danger">
+                            You Should agree to let Spark-it keep your information for future purposes !
+                        </p>
                     </div>
                 </div>
                 
                 <!-- Submit -->
-                <div class="row justify-content-center">
-                    <button type="submit" class="sp-btn sp-btn-red" [disabled]="!signupForm.valid">Sign up</button>
-                </div>
+                <button type="submit" class="btn btn-block mb-3" [disabled]="!signupForm.valid || !signupForm.get('isAgree').value">Sign up</button>
+
             </form>
+            <sp-social-authentication
+                (outputIsLoading)="getSocialAuthIsLoading($event)"
+                (outputError_msg)="getSocialAuthError_msg($event)"
+                (outputAuth)="getSocialAuthTrue($event)"
+                [location]="'signup'">
+
+            </sp-social-authentication>
         </div>
         <div class="vertical-space-30"></div>
-        <p>Already have an account? <a [routerLink]="['/auth/signin']"><u>Sign In</u></a></p>
+        <p>Already have an account? <a [routerLink]="['/auth/signin']"><u style="color: #ba0000;">Sign In</u></a></p>
     </div>
 </div>

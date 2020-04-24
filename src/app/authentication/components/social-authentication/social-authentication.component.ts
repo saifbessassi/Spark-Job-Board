@@ -62,7 +62,7 @@ export class SocialAuthenticationComponent implements OnInit {
     this.authenticationService.socialLogin(token, provider).subscribe( (res: {access_token: string, refresh_token: string}) => {
       this.tokenService.setToken(res.access_token);
       this.tokenService.setRefreshToken(res.refresh_token);
-      if (this.location === 'signin') {
+      if (this.location === 'signin' || this.location === 'signup') {
         this.router.navigate(['/']);
       } else if (this.location === 'apply') {
         this.outputAuth.emit(true);
