@@ -1,0 +1,24 @@
+img {
+    width: 128px;
+    height: 128px;
+    border: 2px solid #ba0000;
+    border-radius: 50%;
+}
+
+.edit {
+    color: #9E9E9E;
+    font-size: 1.25rem;
+    transition: transform .2s;
+}
+
+.edit:hover {
+    transform: scale(1.25);
+}
+
+p, h3, h5, h6 {
+    color: #000;
+}
+
+i {
+    color: #ba0000;
+}
