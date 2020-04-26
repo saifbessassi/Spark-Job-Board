@@ -36,7 +36,7 @@
                                 {{fullname}}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
-                                <a class="dropdown-item nav-link profile-dropdown-link" href="#">My account</a>
+                                <a class="dropdown-item nav-link profile-dropdown-link"[routerLink]="['/candidate/profile']" routerLinkActive="router-link-active" >My account</a>
                                 <a class="dropdown-item nav-link profile-dropdown-link" type="button" (click)="logout()">Log out</a>
                             </div>
                         </li>
