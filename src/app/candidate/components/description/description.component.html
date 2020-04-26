@@ -1,0 +1,26 @@
+<div class="card-body background-white py-4 px-4 mb-5">
+    <section>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="description">
+                    <h5 class="mb-4">Presentation</h5>
+                    <p>{{description}}</p>
+                </div>
+                <div *ngIf="!description">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img src="assets/images/icone/Notebook.svg" alt="notebook">
+                        </div>
+                        <div class="col-md-7">
+                            <h5 class="mb-4">Describe myself in a few lines</h5>
+                            <p>A description is useful to understand who you are at a glance, it can make a real difference!</p>
+                        </div>
+                        <div class="col-md-3 text-center">
+                            <button class="sp-btn sp-btn-red"><i class="fas fa-plus edit"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
