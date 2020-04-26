@@ -6,9 +6,22 @@
         <div class="row search-bar">
             <div class="col-md-9">
                 <div class="row">
+
                     <div class="col-md-4 border-right">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label  d-none d-lg-block"><i class="fas fa-cog"></i></label>
+                            <label class="col-sm-2 col-form-label d-none d-lg-block align-self-center"><i class="far fa-calendar-alt"></i></label>
+                            <div class="col-sm-10">
+                                <select class="form-control search-slt" formControlName="experience">
+                                    <option [ngValue]="null">Select Experience Level</option>
+                                    <option *ngFor="let experience of filterOptions?.experiences" [value]="experience.label">{{experience.label | titlecase }}</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-md-4 border-right">
+                        <div class="form-group row">
+                            <label class="col-sm-2 col-form-label  d-none d-lg-block align-self-center"><i class="fas fa-cog"></i></label>
                             <div class="col-sm-10">
                                 <select class="form-control search-slt" formControlName="skill">
                                     <option [ngValue]="null">Select Skill</option>
@@ -17,20 +30,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 border-right">
-                        <div class="form-group row">
-                            <label class="col-sm-2 col-form-label d-none d-lg-block"><i class="far fa-list-alt"></i></label>
-                            <div class="col-sm-10">
-                                <select class="form-control search-slt" formControlName="category">
-                                    <option [ngValue]="null">Select Category</option>
-                                    <option *ngFor="let category of filterOptions?.categories" [value]="category.label">{{category.label | titlecase }}</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    
                     <div class="col-md-4">
                         <div class="form-group row">
-                            <label class="col-sm-2 col-form-label d-none d-lg-block"><i class="fas fa-map-marker-alt"></i></label>
+                            <label class="col-sm-2 col-form-label d-none d-lg-block align-self-center"><i class="fas fa-map-marker-alt"></i></label>
                             <div class="col-sm-10">
                                 <select class="form-control search-slt" formControlName="location">
                                     <option [ngValue]="null">Select Location</option>

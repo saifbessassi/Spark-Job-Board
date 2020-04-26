@@ -25,7 +25,7 @@ export class SearchBarComponent implements OnInit {
   initSearchForm() {
     this.searchForm = new FormGroup({
       'skill': new FormControl(null),
-      'category': new FormControl(null),
+      'experience': new FormControl(null),
       'location': new FormControl(null),
     });
   }
@@ -36,8 +36,8 @@ export class SearchBarComponent implements OnInit {
     if (searchFormValue.skill) {
       params.push({key: 'skills.label', value : searchFormValue.skill})
     }
-    if (searchFormValue.category) {
-      params.push({key: 'category.label', value: searchFormValue.category})
+    if (searchFormValue.experience) {
+      params.push({key: 'seniorityLevel', value: searchFormValue.experience})
     }
     if (searchFormValue.location) {
       params.push({key: 'location', value: searchFormValue.location})
