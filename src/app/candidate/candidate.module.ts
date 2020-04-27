@@ -9,10 +9,11 @@ import { DescriptionComponent } from './components/description/description.compo
 import { EducationComponent } from './components/education/education.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { ProjectComponent } from './components/project/project.component';
+import { LanguageComponent } from './components/language/language.component';
 
 
 @NgModule({
-  declarations: [IdentityComponent, ProfileComponent, DescriptionComponent, EducationComponent, ExperienceComponent, ProjectComponent],
+  declarations: [IdentityComponent, ProfileComponent, DescriptionComponent, EducationComponent, ExperienceComponent, ProjectComponent, LanguageComponent],
   imports: [
     CommonModule,
     CandidateRoutingModule,

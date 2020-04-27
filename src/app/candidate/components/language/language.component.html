@@ -1,0 +1,49 @@
+<div class="card-body background-white py-4 px-5 mb-5">
+    <section>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="languages?.length">
+                    <header class="d-flex align-items-center mb-4">
+                        <h4>Languages</h4>
+                        <a href="" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
+                    </header>
+                    <div class="row">
+                        <div class="col">
+                            <ul *ngIf="languages?.length">
+                                <li *ngFor="let lang of languages">
+                                    <div class="row">
+                                        <div class="col-10 align-self-center">
+                                            <p style="margin-bottom: 0;"><b>{{lang.language.label}}</b></p>
+                                            <p>{{lang.level}}</p>
+                                        </div>
+                                        <div class="col-2 text-right align-self-center">
+                                            <a href=""><i class="fas fa-pen edit-btn-icon"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!languages?.length">
+                    <div class="row">
+                        <div class="col text-center">
+                            <img src="assets/images/icone/World-glob.svg" alt="graduation" style="width: 40%;">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col text-center">
+                            <h5 class="mb-4">My languages</h5>
+                        <p>Add your languages, even your native one!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button class="sp-btn sp-btn-red"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

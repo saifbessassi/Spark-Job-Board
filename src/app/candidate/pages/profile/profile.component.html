@@ -3,6 +3,7 @@
         <div class="row">
             <div class="col-md-4">
                 <sp-identity [candidate]="candidate"></sp-identity>
+                <sp-language [languages]="candidate?.candidateLanguages"></sp-language>
             </div>
             <div class="col-md-8">
                 <sp-description [description]="resume?.description"></sp-description>

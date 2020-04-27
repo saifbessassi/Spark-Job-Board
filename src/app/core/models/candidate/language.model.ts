@@ -1,6 +1,8 @@
 export class Language {
-    id: number;
-    name: string;
+    language : {
+        label: string;
+    }
+    level: string;
 
     public constructor () {}
 }
