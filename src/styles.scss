@@ -4,7 +4,7 @@ html, body { height: 100%; }
 body { 
     margin: 0; 
     font-family: Roboto, "Helvetica Neue", sans-serif;
-    color: #525f7f !important;
+    // color: #525f7f !important;
 }
 
 .background-white {
@@ -16,7 +16,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: inherit;
     font-weight: 400;
     line-height: 1.5;
-    color: #32325d;
+    // color: #32325d;
 }
 
 .sp-btn {
@@ -37,35 +37,35 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
 }
 
 .sp-btn-red {
-    color: #fff;
-    background: #ba0000;
+    color: #fff !important;
+    background: #ba0000 !important;
 }
 
 .sp-btn-white {
-    background: #fff;
-    color: #ba0000;
+    background: #fff !important;
+    color: #ba0000 !important;
 }
 
 .sp-btn-red:hover {
-    background-color:#fff;
-    color:#ba0000;
-    border:1px solid #ba0000;
-    transition:all .5s ease 0s
+    background-color:#fff !important;
+    color:#ba0000 !important;
+    border:1px solid #ba0000 !important;
+    transition:all .5s ease 0s !important;
 }
 
 .sp-btn-white:hover {
-    background-color:#ba0000;
-    color:#fff;
-    border:1px solid #ba0000;
-    transition:all .5s ease 0s
+    background-color:#ba0000 !important;
+    color:#fff !important;
+    border:1px solid #ba0000 !important;
+    transition:all .5s ease 0s !important;
 }
 
 .sp-btn-red:disabled {
-    cursor: not-allowed;
-    opacity: .65;
-    transition: none;
-    background-color:#ba0000;
-    color:#fff;
+    cursor: not-allowed !important;
+    opacity: .65 !important;
+    transition: none !important;
+    background-color:#ba0000 !important;
+    color:#fff !important;
 }
 
 .sp-border {

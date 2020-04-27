@@ -6,7 +6,7 @@
                     <h4 class="mb-4">Presentation</h4>
                     <p>{{description}}</p>
                     <div class="text-right">
-                        <a href=""><i class="fas fa-pen edit-btn-icon"></i></a>
+                        <a (click)="open()" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                     </div>
                 </div>
                 <div *ngIf="!description">
@@ -19,7 +19,7 @@
                             <p>A description is useful to understand who you are at a glance, it can make a real difference!</p>
                         </div>
                         <div class="col-md-2 text-center">
-                            <button class="sp-btn sp-btn-red"><i class="fas fa-plus edit-btn-icon"></i></button>
+                            <button class="sp-btn sp-btn-red" (click)="open()" type="button"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
                 </div>
