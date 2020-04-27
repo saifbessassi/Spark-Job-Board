@@ -10,10 +10,11 @@ import { EducationComponent } from './components/education/education.component';
 import { ExperienceComponent } from './components/experience/experience.component';
 import { ProjectComponent } from './components/project/project.component';
 import { LanguageComponent } from './components/language/language.component';
+import { SkillComponent } from './components/skill/skill.component';
 
 
 @NgModule({
-  declarations: [IdentityComponent, ProfileComponent, DescriptionComponent, EducationComponent, ExperienceComponent, ProjectComponent, LanguageComponent],
+  declarations: [IdentityComponent, ProfileComponent, DescriptionComponent, EducationComponent, ExperienceComponent, ProjectComponent, LanguageComponent, SkillComponent],
   imports: [
     CommonModule,
     CandidateRoutingModule,

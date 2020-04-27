@@ -1,0 +1,49 @@
+<div class="card-body background-white py-4 px-5 mb-5">
+    <section>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="skills?.length">
+                    <header class="d-flex align-items-center mb-4">
+                        <h4>Skills</h4>
+                        <a href="" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
+                    </header>
+                    <div class="row">
+                        <div class="col">
+                            <ul *ngIf="skills?.length">
+                                <li *ngFor="let sk of skills">
+                                    <div class="row">
+                                        <div class="col-10 align-self-center">
+                                            <p style="margin-bottom: 0;"><b>{{sk.skill.label}}</b></p>
+                                            <p>{{sk.level}}</p>
+                                        </div>
+                                        <div class="col-2 text-right align-self-center">
+                                            <a href=""><i class="fas fa-pen edit-btn-icon"></i></a>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!skills?.length">
+                    <div class="row">
+                        <div class="col text-center">
+                            <img src="assets/images/icone/Maintenance.svg" alt="graduation" style="width: 40%;">
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col text-center">
+                            <h5 class="mb-4">My skills</h5>
+                        <p>Add your technical skills!</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col text-center">
+                            <button class="sp-btn sp-btn-red"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

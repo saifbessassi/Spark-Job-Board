@@ -34,7 +34,6 @@ export class ProfileComponent implements OnInit {
     this.error_msg = false;
     this.candidateService.getCandidateProfile().subscribe( (res: Candidate) => {
         this.candidate = res;
-        console.log(this.candidate)
         const lastResumeIndex = this.candidate.resumes.length - 1;
         this.resume = this.candidate.resumes[lastResumeIndex];
         this.isLoading = false;
