@@ -1,6 +1,4 @@
 export class Skill {
-    skill: {
-        label: string;
-    }
-    level: string;
+    id: number;
+    label: string;
 }
