@@ -75,7 +75,7 @@ export class EducationFormComponent implements OnInit {
     const d = new Date(date);
     return {
       'day': d.getDate(),
-      'month': d.getMonth(),
+      'month': d.getMonth() + 1,
       'year': d.getFullYear()
     }
   }

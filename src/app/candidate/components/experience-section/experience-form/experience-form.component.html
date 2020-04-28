@@ -1,0 +1,113 @@
+<div class="px-3">
+    <div class="modal-header border-none pb-0">
+        <h4 class="modal-title" id="modal-basic-title">Education</h4>
+        <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="expForm" (ngSubmit)="save()">
+    
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputSchool">Title: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="title"
+                    type="text" 
+                    class="form-control"
+                    [ngClass]="{'is-valid': expForm.get('title').valid,
+                                'is-invalid': !expForm.get('title').valid && expForm.get('title').touched}">
+                <div class="invalid-feedback mt-3">
+                    Title is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputSchool">Company: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="company"
+                    type="text" 
+                    class="form-control"
+                    [ngClass]="{'is-valid': expForm.get('company').valid,
+                                'is-invalid': !expForm.get('company').valid && expForm.get('company').touched}">
+                <div class="invalid-feedback mt-3">
+                    Company name is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDegree">Location: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="location" 
+                    type="text" 
+                    class="form-control"
+                    [ngClass]="{'is-valid': expForm.get('location').valid,
+                                'is-invalid': !expForm.get('location').valid && expForm.get('location').touched}">
+                <div class="invalid-feedback mt-3">
+                    Location is required.
+                </div>
+            </div>
+            <h5>Date</h5>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="startDate">Start: <span class="obligatory">*</span></label>
+                    <div class="input-group">
+                        <input 
+                            formControlName="dateStart"
+                            class="form-control" 
+                            placeholder="yyyy-mm-dd"
+                            name="dp"
+                            ngbDatepicker 
+                            #start="ngbDatepicker"
+                            [ngClass]="{'is-valid': expForm.get('dateStart').valid,
+                                'is-invalid': !expForm.get('dateStart').valid && expForm.get('dateStart').touched}">
+                        <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="start.toggle()" type="button">
+                            <i class="far fa-calendar-alt"></i>
+                        </button>
+                        </div>
+                        <div class="invalid-feedback mt-3">
+                            Start date is required.
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="endDate">End: <span class="obligatory">*</span></label>
+                    <div class="input-group">
+                        <input 
+                            formControlName="dateEnd"
+                            class="form-control" 
+                            placeholder="yyyy-mm-dd"
+                            name="dp"
+                            ngbDatepicker 
+                            #end="ngbDatepicker"
+                            [ngClass]="{'is-valid': expForm.get('dateEnd').valid,
+                                'is-invalid': !expForm.get('dateEnd').valid && expForm.get('dateEnd').touched}">
+                        <div class="input-group-append">
+                        <button class="btn btn-outline-secondary calendar" (click)="end.toggle()" type="button">
+                            <i class="far fa-calendar-alt"></i>
+                        </button>
+                        </div>
+                        <div class="invalid-feedback mt-3">
+                            End date is required.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputDegree">Description: <span class="obligatory">*</span></label>
+                <textarea 
+                    class="form-control" 
+                    placeholder="Write your introduction here"
+                    formControlName="description"
+                    rows="3"
+                    [ngClass]="{'is-valid': expForm.get('description').valid,
+                    'is-invalid': !expForm.get('description').valid && expForm.get('description').touched}"></textarea>
+                <div class="invalid-feedback mt-3">
+                    Description is required.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-none pt-0">
+            <button type="submit" class="btn sp-btn-red"[disabled]="!expForm.valid">Save</button>
+        </div>
+
+    </form>
+</div>

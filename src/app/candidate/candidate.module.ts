@@ -7,16 +7,29 @@ import { IdentityComponent } from './components/identity/identity.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { DescriptionComponent } from './components/description-section/description/description.component';
 import { EducationComponent } from './components/education-section/education/education.component';
-import { ExperienceComponent } from './components/experience/experience.component';
+import { ExperienceComponent } from './components/experience-section/experience/experience.component';
 import { ProjectComponent } from './components/project/project.component';
 import { LanguageComponent } from './components/language/language.component';
 import { SkillComponent } from './components/skill/skill.component';
 import { DescriptionFormComponent } from './components/description-section/description-form/description-form.component';
 import { EducationFormComponent } from './components/education-section/education-form/education-form.component';
+import { ExperienceFormComponent } from './components/experience-section/experience-form/experience-form.component';
 
 
 @NgModule({
-  declarations: [IdentityComponent, ProfileComponent, DescriptionComponent, EducationComponent, ExperienceComponent, ProjectComponent, LanguageComponent, SkillComponent, DescriptionFormComponent, EducationFormComponent],
+  declarations: [
+    IdentityComponent, 
+    ProfileComponent, 
+    DescriptionComponent, 
+    EducationComponent, 
+    ExperienceComponent, 
+    ProjectComponent, 
+    LanguageComponent, 
+    SkillComponent, 
+    DescriptionFormComponent, 
+    EducationFormComponent,
+    ExperienceFormComponent
+  ],
   imports: [
     CommonModule,
     CandidateRoutingModule,
@@ -24,7 +37,8 @@ import { EducationFormComponent } from './components/education-section/education
   ],
   entryComponents: [
     DescriptionFormComponent,
-    EducationFormComponent
+    EducationFormComponent,
+    ExperienceFormComponent
   ]
 })
 export class CandidateModule { }
