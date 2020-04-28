@@ -1,0 +1,51 @@
+<div class="px-3">
+    <div class="modal-header border-none pb-0">
+        <h4 class="modal-title" id="modal-basic-title">Language</h4>
+        <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="langForm" (ngSubmit)="save()">
+    
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputLanguage">Language: <span class="obligatory">*</span></label>
+                <select 
+                    formControlName="label"
+                    class="form-control"
+                    [ngClass]="{'is-valid': langForm.get('label').valid,
+                                'is-invalid': !langForm.get('label').valid && langForm.get('label').touched}"
+                >
+                    <option>Arabic</option>
+                    <option>English</option>
+                    <option>French</option>
+                </select>
+                <div class="invalid-feedback mt-3">
+                    Language is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputProficiency">Proficiency: <span class="obligatory">*</span></label>
+                <select 
+                    formControlName="level"
+                    class="form-control"
+                    [ngClass]="{'is-valid': langForm.get('level').valid,
+                                'is-invalid': !langForm.get('level').valid && langForm.get('level').touched}"
+                >
+                    <option>Elementary proficiency</option>
+                    <option>Limited working proficiency </option>
+                    <option>Professional working proficiency</option>
+                    <option>Full professional proficiency</option>
+                    <option>Native or bilingual</option>
+                </select>
+                <div class="invalid-feedback mt-3">
+                    Proficiency is required.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-none pt-0">
+            <button type="submit" class="btn sp-btn-red"[disabled]="!langForm.valid">Save</button>
+        </div>
+
+    </form>
+</div>
