@@ -5,7 +5,7 @@
                 <div *ngIf="skills?.length">
                     <header class="d-flex align-items-center mb-4">
                         <h4>Skills</h4>
-                        <a href="" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
+                        <a (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
                         <div class="col">
@@ -17,7 +17,7 @@
                                             <p>{{sk.level}}</p>
                                         </div>
                                         <div class="col-2 text-right align-self-center">
-                                            <a href=""><i class="fas fa-pen edit-btn-icon"></i></a>
+                                            <a (click)="openEditForm(sk)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                                         </div>
                                     </div>
                                 </li>
@@ -39,7 +39,7 @@
                     </div>
                     <div class="row">
                         <div class="col text-center">
-                            <button class="sp-btn sp-btn-red"><i class="fas fa-plus"></i></button>
+                            <button (click)="openNewForm()" type="button" class="sp-btn sp-btn-red"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
                 </div>

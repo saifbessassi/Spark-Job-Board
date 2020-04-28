@@ -1,0 +1,49 @@
+<div class="px-3">
+    <div class="modal-header border-none pb-0">
+        <h4 class="modal-title" id="modal-basic-title">Skill</h4>
+        <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="skillForm" (ngSubmit)="save()">
+    
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputLabel">Skill: <span class="obligatory">*</span></label>
+                <select 
+                    formControlName="id"
+                    class="form-control"
+                    [ngClass]="{'is-valid': skillForm.get('id').valid,
+                                'is-invalid': !skillForm.get('id').valid && skillForm.get('id').touched}"
+                >
+                    <option *ngFor="let skill of allSkills" value="{{skill.id}}">{{skill.label}}</option>
+                </select>
+                <div class="invalid-feedback mt-3">
+                    Skill is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputProficiency">Proficiency: <span class="obligatory">*</span></label>
+                <select 
+                    formControlName="level"
+                    class="form-control"
+                    [ngClass]="{'is-valid': skillForm.get('level').valid,
+                                'is-invalid': !skillForm.get('level').valid && skillForm.get('level').touched}"
+                >
+                    <option>Basic knowledge</option>
+                    <option>novice</option>
+                    <option>Intermediate</option>
+                    <option>Advanced</option>
+                    <option>Expert</option>
+                </select>
+                <div class="invalid-feedback mt-3">
+                    Proficiency is required.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-none pt-0">
+            <button type="submit" class="btn sp-btn-red"[disabled]="!skillForm.valid">Save</button>
+        </div>
+
+    </form>
+</div>
