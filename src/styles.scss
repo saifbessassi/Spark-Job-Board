@@ -86,3 +86,12 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     box-shadow: 0 5px 20px 0 rgba(0,0,0,0.15);
     border-radius: 0.25rem;
 }
+
+.border-none {
+    border: none !important;
+}
+
+.obligatory {
+    color: #ff0000;
+    font-weight: 700;
+}
