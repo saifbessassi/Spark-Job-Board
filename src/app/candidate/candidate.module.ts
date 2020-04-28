@@ -8,12 +8,13 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { DescriptionComponent } from './components/description-section/description/description.component';
 import { EducationComponent } from './components/education-section/education/education.component';
 import { ExperienceComponent } from './components/experience-section/experience/experience.component';
-import { ProjectComponent } from './components/project/project.component';
+import { ProjectComponent } from './components/project-section/project/project.component';
 import { LanguageComponent } from './components/language/language.component';
 import { SkillComponent } from './components/skill/skill.component';
 import { DescriptionFormComponent } from './components/description-section/description-form/description-form.component';
 import { EducationFormComponent } from './components/education-section/education-form/education-form.component';
 import { ExperienceFormComponent } from './components/experience-section/experience-form/experience-form.component';
+import { ProjectFormComponent } from './components/project-section/project-form/project-form.component';
 
 
 @NgModule({
@@ -28,7 +29,8 @@ import { ExperienceFormComponent } from './components/experience-section/experie
     SkillComponent, 
     DescriptionFormComponent, 
     EducationFormComponent,
-    ExperienceFormComponent
+    ExperienceFormComponent,
+    ProjectFormComponent
   ],
   imports: [
     CommonModule,
@@ -38,7 +40,8 @@ import { ExperienceFormComponent } from './components/experience-section/experie
   entryComponents: [
     DescriptionFormComponent,
     EducationFormComponent,
-    ExperienceFormComponent
+    ExperienceFormComponent,
+    ProjectFormComponent
   ]
 })
 export class CandidateModule { }

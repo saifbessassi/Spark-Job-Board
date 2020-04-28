@@ -21,7 +21,6 @@ export class ExperienceFormComponent implements OnInit {
 
   ngOnInit() {
     this.initForm();
-    // this.eduForm.setValue(this.education);
   }
 
   initForm() {
