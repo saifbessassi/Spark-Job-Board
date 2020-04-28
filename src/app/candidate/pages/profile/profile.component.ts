@@ -4,6 +4,7 @@ import { TokenService } from 'src/app/core/services/token/token.service';
 import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
 import { Candidate } from 'src/app/core/models/candidate/candidate.model';
 import { Resume } from 'src/app/core/models/candidate/resume.model';
+import { CandidateIdentity } from 'src/app/core/models/candidate/candidate-identity.model';
 
 @Component({
   selector: 'sp-profile',
@@ -17,6 +18,7 @@ export class ProfileComponent implements OnInit {
   error_msg: boolean;
   candidate: Candidate;
   resume: Resume;
+  identity: CandidateIdentity;
 
   constructor(
     private userService: UserService,
@@ -36,6 +38,14 @@ export class ProfileComponent implements OnInit {
         this.candidate = res;
         const lastResumeIndex = this.candidate.resumes.length - 1;
         this.resume = this.candidate.resumes[lastResumeIndex];
+        this.identity = new CandidateIdentity(
+          this.candidate.fullname,
+          this.candidate.email,
+          this.photo,
+          this.candidate.address,
+          this.candidate.phone,
+          this.resume.seniorityLevel
+        )
         this.isLoading = false;
     }, err => {
         this.error_msg = true;

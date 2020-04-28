@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Candidate } from 'src/app/core/models/candidate/candidate.model';
+import { CandidateIdentity } from 'src/app/core/models/candidate/candidate-identity.model';
 
 @Component({
   selector: 'sp-identity',
@@ -8,7 +8,7 @@ import { Candidate } from 'src/app/core/models/candidate/candidate.model';
 })
 export class IdentityComponent implements OnInit {
 
-  @Input() candidate: Candidate;
+  @Input() identity: CandidateIdentity;
   
   constructor() { }
 

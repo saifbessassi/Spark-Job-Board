@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { CandidateRoutingModule } from './candidate-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { IdentityComponent } from './components/identity/identity.component';
+import { IdentityComponent } from './components/identity-section/identity/identity.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { DescriptionComponent } from './components/description-section/description/description.component';
 import { EducationComponent } from './components/education-section/education/education.component';
@@ -17,6 +17,7 @@ import { ExperienceFormComponent } from './components/experience-section/experie
 import { ProjectFormComponent } from './components/project-section/project-form/project-form.component';
 import { LanguageFormComponent } from './components/language-section/language-form/language-form.component';
 import { SkillFormComponent } from './components/skill-section/skill-form/skill-form.component';
+import { IdentityFormComponent } from './components/identity-section/identity-form/identity-form.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { SkillFormComponent } from './components/skill-section/skill-form/skill-
     ExperienceFormComponent,
     ProjectFormComponent,
     LanguageFormComponent,
-    SkillFormComponent
+    SkillFormComponent,
+    IdentityFormComponent
   ],
   imports: [
     CommonModule,
@@ -47,7 +49,8 @@ import { SkillFormComponent } from './components/skill-section/skill-form/skill-
     ExperienceFormComponent,
     ProjectFormComponent,
     LanguageFormComponent,
-    SkillFormComponent
+    SkillFormComponent,
+    IdentityFormComponent
   ]
 })
 export class CandidateModule { }
