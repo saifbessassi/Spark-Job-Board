@@ -1,0 +1,67 @@
+<div class="px-3">
+    <div class="modal-header border-none pb-0">
+        <h4 class="modal-title" id="modal-basic-title">Project</h4>
+        <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="identityForm" (ngSubmit)="save()">
+    
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="inputFullname">Full name: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="fullname"
+                    type="text" 
+                    class="form-control"
+                    [ngClass]="{'is-valid': identityForm.get('fullname').valid,
+                                'is-invalid': !identityForm.get('fullname').valid && identityForm.get('fullname').touched}">
+                <div class="invalid-feedback mt-3">
+                    Full name is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="inputAddress">Current address: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="address"
+                    type="text" 
+                    class="form-control"
+                    [ngClass]="{'is-valid': identityForm.get('address').valid,
+                                'is-invalid': !identityForm.get('address').valid && identityForm.get('address').touched}">
+                <div class="invalid-feedback mt-3">
+                    Full name is required.
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="inputPhone">Phone number:</label>
+                    <input
+                        formControlName="phone"
+                        type="text" 
+                        class="form-control"
+                        [ngClass]="{'is-valid': identityForm.get('phone').valid,
+                                'is-invalid': !identityForm.get('phone').valid && 
+                                (identityForm.get('phone').touched || identityForm.get('phone').value)}">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="inputPassword4">Seniority Level:</label>
+                    <select 
+                        formControlName="seniorityLevel"
+                        class="form-control"
+                        [ngClass]="{'is-valid': identityForm.get('seniorityLevel').valid,
+                                'is-invalid': !identityForm.get('seniorityLevel').valid && identityForm.get('seniorityLevel').touched}"
+                    >
+                        <option>0 to 2 years</option>
+                        <option>3 to 5 years</option>
+                        <option>6 to 9 years</option>
+                        <option>10 years or more</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-none pt-0">
+            <button type="submit" class="btn sp-btn-red"[disabled]="!identityForm.valid">Save</button>
+        </div>
+
+    </form>
+</div>
