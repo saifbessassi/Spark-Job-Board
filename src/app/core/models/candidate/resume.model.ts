@@ -3,6 +3,7 @@ import { Education } from './education.model';
 import { Project } from './project.model';
 
 export class Resume {
+    public id: number;
     public description: string;
     public seniorityLevel: string;
     public experiences: Experience[];

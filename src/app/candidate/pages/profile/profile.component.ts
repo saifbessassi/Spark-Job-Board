@@ -14,7 +14,7 @@ import { CandidateIdentity } from 'src/app/core/models/candidate/candidate-ident
 export class ProfileComponent implements OnInit {
 
   photo: string;
-  isLoading: boolean;
+  isLoading: boolean = false;
   error_msg: boolean;
   candidate: Candidate;
   resume: Resume;
@@ -36,8 +36,7 @@ export class ProfileComponent implements OnInit {
     this.error_msg = false;
     this.candidateService.getCandidateProfile().subscribe( (res: Candidate) => {
         this.candidate = res;
-        const lastResumeIndex = this.candidate.resumes.length - 1;
-        this.resume = this.candidate.resumes[lastResumeIndex];
+        this.resume = this.candidate.resume;
         this.identity = new CandidateIdentity(
           this.candidate.fullname,
           this.candidate.email,

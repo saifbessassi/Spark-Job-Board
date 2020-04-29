@@ -14,5 +14,5 @@ export class Candidate {
     public linkedin: string;
     public candidateLanguages: CandidateLanguage[];
     public candidateSkills: CandidateSkill[];
-    public resumes: Resume[];
+    public resume: Resume;
 }

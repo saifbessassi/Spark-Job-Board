@@ -1,3 +1,4 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
 <section id="profile" class="background-color-white">
     <div class="container">
         <div class="row">
@@ -9,7 +10,7 @@
             <div class="col-md-8">
                 <sp-description [description]="resume?.description"></sp-description>
                 <sp-education [educations]="resume?.educations"></sp-education>
-                <sp-experience [experiences]="resume?.experiences"></sp-experience>
+                <sp-experience [experiences]="resume?.experiences" [resumeID]="resume?.id"></sp-experience>
                 <sp-project [projects]="resume?.projects"></sp-project>
             </div>
         </div>
