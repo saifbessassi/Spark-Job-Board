@@ -6,31 +6,27 @@ import {
   HttpInterceptor
 } from "@angular/common/http";
 import { Observable } from "rxjs";
+import { TokenService } from '../services/token/token.service';
 
 @Injectable({
   providedIn: "root"
 })
 export class HttpTokenInterceptor implements HttpInterceptor {
-  constructor() {}
+  constructor(
+    private tokenService: TokenService
+  ) {}
 
   intercept(
     request: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     // add authorization header with jwt token if available
-    const token = localStorage.getItem("token");
+    const token = this.tokenService.getToken();
 
     if (token) {
       request = request.clone({
         setHeaders: {
-          "Access-Control-Allow-Origin": "*",
           Authorization: "Bearer " + token
-        }
-      });
-    } else {
-      request = request.clone({
-        setHeaders: {
-          "Access-Control-Allow-Origin": "*"
         }
       });
     }
