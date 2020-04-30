@@ -10,8 +10,12 @@ import { DescriptionFormComponent } from '../description-form/description-form.c
 export class DescriptionComponent implements OnInit {
 
   @Input() description: string;
+  @Input() resumeID: number;
 
-  constructor(config: NgbModalConfig, private modalService: NgbModal) {
+  constructor(
+    config: NgbModalConfig,
+    private modalService: NgbModal
+  ) {
     // customize default values of modals used by this component tree
     config.backdrop = 'static';
     config.keyboard = false;
@@ -23,6 +27,10 @@ export class DescriptionComponent implements OnInit {
   open() {
     const modalRef = this.modalService.open(DescriptionFormComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.description = this.description;
+    modalRef.componentInstance.resumeID = this.resumeID;
+    modalRef.result.then(res => {
+      this.description = res;
+    })
   }
 
 }
