@@ -5,6 +5,8 @@ import { CandidateService } from 'src/app/core/services/candidate/candidate.serv
 import { Candidate } from 'src/app/core/models/candidate/candidate.model';
 import { Resume } from 'src/app/core/models/candidate/resume.model';
 import { CandidateIdentity } from 'src/app/core/models/candidate/candidate-identity.model';
+import { Experience } from 'src/app/core/models/candidate/experience.model';
+import { Education } from 'src/app/core/models/candidate/education.model';
 
 @Component({
   selector: 'sp-profile',
@@ -19,6 +21,8 @@ export class ProfileComponent implements OnInit {
   candidate: Candidate;
   resume: Resume;
   identity: CandidateIdentity;
+  experiences: Experience[];
+  educations: Education[];
 
   constructor(
     private userService: UserService,
@@ -37,6 +41,8 @@ export class ProfileComponent implements OnInit {
     this.candidateService.getCandidateProfile().subscribe( (res: Candidate) => {
         this.candidate = res;
         this.resume = this.candidate.resume;
+        this.experiences = this.resume.experiences.sort((b,a)=> a.dateStart.toString().localeCompare(b.dateStart.toString()));
+        this.educations = this.resume.educations.sort((b,a)=> a.dateStart.toString().localeCompare(b.dateStart.toString()));
         this.identity = new CandidateIdentity(
           this.candidate.fullname,
           this.candidate.email,
