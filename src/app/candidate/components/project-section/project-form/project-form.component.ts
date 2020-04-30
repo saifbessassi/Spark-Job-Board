@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Project } from 'src/app/core/models/candidate/project.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { ProjectService } from 'src/app/core/services/resume/project/project.service';
 
 @Component({
   selector: 'sp-project-form',
@@ -10,16 +11,21 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 })
 export class ProjectFormComponent implements OnInit {
 
+  resumeID: number;
+  index: number;
+  id: number;
   project: Project;
   projectForm: FormGroup;
+  error_msg: string;
+  isLoading = false;
 
   constructor(
-    private _activeModal: NgbActiveModal
+    private _activeModal: NgbActiveModal,
+    private projectService: ProjectService
   ) { }
 
   ngOnInit() {
     this.initForm();
-    // this.eduForm.setValue(this.education);
   }
 
   initForm() {
@@ -28,13 +34,16 @@ export class ProjectFormComponent implements OnInit {
         null, 
         [
           Validators.required,
-          Validators.maxLength(255)
+          Validators.minLength(8),
+          Validators.maxLength(150)
         ]
       ),
       'description': new FormControl(
         null, 
         [
-          Validators.required
+          Validators.required,
+          Validators.minLength(30),
+          Validators.maxLength(255)
         ]
       )
     });
@@ -47,7 +56,29 @@ export class ProjectFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.projectForm.value)
+    this.isLoading = true;
+    if (this.project) {
+      this.id = this.project.id;
+    }
+    this.project = this.projectForm.value;
+    if (this.resumeID) {
+      this.projectService.add(this.project, this.resumeID).subscribe(res => {
+        this._activeModal.close(res);
+        this.isLoading = false;
+      }, err => {
+        this.error_msg = 'An error occurred, please try again later.';
+        this.isLoading = false;
+      })
+    } else {
+      this.project.id = this.id;
+      this.projectService.edit(this.project).subscribe(res => {
+        this._activeModal.close({project: this.project, index: this.index});
+        this.isLoading = false;
+      }, err => {
+        this.error_msg = 'An error occurred, please try again later.';
+        this.isLoading = false;
+      })
+    }
   }
 
   dismissModal() {

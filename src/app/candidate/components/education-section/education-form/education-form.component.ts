@@ -96,7 +96,7 @@ export class EducationFormComponent implements OnInit {
     } else {
       this.education.id = this.id;
       this.educationService.edit(this.education).subscribe(res => {
-        this._activeModal.close({exp: this.education, index: this.index});
+        this._activeModal.close({edu: this.education, index: this.index});
         this.isLoading = false;
       }, err => {
         this.error_msg = 'An error occurred, please try again later.';

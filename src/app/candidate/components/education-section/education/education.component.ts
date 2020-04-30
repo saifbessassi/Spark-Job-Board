@@ -40,7 +40,7 @@ export class EducationComponent implements OnInit {
     modalRef.componentInstance.education = edu;
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
-      this.educations[res.index] = res.exp;
+      this.educations[res.index] = res.edu;
     })
   }
 
