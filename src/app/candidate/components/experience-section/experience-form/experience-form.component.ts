@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Experience } from 'src/app/core/models/candidate/experience.model';
 import { NgbDateStruct, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
@@ -12,13 +12,10 @@ import { NgbDateService } from 'src/app/core/services/date/ngb-date.service';
 })
 export class ExperienceFormComponent implements OnInit {
 
-  @Output() outputExperience = new EventEmitter<Experience>();
   resumeID: number;
   index: number;
   experience: Experience;
   id: number;
-  dateStart: NgbDateStruct;
-  dateEnd: NgbDateStruct;
   expForm: FormGroup;
   error_msg: string;
   maxStartDate: any;
@@ -108,7 +105,7 @@ export class ExperienceFormComponent implements OnInit {
     this.experience.dateEnd = this.ngbDateService.stringToDate(this.expForm.value.dateEnd);
     if (this.resumeID) {
       this.experienceService.add(this.experience, this.resumeID).subscribe(res => {
-        this._activeModal.close(this.experience);
+        this._activeModal.close(res);
         this.isLoading = false;
       }, err => {
         this.error_msg = 'An error occurred, please try again later.';

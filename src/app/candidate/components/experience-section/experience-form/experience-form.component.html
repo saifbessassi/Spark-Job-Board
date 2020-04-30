@@ -110,6 +110,7 @@
                             class="btn btn-outline-secondary calendar"
                             (click)="end.toggle()"
                             type="button"
+                            [disabled]="expForm.get('dateStart')?.invalid"
                         >
                             <i class="far fa-calendar-alt"></i>
                         </button>

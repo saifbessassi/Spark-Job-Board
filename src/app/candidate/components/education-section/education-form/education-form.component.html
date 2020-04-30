@@ -1,3 +1,4 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
         <h4 class="modal-title" id="modal-basic-title">Education</h4>
@@ -5,6 +6,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
     <form [formGroup]="eduForm" (ngSubmit)="save()">
     
         <div class="modal-body">
@@ -13,12 +15,17 @@
                 <input
                     formControlName="school"
                     type="text" 
-                    class="form-control" 
-                    id="inputSchool"
+                    class="form-control"
                     [ngClass]="{'is-valid': eduForm.get('school').valid,
                                 'is-invalid': !eduForm.get('school').valid && eduForm.get('school').touched}">
-                <div class="invalid-feedback mt-3">
+                <div class="invalid-feedback mt-3" *ngIf="eduForm.get('school').errors?.required">
                     School name is required.
+                </div>
+                <div class="invalid-feedback mt-3" *ngIf="eduForm.get('school').errors?.minlength">
+                    School name must be at least 8 characters.
+                </div>
+                <div class="invalid-feedback mt-3" *ngIf="eduForm.get('school').errors?.maxlength">
+                    School name can contain maximum 200 characters.
                 </div>
             </div>
             <div class="form-group">
@@ -26,12 +33,20 @@
                 <input
                     formControlName="degree" 
                     type="text" 
-                    class="form-control" 
-                    id="inputDegree"
+                    class="form-control"
                     [ngClass]="{'is-valid': eduForm.get('degree').valid,
                                 'is-invalid': !eduForm.get('degree').valid && eduForm.get('degree').touched}">
                 <div class="invalid-feedback mt-3">
                     Degree is required.
+                </div>
+                <div class="invalid-feedback mt-3" *ngIf="eduForm.get('degree').errors?.required">
+                    Degree is required.
+                </div>
+                <div class="invalid-feedback mt-3" *ngIf="eduForm.get('degree').errors?.minlength">
+                    Degree must be at least 6 characters.
+                </div>
+                <div class="invalid-feedback mt-3" *ngIf="eduForm.get('degree').errors?.maxlength">
+                    Degree can contain maximum 200 characters.
                 </div>
             </div>
             <h5>Date</h5>
@@ -46,6 +61,8 @@
                             name="dp"
                             ngbDatepicker 
                             #start="ngbDatepicker"
+                            [maxDate]="maxStartDate"
+                            [minDate]="minStartDate"
                             [ngClass]="{'is-valid': eduForm.get('dateStart').valid,
                                 'is-invalid': !eduForm.get('dateStart').valid && eduForm.get('dateStart').touched}">
                         <div class="input-group-append">
@@ -68,10 +85,16 @@
                             name="dp"
                             ngbDatepicker 
                             #end="ngbDatepicker"
+                            [disabled]="eduForm.get('dateStart')?.invalid"
+                            [minDate]="eduForm.get('dateStart').value"
                             [ngClass]="{'is-valid': eduForm.get('dateEnd').valid,
                                 'is-invalid': !eduForm.get('dateEnd').valid && eduForm.get('dateEnd').touched}">
                         <div class="input-group-append">
-                        <button class="btn btn-outline-secondary calendar" (click)="end.toggle()" type="button">
+                        <button 
+                            class="btn btn-outline-secondary calendar"
+                            (click)="end.toggle()"
+                            type="button"
+                            [disabled]="eduForm.get('dateStart')?.invalid">
                             <i class="far fa-calendar-alt"></i>
                         </button>
                         </div>
