@@ -7,8 +7,8 @@
                     <img *ngIf="!identity?.photo" src="assets/images/default-avatar.svg" alt="">
                     <img *ngIf="identity?.photo" src="{{identity?.photo}}" alt="">
                 </div>
-                <h3>{{identity?.fullname}}</h3>
-                <h6 *ngIf="identity?.address">{{identity?.address}}</h6>
+                <h3>{{identity?.fullname | titlecase }}</h3>
+                <h6 *ngIf="identity?.address">{{identity?.address | titlecase }}</h6>
             </div>
         </div>
     </section>
@@ -20,14 +20,12 @@
                 <div class="">
                     <p><i class="fas fa-envelope"></i>  {{identity?.email}}</p>
                     <p *ngIf="identity?.phone"><i class="fas fa-phone-alt"></i>  {{identity?.phone}}</p>
-                    <p *ngIf="!identity?.phone"><i class="fas fa-phone-alt"></i>  No data</p>
-                    <p *ngIf="identity?.seniorityLevel"><i class="far fa-calendar-alt"></i>  {{identity?.seniorityLevel}} experience</p>
-                    <p *ngIf="!identity?.seniorityLevel"><i class="far fa-calendar-alt"></i>  No data</p>
+                    <p *ngIf="identity?.resume.seniorityLevel"><i class="far fa-calendar-alt"></i>  {{identity?.resume.seniorityLevel}} of experience</p>
                 </div>
             </div>
         </div>
     </section>
     <div class="text-right">
-        <a (click)="openEditForm(identity)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
+        <a (click)="openEditForm()" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
     </div>
 </div>

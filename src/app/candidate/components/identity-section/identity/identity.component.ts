@@ -11,6 +11,7 @@ import { IdentityFormComponent } from '../identity-form/identity-form.component'
 export class IdentityComponent implements OnInit {
 
   @Input() identity: CandidateIdentity;
+  isLoading = false;
   
   constructor(config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
@@ -20,9 +21,12 @@ export class IdentityComponent implements OnInit {
   ngOnInit() {
   }
 
-  openEditForm(identity) {
+  openEditForm() {
     const modalRef = this.modalService.open(IdentityFormComponent, { centered: true, size: 'lg' });
-    modalRef.componentInstance.identity = identity;
+    modalRef.componentInstance.identity = this.identity;
+    modalRef.result.then(res => {
+      this.identity = res;
+    })
   }
 
 }

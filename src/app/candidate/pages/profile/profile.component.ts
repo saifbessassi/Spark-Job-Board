@@ -49,7 +49,10 @@ export class ProfileComponent implements OnInit {
           this.photo,
           this.candidate.address,
           this.candidate.phone,
-          this.resume.seniorityLevel
+          {
+            id: '/api/resumes/' + this.resume.id,
+            seniorityLevel: this.resume.seniorityLevel
+          }
         )
         this.isLoading = false;
     }, err => {

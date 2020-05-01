@@ -6,6 +6,9 @@ export class CandidateIdentity {
         public photo: string,
         public address: string,
         public phone: string,
-        public seniorityLevel: string
+        public resume: {
+            id: string,
+            seniorityLevel: string
+        }
     ) {}
 }
