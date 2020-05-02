@@ -1,3 +1,4 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
         <h4 class="modal-title" id="modal-basic-title">Skill</h4>
@@ -5,6 +6,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
     <form [formGroup]="skillForm" (ngSubmit)="save()">
     
         <div class="modal-body">
@@ -25,10 +27,10 @@
             <div class="form-group">
                 <label for="inputProficiency">Proficiency: <span class="obligatory">*</span></label>
                 <select 
-                    formControlName="level"
+                    formControlName="proficiency"
                     class="form-control"
-                    [ngClass]="{'is-valid': skillForm.get('level').valid,
-                                'is-invalid': !skillForm.get('level').valid && skillForm.get('level').touched}"
+                    [ngClass]="{'is-valid': skillForm.get('proficiency').valid,
+                                'is-invalid': !skillForm.get('proficiency').valid && skillForm.get('proficiency').touched}"
                 >
                     <option>Basic knowledge</option>
                     <option>novice</option>

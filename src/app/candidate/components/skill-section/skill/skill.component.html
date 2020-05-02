@@ -10,14 +10,15 @@
                     <div class="row">
                         <div class="col">
                             <ul *ngIf="skills?.length">
-                                <li *ngFor="let sk of skills">
+                                <li *ngFor="let sk of skills; let i = index;">
                                     <div class="row">
-                                        <div class="col-10 align-self-center">
+                                        <div class="col-9 align-self-center">
                                             <p style="margin-bottom: 0;"><b>{{sk.skill.label}}</b></p>
-                                            <p>{{sk.level}}</p>
+                                            <p>{{sk.proficiency}}</p>
                                         </div>
-                                        <div class="col-2 text-right align-self-center">
-                                            <a (click)="openEditForm(sk)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
+                                        <div class="col-3 text-right align-self-center">
+                                            <a (click)="delete(sk.id, i)" type="button"><i class="fas fa-trash-alt edit-btn-icon"></i></a>
+                                            <a (click)="openEditForm(sk, i)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                                         </div>
                                     </div>
                                 </li>
