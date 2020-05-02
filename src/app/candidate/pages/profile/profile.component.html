@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-md-4">
                 <sp-identity [identity]="identity"></sp-identity>
-                <sp-language [languages]="candidate?.candidateLanguages"></sp-language>
+                <sp-language [languages]="resume?.languagesCandidate" [resumeID]="resume?.id"></sp-language>
                 <sp-skill [skills]="resume?.skillsCandidate" [resumeID]="resume?.id"></sp-skill>
             </div>
             <div class="col-md-8">

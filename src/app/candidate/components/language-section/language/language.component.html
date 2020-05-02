@@ -1,3 +1,4 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="card-body shadow background-white py-4 px-5 mb-5">
     <section>
         <div class="row">
@@ -10,14 +11,15 @@
                     <div class="row">
                         <div class="col">
                             <ul *ngIf="languages?.length">
-                                <li *ngFor="let lang of languages">
+                                <li *ngFor="let lang of languages; let i = index">
                                     <div class="row">
                                         <div class="col-10 align-self-center">
                                             <p style="margin-bottom: 0;"><b>{{lang.language.label}}</b></p>
-                                            <p>{{lang.level}}</p>
+                                            <p>{{lang.proficiency}}</p>
                                         </div>
                                         <div class="col-2 text-right align-self-center">
-                                            <a (click)="openEditForm(lang)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
+                                            <a (click)="delete(lang.id, i)" type="button"><i class="fas fa-trash-alt edit-btn-icon"></i></a>
+                                            <a (click)="openEditForm(lang, i)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                                         </div>
                                     </div>
                                 </li>

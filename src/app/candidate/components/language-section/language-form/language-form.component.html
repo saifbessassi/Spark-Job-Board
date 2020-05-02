@@ -1,3 +1,4 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
         <h4 class="modal-title" id="modal-basic-title">Language</h4>
@@ -5,20 +6,19 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
     <form [formGroup]="langForm" (ngSubmit)="save()">
     
         <div class="modal-body">
             <div class="form-group">
                 <label for="inputLanguage">Language: <span class="obligatory">*</span></label>
                 <select 
-                    formControlName="label"
+                    formControlName="id"
                     class="form-control"
-                    [ngClass]="{'is-valid': langForm.get('label').valid,
-                                'is-invalid': !langForm.get('label').valid && langForm.get('label').touched}"
+                    [ngClass]="{'is-valid': langForm.get('id').valid,
+                                'is-invalid': !langForm.get('id').valid && langForm.get('id').touched}"
                 >
-                    <option>Arabic</option>
-                    <option>English</option>
-                    <option>French</option>
+                    <option *ngFor="let lang of allLang" value="{{lang.id}}">{{lang.label}}</option>
                 </select>
                 <div class="invalid-feedback mt-3">
                     Language is required.
@@ -27,10 +27,10 @@
             <div class="form-group">
                 <label for="inputProficiency">Proficiency: <span class="obligatory">*</span></label>
                 <select 
-                    formControlName="level"
+                    formControlName="proficiency"
                     class="form-control"
-                    [ngClass]="{'is-valid': langForm.get('level').valid,
-                                'is-invalid': !langForm.get('level').valid && langForm.get('level').touched}"
+                    [ngClass]="{'is-valid': langForm.get('proficiency').valid,
+                                'is-invalid': !langForm.get('proficiency').valid && langForm.get('proficiency').touched}"
                 >
                     <option>Elementary proficiency</option>
                     <option>Limited working proficiency </option>
