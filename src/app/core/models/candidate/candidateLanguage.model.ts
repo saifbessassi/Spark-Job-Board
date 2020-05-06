@@ -1,4 +1,5 @@
-import { Language } from './language.model';
+import { Language } from '../language.model';
+
 
 export class CandidateLanguage {
     public language: Language;

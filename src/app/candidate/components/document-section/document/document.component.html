@@ -1,0 +1,44 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
+<div class="card-body shadow background-white py-4 px-4 mb-5">
+    <section>
+        <div class="row">
+            <div class="col">
+                <div *ngIf="cv">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img src="assets/images/icone/pdf.svg" alt="projects">
+                        </div>
+                        <div class="col-md-6">
+                            <h5 class="mb-4">Resume</h5>
+                            <p>Updated on {{cv?.updatedAt | date: 'd/M/yyyy, h:mm a'}}</p>
+                        </div>
+                        <div class="col-md-4 text-right">
+                            <a (click)="viewCv()" type="button" style="color: #ba0000;font-weight: bold;">See the PDF file</a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="text-right">
+                                <a (click)="open()" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div *ngIf="!cv">
+                    <div class="row align-items-center">
+                        <div class="col-md-2 text-center">
+                            <img src="assets/images/icone/Resume.svg" alt="projects">
+                        </div>
+                        <div class="col-md-8">
+                            <h5 class="mb-4">Oh no!</h5>
+                            <p>You have not uploaded your resume yet.</p>
+                        </div>
+                        <div class="col-md-2 text-center">
+                            <button (click)="open()" type="button" class="sp-btn sp-btn-red"><i class="fas fa-plus"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

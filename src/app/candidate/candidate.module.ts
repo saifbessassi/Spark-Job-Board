@@ -18,6 +18,8 @@ import { ProjectFormComponent } from './components/project-section/project-form/
 import { LanguageFormComponent } from './components/language-section/language-form/language-form.component';
 import { SkillFormComponent } from './components/skill-section/skill-form/skill-form.component';
 import { IdentityFormComponent } from './components/identity-section/identity-form/identity-form.component';
+import { DocumentComponent } from './components/document-section/document/document.component';
+import { DocumentFormComponent } from './components/document-section/document-form/document-form.component';
 
 
 @NgModule({
@@ -36,7 +38,9 @@ import { IdentityFormComponent } from './components/identity-section/identity-fo
     ProjectFormComponent,
     LanguageFormComponent,
     SkillFormComponent,
-    IdentityFormComponent
+    IdentityFormComponent,
+    DocumentComponent,
+    DocumentFormComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +54,8 @@ import { IdentityFormComponent } from './components/identity-section/identity-fo
     ProjectFormComponent,
     LanguageFormComponent,
     SkillFormComponent,
-    IdentityFormComponent
+    IdentityFormComponent,
+    DocumentFormComponent
   ]
 })
 export class CandidateModule { }

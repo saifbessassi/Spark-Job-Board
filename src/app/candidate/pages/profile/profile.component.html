@@ -9,6 +9,7 @@
             </div>
             <div class="col-md-8">
                 <sp-description [description]="resume?.description" [resumeID]="resume?.id"></sp-description>
+                <sp-document [cv]="resume?.cv" [resumeID]="resume?.id"></sp-document>
                 <sp-education [educations]="educations" [resumeID]="resume?.id"></sp-education>
                 <sp-experience [experiences]="experiences" [resumeID]="resume?.id"></sp-experience>
                 <sp-project [projects]="resume?.projects" [resumeID]="resume?.id"></sp-project>
