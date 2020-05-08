@@ -1,7 +1,10 @@
     <div class="container background-color-full-white job-Details">
         <div class="Exclusive-Product">
-            <h3>{{job?.title | titlecase }}</h3>
-            <a type="button"(click)="openModal()" class="Apply-Now">Apply Now</a>
+            <div class="d-flex">
+                <h3>{{job?.title | titlecase }}</h3>
+                <button type="button" (click)="openModal()" class="btn sp-btn-red apply ml-auto" *ngIf="!isApplied">Apply</button>
+                <button type="button" class="btn btn-secondary ml-auto apply" disabled  *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
+            </div>
             <p> </p>
             <p>
                 <i class="fas fa-map-marked-alt"></i>
@@ -33,7 +36,8 @@
                 </li>
             </ul>
             <div class="text-center">
-            <a href="#" class="Apply-Now-Bottom">Apply Now</a>
+            <button type="button" (click)="openModal()" class="btn sp-btn-red apply" *ngIf="!isApplied">Apply Now</button>
+            <button type="button" class="btn btn-secondary ml-auto apply" disabled *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
             </div>
         </div>
     </div>

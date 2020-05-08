@@ -13,11 +13,10 @@
         <br>
         <p style="margin-bottom: 0;">{{job?.description | characters:60}}</p>
         </div>
-        <div class="col-md-3" style="display:flex;justify-content:flex-end;align-items:center;">
-            <div>
-                <a type="button" [routerLink]="['/jobs', job.id]" routerLinkActive="router-link-active"  class="part-full-time">View job</a>
+        <div class="col-md-3 justify-content-center">
+                <button type="button" [routerLink]="['/jobs', job.id]" class="btn sp-btn-red my-3">View job</button>
+                <button type="button" class="btn btn-secondary ml-auto apply mb-3" disabled *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
                 <p class="date-time">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</p>
-            </div>
         </div>
     </div>
 </div>

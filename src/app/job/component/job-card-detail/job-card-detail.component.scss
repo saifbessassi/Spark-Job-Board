@@ -9,26 +9,10 @@
     padding: 5% 7% !important;
 }
 
-.Apply-Now-Bottom {
-    width: 171px;
-    display: inline-block;
+.apply {
     font-size: 18px;
     font-family: proxima nova rg;
     cursor: pointer;
     font-weight: 700;
-    background-color: #ba0000;
-    color: #fff;
-    border: 1px solid;
-    border-radius: 30px;
-    transition: all .5s ease 0s;
-    text-decoration: none;
-    text-align: center;
-    line-height: 2.4;
-}
-
-.Apply-Now-Bottom:hover {
-    background-color:#fff;
-    color:#ba0000;
-    border:1px solid #ba0000;
-    transition:all .5s ease 0s
+    width: 20%;
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenService } from '../../services/token/token.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
+import { ApplicationService } from '../../services/application/application.service';
 
 @Component({
   selector: 'sp-header',
@@ -15,11 +16,13 @@ export class HeaderComponent implements OnInit {
   photo: string;
   isConnected: boolean;
   nameTwoLetter: string;
+  appliedJobs: any;
   
   constructor(
     private router: Router,
     private tokenService: TokenService,
     private userService: UserService,
+    private applicationService: ApplicationService
   ) { }
 
   ngOnInit() {
@@ -34,11 +37,15 @@ export class HeaderComponent implements OnInit {
       } else {
         this.nameTwoLetter = this.fullname[0] + this.fullname[1];
       }
+      this.applicationService.getCandidateApplicationsID(payload['id']).subscribe(res => {
+        sessionStorage.setItem('applied_jobs', JSON.stringify(res['jobs']));
+      })
     }
   }
 
   logout() {
     this.tokenService.clear();
+    sessionStorage.clear();
     this.isConnected = false;
   }
 
