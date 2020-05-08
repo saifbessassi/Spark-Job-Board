@@ -1,143 +1,97 @@
-
-<!-- <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h5 class="modal-title" id="exampleModalCenterTitle">Apply For Job</h5>
-      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-        <form>
-            <div class="form-group row">
-                <label for="staticEmail" class="col-sm-3 col-form-label">Email</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="staticEmail">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Fullname</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Phone</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Experience</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Password">
-                </div>
-            </div>
-            <div class="form-group row">
-                <label for="inputPassword" class="col-sm-3 col-form-label">Skills</label>
-                <div class="col-sm-9">
-                    <input type="text" class="form-control" id="inputPassword" placeholder="Password">
-                </div>
-            </div>
-        </form>
-    </div>
-    <div class="modal-footer">
-      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-      <button type="button" class="btn">Save changes</button>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div class="modal-header">
-    <h4 class="modal-title">Hi there!</h4>
-    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
-      <span aria-hidden="true">&times;</span>
-    </button>
-</div> -->
-<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document" style="margin: 0vh;">
+<sp-spinner *ngIf="isLoading"></sp-spinner>
+<div class="modal modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document" style="margin: 0vh;">
     <div class="modal-content">
-       
-<!-- <div class="container"> -->
-<div class="modal-body">
+        
+        <div class="modal-body">
+            <div id="stepper1" class="bs-stepper">
+                <!-- Stepper header -->
+                <div class="bs-stepper-header">
+                    <div class="step" data-target="#test-l-1">
+                        <button class="step-trigger">
+                        <span class="bs-stepper-circle">1</span>
+                        <span class="bs-stepper-label">Authentication</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-2">
+                        <button class="step-trigger">
+                        <span class="bs-stepper-circle">2</span>
+                        <span class="bs-stepper-label">Resume</span>
+                        </button>
+                    </div>
+                    <div class="line"></div>
+                    <div class="step" data-target="#test-l-3">
+                        <button class="step-trigger">
+                        <span class="bs-stepper-circle">3</span>
+                        <span class="bs-stepper-label">Confirmation</span>
+                        </button>
+                    </div>
+                </div>
+                <hr class="mt-0">
 
-    <div id="stepper1" class="bs-stepper">
-        <!-- Stepper header -->
-        <div class="bs-stepper-header">
-            <div class="step" data-target="#test-l-1">
-                <button class="step-trigger">
-                <span class="bs-stepper-circle">1</span>
-                <span class="bs-stepper-label">Authentication</span>
-                </button>
-            </div>
-            <div class="line"></div>
-            <div class="step" data-target="#test-l-2">
-                <button class="step-trigger">
-                <span class="bs-stepper-circle">2</span>
-                <span class="bs-stepper-label">Information</span>
-                </button>
-            </div>
-            <div class="line"></div>
-            <div class="step" data-target="#test-l-3">
-                <button class="step-trigger">
-                <span class="bs-stepper-circle">3</span>
-                <span class="bs-stepper-label">Confirmation</span>
-                </button>
+                <!-- Stepper content -->
+                <div class="bs-stepper-content">
+                        <!-- Step 1 -->
+                        <div id="test-l-1" class="content">
+                            <sp-signin
+                            *ngIf="!isConnected"
+                                [location]="'apply'"
+                                (outputAuth)="getAuthResult($event)">
+                            </sp-signin>
+                        </div>
+                        
+                        <!-- Step 2 -->
+                        <div id="test-l-2" class="content">
+                            <div class="container">
+                                <sp-spinner *ngIf="candidateLoading"></sp-spinner>
+                                <sp-resume-summary
+                                    [candidate]="candidate"
+                                    (outputCanApply)="onCanApply($event)"
+                                    *ngIf="!candidateLoading">
+                                </sp-resume-summary>
+                                <div class="nb nb pt-3 px-3 my-3">
+                                    <p>
+                                        <b>NB! </b>To apply for a job, phone number, seniority and skills are mendatory fields. 
+                                        In addition, you should upload a pdf resume or fill the resume fields (education and experience at least) or you can do both.<br>
+                                        To enhance your resume efficiency, it's better to fill all the fields and update them.
+                                    </p>
+                                </div>
+                                <div class="text-right">
+                                    <button
+                                        data-dismiss="modal"
+                                        (click)="goProfile()" 
+                                        class="btn sp-btn-white mr-3">
+                                        <i class="fas fa-pen"></i> Complete your profile
+                                    </button>
+                                    <button 
+                                        title="Fill required Fields to pass.."
+                                        (click)="next()"
+                                        class="btn btn-primary" 
+                                        [disabled]="!canApply">
+                                        Next
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Step 3 -->
+                        <div id="test-l-3" class="content text-center">
+                            <form [formGroup]="messageForm" (ngSubmit)="onApply()">
+                                <div class="form-group row py-3 px-5">
+                                    <p class="text-left"><b>Your application message (optional, maximum 1000 characters)</b></p>
+                                    <textarea 
+                                        formControlName="message"
+                                        class="form-control"
+                                        rows="3">
+                                    </textarea>
+                                </div>
+                                <div *ngIf="error_msg" class="mb-3" style="color: #dc3545;">{{error_msg}}</div>
+                                <button type="submit" class="btn btn-primary">Apply</button>
+                            </form>
+                        </div>
+                </div>
             </div>
         </div>
-        <hr style="margin-top: 0;">
 
-        <!-- Stepper content -->
-        <div class="bs-stepper-content">
-            <!-- <form (ngSubmit)="onSubmit()"></form> -->
-                <!-- Step 1 -->
-                <div id="test-l-1" class="content">
-                    <!-- <div class="row justify-content-center">
-                        <div class="col text-center">
-                            <h4>Feature available for registred users only</h4>
-                        </div>
-                    </div>
-                    <div class="vertical-space-30"></div>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-8">
-                            <button (click)="goSignin()" class="btn btn-outline btn-block">I already have an account</button>
-                        </div>
-                    </div>
-                    <div class="vertical-space-30"></div>
-                    <div class="row justify-content-center">
-                        <div class="col text-center">
-                            <h4>Or</h4>
-                        </div>
-                    </div>
-                    <div class="vertical-space-30"></div>
-                    <div class="row justify-content-center">
-                        <div class="col-lg-6 col-md-8">
-                            <button (click)="next()" class="btn btn-block">Register</button>
-                        </div>
-                    </div> -->
-                    <sp-signin 
-                        [location]="'apply'"
-                        (outputAuth)="getAuthResult($event)">
-                    </sp-signin>
-                </div>
-                
-                <!-- Step 2 -->
-                <div id="test-l-2" class="content">
-                <div class="form-group">
-                    <label for="exampleInputPassword1">Password</label>
-                    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" />
-                </div>
-                <button (click)="next()" class="btn btn-primary">Next</button>
-                </div>
-
-                <!-- Step 3 -->
-                <div id="test-l-3" class="content text-center">
-                <button type="submit" class="btn btn-primary mt-5">Submit</button>
-                </div>
-            <!-- </form> -->
-        </div>
     </div>
-      
-      
-</div>
-</div>
 </div>

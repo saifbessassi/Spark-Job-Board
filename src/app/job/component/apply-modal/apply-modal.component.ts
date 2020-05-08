@@ -2,7 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import Stepper from 'bs-stepper';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { UserService } from 'src/app/core/services/user/user.service';
-import { SigninComponent } from 'src/app/authentication/components/signin/signin.component';
+import { ApplicationService } from 'src/app/core/services/application/application.service';
+import { Candidate } from 'src/app/core/models/candidate/candidate.model';
+import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
+import { Router } from '@angular/router';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -14,8 +18,14 @@ export class ApplyModalComponent implements OnInit {
 
   @Input() jobId: number;
 
-  private stepper: Stepper;
+  stepper: Stepper;
+  candidate: Candidate;
   isConnected: boolean;
+  error_msg: string;
+  candidateLoading: boolean = false;
+  canApply: boolean;
+  messageForm: FormGroup;
+  isLoading: boolean = false;
 
   next() {
     this.stepper.next();
@@ -24,7 +34,10 @@ export class ApplyModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private userService: UserService,
-    private modalService: NgbModal
+    private _activeModal: NgbActiveModal,
+    private candidateService: CandidateService,
+    private router: Router,
+    private applyService: ApplicationService
     ) { }
 
   ngOnInit() {
@@ -36,17 +49,60 @@ export class ApplyModalComponent implements OnInit {
     })
     if (this.isConnected) {
       this.stepper.to(2);
+      this.getCandidate();
     }
-  }
 
-  goSignin() {
-    console.log();
+    this.messageForm = new FormGroup({
+      'message': new FormControl(null, Validators.maxLength(1000))
+    })
   }
 
   getAuthResult($event) {
     if ($event) {
       this.stepper.next();
+      this.getCandidate();
     }
   }
 
+  getCandidate() {
+    this.candidateLoading = true;
+    this.candidateService.getCandidateProfile().subscribe((res: Candidate) => {
+      this.candidate = res;
+      this.candidateLoading = false;
+    }, err => {
+      this.error_msg = 'An error occurred, please try again later.';
+      this.candidateLoading = false;
+    })
+  }
+
+  onCanApply($event) {
+    this.canApply = $event;
+  }
+
+  goProfile() {
+    this.dismissModal();
+    this.router.navigateByUrl('/candidate/profile');
+  }
+
+  onApply() {
+    this.isLoading = true;
+    const candID = this.userService.getId();
+    const message = this.messageForm.value.message;
+    this.applyService.apply(this.jobId, candID, message).subscribe(res => {
+      this.applyService.addJobToAppliedJobsInSession(this.jobId);
+      this.isLoading = false;
+      this.dismissModal(true);
+    }, err => {
+      if (err.error['hydra:description']) {
+        this.error_msg = err.error['hydra:description'];
+      } else {
+        this.error_msg = 'An error occurred, please try again later.';
+      }
+      this.isLoading = false;
+    })
+  }
+
+  dismissModal(res?) {
+    this._activeModal.close(res);
+  }
 }

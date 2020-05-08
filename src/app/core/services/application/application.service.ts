@@ -1,0 +1,45 @@
+import { Injectable } from '@angular/core';
+import { environment } from 'src/environments/environment';
+import { HttpClient } from '@angular/common/http';
+
+const API_URL = environment.API_URL;
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApplicationService {
+
+  constructor(private http: HttpClient) { }
+ 
+  apply(jobId: number, candidateId: number, message: string) {
+    const application = {
+      job: '/api/jobs/' + jobId,
+      candidate: '/api/candidates/' + candidateId,
+      message: message
+    }
+    return this.http.post(API_URL + '/api/job_applications', application);
+  }
+
+  getCandidateApplicationsID(candidateId: number) {
+    return this.http.get(API_URL + '/api/job_applications/applied?id=' + candidateId);
+  }
+
+  addAllAppliedJobsToSession(appliedJobs) {
+    sessionStorage.setItem('applied_jobs', JSON.stringify(appliedJobs));
+  }
+
+  getAppliedJobsInSession() {
+    return JSON.parse(sessionStorage.getItem('applied_jobs'));
+  }
+
+  addJobToAppliedJobsInSession(jobID) {
+    let appliedJobs = this.getAppliedJobsInSession();
+    appliedJobs.push(jobID);
+    this.addAllAppliedJobsToSession(appliedJobs);
+  }
+
+  isApplied(jobId) {
+    let appliedJobs: number[] = this.getAppliedJobsInSession();
+    return appliedJobs.includes(jobId);
+  }
+}

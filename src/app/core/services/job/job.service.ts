@@ -47,13 +47,4 @@ export class JobService {
   getFilterOptions() {
     return this.http.get<JobFiltersOptions>(API_URL + '/api/jobs/filter-options');
   }
- 
-  applyForJob(jobId: number, candidateId: number) {
-    const application = {
-      job: '/api/jobs/' + jobId,
-      candidate: '/api/candidates/' + candidateId,
-      status: 'waiting'
-    }
-    return this.http.post(API_URL + '/api/job_applications', application);
-  }
 }
