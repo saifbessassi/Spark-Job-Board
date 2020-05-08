@@ -15,6 +15,7 @@ import { DetailJobComponent } from './pages/detail-job/detail-job.component';
 import { JobCardDetailComponent } from './component/job-card-detail/job-card-detail.component';
 import { ApplyModalComponent } from './component/apply-modal/apply-modal.component';
 import { AuthenticationModule } from '../authentication/authentication.module';
+import { ResumeSummaryComponent } from './component/resume-summary/resume-summary.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { AuthenticationModule } from '../authentication/authentication.module';
     DetailJobComponent, 
     JobCardDetailComponent, 
     ApplyModalComponent,
+    ResumeSummaryComponent,
   ],
   imports: [
     JobRoutingModule,
