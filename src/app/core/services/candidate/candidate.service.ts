@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
 import { CandidateIdentity } from '../../models/candidate/candidate-identity.model';
+import { AuthenticationService } from '../auth/authentication.service';
 
 const API_URL = environment.API_URL;
 @Injectable({
@@ -14,9 +15,13 @@ export class CandidateService {
 
   constructor(
     private http: HttpClient,
-    private userService: UserService
+    private authenticationService: AuthenticationService
   ) {
-    this.candidateID = userService.getId();
+    authenticationService.currentUser.subscribe(data => {
+      if(data) {
+        this.candidateID = data.id;
+      }
+    })
   }
 
   getCandidateProfile() {

@@ -3,6 +3,7 @@ import { AuthService as SocialAuthService, GoogleLoginProvider, FacebookLoginPro
 import { TokenService } from 'src/app/core/services/token/token.service';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { Router } from '@angular/router';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sp-social-authentication',
@@ -59,22 +60,24 @@ export class SocialAuthenticationComponent implements OnInit {
   }
 
   socialSigninReq(token: string, provider: string) {
-    this.authenticationService.socialLogin(token, provider).subscribe( (res: {access_token: string, refresh_token: string}) => {
-      this.tokenService.setToken(res.access_token);
-      this.tokenService.setRefreshToken(res.refresh_token);
-      if (this.location === 'signin' || this.location === 'signup') {
-        this.router.navigate(['/']);
-      } else if (this.location === 'apply') {
-        this.outputAuth.emit(true);
-      }
-      
-      this.isLoading = false;
-      this.outputIsLoading.emit(this.isLoading);
-  }, err => {
-      this.error_msg = err.error;
-      this.outputError_msg.emit(this.error_msg);
-      this.isLoading = false;
-      this.outputIsLoading.emit(this.isLoading);
-  });
+    this.authenticationService.socialSignin(token, provider)
+      .pipe(first())
+      .subscribe(
+        data => {
+          if (this.location === 'signin' || this.location === 'signup') {
+            this.router.navigate(['/']);
+          } else if (this.location === 'apply') {
+            this.outputAuth.emit(true);
+          }
+          this.isLoading = false;
+          this.outputIsLoading.emit(this.isLoading);
+        },
+        error => {
+          this.error_msg = error.error;
+          this.outputError_msg.emit(this.error_msg);
+          this.isLoading = false;
+          this.outputIsLoading.emit(this.isLoading);
+        }
+      )
   }
 }

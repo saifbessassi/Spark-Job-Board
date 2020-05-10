@@ -3,39 +3,91 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { TokenService } from '../token/token.service';
 import { UserService } from '../user/user.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import * as jwt_decode from 'jwt-decode';
+import { User } from '../../models/user.service';
+import { Token } from '../../models/token.model';
 
 const API_URL = environment.API_URL;
+
+interface SigninResponse {
+  token: string;
+  refresh_token: string
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthenticationService {
+  private currentUserSubject: BehaviorSubject<User>;
+  public currentUser: Observable<User>;
 
   constructor(
     private http: HttpClient,
-    private tokenService: TokenService,
-    private userService: UserService,
-  ) { }
-
-  signin(user) {
-    return this.http.post<{token: string, refresh_token: string}>(API_URL + '/api/login_check', user);
+    private tokenService: TokenService
+  ) {
+    this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
+    this.currentUser = this.currentUserSubject.asObservable();
   }
 
-  // To change provider's token for our application's token
-  socialLogin(token: string, provider: string) {
+  public get currentUserValue(): User {
+    return this.currentUserSubject.value;
+  }
+
+  signin(credentials) {
+    return this.http.post<SigninResponse>(API_URL + '/api/login_check', credentials)
+      .pipe(map(res => {
+        return this.handleAuthentication(res);
+      }));
+  }
+
+  // // To change provider's token for our application's token
+  socialSignin(token: string, provider: string) {
     const request_data = {
       'token': token,
       'provider': provider,
     };
-    return this.http.post(API_URL + '/api/candidate/social-login', request_data);
+    return this.http.post<SigninResponse>(API_URL + '/api/candidate/social-login', request_data)
+      .pipe(map(res => {
+        return this.handleAuthentication(res);
+      }));
+  }
+
+  logout() {
+    localStorage.removeItem('currentUser');
+    localStorage.removeItem('token');
+    sessionStorage.clear();
+    this.currentUserSubject.next(null);
+  }
+
+  // store user details and jwt token in local storage to keep user logged in between page refreshes
+  handleAuthentication(data: SigninResponse) {
+    const payload = jwt_decode(data.token);
+    let user = new User();
+    let token = new Token();
+
+    token.access_token = data.token;
+    token.refrech_token = data.refresh_token;
+    token.exp = payload['exp'];
+    token.iat = payload['iat'];
+    user.id = payload['id'];
+    user.email = payload['username'];
+    user.fullname = payload['fullname'];
+    user.picture = payload['picture'];
+    user.roles = payload['roles'];
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('token', JSON.stringify(token));
+    this.currentUserSubject.next(user);
+    return user;
   }
 
   signup(candidate) {
     return this.http.post(API_URL + '/api/candidates', candidate);
   }
 
-  changePassword(passwords) {
-    const id = this.userService.getId();
-    return this.http.put<{token: string, refresh_token: string}>(API_URL + '/api/users/' + id + '/reset-password', passwords);
-  }
+  // changePassword(passwords) {
+  //   const id = this.userService.getId();
+  //   return this.http.put<{token: string, refresh_token: string}>(API_URL + '/api/users/' + id + '/reset-password', passwords);
+  // }
 }

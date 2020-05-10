@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { TokenService } from 'src/app/core/services/token/token.service';
 import { AuthService as SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
 import { PasswordValidator } from 'src/app/core/services/auth/passwordValidator.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sp-signup',
@@ -98,16 +99,18 @@ export class SignupComponent implements OnInit {
   }
 
   socialSignupReq(token: string, provider: string) {
-    this.authenticationService.socialLogin(token, provider).subscribe( (res: {access_token: string, refresh_token: string}) => {
-      this.tokenService.setToken(res.access_token);
-      this.tokenService.setRefreshToken(res.refresh_token);
-      this.router.navigate(['/']);
-      this.isLoading = false;
-    }, err => {
-      console.log('ok')
-      this.error_msg = err.error;
-      this.isLoading = false;
-    });
+    this.authenticationService.socialSignin(token, provider)
+      .pipe(first())
+      .subscribe(
+        data => {
+          this.router.navigate(['/']);
+          this.isLoading = false;
+        },
+        error => {
+          this.error_msg = error.error;
+          this.isLoading = false;
+        }
+      )
   }
 
   getSocialAuthIsLoading($event) {

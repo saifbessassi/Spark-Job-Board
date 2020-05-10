@@ -1,40 +1,35 @@
 import { Injectable } from '@angular/core';
 import * as jwt_decode from 'jwt-decode';
+import { Token } from '../../models/token.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
 
+  token: Token;
+  
   constructor(
 
-  ) { }
+  ) {
+    this.token = JSON.parse(localStorage.getItem('token'));
+  }
 
   getToken() {
-    return localStorage.getItem('access_token');
+    if (this.token) {
+      return this.token.access_token;
+    }
+    return null;
   }
 
   getRefreshToken() {
-    return localStorage.getItem('refrech_token');
-  }
-
-  setToken(access_token) {
-    localStorage.setItem('access_token', access_token);
-  }
-
-  setRefreshToken(refrech_token) {
-    localStorage.setItem('refrech_token', refrech_token);
+    if (this.token) {
+      return this.token.refrech_token;
+    }
+    return null;
   }
 
   clear() {
     localStorage.clear();
-  }
-
-  getPayload() {
-    const token = this.getToken();
-    if (token) {
-      return jwt_decode(token);
-    }
-    return null;
   }
 }

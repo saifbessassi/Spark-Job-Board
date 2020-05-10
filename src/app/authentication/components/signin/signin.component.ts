@@ -4,6 +4,7 @@ import { AuthenticationService } from 'src/app/core/services/auth/authentication
 import { TokenService } from 'src/app/core/services/token/token.service';
 import { Router } from '@angular/router';
 import { AuthService as SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'sp-signin',
@@ -43,20 +44,38 @@ export class SigninComponent implements OnInit {
     this.isLoading = true;
     const candidate = this.loginForm.value;
 
-    this.authenticationService.signin(candidate).subscribe(res => {
-      this.tokenService.setToken(res.token);
-      this.tokenService.setRefreshToken(res.refresh_token);
-      if (this.location === 'signin') {
-        this.router.navigate(['/']);
-      } else if (this.location === 'apply') {
-        this.outputAuth.emit(true);
-      }
+    this.authenticationService.signin(candidate)
+      .pipe(first())
+      .subscribe(
+        data => {
+          if (this.location === 'signin') {
+            this.router.navigate(['/']);
+          } else if (this.location === 'apply') {
+            this.outputAuth.emit(true);
+          }
+          this.isLoading = false;
+        },
+        error => {
+          console.log(error)
+          this.login_error.push(error.error.message);
+          this.isLoading = false;
+        }
+      )
+
+    // this.authenticationService.signin(candidate).subscribe(res => {
+    //   this.tokenService.setToken(res.token);
+    //   this.tokenService.setRefreshToken(res.refresh_token);
+    //   if (this.location === 'signin') {
+    //     this.router.navigate(['/']);
+    //   } else if (this.location === 'apply') {
+    //     this.outputAuth.emit(true);
+    //   }
       
-      this.isLoading = false;
-    }, errors => {
-      this.login_error.push(errors.error.message);
-      this.isLoading = false;
-    });
+    //   this.isLoading = false;
+    // }, errors => {
+    //   this.login_error.push(errors.error.message);
+    //   this.isLoading = false;
+    // });
   }
 
   getSocialAuthIsLoading($event) {

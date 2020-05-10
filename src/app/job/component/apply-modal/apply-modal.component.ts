@@ -7,6 +7,7 @@ import { Candidate } from 'src/app/core/models/candidate/candidate.model';
 import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 
 
 @Component({
@@ -34,6 +35,7 @@ export class ApplyModalComponent implements OnInit {
   constructor(
     public activeModal: NgbActiveModal,
     private userService: UserService,
+    private authenticationService: AuthenticationService,
     private _activeModal: NgbActiveModal,
     private candidateService: CandidateService,
     private router: Router,
@@ -92,7 +94,7 @@ export class ApplyModalComponent implements OnInit {
 
   onApply() {
     this.isLoading = true;
-    const candID = this.userService.getId();
+    const candID = this.authenticationService.currentUserValue.id;
     const message = this.messageForm.value.message;
     this.applyService.apply(this.jobId, candID, message).subscribe(res => {
       this.applyService.addJobToAppliedJobsInSession(this.jobId);

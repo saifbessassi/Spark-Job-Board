@@ -15,7 +15,6 @@ import { Education } from 'src/app/core/models/candidate/education.model';
 })
 export class ProfileComponent implements OnInit {
 
-  photo: string;
   isLoading: boolean = false;
   error_msg: boolean;
   candidate: Candidate;
@@ -25,17 +24,10 @@ export class ProfileComponent implements OnInit {
   educations: Education[];
 
   constructor(
-    private userService: UserService,
-    private tokenService: TokenService,
     private candidateService: CandidateService
   ) { }
 
   ngOnInit() {
-    const isConnected = this.userService.isConnected();
-    if (isConnected) {
-      const payload = this.tokenService.getPayload();
-      this.photo = payload['photo'];
-    }
     this.isLoading = true;
     this.error_msg = false;
     this.candidateService.getCandidateProfile().subscribe( (res: Candidate) => {
@@ -46,7 +38,7 @@ export class ProfileComponent implements OnInit {
         this.identity = new CandidateIdentity(
           this.candidate.fullname,
           this.candidate.email,
-          this.photo,
+          this.candidate.picture.url,
           this.candidate.address,
           this.candidate.phone,
           {

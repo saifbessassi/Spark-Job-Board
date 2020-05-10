@@ -24,10 +24,10 @@
                         
                         
                     </ul>
-                    <div *ngIf="!isConnected" class="signin-btn" style="font-weight: bold;">
+                    <div *ngIf="!currentUser" class="signin-btn" style="font-weight: bold;">
                         <a type="button" [routerLink]="['/auth/signin']" routerLinkActive="router-link-active">Sign in</a>
                     </div>
-                    <ul *ngIf="isConnected" class="navbar-nav align-items-lg-center main_nav">
+                    <ul *ngIf="currentUser" class="navbar-nav align-items-lg-center main_nav">
                         <li class="nav-item dropdown">
                             <a type="button" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" style="color: #fff;padding: 0;">
