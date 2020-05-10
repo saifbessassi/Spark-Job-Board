@@ -50,6 +50,9 @@ export class ApplyModalComponent implements OnInit {
     if (this.isConnected) {
       this.stepper.to(2);
       this.getCandidate();
+      if (this.applyService.isApplied(this.jobId)) {
+        this.dismissModal(true);
+      }
     }
 
     this.messageForm = new FormGroup({
@@ -59,8 +62,11 @@ export class ApplyModalComponent implements OnInit {
 
   getAuthResult($event) {
     if ($event) {
-      this.stepper.next();
       this.getCandidate();
+      this.stepper.next();
+      if (this.applyService.isApplied(this.jobId)) {
+        this.dismissModal(true);
+      }
     }
   }
 

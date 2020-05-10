@@ -40,6 +40,8 @@ export class ApplicationService {
 
   isApplied(jobId) {
     let appliedJobs: number[] = this.getAppliedJobsInSession();
-    return appliedJobs.includes(jobId);
+    if (appliedJobs) {
+      return appliedJobs.includes(jobId); 
+    }
   }
 }
