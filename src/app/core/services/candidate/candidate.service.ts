@@ -31,4 +31,21 @@ export class CandidateService {
   edit(identity: CandidateIdentity) {
     return this.http.put(API_URL + '/api/candidates/' + this.candidateID, identity);
   }
+
+  addPicture(file: File) {
+    const fb = new FormData();
+    fb.append('file', file);
+    fb.append('userID', this.candidateID.toString());
+    return this.http.post(API_URL + '/api/pictures', fb , {
+        reportProgress: true,
+        observe: 'events'
+    });
+}
+
+deletePicture(id) {
+    return this.http.delete(API_URL + '/api/pictures/' + id , {
+      reportProgress: true,
+      observe: 'events'
+  });
+}
 }

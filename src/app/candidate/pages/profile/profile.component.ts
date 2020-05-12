@@ -22,6 +22,7 @@ export class ProfileComponent implements OnInit {
   identity: CandidateIdentity;
   experiences: Experience[];
   educations: Education[];
+  pictureURL: string;
 
   constructor(
     private candidateService: CandidateService
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit {
         this.identity = new CandidateIdentity(
           this.candidate.fullname,
           this.candidate.email,
-          this.candidate.picture.url,
+          this.candidate.picture,
           this.candidate.address,
           this.candidate.phone,
           {

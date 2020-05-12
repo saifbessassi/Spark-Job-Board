@@ -90,4 +90,15 @@ export class AuthenticationService {
   //   const id = this.userService.getId();
   //   return this.http.put<{token: string, refresh_token: string}>(API_URL + '/api/users/' + id + '/reset-password', passwords);
   // }
+
+  updatePicture(picture?) {
+    let user = this.currentUserValue;
+    if (picture) {
+      user.picture = picture;
+    } else {
+      user.picture = null;
+    }
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
+  }
 }

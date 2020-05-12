@@ -36,7 +36,11 @@ export class HeaderComponent implements OnInit {
         this.email = this.currentUser.email;
         this.photo = null;
         if (this.currentUser.picture) {
-          this.photo = 'http://localhost:8000' + this.currentUser.picture
+          if (this.currentUser.picture.includes('http')) {
+            this.photo = this.currentUser.picture
+          } else {
+            this.photo = 'http://localhost:8000' + this.currentUser.picture
+          }
         }
         
 

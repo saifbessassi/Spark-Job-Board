@@ -3,3 +3,21 @@ label {
     font-weight: 400;
     line-height: 1.5;
 }
+
+img {
+    width: 128px;
+    height: 128px;
+    border: 2px solid #ba0000;
+    border-radius: 50%;
+}
+
+.btn-picture {
+    border: none;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+
+.btn-picture:disabled {
+    color: #aaaaaa;
+    cursor: not-allowed;
+}
