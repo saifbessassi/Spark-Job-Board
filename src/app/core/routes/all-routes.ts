@@ -1,4 +1,5 @@
 import { Routes } from "@angular/router";
+import { MustBeConnected } from '../guards/must-be-connected.guard';
 
 export const ALL_ROUTES: Routes = [
     {
@@ -8,6 +9,7 @@ export const ALL_ROUTES: Routes = [
     },
     {
         path: 'candidate',
+        canActivate: [MustBeConnected],
         loadChildren: () => import('src/app/candidate/candidate.module')
         .then(m => m.CandidateModule),
     }
