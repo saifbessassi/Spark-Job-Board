@@ -9,7 +9,7 @@
     <div class="modal-body">
         <p class="text-muted mb-0">Your profile resume will allow you to be shortlisted!</p>
         <p class="text-muted mb-4">It will only be accessible to Spark-it company</p>
-        <div *ngIf="uploadProgress && uploadProgress !== 100" class="mb-4 px-4">
+        <div *ngIf="isUploading" class="mb-4 px-4">
             <ngb-progressbar [value]="uploadProgress"></ngb-progressbar>
         </div>
         <div class="row align-items-center mb-3 py-3 cv" *ngIf="cv">
@@ -32,7 +32,7 @@
             accept="application/pdf"
             #fileInput>
         <div class="text-center" *ngIf="!cv">
-            <button type="button" class="btn btn-lg sp-btn-red mb-3" (click)="fileInput.click()">
+            <button *ngIf="!isUploading" type="button" class="btn btn-lg sp-btn-red mb-3" (click)="fileInput.click()">
                 <i class="fas fa-upload"></i> Add my resume
             </button>
             <div *ngIf="error_msg?.length">

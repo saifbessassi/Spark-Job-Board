@@ -17,6 +17,7 @@ export class DocumentFormComponent implements OnInit {
   error_msg: string[] = [];
   isLoading = false;
   uploadProgress: number;
+  isUploading: boolean;
 
   constructor(
     private _activeModal: NgbActiveModal,
@@ -26,7 +27,7 @@ export class DocumentFormComponent implements OnInit {
     config.max = 100;
     config.striped = true;
     config.animated = true;
-    config.type = 'success';
+    config.type = 'primary';
     config.height = '20px';
   }
 
@@ -35,28 +36,39 @@ export class DocumentFormComponent implements OnInit {
 
   addCv(event) {
     this.error_msg = [];
+    this.isUploading = true;
+    this.uploadProgress = 0;
     this.selectedFile = <File>event.target.files[0];
     this.cvService.add(this.selectedFile, this.resumeID).subscribe(events => {
       if (events.type === HttpEventType.UploadProgress) {
         this.uploadProgress = Math.round(events.loaded / events.total * 100);
       } else if (events.type === HttpEventType.Response) {
         this.cv = <Document>events.body;
+        this.isUploading = false;
       }
     }, err => {
-      console.log(err)
       err.error.violations.forEach(element => {
         this.error_msg.push(element.message);
       });
-      console.log(this.error_msg)
+      this.isUploading = false;
     })
   }
 
   deleteCv() {
     if(confirm('Do you really want to delete your resume?')) {
-      this.cvService.delete(this.cv.id).subscribe(res => {
-        this.cv = null;
+      this.isUploading = true;
+      this.uploadProgress = 0;
+      this.cvService.delete(this.cv.id).subscribe(events => {
+        if (events.type === HttpEventType.UploadProgress) {
+          this.uploadProgress = Math.round(events.loaded / events.total * 100);
+          console.log(this.uploadProgress)
+        } else if (events.type === HttpEventType.Response) {
+          this.cv = null;
+          this.isUploading = false;
+        }
       }, err => {
         this.error_msg.push('An error occurred, please try again later.');
+        this.isUploading = false;
       })
     }
   }

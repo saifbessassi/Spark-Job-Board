@@ -25,6 +25,9 @@ export class CvService {
     }
 
     delete(id) {
-        return this.http.delete(API_URL + '/api/documents/' + id);
+        return this.http.delete(API_URL + '/api/documents/' + id , {
+            reportProgress: true,
+            observe: 'events'
+        });
     }
 }
