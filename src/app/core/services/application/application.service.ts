@@ -19,29 +19,4 @@ export class ApplicationService {
     }
     return this.http.post(API_URL + '/api/job_applications', application);
   }
-
-  getCandidateApplicationsID(candidateId: number) {
-    return this.http.get(API_URL + '/api/job_applications/applied?id=' + candidateId);
-  }
-
-  addAllAppliedJobsToSession(appliedJobs) {
-    sessionStorage.setItem('applied_jobs', JSON.stringify(appliedJobs));
-  }
-
-  getAppliedJobsInSession() {
-    return JSON.parse(sessionStorage.getItem('applied_jobs'));
-  }
-
-  addJobToAppliedJobsInSession(jobID) {
-    let appliedJobs = this.getAppliedJobsInSession();
-    appliedJobs.push(jobID);
-    this.addAllAppliedJobsToSession(appliedJobs);
-  }
-
-  isApplied(jobId) {
-    let appliedJobs: number[] = this.getAppliedJobsInSession();
-    if (appliedJobs) {
-      return appliedJobs.includes(jobId); 
-    }
-  }
 }

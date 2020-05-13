@@ -101,6 +101,7 @@ export class AuthenticationService {
   //   return this.http.put<{token: string, refresh_token: string}>(API_URL + '/api/users/' + id + '/reset-password', passwords);
   // }
 
+  // Update picture in localStorage
   updatePicture(picture?) {
     let user = this.currentUserValue;
     if (picture) {
@@ -108,6 +109,14 @@ export class AuthenticationService {
     } else {
       user.picture = null;
     }
+    localStorage.setItem('currentUser', JSON.stringify(user));
+    this.currentUserSubject.next(user);
+  }
+
+  // Update appliedJobs in localStorage
+  addAppliedJob(jobID) {
+    let user = this.currentUserValue;
+    user.appliedJobs.push(jobID);
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
   }

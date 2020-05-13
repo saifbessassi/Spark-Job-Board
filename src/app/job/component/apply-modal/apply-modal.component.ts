@@ -104,18 +104,18 @@ export class ApplyModalComponent implements OnInit {
     this.isLoading = true;
     const candID = this.authenticationService.currentUserValue.id;
     const message = this.messageForm.value.message;
-    // this.applyService.apply(this.jobId, candID, message).subscribe(res => {
-    //   this.applyService.addJobToAppliedJobsInSession(this.jobId);
-    //   this.isLoading = false;
-    //   this.dismissModal(true);
-    // }, err => {
-    //   if (err.error['hydra:description']) {
-    //     this.error_msg = err.error['hydra:description'];
-    //   } else {
-    //     this.error_msg = 'An error occurred, please try again later.';
-    //   }
-    //   this.isLoading = false;
-    // })
+    this.applyService.apply(this.jobId, candID, message).subscribe(res => {
+      this.authenticationService.addAppliedJob(this.jobId);
+      this.isLoading = false;
+      this.dismissModal(true);
+    }, err => {
+      if (err.error['hydra:description']) {
+        this.error_msg = err.error['hydra:description'];
+      } else {
+        this.error_msg = 'An error occurred, please try again later.';
+      }
+      this.isLoading = false;
+    })
   }
 
   // Close the modal
