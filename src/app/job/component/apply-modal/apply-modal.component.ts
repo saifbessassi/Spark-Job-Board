@@ -28,6 +28,7 @@ export class ApplyModalComponent implements OnInit {
   canApply: boolean;
   messageForm: FormGroup;
   isLoading: boolean = false;
+  isApplied: boolean;
 
   next() {
     this.stepper.next();
@@ -45,6 +46,15 @@ export class ApplyModalComponent implements OnInit {
 
   ngOnInit() {
     this.isConnected = this.userService.isConnected();
+
+    // this.authenticationService.currentUser.subscribe(data => {
+    //   console.log('applyyyy');
+    //   if (data) {
+    //     this.isApplied = data.appliedJobs.includes(this.jobId);
+    //   } else {
+    //     this.isApplied = false;
+    //   }
+    // })
     // Init Stepper
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
       linear: true,
@@ -59,12 +69,14 @@ export class ApplyModalComponent implements OnInit {
     })
   }
 
+  // Get boolean from signin-component: true if candidate sign in succefully 
   getAuthResult($event) {
     if ($event) {
       this.goStep2();
     }
   }
 
+  // Get candidate information and resume
   getCandidate() {
     this.candidateLoading = true;
     this.candidateService.getCandidateProfile().subscribe((res: Candidate) => {
@@ -76,51 +88,70 @@ export class ApplyModalComponent implements OnInit {
     })
   }
 
+  // Get boolean from resume-summary-component: true if candidate can apply
   onCanApply($event) {
     this.canApply = $event;
   }
 
+  // Go to prodile page
   goProfile() {
     this.dismissModal();
     this.router.navigateByUrl('/candidate/profile');
   }
 
+  // Apply for a job
   onApply() {
     this.isLoading = true;
     const candID = this.authenticationService.currentUserValue.id;
     const message = this.messageForm.value.message;
-    this.applyService.apply(this.jobId, candID, message).subscribe(res => {
-      this.applyService.addJobToAppliedJobsInSession(this.jobId);
-      this.isLoading = false;
-      this.dismissModal(true);
-    }, err => {
-      if (err.error['hydra:description']) {
-        this.error_msg = err.error['hydra:description'];
-      } else {
-        this.error_msg = 'An error occurred, please try again later.';
-      }
-      this.isLoading = false;
-    })
+    // this.applyService.apply(this.jobId, candID, message).subscribe(res => {
+    //   this.applyService.addJobToAppliedJobsInSession(this.jobId);
+    //   this.isLoading = false;
+    //   this.dismissModal(true);
+    // }, err => {
+    //   if (err.error['hydra:description']) {
+    //     this.error_msg = err.error['hydra:description'];
+    //   } else {
+    //     this.error_msg = 'An error occurred, please try again later.';
+    //   }
+    //   this.isLoading = false;
+    // })
   }
 
+  // Close the modal
   dismissModal(res?) {
     this._activeModal.close(res);
   }
 
-  goStep2() {
-    this.authenticationService.currentUser.subscribe(user => {
-      this.isRecruiter = false;
-      if (user) {
-        this.isRecruiter = this.userService.isRecruiter(user);
-      }
-    }) 
+  // Go to step two
+  async goStep2() {
+    await this.isRecruiterAndApplied();
     if (this.isRecruiter) {
       this.dismissModal();
-    } else if (this.applyService.isApplied(this.jobId)) {
+    } else if (this.isApplied) {
       this.dismissModal(true);
     } else {
       this.getCandidate();
       this.stepper.next();
     }
+  }
+
+  isRecruiterAndApplied() {
+    this.isLoading = true;
+    return new Promise(resolve => {
+      this.authenticationService.currentUser.subscribe(user => {
+        this.isRecruiter = false;
+        this.isApplied = false;
+        if (user) {
+          this.isRecruiter = this.userService.isRecruiter(user);
+          if (!this.isRecruiter) {
+            this.isApplied = user.appliedJobs.includes(this.jobId);
+          }
+          this.isLoading = false;
+          resolve();
+        }
+      });
+    })
+    
   }
 }

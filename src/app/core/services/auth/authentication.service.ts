@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { TokenService } from '../token/token.service';
-import { UserService } from '../user/user.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import * as jwt_decode from 'jwt-decode';
@@ -24,8 +22,7 @@ export class AuthenticationService {
   public currentUser: Observable<User>;
 
   constructor(
-    private http: HttpClient,
-    private tokenService: TokenService
+    private http: HttpClient
   ) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
     this.currentUser = this.currentUserSubject.asObservable();
@@ -57,7 +54,6 @@ export class AuthenticationService {
   logout() {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('token');
-    sessionStorage.clear();
     this.currentUserSubject.next(null);
   }
 
@@ -76,9 +72,23 @@ export class AuthenticationService {
     user.fullname = payload['fullname'];
     user.picture = payload['picture'];
     user.roles = payload['roles'];
-    localStorage.setItem('currentUser', JSON.stringify(user));
-    localStorage.setItem('token', JSON.stringify(token));
-    this.currentUserSubject.next(user);
+
+    // If user is a candidate, get his applied jobs
+    if (user.roles.includes('ROLE_CANDIDATE')) {
+      this.http.get(API_URL + '/api/job_applications/applied?id=' + user.id).subscribe(
+        res => {
+          user.appliedJobs = res['jobs'];
+          localStorage.setItem('currentUser', JSON.stringify(user));
+          localStorage.setItem('token', JSON.stringify(token));
+          this.currentUserSubject.next(user);
+        }
+      )
+    } else {
+      localStorage.setItem('currentUser', JSON.stringify(user));
+      localStorage.setItem('token', JSON.stringify(token));
+      this.currentUserSubject.next(user);
+    }
+    
     return user;
   }
 

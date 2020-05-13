@@ -4,4 +4,5 @@ export class User {
     roles: string[];
     email: string;
     picture: string;
+    appliedJobs: number[];
 }

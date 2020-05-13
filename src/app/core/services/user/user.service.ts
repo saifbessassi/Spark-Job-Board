@@ -31,14 +31,14 @@ export class UserService {
         return false;
     }
 
-    isCandidate() {
-        if (this.user) {
-            if (this.user.roles.includes('ROLE_CANDIDATE')) {
+    isCandidate(user: User) {
+        if (user) {
+            if (user.roles.includes('ROLE_CANDIDATE')) {
                 return true;
             }
             return false;
         }
-        return null;
+        return false;
     }
 
     isConnected() {

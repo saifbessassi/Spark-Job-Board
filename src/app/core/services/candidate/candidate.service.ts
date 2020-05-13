@@ -17,7 +17,7 @@ export class CandidateService {
     private http: HttpClient,
     private authenticationService: AuthenticationService
   ) {
-    authenticationService.currentUser.subscribe(data => {
+    this.authenticationService.currentUser.subscribe(data => {
       if(data) {
         this.candidateID = data.id;
       }

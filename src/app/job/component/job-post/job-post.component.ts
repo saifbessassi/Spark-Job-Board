@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Job } from 'src/app/core/models/job';
 import { ApplicationService } from 'src/app/core/services/application/application.service';
+import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
+import { UserService } from 'src/app/core/services/user/user.service';
+import { User } from 'src/app/core/models/user.service';
 
 @Component({
   selector: 'sp-job-post',
@@ -13,11 +16,19 @@ export class JobPostComponent implements OnInit {
   isApplied: boolean;
 
   constructor(
-    private applyService: ApplicationService
+    private authService: AuthenticationService,
+    private userService: UserService
   ) { }
 
   ngOnInit() {
-    this.isApplied = this.applyService.isApplied(this.job.id);
+    this.authService.currentUser.subscribe(data => {
+      const user:User = data;
+      if (user && this.userService.isCandidate(user)) {
+        this.isApplied = user.appliedJobs.includes(this.job.id);
+      } else {
+        this.isApplied = false;
+      }
+    });
   }
 
 }
