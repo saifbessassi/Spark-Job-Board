@@ -22,6 +22,7 @@ export class ApplyModalComponent implements OnInit {
   stepper: Stepper;
   candidate: Candidate;
   isConnected: boolean;
+  isRecruiter: boolean;
   error_msg: string;
   candidateLoading: boolean = false;
   canApply: boolean;
@@ -50,11 +51,7 @@ export class ApplyModalComponent implements OnInit {
       animation: true
     })
     if (this.isConnected) {
-      this.stepper.to(2);
-      this.getCandidate();
-      if (this.applyService.isApplied(this.jobId)) {
-        this.dismissModal(true);
-      }
+      this.goStep2();
     }
 
     this.messageForm = new FormGroup({
@@ -64,11 +61,7 @@ export class ApplyModalComponent implements OnInit {
 
   getAuthResult($event) {
     if ($event) {
-      this.getCandidate();
-      this.stepper.next();
-      if (this.applyService.isApplied(this.jobId)) {
-        this.dismissModal(true);
-      }
+      this.goStep2();
     }
   }
 
@@ -112,5 +105,22 @@ export class ApplyModalComponent implements OnInit {
 
   dismissModal(res?) {
     this._activeModal.close(res);
+  }
+
+  goStep2() {
+    this.authenticationService.currentUser.subscribe(user => {
+      this.isRecruiter = false;
+      if (user) {
+        this.isRecruiter = this.userService.isRecruiter(user);
+      }
+    }) 
+    if (this.isRecruiter) {
+      this.dismissModal();
+    } else if (this.applyService.isApplied(this.jobId)) {
+      this.dismissModal(true);
+    } else {
+      this.getCandidate();
+      this.stepper.next();
+    }
   }
 }

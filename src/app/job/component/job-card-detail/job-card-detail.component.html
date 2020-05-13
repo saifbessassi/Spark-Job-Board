@@ -2,8 +2,8 @@
         <div class="Exclusive-Product">
             <div class="d-flex">
                 <h3>{{job?.title | titlecase }}</h3>
-                <button type="button" (click)="openModal()" class="btn sp-btn-red apply ml-auto" *ngIf="!isApplied">Apply</button>
-                <button type="button" class="btn btn-secondary ml-auto apply" disabled  *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
+                <button type="button" (click)="openModal()" class="btn sp-btn-red apply ml-auto" *ngIf="!isApplied && !isRecruiter">Apply</button>
+                <button type="button" class="btn btn-secondary ml-auto apply" disabled  *ngIf="isApplied && !isRecruiter"><i class="fas fa-check"></i> Applied</button>
             </div>
             <p> </p>
             <p>
@@ -36,8 +36,8 @@
                 </li>
             </ul>
             <div class="text-center">
-            <button type="button" (click)="openModal()" class="btn sp-btn-red apply" *ngIf="!isApplied">Apply Now</button>
-            <button type="button" class="btn btn-secondary ml-auto apply" disabled *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
+            <button type="button" (click)="openModal()" class="btn sp-btn-red apply" *ngIf="!isApplied && !isRecruiter">Apply Now</button>
+            <button type="button" class="btn btn-secondary ml-auto apply" disabled *ngIf="isApplied && !isRecruiter"><i class="fas fa-check"></i> Applied</button>
             </div>
         </div>
     </div>

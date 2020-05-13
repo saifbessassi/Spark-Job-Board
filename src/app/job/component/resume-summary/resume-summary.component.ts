@@ -32,65 +32,67 @@ export class ResumeSummaryComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.nbEducation = this.candidate.resume.educations.length;
-    this.nbExperience = this.candidate.resume.experiences.length;
-    this.nbProject = this.candidate.resume.projects.length;
-    this.nbSkill = this.candidate.resume.skillsCandidate.length;
-    this.nbLanguage = this.candidate.resume.languagesCandidate.length;
+    if (this.candidate) {
+      this.nbEducation = this.candidate.resume.educations.length;
+      this.nbExperience = this.candidate.resume.experiences.length;
+      this.nbProject = this.candidate.resume.projects.length;
+      this.nbSkill = this.candidate.resume.skillsCandidate.length;
+      this.nbLanguage = this.candidate.resume.languagesCandidate.length;
 
-    if (
-      this.candidate.phone &&
-      this.candidate.resume.seniorityLevel &&
-      this.candidate.resume.skillsCandidate &&
-      (
-        this.candidate.resume.cv ||
+      if (
+        this.candidate.phone &&
+        this.candidate.resume.seniorityLevel &&
+        this.candidate.resume.skillsCandidate &&
         (
-          this.candidate.resume.experiences &&
-          this.candidate.resume.educations
+          this.candidate.resume.cv ||
+          (
+            this.candidate.resume.experiences &&
+            this.candidate.resume.educations
+          )
         )
-      )
-    ) {
-      this.canApply = true;
-    } else {
-      this.canApply = false;
-    }
+      ) {
+        this.canApply = true;
+      } else {
+        this.canApply = false;
+      }
 
-    this.outputCanApply.emit(this.canApply);
-    
-    if (this.nbEducation !== 0) {
-      this.percentage += 1;
+      this.outputCanApply.emit(this.canApply);
+      
+      if (this.nbEducation !== 0) {
+        this.percentage += 1;
+      }
+      if (this.nbExperience !== 0) {
+        this.percentage += 1;
+      }
+      if (this.nbProject !== 0) {
+        this.percentage += 1;
+      }
+      if (this.nbSkill !== 0) {
+        this.percentage += 1;
+      }
+      if (this.nbLanguage !== 0) {
+        this.percentage += 1;
+      }
+      if (this.candidate.address) {
+        this.percentage += 1;
+      }
+      if (this.candidate.phone) {
+        this.percentage += 1;
+      }
+      if (this.candidate.picture) {
+        this.percentage += 1;
+      }
+      if (this.candidate.resume.seniorityLevel) {
+        this.percentage += 1;
+      }
+      if (this.candidate.resume.cv) {
+        this.percentage += 1;
+      }
+      if (this.candidate.resume.description) {
+        this.percentage += 1;
+      }
+      this.percentage = Math.round(this.percentage / 11 *100);
     }
-    if (this.nbExperience !== 0) {
-      this.percentage += 1;
-    }
-    if (this.nbProject !== 0) {
-      this.percentage += 1;
-    }
-    if (this.nbSkill !== 0) {
-      this.percentage += 1;
-    }
-    if (this.nbLanguage !== 0) {
-      this.percentage += 1;
-    }
-    if (this.candidate.address) {
-      this.percentage += 1;
-    }
-    if (this.candidate.phone) {
-      this.percentage += 1;
-    }
-    if (this.candidate.picture) {
-      this.percentage += 1;
-    }
-    if (this.candidate.resume.seniorityLevel) {
-      this.percentage += 1;
-    }
-    if (this.candidate.resume.cv) {
-      this.percentage += 1;
-    }
-    if (this.candidate.resume.description) {
-      this.percentage += 1;
-    }
-    this.percentage = Math.round(this.percentage / 11 *100);
   }
 
   dismissModal() {

@@ -6,25 +6,26 @@ import { Token } from '../../models/token.model';
   providedIn: 'root',
 })
 export class TokenService {
-
-  token: Token;
   
-  constructor(
+  constructor() { }
 
-  ) {
-    this.token = JSON.parse(localStorage.getItem('token'));
-  }
-
-  getToken() {
-    if (this.token) {
-      return this.token.access_token;
+  getAccessToken() {
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (token) {
+      return token.access_token;
     }
     return null;
   }
 
+  getToken() {
+    const token = JSON.parse(localStorage.getItem('token'));
+    return token;
+  }
+
   getRefreshToken() {
-    if (this.token) {
-      return this.token.refrech_token;
+    const token = JSON.parse(localStorage.getItem('token'));
+    if (token) {
+      return token.refrech_token;
     }
     return null;
   }

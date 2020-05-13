@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { TokenService } from '../token/token.service';
 import { User } from '../../models/user.service';
 import { AuthenticationService } from '../auth/authentication.service';
+import { Token } from '../../models/token.model';
 
 @Injectable({
     providedIn: 'root',
@@ -20,14 +21,14 @@ export class UserService {
         })
     }
 
-    isRecruiter() {
-        if (this.user) {
-            if (this.user.roles.includes('ROLE_RECRUITER')) {
+    isRecruiter(user: User) {
+        if (user) {
+            if (user.roles.includes('ROLE_RECRUITER')) {
                 return true;
             }
             return false;
         }
-        return null;
+        return false;
     }
 
     isCandidate() {
@@ -41,11 +42,12 @@ export class UserService {
     }
 
     isConnected() {
-        if (!this.tokenService.getToken()) {
-        return false;
+        const token: Token = this.tokenService.getToken();
+        if (!token) {
+            return false;
         }
         const exp = new Date(0);
-        exp.setUTCSeconds(this.tokenService.token.exp);
+        exp.setUTCSeconds(token.exp);
         const current_date = new Date();
         return exp > current_date;
     }
