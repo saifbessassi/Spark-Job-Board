@@ -10,8 +10,8 @@ export class Job {
     public seniorityLevel: string;
     public status: string;
     public skills: Skill [];
-    public created_at: Date;
-    public updated_at: Date;
+    public createdAt: Date;
+    public updatedAt: Date;
     public deadline: Date;
 
     constructor(

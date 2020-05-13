@@ -1,22 +1,29 @@
-<div class="detail">
+<div class="detail pl-5">
     <div class="row">
-        <div class="col-md-2">
+        <!-- <div class="col-md-2">
             <img src="assets/images/job-post-icone-1.png" alt="" class="mr-3 ">
-        </div>
-        <div class="col-md-7 text-left">
+        </div> -->
+        <div class="col-md-8 text-left">
             <h6>{{job?.title | titlecase }}</h6>
-            <i class="fa fa-briefcase" style="margin-right: 1%;"></i>
-            <span class="text"> {{job?.employmentType | titlecase }}</span>
-        <br>
-            <i class="fa fa-map-marker-alt" style="margin-right: 1%;"></i>
-            <span class="text font-size">  {{job?.location | titlecase }}</span>
-        <br>
-        <p style="margin-bottom: 0;">{{job?.description | characters:60}}</p>
+            <p class="mb-0">
+                <i class="fa fa-briefcase" style="margin-right: 1%;"></i>
+                <span class="text"> {{job?.employmentType | titlecase }}</span>
+            </p>
+            <p class="mb-0">
+                <i class="fa fa-map-marker-alt" style="margin-right: 1%;"></i>
+                <span class="text">  {{job?.location | titlecase }}</span>
+            </p>
+            <p class="mb-0">
+                <i class="fas fa-user-shield"></i>
+                <span class="text"> {{job?.seniorityLevel | titlecase}} of experience</span>
+            </p>
+            <p class="mb-0">{{job?.description | characters:60}}</p>
         </div>
-        <div class="col-md-3 justify-content-center">
+        <div class="col-md-4 justify-content-center">
                 <button type="button" [routerLink]="['/jobs', job.id]" class="btn sp-btn-red my-3">View job</button>
                 <button type="button" class="btn btn-secondary ml-auto apply mb-3" disabled *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
-                <p class="date-time">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</p>
+                <p class="date-time text-left">Posted on: {{job?.createdAt | date: 'dd MMM yyyy'}}</p>
+                <p class="date-time text-left">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</p>
         </div>
     </div>
 </div>
