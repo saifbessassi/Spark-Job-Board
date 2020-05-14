@@ -12,6 +12,11 @@ export const ALL_ROUTES: Routes = [
         canActivate: [MustBeConnected],
         loadChildren: () => import('src/app/candidate/candidate.module')
         .then(m => m.CandidateModule),
+    },
+    {
+        path: 'recruiter',
+        loadChildren: () => import('src/app/recruiter/recruiter.module')
+        .then(m => m.RecruiterModule),
     }
 ];
 
