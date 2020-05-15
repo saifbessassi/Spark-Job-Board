@@ -8,8 +8,16 @@ import { SidebarService } from './sidebar.service';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  isClose = false;
 
-  ngOnInit() { }
+  constructor(
+    private sidebarService: SidebarService
+  ) { }
+
+  ngOnInit() {
+    this.sidebarService.change.subscribe(isClose => {
+      this.isClose = isClose;
+    });
+  }
 
 }

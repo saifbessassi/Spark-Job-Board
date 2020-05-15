@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
 import { ApplicationService } from '../../services/application/application.service';
 import { AuthenticationService } from '../../services/auth/authentication.service';
+import { SidebarService } from 'src/app/core/components/sidebar/sidebar.service';
 
 @Component({
   selector: 'sp-header',
@@ -26,7 +27,8 @@ export class HeaderComponent implements OnInit {
     private tokenService: TokenService,
     private userService: UserService,
     private applicationService: ApplicationService,
-    private authenticationService: AuthenticationService
+    private authenticationService: AuthenticationService,
+    private sidebarService: SidebarService
   ) {
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
@@ -73,6 +75,10 @@ export class HeaderComponent implements OnInit {
 
   logout() {
     this.authenticationService.logout();
+  }
+
+  toggleSidebar() {
+    this.sidebarService.toggle();
   }
 
 }

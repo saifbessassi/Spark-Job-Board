@@ -1,3 +1,7 @@
+.header_container {
+    box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,.1);
+}
+
 .container {
     max-width: 1140px;
 }
@@ -40,7 +44,6 @@
     background-color: #fff;
     text-align: center;
     transition: .3s;
-    margin-left: 24px;
     cursor: pointer;
     display: inline-block;
     transition: all .5s ease 0s;
@@ -79,6 +82,10 @@
     #profile-picture-lettre-container {
         border: 0.05rem solid #020202;
         color: #020202;
+    }
+
+    .container {
+        display: contents;
     }
   }
 
