@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
 
@@ -16,7 +17,8 @@ import { TopBarComponent } from './components/top-bar/top-bar.component';
     AppLayoutComponent, 
     HeaderComponent, 
     FooterComponent,
-    TopBarComponent
+    TopBarComponent,
+    SidebarComponent
   ],
   imports: [
     CommonModule,

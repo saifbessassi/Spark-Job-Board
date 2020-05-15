@@ -1,7 +1,13 @@
 <sp-header></sp-header>
-<div class="pt">
-    <router-outlet></router-outlet>
+<div class="d-flex align-content-stretch pt">
+
+    <sp-sidebar></sp-sidebar>
+
+    <div id="content">
+        <router-outlet></router-outlet>
+        <sp-footer></sp-footer>
+    </div>
+
 </div>
 
 
-<sp-footer></sp-footer>
