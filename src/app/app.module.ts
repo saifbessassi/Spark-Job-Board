@@ -8,6 +8,7 @@ import { CoreModule } from './core/core.module';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpTokenInterceptor } from './core/interceptors/http-token.interceptor';
+import { JobFilterInterceptor } from './core/interceptors/job-filter.interceptor';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { HttpTokenInterceptor } from './core/interceptors/http-token.interceptor
     AuthenticationModule
   ],
   providers: [
-    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true}
+    { provide: HTTP_INTERCEPTORS, useClass: HttpTokenInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: JobFilterInterceptor, multi: true }
   ],
   bootstrap: [AppComponent]
 })
