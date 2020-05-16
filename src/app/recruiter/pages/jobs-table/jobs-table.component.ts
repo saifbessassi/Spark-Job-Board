@@ -115,6 +115,7 @@ export class JobsTableComponent implements OnInit{
           const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
           return formatted;
         },
+        filter: false,
       },
       deadline: {
         title: 'Deadline',
@@ -125,6 +126,7 @@ export class JobsTableComponent implements OnInit{
           const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
           return formatted;
         },
+        filter: false,
       },   
       // recruiter: {
       //   title: 'Created By',
