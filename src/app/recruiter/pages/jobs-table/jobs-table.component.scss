@@ -1,0 +1,18 @@
+.table-container {
+    overflow-y: auto;
+}
+
+@media (max-width: 605px) {
+    .jobs {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .btn-group {
+        flex-direction: column;
+    }
+    .jobs {
+        display: inline;
+    }
+}

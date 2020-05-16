@@ -96,3 +96,55 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     color: #ff0000;
     font-weight: 700;
 }
+
+table tr td,th {
+    border: 1px solid #edf1f7 !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+}
+
+table tr td {
+    font-family: Open sans, sans-serif !important;
+    font-size: 15px !important;
+}
+
+.ng2-smart-sort-link {
+    color: #000 !important;
+}
+
+.ng2-smart-page-link {
+    height: 100% !important;
+}
+
+.ng2-smart-pagination-nav {
+    margin-top: 1rem !important;
+    margin-left: auto !important;
+}
+
+ng2-smart-table-pager {
+    margin-right: 3rem !important;
+}
+
+ng2-st-tbody-custom {
+    height: 100% !important;
+    display: flex !important;
+}
+
+.ng2-smart-actions {
+    white-space: nowrap !important;
+    padding: 0 !important;
+    height: 1px !important;
+}
+
+.ng2-smart-action-custom-custom {
+    border-right: 1px solid #edf1f7 !important;
+    align-items: center !important;
+    display: flex !important;
+    font-size: 1.25rem !important;
+    padding-left: .5rem !important;
+    padding-right: .5rem !important;
+}
+
+.ng2-smart-action-custom-custom:last-child {
+    border: none !important;
+}

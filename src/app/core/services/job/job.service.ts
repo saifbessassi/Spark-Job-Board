@@ -44,7 +44,15 @@ export class JobService {
     return this.http.get(API_URL + '/api/jobs/nb-per-category');
   }
 
+  getNbJobsPerStatus() {
+    return this.http.get(API_URL + '/api/jobs/nb-per-status');
+  }
+
   getFilterOptions() {
     return this.http.get<JobFiltersOptions>(API_URL + '/api/jobs/filter-options');
+  }
+
+  deleteJob(id) {
+    return this.http.delete(API_URL + '/api/jobs/' + id);
   }
 }
