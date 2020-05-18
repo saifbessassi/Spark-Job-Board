@@ -92,28 +92,36 @@ export class JobsTableComponent implements OnInit{
         title: 'Skills',
         type: 'string',
         valuePrepareFunction: (data) => {
-          const skills = [];
-          data.forEach(element => {
-            skills.push(element.label);
-          });
-          return skills;
+          if(data) {
+            const skills = [];
+            data.forEach(element => {
+              skills.push(element.label);
+            });
+            return skills;
+          }
+          return null;
         },
       },
       category: {
         title: 'category',
         type: 'string',
         valuePrepareFunction: (data) => {
-          return data.label;
+          if (data) {
+            return data.label;
+          }
+          return null;
         },
       },
       createdAt: {
         title: 'Date',
         type: 'date',
         valuePrepareFunction: (date) => {
-          const raw = new Date(date);
-
-          const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
-          return formatted;
+          if(date) {
+            const raw = new Date(date);
+            const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
+            return formatted;
+          }
+          return null;
         },
         filter: false,
       },
@@ -121,10 +129,12 @@ export class JobsTableComponent implements OnInit{
         title: 'Deadline',
         type: 'date',
         valuePrepareFunction: (date) => {
-          const raw = new Date(date);
-
-          const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
-          return formatted;
+          if(date) {
+            const raw = new Date(date);
+            const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
+            return formatted;
+          }
+          return null;
         },
         filter: false,
       },   
