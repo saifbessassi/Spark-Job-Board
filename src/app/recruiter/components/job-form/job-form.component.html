@@ -159,10 +159,10 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-3 col-md-2">
-            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Save Draft</button>
+            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid" *ngIf="!action === 'edit'">Save Draft</button>
         </div>
         <div class="col-sm-3 col-md-2">
-            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Add Job</button>
+            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Submit</button>
         </div>
     </div>
 

@@ -26,6 +26,14 @@ export class JobService {
     return this.http.post<Job>(API_URL + '/api/jobs', job);
   }
 
+  editJob(job, id) {
+    job.skills.forEach((element, index) => {
+      job['skills'][index] = '/api/skills/' + element;
+    });
+    job.category = '/api/categories/' + job.category;
+    return this.http.put<Job>(API_URL + '/api/jobs/' + id, job);
+  }
+
   getRecentJobs() {
     return this.http.get(API_URL + '/api/jobs?status=open&order[createdAt]=desc&itemsPerPage=5');
   }

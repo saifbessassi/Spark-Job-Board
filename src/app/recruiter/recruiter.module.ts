@@ -9,13 +9,15 @@ import { SharedModule } from '../shared/shared.module';
 import { JobFormComponent } from './components/job-form/job-form.component';
 import { AddJobComponent } from './pages/add-job/add-job.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { EditJobComponent } from './components/edit-job/edit-job.component';
 
 @NgModule({
   declarations: [
     JobsTableComponent,
     RecruiterLayoutComponent,
     JobFormComponent,
-    AddJobComponent
+    AddJobComponent,
+    EditJobComponent
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,9 @@ import { EditorModule } from '@tinymce/tinymce-angular';
   ],
   providers: [
     DatePipe
+  ],
+  entryComponents: [
+    EditJobComponent
   ]
 })
 export class RecruiterModule { }

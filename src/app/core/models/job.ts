@@ -1,11 +1,12 @@
 import { Skill } from './skill.model';
+import { Category } from './job/category.model';
 
 export class Job {
 
     public id: number;
     public title: string;
     public location: string;
-    public category: string;
+    public category: Category;
     public description: string;
     public employmentType: string;
     public seniorityLevel: string;

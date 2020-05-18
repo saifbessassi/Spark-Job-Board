@@ -5,6 +5,8 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { Job } from 'src/app/core/models/job';
+import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { EditJobComponent } from '../../components/edit-job/edit-job.component';
 
 export class NbJobsPerStatus {
   closed: number = 0;
@@ -30,9 +32,13 @@ export class JobsTableComponent implements OnInit{
     private jobService: JobService,
     private router: Router,
     private http: HttpClient,
-    private datePipe: DatePipe
+    private datePipe: DatePipe,
+    config: NgbModalConfig,
+    private modalService: NgbModal,
   ) 
   {
+    config.backdrop = 'static';
+    config.keyboard = false;
     this.allJobs  = new ServerDataSource(
       this.http,
       {
@@ -200,7 +206,12 @@ export class JobsTableComponent implements OnInit{
   }
 
   onEditJob(job: Job) {
-    console.log(job);
+    const modalRef = this.modalService.open(EditJobComponent, { centered: true, size: 'lg' });
+    modalRef.componentInstance.job = job;
+    modalRef.result.then(res => {
+      console.log(res)
+      this.allJobs.update(job, res)
+    })
   }
 
   onAction(event) {
