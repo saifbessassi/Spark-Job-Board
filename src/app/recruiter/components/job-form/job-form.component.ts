@@ -5,6 +5,8 @@ import { SkillService } from 'src/app/core/services/skill/skill.service';
 import { CategoryService } from 'src/app/core/services/category/category.service';
 import { Skill } from 'src/app/core/models/skill.model';
 import { Category } from 'src/app/core/models/job/category.model';
+import { JobService } from 'src/app/core/services/job/job.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'sp-job-form',
@@ -18,11 +20,15 @@ export class JobFormComponent implements OnInit {
   minStartDate: any;
   allSkills: Skill[];
   allCategories: Category[];
+  isLoading: boolean;
+  error_msg: string;
 
   constructor(
     private ngbDateService: NgbDateService,
     private skillService: SkillService,
-    private categoryService: CategoryService
+    private categoryService: CategoryService,
+    private jobService: JobService,
+    private router: Router
   ) 
   {
     const today = new Date();
@@ -54,6 +60,19 @@ export class JobFormComponent implements OnInit {
   }
 
   onSave() {
-    console.log(this.jobForm.value)
+    this.isLoading = true;
+    let newJob = this.jobForm.value;
+    newJob.deadline = this.ngbDateService.stringToDate(newJob.deadline);
+    
+    this.jobService.addNewJob(newJob).subscribe(
+      res => {
+        this.router.navigate(['recruiter/jobs-list']);
+        this.isLoading = false;
+      },
+      err => {
+        this.error_msg = 'An error occurred, please try again later.';
+        this.isLoading = false;
+      }
+    )
   }
 }

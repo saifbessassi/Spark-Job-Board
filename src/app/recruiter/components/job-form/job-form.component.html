@@ -1,173 +1,170 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
 <form [formGroup]="jobForm" (ngSubmit)="onSave()">
-    
-        <div class="form-group">
-            <label for="inputTitle">Title: <span class="obligatory">*</span></label>
+
+    <h3 class="text-danger text-center my-3">{{error_msg}}</h3>
+    <div class="form-group">
+        <label for="inputTitle">Title: <span class="obligatory">*</span></label>
+        <input
+            formControlName="title"
+            type="text" 
+            class="form-control"
+            [ngClass]="{'is-valid': jobForm.get('title').valid,
+                        'is-invalid': !jobForm.get('title').valid && jobForm.get('title').touched}">
+        <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.required">
+            Title is required.
+        </div>
+        <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.minlength">
+            Title must be at least 7 characters.
+        </div>
+        <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.maxlength">
+            Title can contain maximum 255 characters.
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="startDate">Employment type: <span class="obligatory">*</span></label>
+            <select 
+                formControlName="employmentType"
+                class="form-control custom-select"
+                [ngClass]="{'is-valid': jobForm.get('employmentType').valid,
+                            'is-invalid': !jobForm.get('employmentType').valid && jobForm.get('employmentType').touched}"
+            >
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Contract">Contract</option>
+                <option value="Temporary">Temporary</option>
+                <option value="Volunteer">Volunteer</option>
+                <option value="Internship">Internship</option>
+            </select>
+            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('employmentType').errors?.required">
+                Employment type is required.
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="Seniority">Seniority level: <span class="obligatory">*</span></label>
+            <select 
+                formControlName="seniorityLevel"
+                class="form-control custom-select"
+                [ngClass]="{'is-valid': jobForm.get('seniorityLevel').valid,
+                            'is-invalid': !jobForm.get('seniorityLevel').valid && jobForm.get('seniorityLevel').touched}"
+            >
+                <option value="0 to 2 years">0 to 2 years</option>
+                <option value="3 to 5 years">3 to 5 years</option>
+                <option value="6 to 10 years">6 to 9 years</option>
+                <option value="10 years or more">10 years or more</option>
+            </select>
+            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('seniorityLevel').errors?.required">
+                Seniority level is required.
+            </div>
+        </div>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="location">Location: <span class="obligatory">*</span></label>
             <input
-                formControlName="title"
+                formControlName="location"
                 type="text" 
                 class="form-control"
-                [ngClass]="{'is-valid': jobForm.get('title').valid,
-                            'is-invalid': !jobForm.get('title').valid && jobForm.get('title').touched}">
-            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.required">
-                Title is required.
+                [ngClass]="{'is-valid': jobForm.get('location').valid,
+                            'is-invalid': !jobForm.get('location').valid && jobForm.get('location').touched}">
+            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.required">
+                Location is required.
             </div>
-            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.minlength">
-                Title must be at least 7 characters.
+            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.minlength">
+                Location must be at least 3 characters.
             </div>
-            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.maxlength">
-                Title can contain maximum 255 characters.
+            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.maxlength">
+                Location can contain maximum 255 characters.
             </div>
         </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="startDate">Employment type: <span class="obligatory">*</span></label>
-                <select 
-                    formControlName="employmentType"
-                    class="form-control custom-select"
-                    [ngClass]="{'is-valid': jobForm.get('employmentType').valid,
-                                'is-invalid': !jobForm.get('employmentType').valid && jobForm.get('employmentType').touched}"
-                >
-                    <option value="Full-time">Full-time</option>
-                    <option value="Part-time">Part-time</option>
-                    <option value="Contract">Contract</option>
-                    <option value="Temporary">Temporary</option>
-                    <option value="Volunteer">Volunteer</option>
-                    <option value="Internship">Internship</option>
-                </select>
-                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('employmentType').errors?.required">
-                    Employment type is required.
+        <div class="form-group col-md-6">
+            <label for="Seniority">Deadline: <span class="obligatory">*</span></label>
+            <div class="input-group">
+                <input 
+                    formControlName="deadline"
+                    class="form-control" 
+                    placeholder="yyyy-mm-dd"
+                    name="dp"
+                    ngbDatepicker 
+                    #start="ngbDatepicker"
+                    [maxDate]="maxStartDate"
+                    [minDate]="minStartDate"
+                    [ngClass]="{'is-valid': jobForm.get('deadline').valid,
+                                'is-invalid': !jobForm.get('deadline').valid && jobForm.get('deadline').touched}">
+                <div class="input-group-append">
+                <button class="btn btn-outline-secondary calendar" (click)="start.toggle()" type="button">
+                    <i class="far fa-calendar-alt"></i>
+                </button>
                 </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Seniority">Seniority level: <span class="obligatory">*</span></label>
-                <select 
-                    formControlName="seniorityLevel"
-                    class="form-control custom-select"
-                    [ngClass]="{'is-valid': jobForm.get('seniorityLevel').valid,
-                                'is-invalid': !jobForm.get('seniorityLevel').valid && jobForm.get('seniorityLevel').touched}"
-                >
-                    <option value="0 to 2 years">0 to 2 years</option>
-                    <option value="3 to 5 years">3 to 5 years</option>
-                    <option value="6 to 10 years">6 to 9 years</option>
-                    <option value="10 years or more">10 years or more</option>
-                </select>
-                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('seniorityLevel').errors?.required">
-                    Seniority level is required.
+                <div class="invalid-feedback mt-3">
+                    Start date is required.
                 </div>
             </div>
         </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="location">Location: <span class="obligatory">*</span></label>
-                <input
-                    formControlName="location"
-                    type="text" 
-                    class="form-control"
-                    [ngClass]="{'is-valid': jobForm.get('location').valid,
-                                'is-invalid': !jobForm.get('location').valid && jobForm.get('location').touched}">
-                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.required">
-                    Location is required.
-                </div>
-                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.minlength">
-                    Location must be at least 3 characters.
-                </div>
-                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.maxlength">
-                    Location can contain maximum 255 characters.
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Seniority">Deadline: <span class="obligatory">*</span></label>
-                <div class="input-group">
-                    <input 
-                        formControlName="deadline"
-                        class="form-control" 
-                        placeholder="yyyy-mm-dd"
-                        name="dp"
-                        ngbDatepicker 
-                        #start="ngbDatepicker"
-                        [maxDate]="maxStartDate"
-                        [minDate]="minStartDate"
-                        [ngClass]="{'is-valid': jobForm.get('deadline').valid,
-                                    'is-invalid': !jobForm.get('deadline').valid && jobForm.get('deadline').touched}">
-                    <div class="input-group-append">
-                    <button class="btn btn-outline-secondary calendar" (click)="start.toggle()" type="button">
-                        <i class="far fa-calendar-alt"></i>
-                    </button>
-                    </div>
-                    <div class="invalid-feedback mt-3">
-                        Start date is required.
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="startDate">Category: <span class="obligatory">*</span></label>
-                <select 
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="startDate">Category: <span class="obligatory">*</span></label>
+            <select 
                     formControlName="category"
                     class="form-control custom-select"
                     [ngClass]="{'is-valid': jobForm.get('category').valid,
                                 'is-invalid': !jobForm.get('category').valid && jobForm.get('category').touched}"
                 >
                     <option *ngFor="let cat of allCategories" [value]="cat?.id">{{cat?.label}}</option>
-                </select>
-                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('category').errors?.required">
-                    Category type is required.
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-                <label for="Seniority">Skills: <span class="obligatory">*</span></label>
-                <select 
-                    multiple
-                    formControlName="skills"
-                    class="form-control custom-select"
-                    [ngClass]="{'is-valid': jobForm.get('skills').valid,
-                                'is-invalid': !jobForm.get('skills').valid && jobForm.get('skills').touched}"
-                >
-                    <option *ngFor="let skill of allSkills" [value]="skill?.id">{{skill?.label}}</option>
-                </select>
-                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('skills').errors?.required">
-                    Skills are required.
-                </div>
+            </select>
+            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('category').errors?.required">
+                Category type is required.
             </div>
         </div>
-
-        <div class="form-group">
-            <label for="description">Description: <span class="obligatory">*</span></label>
-            <editor
-                formControlName="description"
-                [ngClass]="{'description-valid': jobForm.get('description').valid,
-                            'description-invalid': !jobForm.get('description').valid && jobForm.get('description').touched}"
-                [init]="{
-                    height: 250,
-                    menubar: false,
-                    plugins: [
-                        'advlist autolink lists link image charmap print preview anchor',
-                        'searchreplace visualblocks code fullscreen',
-                        'insertdatetime media table paste code help wordcount'
-                    ],
-                    toolbar:
-                        'undo redo | formatselect | bold italic backcolor | \
-                        alignleft aligncenter alignright alignjustify | \
-                        bullist numlist outdent indent | removeformat | help'
-                }"
-                ></editor>
-            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('description').errors?.required">
-                Description is required.
+        <div class="form-group col-md-6">
+            <label for="Seniority">Skills: <span class="obligatory">*</span></label>
+            <select 
+                multiple
+                formControlName="skills"
+                class="form-control custom-select"
+                [ngClass]="{'is-valid': jobForm.get('skills').valid,
+                            'is-invalid': !jobForm.get('skills').valid && jobForm.get('skills').touched}"
+            >
+                <option *ngFor="let skill of allSkills" [value]="skill?.id">{{skill?.label}}</option>
+            </select>
+            <div class="invalid-feedback mt-3" *ngIf="jobForm.get('skills').errors?.required">
+                Skills are required.
             </div>
         </div>
-
-        <div class="row justify-content-center">
-            <div class="col-sm-3 col-md-2">
-                <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Save Draft</button>
-            </div>
-            <div class="col-sm-3 col-md-2">
-                <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Add Job</button>
-            </div>
+    </div>
+    <div class="form-group">
+        <label for="description">Description: <span class="obligatory">*</span></label>
+        <editor
+            formControlName="description"
+            [ngClass]="{'description-valid': jobForm.get('description').valid,
+                        'description-invalid': !jobForm.get('description').valid && jobForm.get('description').touched}"
+            [init]="{
+                height: 250,
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link image charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount'
+                ],
+                toolbar:
+                    'undo redo | formatselect | bold italic backcolor | \
+                    alignleft aligncenter alignright alignjustify | \
+                    bullist numlist outdent indent | removeformat | help'
+            }"
+            ></editor>
+        <div class="invalid-feedback mt-3" *ngIf="jobForm.get('description').errors?.required">
+            Description is required.
         </div>
+    </div>
+    <div class="row justify-content-center">
+        <div class="col-sm-3 col-md-2">
+            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Save Draft</button>
+        </div>
+        <div class="col-sm-3 col-md-2">
+            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Add Job</button>
+        </div>
+    </div>
 
 
 </form>

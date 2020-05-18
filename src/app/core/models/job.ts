@@ -5,6 +5,7 @@ export class Job {
     public id: number;
     public title: string;
     public location: string;
+    public category: string;
     public description: string;
     public employmentType: string;
     public seniorityLevel: string;
