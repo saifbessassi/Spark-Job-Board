@@ -1,0 +1,18 @@
+.tabel-container {
+    overflow-y: auto;
+}
+
+@media (max-width: 680px) {
+    .all-candidates {
+        display: none;
+    }
+}
+
+@media (max-width: 580px) {
+    .btn-group {
+        flex-direction: column;
+    }
+    .all-candidates {
+        display: inline;
+    }
+}

@@ -40,12 +40,16 @@ export class CandidateService {
         reportProgress: true,
         observe: 'events'
     });
-}
+  }
 
-deletePicture(id) {
-    return this.http.delete(API_URL + '/api/pictures/' + id , {
-      reportProgress: true,
-      observe: 'events'
-  });
-}
+  deletePicture(id) {
+      return this.http.delete(API_URL + '/api/pictures/' + id , {
+        reportProgress: true,
+        observe: 'events'
+    });
+  }
+
+  getNbCandidate() {
+    return this.http.get(API_URL + '/api/candidates/count');
+  }
 }
