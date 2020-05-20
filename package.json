@@ -29,6 +29,7 @@
     "jwt-decode": "^2.2.0",
     "ng2-completer": "^9.0.1",
     "ng2-smart-table": "^1.5.0",
+    "pace-js": "^1.0.2",
     "popper.js": "^1.16.1",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
