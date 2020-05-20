@@ -10,6 +10,8 @@ import { JobFormComponent } from './components/job-form/job-form.component';
 import { AddJobComponent } from './pages/add-job/add-job.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { EditJobComponent } from './components/edit-job/edit-job.component';
+import { CandidateListComponent } from './components/candidate-list/candidate-list.component';
+import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { EditJobComponent } from './components/edit-job/edit-job.component';
     RecruiterLayoutComponent,
     JobFormComponent,
     AddJobComponent,
-    EditJobComponent
+    EditJobComponent,
+    CandidateListComponent,
+    AllCandidatesComponent
   ],
   imports: [
     CommonModule,
