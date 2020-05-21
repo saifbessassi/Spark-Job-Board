@@ -1,5 +1,6 @@
 import { Routes } from "@angular/router";
 import { MustBeConnected } from '../guards/must-be-connected.guard';
+import { EnsureOnlyRecruiterGuard } from '../guards/ensure-only-recruiter.guard';
 
 export const ALL_ROUTES: Routes = [
     {
@@ -15,6 +16,7 @@ export const ALL_ROUTES: Routes = [
     },
     {
         path: 'recruiter',
+        canActivate: [EnsureOnlyRecruiterGuard],
         loadChildren: () => import('src/app/recruiter/recruiter.module')
         .then(m => m.RecruiterModule),
     }
