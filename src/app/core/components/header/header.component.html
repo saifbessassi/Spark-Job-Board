@@ -2,7 +2,7 @@
     <sp-top-bar></sp-top-bar>
     <div class="header_container background-color-red-dark">
         <nav id="navbar-main" class="navbar navbar-expand-lg ml-auto">
-            <a class="navbar-brand" type="button" (click)="toggleSidebar()">
+            <a *ngIf="isRecruiter" class="navbar-brand" type="button" (click)="toggleSidebar()">
                 <span style="color: #fff;font-size: 130%;">
                     <i class="fa fa-indent"></i>
                 </span>

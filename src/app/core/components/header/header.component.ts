@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { TokenService } from '../../services/token/token.service';
 import { Router } from '@angular/router';
 import { UserService } from '../../services/user/user.service';
@@ -13,6 +13,7 @@ import { SidebarService } from 'src/app/core/components/sidebar/sidebar.service'
 })
 export class HeaderComponent implements OnInit {
 
+  @Input() isRecruiter: boolean;
   fullname: string;
   email: string;
   photo: string;

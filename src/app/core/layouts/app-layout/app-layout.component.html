@@ -1,7 +1,7 @@
-<sp-header></sp-header>
+<sp-header [isRecruiter]="isRecruiter"></sp-header>
 <div class="d-flex align-content-stretch pt">
 
-    <sp-sidebar></sp-sidebar>
+    <sp-sidebar *ngIf="isRecruiter"></sp-sidebar>
 
     <div id="content">
         <router-outlet></router-outlet>
