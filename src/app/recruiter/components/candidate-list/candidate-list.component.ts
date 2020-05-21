@@ -5,7 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
 
 export class NbCandPerStatus {
-  totla;
+  total: number = 0;
   applied: number = 0;
   unapplied: number = 0;
   accepted: number = 0;
@@ -58,15 +58,18 @@ export class CandidateListComponent implements OnInit {
   settings = {
     actions: {
       add: false,
-    },
-    edit: {
-      editButtonContent: '<i class="nb-edit"></i>',
-      saveButtonContent: '<i class="nb-checkmark"></i>',
-      cancelButtonContent: '<i class="nb-close"></i>',
-    },
-    delete: {
-      deleteButtonContent: '<i class="nb-trash"></i>',
-      confirmDelete: true,
+      delete: false,
+      edit: false,
+      custom: [
+        {
+          name: 'view',
+          title: '<i class="fas fa-eye text-secondary"></i> ',
+        },
+        {
+          name: 'delete',
+          title: '<i class="fas fa-trash-alt text-danger"></i> ',
+        }
+      ]
     },
     columns: {
       fullname: {
