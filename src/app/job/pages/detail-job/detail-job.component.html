@@ -4,7 +4,43 @@
     <sp-carousel [title]="title" [text]="text"></sp-carousel>
 </section>
 
-<section id="job-Details" class="background-color-white-drak" style="padding: 5%;">
+<!-- <section id="job-Details" class="background-color-white-drak" style="padding: 5%;">
     <sp-error-msg [error_msg]="getJob_error" *ngIf="!isLoading && getJob_error"></sp-error-msg>
     <sp-job-card-detail [job]="job" *ngIf="!getJob_error && !isLoading"></sp-job-card-detail>
+</section> -->
+
+
+<section id="job-Details" class="background-color-white-drak" style="padding: 5%;">
+    <div class="card">
+        <div class="card-header bg-white">
+            <h3>{{job?.title | titlecase }}</h3>
+        </div>
+        <div class="card-body">
+            <sp-error-msg [error_msg]="getJob_error" *ngIf="!isLoading && getJob_error"></sp-error-msg>
+            <!-- Candidate view -->
+            <sp-job-card-detail id="info" [job]="job" *ngIf="!isRecruiter && !getJob_error && !isLoading"></sp-job-card-detail>
+
+            <!-- Recruiter view -->
+            <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
+                <li [ngbNavItem]="1">
+                  <a ngbNavLink>Information</a>
+                  <ng-template ngbNavContent>
+                    <sp-job-card-detail [job]="job" *ngIf="!getJob_error && !isLoading"></sp-job-card-detail>
+                  </ng-template>
+                </li>
+                <li [ngbNavItem]="2">
+                  <a ngbNavLink>Candidates</a>
+                  <ng-template ngbNavContent>
+                    <sp-candidates-list [jobID]=job?.id></sp-candidates-list>
+                  </ng-template>
+                </li>
+            </ul>
+            <div *ngIf="isRecruiter" [ngbNavOutlet]="nav" class="pt-4"></div>
+        </div>
+    </div>
+      
+    
+      
 </section>
+
+

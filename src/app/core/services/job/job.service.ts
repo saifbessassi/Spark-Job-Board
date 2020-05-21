@@ -65,6 +65,10 @@ export class JobService {
     return this.http.get(API_URL + '/api/jobs/nb-per-status');
   }
 
+  getNbApplicationPerStatus(jobID: number) {
+    return this.http.get(API_URL + '/api/jobs/nb-applications/' + jobID);
+  }
+
   getFilterOptions() {
     return this.http.get<JobFiltersOptions>(API_URL + '/api/jobs/filter-options');
   }
