@@ -10,7 +10,6 @@ import { JobFormComponent } from './components/job-form/job-form.component';
 import { AddJobComponent } from './pages/add-job/add-job.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { EditJobComponent } from './components/edit-job/edit-job.component';
-import { CandidateListComponent } from './components/candidate-list/candidate-list.component';
 import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.component';
 import { DescriptionModule } from '../candidate/components/description-section/description.module';
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
@@ -21,6 +20,8 @@ import { IdentityModule } from '../candidate/components/identity-section/identit
 import { LanguageModule } from '../candidate/components/language-section/language.module';
 import { ProjectModule } from '../candidate/components/project-section/project.module';
 import { SkillModule } from '../candidate/components/skill-section/skill.module';
+import { CandidatesListModule } from './components/candidate-list/candidates-list.module';
+import { CandidateProfileModule } from './components/candidate-profile/candidate-profile.module';
 
 @NgModule({
   declarations: [
@@ -29,9 +30,7 @@ import { SkillModule } from '../candidate/components/skill-section/skill.module'
     JobFormComponent,
     AddJobComponent,
     EditJobComponent,
-    CandidateListComponent,
-    AllCandidatesComponent,
-    CandidateProfileComponent
+    AllCandidatesComponent
   ],
   imports: [
     CommonModule,
@@ -39,14 +38,8 @@ import { SkillModule } from '../candidate/components/skill-section/skill.module'
     Ng2SmartTableModule,
     SharedModule,
     EditorModule,
-    DescriptionModule,
-    DocumentModule,
-    EducationModule,
-    ExperienceModule,
-    IdentityModule,
-    LanguageModule,
-    ProjectModule,
-    SkillModule
+    CandidatesListModule,
+    CandidateProfileModule
   ],
   providers: [
     DatePipe

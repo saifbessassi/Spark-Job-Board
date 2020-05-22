@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CandidateProfileComponent } from '../candidate-profile/candidate-profile.component';
+import { JobService } from 'src/app/core/services/job/job.service';
 
 export class NbCandPerStatus {
   total: number = 0;
@@ -30,21 +31,39 @@ export class CandidateListComponent implements OnInit {
   nbCand = new NbCandPerStatus;
 
   constructor(
+    private jobService: JobService,
     private candidateService: CandidateService,
-    private router: Router,
     private http: HttpClient,
     private modalService: NgbModal,
   ) 
   { }
 
   ngOnInit() {
-    this.candidateService.getNbCandidate().subscribe(
-      (res: NbCandPerStatus) => {
-        this.nbCand = res;
-      }
-    )
     if (this.jobID) {
+      this.jobService.getNbApplicationPerStatus(this.jobID).subscribe(
+        (res: NbCandPerStatus) => {
+          for (var key in this.nbCand) {
+            if (res[key]) {
+              this.nbCand[key] = res[key];
+            } else {
+              res[key] = 0;
+            }
+          }
+        }
+      )
       this.jobParam = 'jobApplications.job.id=' + this.jobID;
+    } else {
+      this.candidateService.getNbCandidate().subscribe(
+        (res: NbCandPerStatus) => {
+          for (var key in this.nbCand) {
+            if (res[key]) {
+              this.nbCand[key] = res[key];
+            } else {
+              res[key] = 0;
+            }
+          }
+        }
+      )
     }
     this.allCand  = new ServerDataSource(
       this.http,

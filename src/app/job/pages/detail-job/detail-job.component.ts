@@ -5,6 +5,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { User } from 'src/app/core/models/user.service';
+import { CandidateProfileComponent } from 'src/app/recruiter/components/candidate-profile/candidate-profile.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'sp-detail-job',
@@ -26,7 +28,8 @@ export class DetailJobComponent implements OnInit {
     private jobService: JobService,
     private activatedRoute: ActivatedRoute,
     private authService: AuthenticationService,
-    private userService: UserService
+    private userService: UserService,
+    private modalService: NgbModal
   ) { 
     this.jobId = this.activatedRoute.snapshot.params.id;
   }
@@ -51,6 +54,11 @@ export class DetailJobComponent implements OnInit {
       }
       this.isLoading = false;
     })
+  }
+
+  onAction(event) {
+    const modalRef = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl' });
+    modalRef.componentInstance.candidateID = event.data.id;
   }
 
 }

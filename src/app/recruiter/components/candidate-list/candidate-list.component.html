@@ -7,10 +7,10 @@
         <label ngbButtonLabel class="btn-outline-secondary">
             <input ngbButton type="radio" [value]="''"> All<span class="all-candidates"> Candidates</span> ({{nbCand?.total}})
         </label>
-        <label ngbButtonLabel class="btn-outline-secondary">
+        <label *ngIf="!jobID" ngbButtonLabel class="btn-outline-secondary">
             <input ngbButton type="radio" [value]="'true'"> Applied ({{nbCand?.applied}})
         </label>
-        <label ngbButtonLabel class="btn-outline-secondary">
+        <label *ngIf="!jobID" ngbButtonLabel class="btn-outline-secondary">
             <input ngbButton type="radio" [value]="'false'"> Unapplied ({{nbCand?.unapplied}})
         </label>
         <label ngbButtonLabel class="btn-outline-secondary">

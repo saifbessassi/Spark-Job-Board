@@ -16,8 +16,10 @@ import { JobCardDetailComponent } from './component/job-card-detail/job-card-det
 import { ApplyModalComponent } from './component/apply-modal/apply-modal.component';
 import { AuthenticationModule } from '../authentication/authentication.module';
 import { ResumeSummaryComponent } from './component/resume-summary/resume-summary.component';
-import { CandidatesListComponent } from './component/candidates-list/candidates-list.component';
 import { Ng2SmartTableModule } from 'ng2-smart-table';
+import { CandidateProfileComponent } from '../recruiter/components/candidate-profile/candidate-profile.component';
+import { CandidatesListModule } from '../recruiter/components/candidate-list/candidates-list.module';
+import { CandidateProfileModule } from '../recruiter/components/candidate-profile/candidate-profile.module';
 
 
 @NgModule({
@@ -35,16 +37,18 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
     JobCardDetailComponent, 
     ApplyModalComponent,
     ResumeSummaryComponent,
-    CandidatesListComponent,
   ],
   imports: [
     JobRoutingModule,
     SharedModule,
     AuthenticationModule,
-    Ng2SmartTableModule
+    Ng2SmartTableModule,
+    CandidatesListModule,
+    CandidateProfileModule
   ],
   entryComponents: [
     ApplyModalComponent,
+    CandidateProfileComponent
   ]
 })
 export class JobModule { }
