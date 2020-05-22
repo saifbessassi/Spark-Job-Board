@@ -28,6 +28,10 @@ export class CandidateService {
     return this.http.get(API_URL + '/api/candidates/' + this.candidateID + '.json');
   }
 
+  getCandidateProfileByID(id: number) {
+    return this.http.get(API_URL + '/api/candidates/' + id + '.json');
+  }
+
   edit(identity: CandidateIdentity) {
     return this.http.put(API_URL + '/api/candidates/' + this.candidateID, identity);
   }

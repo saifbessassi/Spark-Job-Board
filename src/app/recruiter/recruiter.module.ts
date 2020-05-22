@@ -12,6 +12,15 @@ import { EditorModule } from '@tinymce/tinymce-angular';
 import { EditJobComponent } from './components/edit-job/edit-job.component';
 import { CandidateListComponent } from './components/candidate-list/candidate-list.component';
 import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.component';
+import { DescriptionModule } from '../candidate/components/description-section/description.module';
+import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
+import { DocumentModule } from '../candidate/components/document-section/document.module';
+import { EducationModule } from '../candidate/components/education-section/education.module';
+import { ExperienceModule } from '../candidate/components/experience-section/experience.module';
+import { IdentityModule } from '../candidate/components/identity-section/identity.module';
+import { LanguageModule } from '../candidate/components/language-section/language.module';
+import { ProjectModule } from '../candidate/components/project-section/project.module';
+import { SkillModule } from '../candidate/components/skill-section/skill.module';
 
 @NgModule({
   declarations: [
@@ -21,20 +30,30 @@ import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.co
     AddJobComponent,
     EditJobComponent,
     CandidateListComponent,
-    AllCandidatesComponent
+    AllCandidatesComponent,
+    CandidateProfileComponent
   ],
   imports: [
     CommonModule,
     RecruiterRoutingModule,
     Ng2SmartTableModule,
     SharedModule,
-    EditorModule
+    EditorModule,
+    DescriptionModule,
+    DocumentModule,
+    EducationModule,
+    ExperienceModule,
+    IdentityModule,
+    LanguageModule,
+    ProjectModule,
+    SkillModule
   ],
   providers: [
     DatePipe
   ],
   entryComponents: [
-    EditJobComponent
+    EditJobComponent,
+    CandidateProfileComponent
   ]
 })
 export class RecruiterModule { }

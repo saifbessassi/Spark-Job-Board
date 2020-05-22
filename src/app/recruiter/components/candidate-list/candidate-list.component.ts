@@ -3,6 +3,8 @@ import { ServerDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
+import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
+import { CandidateProfileComponent } from '../candidate-profile/candidate-profile.component';
 
 export class NbCandPerStatus {
   total: number = 0;
@@ -31,6 +33,7 @@ export class CandidateListComponent implements OnInit {
     private candidateService: CandidateService,
     private router: Router,
     private http: HttpClient,
+    private modalService: NgbModal,
   ) 
   { }
 
@@ -141,6 +144,11 @@ export class CandidateListComponent implements OnInit {
         totalKey: 'hydra:totalItems',
       },
     );
+  }
+
+  onAction(event) {
+    const modalRef = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl' });
+    modalRef.componentInstance.candidateID = event.data.id;
   }
 
 }
