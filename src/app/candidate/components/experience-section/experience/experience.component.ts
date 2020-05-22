@@ -13,6 +13,7 @@ export class ExperienceComponent implements OnInit {
 
   @Input() experiences: Experience[];
   @Input() resumeID: number;
+  @Input() isRecruiter: boolean = false;
   isLoading = false;
   
   constructor(

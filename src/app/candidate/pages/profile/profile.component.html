@@ -3,16 +3,16 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <sp-identity [identity]="identity"></sp-identity>
-                <sp-language [languages]="resume?.languagesCandidate" [resumeID]="resume?.id"></sp-language>
-                <sp-skill [skills]="resume?.skillsCandidate" [resumeID]="resume?.id"></sp-skill>
+                <sp-identity class="py-4 px-4 mb-5" [identity]="identity"></sp-identity>
+                <sp-skill class="py-4 px-4 mb-5" [skills]="resume?.skillsCandidate" [resumeID]="resume?.id"></sp-skill>
+                <sp-language class="py-4 px-4 mb-5" [languages]="resume?.languagesCandidate" [resumeID]="resume?.id"></sp-language>
             </div>
             <div class="col-md-8">
-                <sp-description [description]="resume?.description" [resumeID]="resume?.id"></sp-description>
-                <sp-document [cv]="resume?.cv" [resumeID]="resume?.id"></sp-document>
-                <sp-education [educations]="educations" [resumeID]="resume?.id"></sp-education>
-                <sp-experience [experiences]="experiences" [resumeID]="resume?.id"></sp-experience>
-                <sp-project [projects]="resume?.projects" [resumeID]="resume?.id"></sp-project>
+                <sp-description class="py-4 px-4 mb-5" [description]="resume?.description" [resumeID]="resume?.id"></sp-description>
+                <sp-document class="py-4 px-4 mb-5" [cv]="resume?.cv" [resumeID]="resume?.id"></sp-document>
+                <sp-education class="py-4 px-4 mb-5" [educations]="educations" [resumeID]="resume?.id"></sp-education>
+                <sp-experience class="py-4 px-4 mb-5" [experiences]="experiences" [resumeID]="resume?.id"></sp-experience>
+                <sp-project class="py-4 px-4 mb-5" [projects]="resume?.projects" [resumeID]="resume?.id"></sp-project>
             </div>
         </div>
     </div>

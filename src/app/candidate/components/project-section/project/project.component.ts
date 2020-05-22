@@ -13,6 +13,7 @@ export class ProjectComponent implements OnInit {
 
   @Input() projects: Project[];
   @Input() resumeID: number;
+  @Input() isRecruiter: boolean = false;
   isLoading = false;
   
   constructor(

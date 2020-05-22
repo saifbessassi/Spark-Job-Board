@@ -13,6 +13,7 @@ export class LanguageComponent implements OnInit {
 
   @Input() languages: LanguageCandidateResponse[];
   @Input() resumeID: number;
+  @Input() isRecruiter: boolean = false;
   isLoading = false;
   
   constructor(

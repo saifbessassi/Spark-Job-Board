@@ -10,7 +10,7 @@ import { ProjectFormComponent } from './components/project-section/project-form/
 import { LanguageFormComponent } from './components/language-section/language-form/language-form.component';
 import { SkillFormComponent } from './components/skill-section/skill-form/skill-form.component';
 import { IdentityFormComponent } from './components/identity-section/identity-form/identity-form.component';
-import { DescModule } from './components/description-section/desc.module';
+import { DescriptionModule } from './components/description-section/description.module';
 import { DocumentModule } from './components/document-section/document.module';
 import { DescriptionFormComponent } from './components/description-section/description-form/description-form.component';
 import { DocumentFormComponent } from './components/document-section/document-form/document-form.component';
@@ -30,7 +30,7 @@ import { SkillModule } from './components/skill-section/skill.module';
     CommonModule,
     CandidateRoutingModule,
     SharedModule,
-    DescModule,
+    DescriptionModule,
     DocumentModule,
     EducationModule,
     ExperienceModule,

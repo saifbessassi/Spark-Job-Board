@@ -13,6 +13,7 @@ export class DocumentComponent implements OnInit {
 
   @Input() cv: Document;
   @Input() resumeID: number;
+  @Input() isRecruiter: boolean = false;
   isLoading = false;
   
   constructor(

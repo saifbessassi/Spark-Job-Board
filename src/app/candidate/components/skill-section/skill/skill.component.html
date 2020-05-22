@@ -1,11 +1,11 @@
-<div class="card-body shadow background-white py-4 px-5 mb-5">
+<div class="card-body background-white" [ngClass]="{'shadow': !isRecruiter}">
     <section>
         <div class="row">
             <div class="col">
                 <div *ngIf="skills?.length">
                     <header class="d-flex align-items-center mb-4">
                         <h4>Skills</h4>
-                        <a (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
+                        <a *ngIf="!isRecruiter" (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
                         <div class="col">
@@ -16,7 +16,7 @@
                                             <p style="margin-bottom: 0;"><b>{{sk.skill.label}}</b></p>
                                             <p>{{sk.proficiency}}</p>
                                         </div>
-                                        <div class="col-3 text-right align-self-center">
+                                        <div *ngIf="!isRecruiter" class="col-3 text-right align-self-center">
                                             <a (click)="delete(sk.id, i)" type="button"><i class="fas fa-trash-alt edit-btn-icon"></i></a>
                                             <a (click)="openEditForm(sk, i)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                                         </div>

@@ -13,6 +13,7 @@ export class EducationComponent implements OnInit {
 
   @Input() educations: Education[];
   @Input() resumeID: number;
+  @Input() isRecruiter: boolean = false;
   isLoading = false;
 
   constructor(

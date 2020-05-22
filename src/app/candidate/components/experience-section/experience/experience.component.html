@@ -1,12 +1,12 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
-<div class="card-body shadow background-white py-4 px-4 mb-5">
+<div class="card-body background-white" [ngClass]="{'shadow': !isRecruiter}">
     <section>
         <div class="row">
             <div class="col">
                 <div *ngIf="experiences?.length">
                     <header class="d-flex align-items-center mb-4">
                         <h4>Experience</h4>
-                        <a (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
+                        <a *ngIf="!isRecruiter" (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
                         <div class="col">
@@ -17,7 +17,7 @@
                                 <h6><i class="fas fa-briefcase"></i>  {{exp.title | titlecase }}</h6>
                                 <p><i class="fas fa-building"></i>  {{exp.company | titlecase }}</p>
                                 <p>{{exp.description}}</p>
-                                <div class="text-right">
+                                <div *ngIf="!isRecruiter" class="text-right">
                                     <a (click)="delete(exp.id, i)" type="button"><i class="fas fa-trash-alt edit-btn-icon"></i></a>
                                     <a (click)="openEditForm(exp, i)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                                 </div>

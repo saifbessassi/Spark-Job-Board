@@ -13,6 +13,7 @@ export class SkillComponent implements OnInit {
 
   @Input() skills: SkillCandidateResponse[];
   @Input() resumeID: number;
+  @Input() isRecruiter: boolean = false;
   isLoading = false;
   
   constructor(

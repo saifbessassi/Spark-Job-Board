@@ -1,11 +1,11 @@
-<div class="card-body shadow background-white py-4 px-4 mb-5">
+<div class="card-body background-white" [ngClass]="{'shadow': !isRecruiter}">
     <section>
         <div class="row">
             <div class="col">
                 <div *ngIf="description">
                     <h4 class="mb-4">Presentation</h4>
                     <p>{{description}}</p>
-                    <div class="text-right">
+                    <div *ngIf="!isRecruiter" class="text-right">
                         <a (click)="open()" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                     </div>
                 </div>

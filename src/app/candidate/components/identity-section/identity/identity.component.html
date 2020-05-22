@@ -1,4 +1,4 @@
-<div class="card-body shadow background-white py-4 px-5 mb-5">
+<div class="card-body background-white" [ngClass]="{'shadow': !isRecruiter}">
 
     <section class="pt-3">
         <div class="row">
@@ -21,12 +21,12 @@
                 <div class="">
                     <p><i class="fas fa-envelope"></i>  {{identity?.email}}</p>
                     <p *ngIf="identity?.phone"><i class="fas fa-phone-alt"></i>  {{identity?.phone}}</p>
-                    <p *ngIf="identity?.resume.seniorityLevel"><i class="far fa-calendar-alt"></i>  {{identity?.resume.seniorityLevel}} of experience</p>
+                    <p *ngIf="identity?.resume && identity?.resume.seniorityLevel"><i class="far fa-calendar-alt"></i>  {{identity?.resume.seniorityLevel}} of experience</p>
                 </div>
             </div>
         </div>
     </section>
-    <div class="text-right">
+    <div *ngIf="!isRecruiter" class="text-right">
         <a (click)="openEditForm()" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
     </div>
 </div>

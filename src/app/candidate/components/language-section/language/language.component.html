@@ -1,12 +1,12 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
-<div class="card-body shadow background-white py-4 px-5 mb-5">
+<div class="card-body background-white" [ngClass]="{'shadow': !isRecruiter}">
     <section>
         <div class="row">
             <div class="col">
                 <div *ngIf="languages?.length">
                     <header class="d-flex align-items-center mb-4">
                         <h4>Languages</h4>
-                        <a (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
+                        <a *ngIf="!isRecruiter" (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
                         <div class="col">
@@ -17,7 +17,7 @@
                                             <p style="margin-bottom: 0;"><b>{{lang.language.label}}</b></p>
                                             <p>{{lang.proficiency}}</p>
                                         </div>
-                                        <div class="col-2 text-right align-self-center">
+                                        <div *ngIf="!isRecruiter" class="col-2 text-right align-self-center">
                                             <a (click)="delete(lang.id, i)" type="button"><i class="fas fa-trash-alt edit-btn-icon"></i></a>
                                             <a (click)="openEditForm(lang, i)" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                                         </div>

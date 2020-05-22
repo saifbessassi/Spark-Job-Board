@@ -20,4 +20,4 @@ import { SharedModule } from 'src/app/shared/shared.module';
     SharedModule
   ]
 })
-export class DescModule { }
+export class DescriptionModule { }

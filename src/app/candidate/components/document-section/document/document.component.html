@@ -1,5 +1,5 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
-<div class="card-body shadow background-white py-4 px-4 mb-5">
+<div class="card-body background-white" [ngClass]="{'shadow': !isRecruiter}">
     <section>
         <div class="row">
             <div class="col">
@@ -18,7 +18,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="text-right">
+                            <div *ngIf="!isRecruiter" class="text-right">
                                 <a (click)="open()" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
                             </div>
                         </div>
