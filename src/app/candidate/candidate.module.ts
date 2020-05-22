@@ -20,6 +20,7 @@ import { IdentityModule } from './components/identity-section/identity.module';
 import { LanguageModule } from './components/language-section/language.module';
 import { ProjectModule } from './components/project-section/project.module';
 import { SkillModule } from './components/skill-section/skill.module';
+import { ApplicationsModule } from './components/applications/applications.module';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { SkillModule } from './components/skill-section/skill.module';
     IdentityModule,
     LanguageModule,
     ProjectModule,
-    SkillModule
+    SkillModule,
+    ApplicationsModule
   ],
   entryComponents: [
     DescriptionFormComponent,

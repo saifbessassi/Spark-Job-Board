@@ -23,6 +23,10 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     // color: #32325d;
 }
 
+button:disabled {
+    cursor: not-allowed;
+}
+
 .sp-btn {
     transition: all .5s ease 0s;
     text-decoration: none;
@@ -151,4 +155,8 @@ ng2-st-tbody-custom {
 
 .ng2-smart-action-custom-custom:last-child {
     border: none !important;
+}
+
+.color-red {
+    color: #ba0000;
 }

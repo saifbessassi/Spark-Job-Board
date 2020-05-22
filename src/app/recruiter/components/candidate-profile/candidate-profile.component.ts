@@ -52,10 +52,9 @@ export class CandidateProfileComponent implements OnInit {
         seniority
       )
       this.isLoading = false;
-  }, err => {
-      this.error_msg = true;
-      this.isLoading = false;
-  })
+    }, err => {
+        this.error_msg = true;
+        this.isLoading = false;
+    })
   }
-
 }

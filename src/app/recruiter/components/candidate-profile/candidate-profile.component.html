@@ -1,6 +1,6 @@
 <div class="modal-header">
     <h4 class="modal-title" id="modal-basic-title">{{identity?.fullname}}</h4>
-    <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss()">
+    <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss(decision)">
       <span aria-hidden="true">&times;</span>
     </button>
 </div>
@@ -12,6 +12,7 @@
             <sp-language *ngIf="resume?.languagesCandidate.length" [languages]="resume?.languagesCandidate" [resumeID]="resume?.id" [isRecruiter]="true"></sp-language>
         </div>
         <div class="col-md-8">
+            <sp-applications [candidateID]="candidateID"[isRecruiter]="true"></sp-applications>
             <sp-description *ngIf="resume?.description" [description]="resume?.description" [resumeID]="resume?.id" [isRecruiter]="true"></sp-description>
             <sp-document *ngIf="resume?.cv" [cv]="resume?.cv" [resumeID]="resume?.id" [isRecruiter]="true"></sp-document>
             <sp-education *ngIf="educations.length" [educations]="educations" [resumeID]="resume?.id" [isRecruiter]="true"></sp-education>

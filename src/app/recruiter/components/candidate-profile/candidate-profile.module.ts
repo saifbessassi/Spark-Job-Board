@@ -10,6 +10,7 @@ import { IdentityModule } from 'src/app/candidate/components/identity-section/id
 import { LanguageModule } from 'src/app/candidate/components/language-section/language.module';
 import { ProjectModule } from 'src/app/candidate/components/project-section/project.module';
 import { SkillModule } from 'src/app/candidate/components/skill-section/skill.module';
+import { ApplicationsModule } from 'src/app/candidate/components/applications/applications.module';
 
 
 
@@ -28,6 +29,7 @@ import { SkillModule } from 'src/app/candidate/components/skill-section/skill.mo
     LanguageModule,
     ProjectModule,
     SkillModule,
+    ApplicationsModule
   ],
   exports: [
     CandidateProfileComponent

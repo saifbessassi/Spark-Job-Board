@@ -19,4 +19,9 @@ export class ApplicationService {
     }
     return this.http.post(API_URL + '/api/job_applications', application);
   }
+
+  makeDecision(status: string, id) {
+    const statusJson = {status: status}
+    return this.http.put(API_URL + '/api/job_applications/' + id, statusJson);
+  }
 }

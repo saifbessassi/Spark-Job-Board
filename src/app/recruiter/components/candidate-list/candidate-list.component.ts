@@ -169,5 +169,4 @@ export class CandidateListComponent implements OnInit {
     const modalRef = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl' });
     modalRef.componentInstance.candidateID = event.data.id;
   }
-
 }

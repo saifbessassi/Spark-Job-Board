@@ -1,0 +1,60 @@
+<div class="card-body background-white" [ngClass]="{'shadow': !isRecruiter}">
+    <section>
+        <div class="row">
+            <div class="col">
+                <header class="d-flex align-items-center mb-4">
+                    <h4>Applications</h4>
+                </header>
+                <div class="row">
+                    <div class="col">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Job</th>
+                                    <th scope="col">Date</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Decision</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr *ngFor="let app of applications; let i = index">
+                                    <th scope="row" class="text-left">{{app?.job.title}}</th>
+                                    <td>{{app?.applicationDate | date: 'dd/MMM/yyyy'}}</td>
+                                    <td>{{app?.status}}</td>
+                                    <td>
+                                        <div>
+                                            <button 
+                                                (click)="onDecision('accepted', app.id, i)"
+                                                [disabled]="app.status == 'accepted'"
+                                                type="button" 
+                                                class="btn btn-outline-success btn-lg">
+                                                <i class="fas fa-check"></i>
+                                            </button>
+                                            <button 
+                                                (click)="onDecision('rejected', app.id, i)"
+                                                [disabled]="app.status == 'rejected'"
+                                                type="button" 
+                                                class="btn btn-outline-danger btn-lg mx-3">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                            <button 
+                                                (click)="onDecision('waiting', app.id, i)"
+                                                [disabled]="app.status == 'waiting'"
+                                                type="button" 
+                                                class="btn btn-outline-warning btn-lg">
+                                                <i class="fas fa-question"></i>
+                                            </button>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr *ngIf="!applications?.length">
+                                    <td colspan="4">No Application</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>

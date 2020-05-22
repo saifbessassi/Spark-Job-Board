@@ -32,6 +32,14 @@ export class CandidateService {
     return this.http.get(API_URL + '/api/candidates/' + id + '.json');
   }
 
+  getCandidateApplications(id?: number) {
+    let candId = this.candidateID;
+    if (id) {
+      candId = id;
+    }
+    return this.http.get(API_URL + '/api/job_applications.json?candidate.id=' + candId);
+  }
+
   edit(identity: CandidateIdentity) {
     return this.http.put(API_URL + '/api/candidates/' + this.candidateID, identity);
   }
