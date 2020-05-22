@@ -3,49 +3,41 @@ import { CommonModule } from '@angular/common';
 
 import { CandidateRoutingModule } from './candidate-routing.module';
 import { SharedModule } from '../shared/shared.module';
-import { IdentityComponent } from './components/identity-section/identity/identity.component';
 import { ProfileComponent } from './pages/profile/profile.component';
-import { DescriptionComponent } from './components/description-section/description/description.component';
-import { EducationComponent } from './components/education-section/education/education.component';
-import { ExperienceComponent } from './components/experience-section/experience/experience.component';
-import { ProjectComponent } from './components/project-section/project/project.component';
-import { LanguageComponent } from './components/language-section/language/language.component';
-import { SkillComponent } from './components/skill-section/skill/skill.component';
-import { DescriptionFormComponent } from './components/description-section/description-form/description-form.component';
 import { EducationFormComponent } from './components/education-section/education-form/education-form.component';
 import { ExperienceFormComponent } from './components/experience-section/experience-form/experience-form.component';
 import { ProjectFormComponent } from './components/project-section/project-form/project-form.component';
 import { LanguageFormComponent } from './components/language-section/language-form/language-form.component';
 import { SkillFormComponent } from './components/skill-section/skill-form/skill-form.component';
 import { IdentityFormComponent } from './components/identity-section/identity-form/identity-form.component';
-import { DocumentComponent } from './components/document-section/document/document.component';
+import { DescModule } from './components/description-section/desc.module';
+import { DocumentModule } from './components/document-section/document.module';
+import { DescriptionFormComponent } from './components/description-section/description-form/description-form.component';
 import { DocumentFormComponent } from './components/document-section/document-form/document-form.component';
+import { EducationModule } from './components/education-section/education.module';
+import { ExperienceModule } from './components/experience-section/experience.module';
+import { IdentityModule } from './components/identity-section/identity.module';
+import { LanguageModule } from './components/language-section/language.module';
+import { ProjectModule } from './components/project-section/project.module';
+import { SkillModule } from './components/skill-section/skill.module';
 
 
 @NgModule({
-  declarations: [
-    IdentityComponent, 
-    ProfileComponent, 
-    DescriptionComponent, 
-    EducationComponent, 
-    ExperienceComponent, 
-    ProjectComponent, 
-    LanguageComponent, 
-    SkillComponent, 
-    DescriptionFormComponent, 
-    EducationFormComponent,
-    ExperienceFormComponent,
-    ProjectFormComponent,
-    LanguageFormComponent,
-    SkillFormComponent,
-    IdentityFormComponent,
-    DocumentComponent,
-    DocumentFormComponent
+  declarations: [ 
+    ProfileComponent
   ],
   imports: [
     CommonModule,
     CandidateRoutingModule,
-    SharedModule
+    SharedModule,
+    DescModule,
+    DocumentModule,
+    EducationModule,
+    ExperienceModule,
+    IdentityModule,
+    LanguageModule,
+    ProjectModule,
+    SkillModule
   ],
   entryComponents: [
     DescriptionFormComponent,
