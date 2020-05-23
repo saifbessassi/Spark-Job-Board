@@ -31,7 +31,7 @@
                 <li [ngbNavItem]="2">
                   <a ngbNavLink>Candidates</a>
                   <ng-template ngbNavContent>
-                    <sp-candidate-list [jobID]=job?.id></sp-candidate-list>
+                    <sp-candidate-list [jobID]=job?.id [columnDecision]="true"></sp-candidate-list>
                   </ng-template>
                 </li>
             </ul>

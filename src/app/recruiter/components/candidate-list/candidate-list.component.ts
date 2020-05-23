@@ -6,6 +6,7 @@ import { CandidateService, NbCandPerStatus } from 'src/app/core/services/candida
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CandidateProfileComponent } from '../candidate-profile/candidate-profile.component';
 import { JobService } from 'src/app/core/services/job/job.service';
+import { DecisionButtonsComponent } from './decision-buttons/decision-buttons.component';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { JobService } from 'src/app/core/services/job/job.service';
 export class CandidateListComponent implements OnInit {
 
   @Input() jobID: number;
+  @Input() columnDecision: boolean = false;
   jobParam: string = '';
   allCand: ServerDataSource;
   params: string;
@@ -31,6 +33,14 @@ export class CandidateListComponent implements OnInit {
   { }
 
   ngOnInit() {
+    if (this.columnDecision) {
+      this.settings.columns['decision'] = {
+        title: 'Decesion',
+        type: 'custom',
+        filter: false,
+        renderComponent: DecisionButtonsComponent
+      }
+    }
     if (this.jobID) {
       this.jobService.getNbApplicationPerStatus(this.jobID).subscribe(
         (res: NbCandPerStatus) => {
