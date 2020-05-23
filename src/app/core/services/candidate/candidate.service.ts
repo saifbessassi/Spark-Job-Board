@@ -4,6 +4,16 @@ import { environment } from 'src/environments/environment';
 import { UserService } from '../user/user.service';
 import { CandidateIdentity } from '../../models/candidate/candidate-identity.model';
 import { AuthenticationService } from '../auth/authentication.service';
+import { BehaviorSubject, Observable } from 'rxjs';
+
+export class NbCandPerStatus {
+  total: number = 0;
+  applied: number = 0;
+  unapplied: number = 0;
+  accepted: number = 0;
+  waiting: number = 0;
+  rejected: number = 0;
+}
 
 const API_URL = environment.API_URL;
 @Injectable({
@@ -12,6 +22,8 @@ const API_URL = environment.API_URL;
 export class CandidateService {
 
   candidateID: number;
+  private nbCandPerStatus: BehaviorSubject<NbCandPerStatus>;
+  currentNbCandPerStatus: Observable<NbCandPerStatus>;
 
   constructor(
     private http: HttpClient,
@@ -22,6 +34,43 @@ export class CandidateService {
         this.candidateID = data.id;
       }
     })
+    this.nbCandPerStatus = new BehaviorSubject<NbCandPerStatus>(null);
+    this.currentNbCandPerStatus = this.nbCandPerStatus.asObservable();
+  }
+
+  setNbCandPerStatus(nb) {
+    this.nbCandPerStatus.next(nb);
+  }
+
+  changeNbCandPerStatus(newStatus: string, oldStatus: string) {
+    let app = this.nbCandPerStatus.getValue();
+    switch (newStatus) {
+      case 'accepted':
+        app.accepted++;
+        break;
+      case 'rejected':
+        app.rejected++;
+        break;
+      case 'waiting':
+        app.waiting++;
+        break;
+      default:
+        break;
+    }
+    switch (oldStatus) {
+      case 'accepted':
+        app.accepted--;
+        break;
+      case 'rejected':
+        app.rejected--;
+        break;
+      case 'waiting':
+        app.waiting--;
+        break;
+      default:
+        break;
+    }
+    this.setNbCandPerStatus(app);
   }
 
   getCandidateProfile() {

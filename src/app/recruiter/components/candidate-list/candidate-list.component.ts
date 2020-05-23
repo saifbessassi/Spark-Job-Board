@@ -2,19 +2,11 @@ import { Component, OnInit, Input } from '@angular/core';
 import { ServerDataSource } from 'ng2-smart-table';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
+import { CandidateService, NbCandPerStatus } from 'src/app/core/services/candidate/candidate.service';
 import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CandidateProfileComponent } from '../candidate-profile/candidate-profile.component';
 import { JobService } from 'src/app/core/services/job/job.service';
 
-export class NbCandPerStatus {
-  total: number = 0;
-  applied: number = 0;
-  unapplied: number = 0;
-  accepted: number = 0;
-  waiting: number = 0;
-  rejected: number = 0;
-}
 
 @Component({
   selector: 'sp-candidate-list',
@@ -65,6 +57,7 @@ export class CandidateListComponent implements OnInit {
         }
       )
     }
+    this.candidateService.setNbCandPerStatus(this.nbCand);
     this.allCand  = new ServerDataSource(
       this.http,
       {

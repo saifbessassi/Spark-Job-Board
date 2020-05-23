@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { CandidateService } from 'src/app/core/services/candidate/candidate.service';
+import { CandidateService, NbCandPerStatus } from 'src/app/core/services/candidate/candidate.service';
 import { Application } from 'src/app/core/models/candidate/application.model';
 import { ApplicationService } from 'src/app/core/services/application/application.service';
 
@@ -13,6 +13,7 @@ export class ApplicationsComponent implements OnInit {
   @Input() candidateID: number;
   @Input() isRecruiter: boolean = false;
   applications: Application[];
+  nbCandPerStatus: NbCandPerStatus;
 
   constructor(
     private candidateService: CandidateService,
@@ -20,6 +21,9 @@ export class ApplicationsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.candidateService.currentNbCandPerStatus.subscribe(data => {
+      this.nbCandPerStatus = data;
+    })
     this.candidateService.getCandidateApplications(this.candidateID).subscribe((res: Application[]) => {
       this.applications = res;
     }, err => {
@@ -28,8 +32,10 @@ export class ApplicationsComponent implements OnInit {
   }
 
   onDecision(status: string, id: number, index: number) {
+    const old = this.applications[index].status;
     this.applicationService.makeDecision(status, id).subscribe( (res: Application) => {
       this.applications[index].status = status;
+      this.candidateService.changeNbCandPerStatus(status, old);
     });
   }
 
