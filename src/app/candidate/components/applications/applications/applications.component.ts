@@ -14,6 +14,7 @@ export class ApplicationsComponent implements OnInit {
   @Input() isRecruiter: boolean = false;
   applications: Application[];
   nbCandPerStatus: NbCandPerStatus;
+  @Output() outputIsDecisionMaked = new EventEmitter<boolean>();
 
   constructor(
     private candidateService: CandidateService,
@@ -36,6 +37,7 @@ export class ApplicationsComponent implements OnInit {
     this.applicationService.makeDecision(status, id).subscribe( (res: Application) => {
       this.applications[index].status = status;
       this.candidateService.changeNbCandPerStatus(status, old);
+      this.outputIsDecisionMaked.emit(true);
     });
   }
 

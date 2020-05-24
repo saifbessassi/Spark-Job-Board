@@ -273,6 +273,16 @@ export class CandidateListComponent implements OnInit {
 
   onAction(event) {
     const modalRef = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl' });
-    modalRef.componentInstance.candidateID = event.data.candidate.id;
+    if (this.jobID) {
+      modalRef.componentInstance.candidateID = event.data.candidate.id;
+    } else {
+      modalRef.componentInstance.candidateID = event.data.id;
+    }
+    
+    modalRef.result.then(res => {
+      if (res) {
+        this.allCand.refresh();
+      }
+    })
   }
 }

@@ -23,6 +23,7 @@ export class CandidateProfileComponent implements OnInit {
   educations: Education[] = [];
   pictureURL: string;
   isLoading: boolean;
+  isDecicionMaked: boolean = false;
   
   constructor(
     private _activeModal: NgbActiveModal,
@@ -56,5 +57,9 @@ export class CandidateProfileComponent implements OnInit {
         this.error_msg = true;
         this.isLoading = false;
     })
+  }
+
+  outputIsDecisionMaked($event) {
+    this.isDecicionMaked = $event;
   }
 }
