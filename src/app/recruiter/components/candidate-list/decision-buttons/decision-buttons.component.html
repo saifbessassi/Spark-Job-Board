@@ -1,15 +1,21 @@
 <div class="d-flex">
     <button 
+        (click)="onDecision('accepted')"
+        [disabled]="value.status == 'accepted'"
         type="button" 
         class="btn btn-outline-success btn-lg border-none text-success">
         <i class="fas fa-check"></i>
     </button>
     <button 
+        (click)="onDecision('rejected')"
+        [disabled]="value.status == 'rejected'"
         type="button" 
         class="btn btn-outline-danger btn-lg mx-3 border-none text-danger">
         <i class="fas fa-times"></i>
     </button>
     <button 
+        (click)="onDecision('waiting')"
+        [disabled]="value.status == 'waiting'"
         type="button" 
         class="btn btn-outline-warning btn-lg border-none text-warning">
         <i class="fas fa-question"></i>

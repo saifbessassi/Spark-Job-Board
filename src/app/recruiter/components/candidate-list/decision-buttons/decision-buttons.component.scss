@@ -3,3 +3,18 @@
         color: #fff;
     }
 }
+.btn-outline-success:disabled {
+    i {
+        color: #28a745;
+    }
+}
+.btn-outline-danger:disabled {
+    i {
+        color: #dc3545;
+    }
+}
+.btn-outline-warning:disabled {
+    i {
+        color: #ffc107;
+    }
+}
