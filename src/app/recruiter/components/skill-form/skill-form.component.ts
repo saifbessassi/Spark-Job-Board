@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { SkillService } from 'src/app/core/services/skill/skill.service';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { Skill } from 'src/app/core/models/skill.model';
-import { ExistValidator } from 'src/app/core/services/skill/existSkill.validator';
+import { ExistSkillValidator } from 'src/app/core/services/skill/existSkill.validator';
 
 @Component({
   selector: 'sp-skill-form',
@@ -21,7 +21,7 @@ export class SkillFormComponent implements OnInit {
     private skillService: SkillService,
     private _activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
-    private existValidator: ExistValidator
+    private existValidator: ExistSkillValidator
   ) { }
 
   ngOnInit() {

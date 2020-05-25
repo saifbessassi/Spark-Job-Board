@@ -6,7 +6,7 @@ import { element } from 'protractor';
 @Injectable({
     providedIn: 'root',
 })
-export class ExistValidator {
+export class ExistSkillValidator {
     exist(controlName: string, allSkills: Skill[]) {
         return (formGroup: FormGroup) => {
             const control = formGroup.controls[controlName];
