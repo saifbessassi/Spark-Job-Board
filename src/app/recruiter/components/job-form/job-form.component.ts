@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { Job } from 'src/app/core/models/job';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SkillFormComponent } from '../skill-form/skill-form.component';
+import { CategoryFormComponent } from '../category-form/category-form.component';
 
 @Component({
   selector: 'sp-job-form',
@@ -48,7 +49,7 @@ export class JobFormComponent implements OnInit {
     this.skillService.getAllSkills().subscribe(res => {
       this.allSkills = res;
     })
-    this.categoryService.getAllSkills().subscribe(res => {
+    this.categoryService.getAllCategories().subscribe(res => {
       this.allCategories = res;
     })
     this.initForm();
@@ -130,6 +131,14 @@ export class JobFormComponent implements OnInit {
     modalRef.componentInstance.allSkills = this.allSkills;
     modalRef.result.then((newSkill) => {
       this.allSkills.push(newSkill);
+    }, rejected => {})
+  }
+
+  addCategory() {
+    const modalRef = this.modalService.open(CategoryFormComponent, { centered: true, size: 'md' });
+    modalRef.componentInstance.allCategories = this.allCategories;
+    modalRef.result.then((newCategory) => {
+      this.allCategories.push(newCategory);
     }, rejected => {})
   }
 }

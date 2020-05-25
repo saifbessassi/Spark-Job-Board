@@ -15,6 +15,7 @@ import { CandidateProfileComponent } from './components/candidate-profile/candid
 import { CandidatesListModule } from './components/candidate-list/candidates-list.module';
 import { CandidateProfileModule } from './components/candidate-profile/candidate-profile.module';
 import { SkillFormComponent } from './components/skill-form/skill-form.component';
+import { CategoryFormComponent } from './components/category-form/category-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { SkillFormComponent } from './components/skill-form/skill-form.component
     AddJobComponent,
     EditJobComponent,
     AllCandidatesComponent,
-    SkillFormComponent
+    SkillFormComponent,
+    CategoryFormComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { SkillFormComponent } from './components/skill-form/skill-form.component
   entryComponents: [
     EditJobComponent,
     CandidateProfileComponent,
-    SkillFormComponent
+    SkillFormComponent,
+    CategoryFormComponent
   ]
 })
 export class RecruiterModule { }

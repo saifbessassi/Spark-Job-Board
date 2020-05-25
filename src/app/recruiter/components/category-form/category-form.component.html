@@ -1,0 +1,33 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
+<div class="px-3">
+    <div class="modal-header border-none pb-0">
+        <h4 class="modal-title" id="modal-basic-title">New Category</h4>
+        <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <h6  class="text-danger mb-4 text-center" *ngIf="error_msg">{{error_msg}}</h6>
+            <div class="form-group">
+                <label>Category: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="label" 
+                    type="text" 
+                    class="form-control mt-3"
+                    placeholder="Enter skill name"
+                    [ngClass]="{'is-valid': categoryForm.get('label').valid,
+                    'is-invalid': (!categoryForm.get('label').valid && categoryForm.get('label').touched)}">
+                <div class="invalid-feedback mt-3" *ngIf="categoryForm.get('label').errors?.required">
+                    Category name is required.
+                </div>
+                <div class="invalid-feedback mt-3" *ngIf="categoryForm.get('label').errors?.exist">
+                    This value is already used.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-none pt-0">
+            <button type="submit" class="btn sp-btn-red" [disabled]="!categoryForm.valid">Submit</button>
+        </div>
+    </form>
+</div>

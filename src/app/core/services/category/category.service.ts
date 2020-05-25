@@ -12,8 +12,12 @@ export class CategoryService {
 
   constructor(private http: HttpClient) { }
 
-  getAllSkills() {
+  getAllCategories() {
     return this.http.get<Category[]>(API_URL + '/api/categories.json');
+  }
+
+  addCategory(category) {
+    return this.http.post(API_URL + '/api/categories.json', category);
   }
 }
 
