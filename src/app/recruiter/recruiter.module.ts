@@ -11,17 +11,10 @@ import { AddJobComponent } from './pages/add-job/add-job.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
 import { EditJobComponent } from './components/edit-job/edit-job.component';
 import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.component';
-import { DescriptionModule } from '../candidate/components/description-section/description.module';
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
-import { DocumentModule } from '../candidate/components/document-section/document.module';
-import { EducationModule } from '../candidate/components/education-section/education.module';
-import { ExperienceModule } from '../candidate/components/experience-section/experience.module';
-import { IdentityModule } from '../candidate/components/identity-section/identity.module';
-import { LanguageModule } from '../candidate/components/language-section/language.module';
-import { ProjectModule } from '../candidate/components/project-section/project.module';
-import { SkillModule } from '../candidate/components/skill-section/skill.module';
 import { CandidatesListModule } from './components/candidate-list/candidates-list.module';
 import { CandidateProfileModule } from './components/candidate-profile/candidate-profile.module';
+import { SkillFormComponent } from './components/skill-form/skill-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +23,8 @@ import { CandidateProfileModule } from './components/candidate-profile/candidate
     JobFormComponent,
     AddJobComponent,
     EditJobComponent,
-    AllCandidatesComponent
+    AllCandidatesComponent,
+    SkillFormComponent
   ],
   imports: [
     CommonModule,
@@ -46,7 +40,8 @@ import { CandidateProfileModule } from './components/candidate-profile/candidate
   ],
   entryComponents: [
     EditJobComponent,
-    CandidateProfileComponent
+    CandidateProfileComponent,
+    SkillFormComponent
   ]
 })
 export class RecruiterModule { }

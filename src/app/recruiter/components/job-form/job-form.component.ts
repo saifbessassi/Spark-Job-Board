@@ -8,7 +8,8 @@ import { Category } from 'src/app/core/models/job/category.model';
 import { JobService } from 'src/app/core/services/job/job.service';
 import { Router } from '@angular/router';
 import { Job } from 'src/app/core/models/job';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { SkillFormComponent } from '../skill-form/skill-form.component';
 
 @Component({
   selector: 'sp-job-form',
@@ -34,7 +35,8 @@ export class JobFormComponent implements OnInit {
     private skillService: SkillService,
     private categoryService: CategoryService,
     private jobService: JobService,
-    private router: Router
+    private router: Router,
+    private modalService: NgbModal
   ) 
   {
     const today = new Date();
@@ -121,5 +123,13 @@ export class JobFormComponent implements OnInit {
         this.isLoading = false;
       }
     )
+  }
+
+  addSkill() {
+    const modalRef = this.modalService.open(SkillFormComponent, { centered: true, size: 'md' });
+    modalRef.componentInstance.allSkills = this.allSkills;
+    modalRef.result.then((newSkill) => {
+      this.allSkills.push(newSkill);
+    }, rejected => {})
   }
 }

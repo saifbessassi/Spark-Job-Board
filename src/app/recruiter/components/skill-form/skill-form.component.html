@@ -1,0 +1,34 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
+<div class="px-3">
+    <div class="modal-header border-none pb-0">
+        <h4 class="modal-title" id="modal-basic-title">New Skill</h4>
+        <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
+    <form [formGroup]="skillForm" (ngSubmit)="onSubmit()">
+        <div class="modal-body">
+            <h6  class="text-danger mb-4 text-center" *ngIf="error_msg">{{error_msg}}</h6>
+            <div class="form-group">
+                <label>Skill: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="label" 
+                    type="text" 
+                    class="form-control"
+                    placeholder="Enter skill name"
+                    [ngClass]="{'is-valid': skillForm.get('label').valid,
+                    'is-invalid': (!skillForm.get('label').valid && skillForm.get('label').touched)}">
+                <div class="invalid-feedback mt-3" *ngIf="skillForm.get('label').errors?.required">
+                    Skill name is required.
+                </div>
+                <div class="invalid-feedback mt-3" *ngIf="skillForm.get('label').errors?.exist">
+                    This value is already used.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-none pt-0">
+            <button type="submit" class="btn sp-btn-red" [disabled]="!skillForm.valid">Submit</button>
+        </div>
+    </form>
+</div>

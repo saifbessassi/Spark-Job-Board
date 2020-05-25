@@ -15,5 +15,9 @@ export class SkillService {
   getAllSkills() {
     return this.http.get<Skill[]>(API_URL + '/api/skills.json');
   }
+
+  addSkill(skill) {
+    return this.http.post(API_URL + '/api/skills', skill);
+  }
 }
 
