@@ -21,7 +21,7 @@ export class LandingComponent implements OnInit {
   isLoadingCategory = false
   recentJobs: Job[] = [];
   searchForm: FormGroup;
-  nbJobsPerCategory: any;
+  nbJobsPerCategory: any = null;
   msg_error: string;
   filterOptions: JobFiltersOptions;
 

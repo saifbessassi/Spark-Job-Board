@@ -9,7 +9,8 @@ import { Router } from '@angular/router';
 })
 export class CategoryBoxComponent implements OnInit {
 
-  @Input() categoriesCount: CategoriesCount;
+  @Input() label: string;
+  @Input() count: string;
   
   constructor(
     private router: Router

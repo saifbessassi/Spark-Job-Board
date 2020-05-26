@@ -13,10 +13,20 @@
     <div class="container">
         <h3 class="text-center">Popular Category Jobs</h3>
         <div class="vertical-space-30"></div>
-        <div class="row">
-            <div class="col-lg-3 col-md-6 max-width-50" *ngFor="let category of nbJobsPerCategory?.categories" >
-                <sp-category-box [categoriesCount]=category></sp-category-box>
+        <div class="row" *ngIf="nbJobsPerCategory">
+            <div class="col-lg-3 col-md-6 max-width-50">
+                <sp-category-box  [label]="'Sales and Marketing'" [count]="nbJobsPerCategory['Sales and Marketing']"></sp-category-box>
             </div>
+            <div class="col-lg-3 col-md-6 max-width-50">
+                <sp-category-box  [label]="'Computer Programing'" [count]="nbJobsPerCategory['Computer Programing']"></sp-category-box>
+            </div>
+            <div class="col-lg-3 col-md-6 max-width-50">
+                <sp-category-box  [label]="'Design And Multimedia'" [count]="nbJobsPerCategory['Design And Multimedia']"></sp-category-box>
+            </div>
+            <div class="col-lg-3 col-md-6 max-width-50">
+                <sp-category-box  [label]="'Web Development'" [count]="nbJobsPerCategory['Web Development']"></sp-category-box>
+            </div>
+            
             
         </div>
         <div class="vertical-space-40"></div>
