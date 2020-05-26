@@ -31,6 +31,7 @@ export class CandidateProfileComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.candidateService.getCandidateProfileByID(this.candidateID).subscribe( (res: Candidate) => {
       this.candidate = res;
       console.log(this.candidate)
