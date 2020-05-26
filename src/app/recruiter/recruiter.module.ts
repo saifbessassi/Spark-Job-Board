@@ -18,6 +18,7 @@ import { SkillFormComponent } from './components/skill-form/skill-form.component
 import { CategoryFormComponent } from './components/category-form/category-form.component';
 import { MailFormComponent } from './components/mail-form/mail-form.component';
 import { MailFormModule } from './components/mail-form/mail-form.module';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MailFormModule } from './components/mail-form/mail-form.module';
     EditorModule,
     CandidatesListModule,
     CandidateProfileModule,
-    MailFormModule
+    MailFormModule,
+    ChartsModule
   ],
   providers: [
     DatePipe
