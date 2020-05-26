@@ -16,6 +16,8 @@ import { CandidatesListModule } from './components/candidate-list/candidates-lis
 import { CandidateProfileModule } from './components/candidate-profile/candidate-profile.module';
 import { SkillFormComponent } from './components/skill-form/skill-form.component';
 import { CategoryFormComponent } from './components/category-form/category-form.component';
+import { MailFormComponent } from './components/mail-form/mail-form.component';
+import { MailFormModule } from './components/mail-form/mail-form.module';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,7 @@ import { CategoryFormComponent } from './components/category-form/category-form.
     EditJobComponent,
     AllCandidatesComponent,
     SkillFormComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
   ],
   imports: [
     CommonModule,
@@ -35,7 +37,8 @@ import { CategoryFormComponent } from './components/category-form/category-form.
     SharedModule,
     EditorModule,
     CandidatesListModule,
-    CandidateProfileModule
+    CandidateProfileModule,
+    MailFormModule
   ],
   providers: [
     DatePipe
@@ -44,7 +47,8 @@ import { CategoryFormComponent } from './components/category-form/category-form.
     EditJobComponent,
     CandidateProfileComponent,
     SkillFormComponent,
-    CategoryFormComponent
+    CategoryFormComponent,
+    MailFormComponent
   ]
 })
 export class RecruiterModule { }

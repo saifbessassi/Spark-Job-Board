@@ -1,0 +1,56 @@
+<sp-spinner *ngIf="isLoading"></sp-spinner>
+<div class="px-3">
+    <div class="modal-header border-none pb-0">
+        <h4 class="modal-title" id="modal-basic-title">New message</h4>
+        <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
+    <form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
+    
+        <div class="modal-body">
+            <div class="form-group">
+                <label for="subject">Subject: <span class="obligatory">*</span></label>
+                <input
+                    formControlName="subject"
+                    type="text" 
+                    class="form-control mt-3"
+                    [ngClass]="{'is-valid': mailForm.get('subject').valid,
+                                'is-invalid': !mailForm.get('subject').valid && mailForm.get('subject').touched}">
+                <div class="invalid-feedback mt-3" *ngIf="mailForm.get('subject').errors?.required">
+                    Subject is required.
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="message">Message: <span class="obligatory">*</span></label>
+                <editor
+                    formControlName="message"
+                    [ngClass]="{'message-valid': mailForm.get('message').valid,
+                                'message-invalid': !mailForm.get('message').valid && mailForm.get('message').touched}"
+                    [init]="{
+                        height: 250,
+                        menubar: false,
+                        plugins: [
+                            'advlist autolink lists link image charmap print preview anchor',
+                            'searchreplace visualblocks code fullscreen',
+                            'insertdatetime media table paste code help wordcount'
+                        ],
+                        toolbar:
+                            'undo redo | formatselect | bold italic backcolor | \
+                            alignleft aligncenter alignright alignjustify | \
+                            bullist numlist outdent indent | removeformat | help'
+                    }"
+                    >
+                </editor>
+                <div class="invalid-feedback mt-3" *ngIf="mailForm.get('message').errors?.required">
+                    Message is required.
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer border-none pt-0">
+            <button type="submit" class="btn sp-btn-red"[disabled]="!mailForm.valid">Send</button>
+        </div>
+
+    </form>
+</div>

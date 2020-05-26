@@ -20,6 +20,8 @@ import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CandidateProfileComponent } from '../recruiter/components/candidate-profile/candidate-profile.component';
 import { CandidatesListModule } from '../recruiter/components/candidate-list/candidates-list.module';
 import { CandidateProfileModule } from '../recruiter/components/candidate-profile/candidate-profile.module';
+import { MailFormComponent } from '../recruiter/components/mail-form/mail-form.component';
+import { MailFormModule } from '../recruiter/components/mail-form/mail-form.module';
 
 
 @NgModule({
@@ -44,11 +46,13 @@ import { CandidateProfileModule } from '../recruiter/components/candidate-profil
     AuthenticationModule,
     Ng2SmartTableModule,
     CandidatesListModule,
-    CandidateProfileModule
+    CandidateProfileModule,
+    MailFormModule
   ],
   entryComponents: [
     ApplyModalComponent,
-    CandidateProfileComponent
+    CandidateProfileComponent,
+    MailFormComponent
   ]
 })
 export class JobModule { }

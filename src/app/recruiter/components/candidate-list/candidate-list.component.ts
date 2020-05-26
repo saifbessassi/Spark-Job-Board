@@ -7,6 +7,7 @@ import { NgbModal, NgbModalConfig } from '@ng-bootstrap/ng-bootstrap';
 import { CandidateProfileComponent } from '../candidate-profile/candidate-profile.component';
 import { JobService } from 'src/app/core/services/job/job.service';
 import { DecisionButtonsComponent } from './decision-buttons/decision-buttons.component';
+import { MailFormComponent } from '../mail-form/mail-form.component';
 
 
 @Component({
@@ -84,7 +85,6 @@ export class CandidateListComponent implements OnInit {
         totalKey: 'hydra:totalItems',
       },
     );
-
     // Add column with decisions buttons
     if (this.columnDecision) {
       this.settings.columns['decision'] = {
@@ -116,8 +116,8 @@ export class CandidateListComponent implements OnInit {
             title: '<i class="fas fa-eye text-secondary"></i> ',
           },
           {
-            name: 'delete',
-            title: '<i class="fas fa-trash-alt text-danger"></i> ',
+            name: 'contact',
+            title: '<i class="fas fa-envelope text-primary"></i> ',
           }
         ]
       },
@@ -178,8 +178,8 @@ export class CandidateListComponent implements OnInit {
             title: '<i class="fas fa-eye text-secondary"></i> ',
           },
           {
-            name: 'delete',
-            title: '<i class="fas fa-trash-alt text-danger"></i> ',
+            name: 'contact',
+            title: '<i class="fas fa-envelope text-primary"></i> ',
           }
         ]
       },
@@ -272,17 +272,31 @@ export class CandidateListComponent implements OnInit {
   }
 
   onAction(event) {
-    const modalRef = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl' });
-    if (this.jobID) {
-      modalRef.componentInstance.candidateID = event.data.candidate.id;
-    } else {
-      modalRef.componentInstance.candidateID = event.data.id;
+    switch (event.action) {
+      case 'view':
+        const viewModal = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl' });
+        if (this.jobID) {
+          viewModal.componentInstance.candidateID = event.data.candidate.id;
+        } else {
+          viewModal.componentInstance.candidateID = event.data.id;
+        }
+        viewModal.result.then(res => {
+          if (res) {
+            this.allCand.refresh();
+          }
+        })
+        break;
+      case 'contact':
+        const contactModal = this.modalService.open(MailFormComponent, { centered: true, size: 'xl' });
+        if (this.jobID) {
+          contactModal.componentInstance.email = event.data.candidate.email;
+        } else {
+          contactModal.componentInstance.email = event.data.email;
+        }
+        break;
+      default:
+        break;
     }
     
-    modalRef.result.then(res => {
-      if (res) {
-        this.allCand.refresh();
-      }
-    })
   }
 }
