@@ -16,7 +16,6 @@ export const ALL_ROUTES: Routes = [
     },
     {
         path: 'recruiter',
-        canActivate: [EnsureOnlyRecruiterGuard],
         loadChildren: () => import('src/app/recruiter/recruiter.module')
         .then(m => m.RecruiterModule),
     }

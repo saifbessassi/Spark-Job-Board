@@ -18,9 +18,11 @@ export class EnsureOnlyRecruiterGuard {
     ) {
         this.isRecruiter = false;
         this.authService.currentUser.subscribe(user => {
-        if (user) {
-            this.isRecruiter = userService.isRecruiter(user);
-        }
+            if (user) {
+                this.isRecruiter = userService.isRecruiter(user);
+            } else {
+                this.isRecruiter = false;
+            }
         })
     }
 

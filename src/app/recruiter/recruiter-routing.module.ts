@@ -5,12 +5,14 @@ import { JobsTableComponent } from './pages/jobs-table/jobs-table.component';
 import { AddJobComponent } from './pages/add-job/add-job.component';
 import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { EnsureOnlyRecruiterGuard } from '../core/guards/ensure-only-recruiter.guard';
 
 
 const routes: Routes = [
   {
     path: '',
     component: RecruiterLayoutComponent,
+    canActivate: [EnsureOnlyRecruiterGuard],
     children: [
       {
         path: 'dashboard',

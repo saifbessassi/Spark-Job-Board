@@ -19,6 +19,8 @@ export class AppLayoutComponent implements OnInit {
     this.authService.currentUser.subscribe(user => {
       if (user) {
         this.isRecruiter = userService.isRecruiter(user);
+      } else {
+        this.isRecruiter = false;
       }
     })
   }
