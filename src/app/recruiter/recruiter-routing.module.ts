@@ -4,6 +4,7 @@ import { RecruiterLayoutComponent } from './layout/recruiter-layout/recruiter-la
 import { JobsTableComponent } from './pages/jobs-table/jobs-table.component';
 import { AddJobComponent } from './pages/add-job/add-job.component';
 import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,10 @@ const routes: Routes = [
     path: '',
     component: RecruiterLayoutComponent,
     children: [
+      {
+        path: 'dashboard',
+        component: DashboardComponent
+      },
       {
         path: 'jobs-list',
         component: JobsTableComponent

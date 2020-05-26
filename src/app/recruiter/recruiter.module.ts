@@ -19,6 +19,8 @@ import { CategoryFormComponent } from './components/category-form/category-form.
 import { MailFormComponent } from './components/mail-form/mail-form.component';
 import { MailFormModule } from './components/mail-form/mail-form.module';
 import { ChartsModule } from 'ng2-charts';
+import { JobPerStatusChartComponent } from './components/charts/job-per-status-chart/job-per-status-chart.component';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +32,8 @@ import { ChartsModule } from 'ng2-charts';
     AllCandidatesComponent,
     SkillFormComponent,
     CategoryFormComponent,
+    JobPerStatusChartComponent,
+    DashboardComponent,
   ],
   imports: [
     CommonModule,
