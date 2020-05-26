@@ -18,16 +18,16 @@
             
                 <div class="collapse navbar-collapse" id="navbar_global">
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center mr-auto main_nav">
-                        <li class="nav-item">
+                        <li class="nav-item px-3 py-2" routerLinkActive="router-link-active">
                             <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active">Home</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item px-3 py-2" routerLinkActive="router-link-active">
                             <a class="nav-link" [routerLink]="['/jobs']" routerLinkActive="router-link-active">Jobs</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item px-3 py-2">
                             <a class="nav-link" href="#">About</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item px-3 py-2">
                             <a class="nav-link" href="#">Contact</a>
                         </li>
                         
@@ -37,7 +37,7 @@
                         <a type="button" [routerLink]="['/auth/signin']" routerLinkActive="router-link-active">Sign in</a>
                     </div>
                     <ul *ngIf="currentUser" class="navbar-nav align-items-lg-center main_nav">
-                        <li class="nav-item dropdown">
+                        <li class="nav-item px-3 py-2 dropdown">
                             <a type="button" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" style="color: #fff;padding: 0;">
                                 <div *ngIf="!photo" id="profile-picture-lettre-container">{{nameTwoLetter | uppercase}}</div>

@@ -1,3 +1,8 @@
+.router-link-active {
+    background: #fff;
+    color: #ba0000;
+}
+
 .header_container {
     box-shadow: 0 0.5rem 1rem 0 rgba(44,51,73,.1);
 }
@@ -76,6 +81,19 @@
     font-weight: bold;
     font-family: "Open Sans", sans-serif;
     color: #fff;
+}
+
+.main_nav li:not(:last-child) {
+    margin-right: 0 !important;
+}
+
+.navbar {
+    padding: 0 1rem !important;
+}
+
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
 }
 
 @media (max-width: 991.98px) {
