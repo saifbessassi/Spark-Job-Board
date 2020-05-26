@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NbJobsPerStatus } from 'src/app/recruiter/pages/jobs-table/jobs-table.component';
-import { Label, MultiDataSet } from 'ng2-charts';
+import { Label, MultiDataSet, Colors } from 'ng2-charts';
 import { ChartType } from 'chart.js';
 import { JobService } from 'src/app/core/services/job/job.service';
 
@@ -17,6 +17,21 @@ export class JobPerCategoryChartComponent implements OnInit {
   labels: Label[] = [];
   data: MultiDataSet = [[]];
   doughnutChartType: ChartType = 'doughnut';
+  colors: Colors[] = [
+    {
+      borderColor: '#fff',
+      backgroundColor: [
+        '#28a745',
+        '#dc3545',
+        '#ffc107',
+        '#17a2b8',
+        '#343a40',
+        '#6c757d',
+        '#007bff',
+        '#6c757d',
+      ],
+    }
+  ]
   
   constructor(
     private jobService: JobService
