@@ -5,11 +5,13 @@ import { TruncatePipesModule } from 'angular-truncate-pipes';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { AnimatedDigitComponent } from './components/animated-digit/animated-digit.component';
 
 @NgModule({
   declarations: [
     SpinnerComponent,
-    ErrorMsgComponent
+    ErrorMsgComponent,
+    AnimatedDigitComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +28,8 @@ import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
     SpinnerComponent,
     ErrorMsgComponent,
     NgbModalModule,
-    NgbModule
+    NgbModule,
+    AnimatedDigitComponent
   ],
 })
 export class SharedModule { }
