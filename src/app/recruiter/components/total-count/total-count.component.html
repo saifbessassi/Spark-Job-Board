@@ -12,7 +12,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h6 class="text-uppercase text-muted mb-2">Jobs</h6>
-                    <span class="h2 mb-0">{{total?.jobs}}</span>
+                    <span class="h2 mb-0"><sp-animated-digit [digit]="total?.jobs"></sp-animated-digit></span>
                 </div>
                 <div class="col-auto">
                     <h2 class="mb-0"><i class="text-muted fas fa-briefcase"></i></h2>
@@ -28,7 +28,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h6 class="text-uppercase text-muted mb-2">Candidates</h6>
-                    <span class="h2 mb-0">{{total?.candidates}}</span>
+                    <span class="h2 mb-0"><sp-animated-digit [digit]="total?.candidates"></sp-animated-digit></span>
                 </div>
                 <div class="col-auto">
                     <h2 class="mb-0"><i class="text-muted fas fa-users"></i></h2>
@@ -44,7 +44,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h6 class="text-uppercase text-muted mb-2">Applications</h6>
-                    <span class="h2 mb-0">{{total?.applications}}</span>
+                    <span class="h2 mb-0"><sp-animated-digit [digit]="total?.applications"></sp-animated-digit></span>
                 </div>
                 <div class="col-auto">
                     <h2 class="mb-0"><i class="text-muted fas fa-paper-plane"></i></h2>
@@ -60,7 +60,7 @@
             <div class="row align-items-center">
                 <div class="col">
                     <h6 class="text-uppercase text-muted mb-2">Accepted</h6>
-                    <span class="h2 mb-0">{{total?.accepted}}</span>
+                    <span class="h2 mb-0"><sp-animated-digit [digit]="total?.accepted"></sp-animated-digit></span>
                 </div>
                 <div class="col-auto">
                     <h2 class="mb-0"><i class="text-muted fas fa-check"></i></h2>
