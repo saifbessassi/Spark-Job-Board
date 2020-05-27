@@ -1,0 +1,71 @@
+<div class="col mb-5" *ngIf="error_msg">
+    <div class="card">
+        <div class="card-body">
+            <sp-error-msg [error_msg]="error_msg"></sp-error-msg>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-lg-6 col-xl mb-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="text-uppercase text-muted mb-2">Jobs</h6>
+                    <span class="h2 mb-0">{{total?.jobs}}</span>
+                </div>
+                <div class="col-auto">
+                    <h2 class="mb-0"><i class="text-muted fas fa-briefcase"></i></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-lg-6 col-xl mb-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="text-uppercase text-muted mb-2">Candidates</h6>
+                    <span class="h2 mb-0">{{total?.candidates}}</span>
+                </div>
+                <div class="col-auto">
+                    <h2 class="mb-0"><i class="text-muted fas fa-users"></i></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-lg-6 col-xl mb-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="text-uppercase text-muted mb-2">Applications</h6>
+                    <span class="h2 mb-0">{{total?.applications}}</span>
+                </div>
+                <div class="col-auto">
+                    <h2 class="mb-0"><i class="text-muted fas fa-paper-plane"></i></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="col-12 col-lg-6 col-xl mb-5">
+    <div class="card">
+        <div class="card-body">
+            <div class="row align-items-center">
+                <div class="col">
+                    <h6 class="text-uppercase text-muted mb-2">Accepted</h6>
+                    <span class="h2 mb-0">{{total?.accepted}}</span>
+                </div>
+                <div class="col-auto">
+                    <h2 class="mb-0"><i class="text-muted fas fa-check"></i></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

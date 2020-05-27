@@ -12,7 +12,11 @@ export class RecruiterService {
   constructor(private http: HttpClient) { }
 
   sendMail(mail) {
-      return this.http.post(API_URL + '/api/send-mail', mail);
+    return this.http.post(API_URL + '/api/send-mail', mail);
+  }
+
+  getTotalCount() {
+    return this.http.get(API_URL + '/api/total-count');
   }
 }
 
