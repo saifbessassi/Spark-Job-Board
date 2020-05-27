@@ -34,10 +34,13 @@ export class JobService {
     return this.http.put<Job>(API_URL + '/api/jobs/' + id, job);
   }
 
-  getRecentJobs() {
+  getRecentOpenJobs() {
     return this.http.get(API_URL + '/api/jobs?status=open&order[createdAt]=desc&itemsPerPage=5');
   }
 
+  getRecentJobs() {
+    return this.http.get(API_URL + '/api/jobs?order[createdAt]=desc&itemsPerPage=5');
+  }
 
   getCandidateJobs(options: {key: string, value: string}[], pageNb: number, orderParam?: string) {
     let filter = '';

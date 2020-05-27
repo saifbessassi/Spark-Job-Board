@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-6">
+        <div class="col-lg-6 mb-5">
             <div class="card">
                 <div class="card-header bg-white">
                     <h5>Number of jobs per status</h5>
@@ -10,13 +10,29 @@
                 </div>
             </div>
         </div>
-        <div class="col-6">
+        <div class="col-lg-6 mb-5">
             <div class="card">
                 <div class="card-header bg-white">
                     <h5>Number of jobs per category</h5>
                 </div>
                 <div class="card-body">
                     <sp-job-per-category-chart></sp-job-per-category-chart>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-6 mb-5">
+            <div class="card">
+                <div class="card-header bg-white">
+                    <h5>Latest Jobs</h5>
+                </div>
+                <div class="card-body py-0">
+                    <sp-recent-jobs></sp-recent-jobs>
+                </div>
+                <div class="card-footer bg-white text-center">
+                    <a type="button" [routerLink]="['/recruiter/jobs-list']" routerLinkActive="router-link-active" >View All Jobs</a>
                 </div>
             </div>
         </div>

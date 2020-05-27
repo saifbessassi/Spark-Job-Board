@@ -1,0 +1,27 @@
+<div *ngFor="let job of recentJobs" class="row py-2">
+    <div class="col-sm-3 col-md-2 col-lg-3 col-xl-2 text-center my-auto px-0">
+        <!-- <h4 class="align-self-center mb-0"> -->
+            <button class="no-click btn"
+                    [ngClass]="{'btn-success': job?.status === 'open',
+                            'btn-danger': job?.status === 'closed',
+                            'btn-dark': job?.status === 'saved'}">
+                {{job?.status | titlecase}}
+            </button>
+            <!-- <span 
+                class="badge" 
+                [ngClass]="{'badge-success': job?.status === 'open',
+                            'badge-danger': job?.status === 'closed',
+                            'badge-dark': job?.status === 'saved'}">
+                {{job?.status | titlecase}}
+            </span> -->
+        <!-- </h4> -->
+    </div>
+    <div class="col-sm-6 col-md-7 col-lg-6 col-xl-7">
+        <h5>{{job?.title | titlecase}}</h5>
+        <p class="text-muted mb-0"><i class="fas fa-sitemap"></i>  {{job?.category.label | titlecase}}</p>
+        <p class="text-muted mb-0"><i class="fa fa-map-marker-alt"></i>  {{job?.location | titlecase}}</p>
+    </div>
+    <div class="col-md-3 text-center my-auto">
+        <p class="mb-0 align-self-center text-muted"><strong>{{job?.createdAt | date: 'dd MMM yyyy'}}</strong></p>
+    </div>
+</div>

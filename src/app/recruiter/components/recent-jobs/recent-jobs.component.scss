@@ -1,0 +1,12 @@
+.row:not(:last-child) {
+    border-bottom: 1px solid rgba(0,0,0,.125);
+}
+
+.text-muted {
+    font-size: 14px;;
+}
+
+.no-click {
+    pointer-events: none;
+    width: 5rem;
+}
