@@ -24,4 +24,8 @@ export class ApplicationService {
     const statusJson = {status: status}
     return this.http.put(API_URL + '/api/job_applications/' + id, statusJson);
   }
+
+  getRecentApplications() {
+    return this.http.get(API_URL + '/api/job_applications?order[applicationDate]=desc&itemsPerPage=5');
+  }
 }

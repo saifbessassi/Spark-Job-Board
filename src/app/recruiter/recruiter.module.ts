@@ -23,6 +23,7 @@ import { JobPerStatusChartComponent } from './components/charts/job-per-status-c
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { JobPerCategoryChartComponent } from './components/charts/job-per-category-chart/job-per-category-chart.component';
 import { RecentJobsComponent } from './components/recent-jobs/recent-jobs.component';
+import { RecentApplicationsComponent } from './components/recent-applications/recent-applications.component';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { RecentJobsComponent } from './components/recent-jobs/recent-jobs.compon
     DashboardComponent,
     JobPerCategoryChartComponent,
     RecentJobsComponent,
+    RecentApplicationsComponent,
   ],
   imports: [
     CommonModule,
