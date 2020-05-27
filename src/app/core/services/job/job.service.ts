@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Job } from '../../models/job';
 import { JobFiltersOptions } from '../../models/job-filters-options.model';
 
@@ -60,7 +60,10 @@ export class JobService {
     return this.http.get(API_URL + '/api/jobs?status=open' + filter + orderParam + pageParam);
   }
 
-  getNbJobsPerCategory() {
+  getNbJobsPerCategory(isOpen?: boolean) {
+    if (isOpen != undefined) {
+      return this.http.get(API_URL + '/api/jobs/nb-per-category', {params: {'open': isOpen.toString()}});
+    }
     return this.http.get(API_URL + '/api/jobs/nb-per-category');
   }
 

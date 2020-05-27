@@ -43,7 +43,7 @@ export class LandingComponent implements OnInit {
 
     // Get number of jobs per category
     this.isLoadingCategory = true;
-    this.jobService.getNbJobsPerCategory().subscribe( res => {
+    this.jobService.getNbJobsPerCategory(true).subscribe( res => {
       this.nbJobsPerCategory = res;
       this.isLoadingCategory = false;
     }, err => {
