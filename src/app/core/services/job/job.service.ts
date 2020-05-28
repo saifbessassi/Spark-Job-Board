@@ -35,7 +35,8 @@ export class JobService {
   }
 
   getRecentOpenJobs() {
-    return this.http.get(API_URL + '/api/jobs?status=open&order[createdAt]=desc&itemsPerPage=5');
+    const today = this.todayDate();
+    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]='+today+'&order[createdAt]=desc&itemsPerPage=5');
   }
 
   getRecentJobs() {
@@ -56,8 +57,9 @@ export class JobService {
     if (pageNb) {
       pageParam = '&_page=' + pageNb;
     }
+    const today = this.todayDate();
     
-    return this.http.get(API_URL + '/api/jobs?status=open' + filter + orderParam + pageParam);
+    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]='+today + filter + orderParam + pageParam);
   }
 
   getNbJobsPerCategory(isOpen?: boolean) {
@@ -81,5 +83,13 @@ export class JobService {
 
   deleteJob(id) {
     return this.http.delete(API_URL + '/api/jobs/' + id);
+  }
+
+  todayDate() {
+    let today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const yyyy = today.getFullYear();
+    return mm + '-' + dd + '-' + yyyy;
   }
 }
