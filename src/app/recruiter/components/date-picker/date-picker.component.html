@@ -1,0 +1,56 @@
+<form (ngSubmit)="onSubmit()" [formGroup]="dateForm">
+    <!-- <input type="date" formControlName="date" data-date-inline-picker="false" data-date-open-on-focus="true" /> -->
+    
+
+    <div class="input-group mb-0">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" (click)="start.toggle()" type="button">
+                <i class="far fa-calendar-alt"></i>
+            </button>
+        </div>
+        <input
+            type="button"
+            (click)="start.toggle()"
+            formControlName="dateStart"
+            class="form-control"
+            name="dp"
+            ngbDatepicker 
+            #start="ngbDatepicker"
+            [maxDate]="maxStartDate"
+            [minDate]="minStartDate">
+    </div>
+    <div class="input-group mb-0">
+        <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary" (click)="end.toggle()" type="button"[disabled]="dateForm.get('dateStart')?.invalid">
+                <i class="far fa-calendar-alt"></i>
+            </button>
+        </div>
+        <input
+            type="button"
+            (click)="start.toggle()"
+            formControlName="dateEnd"
+            class="form-control"
+            name="dp"
+            ngbDatepicker 
+            #end="ngbDatepicker"
+            [minDate]="minStartDate">
+    </div>
+</form>
+
+
+<!-- <input
+    type="button"
+    value="date"
+    (click)="start.toggle()"
+    [(ngModel)]="date"
+    class="form-control"
+    name="dp"
+    ngbDatepicker 
+    #start="ngbDatepicker"
+    [maxDate]="maxStartDate"
+    [minDate]="minStartDate"> -->
+<!-- <div class="input-group-append">
+<button class="btn btn-outline-secondary calendar" (click)="start.toggle()" type="button">
+    <i class="far fa-calendar-alt"></i>
+</button>
+</div> -->

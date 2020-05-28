@@ -25,6 +25,7 @@ import { JobPerCategoryChartComponent } from './components/charts/job-per-catego
 import { RecentJobsComponent } from './components/recent-jobs/recent-jobs.component';
 import { RecentApplicationsComponent } from './components/recent-applications/recent-applications.component';
 import { TotalCountComponent } from './components/total-count/total-count.component';
+import { DatePickerComponent } from './components/date-picker/date-picker.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { TotalCountComponent } from './components/total-count/total-count.compon
     RecentJobsComponent,
     RecentApplicationsComponent,
     TotalCountComponent,
+    DatePickerComponent,
   ],
   imports: [
     CommonModule,
@@ -62,7 +64,8 @@ import { TotalCountComponent } from './components/total-count/total-count.compon
     CandidateProfileComponent,
     SkillFormComponent,
     CategoryFormComponent,
-    MailFormComponent
+    MailFormComponent,
+    DatePickerComponent
   ]
 })
 export class RecruiterModule { }
