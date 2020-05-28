@@ -7,6 +7,7 @@ import { DatePipe } from '@angular/common';
 import { Job } from 'src/app/core/models/job';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EditJobComponent } from '../../components/edit-job/edit-job.component';
+import { DatePickerComponent } from '../../components/date-picker/date-picker.component';
 
 export class NbJobsPerStatus {
   closed: number = 0;
@@ -110,7 +111,7 @@ export class JobsTableComponent implements OnInit{
       },
       category: {
         title: 'category',
-        type: 'string',
+        type: 'date',
         valuePrepareFunction: (data) => {
           if (data) {
             return data.label;
@@ -118,31 +119,37 @@ export class JobsTableComponent implements OnInit{
           return null;
         },
       },
-      createdAt: {
+      'createdAt[after]': {
         title: 'Date',
         type: 'date',
-        valuePrepareFunction: (date) => {
-          if(date) {
-            const raw = new Date(date);
-            const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
+        width: '20%',
+        filter: {
+          type: 'custom',
+          component: DatePickerComponent
+        },
+        valuePrepareFunction: (cell, row) => {
+          if(row.createdAt) {
+            const formatted = this.datePipe.transform(row.createdAt, 'dd MMM yyyy');
             return formatted;
           }
           return null;
         },
-        filter: false,
       },
-      deadline: {
+      'deadline[after]': {
         title: 'Deadline',
         type: 'date',
-        valuePrepareFunction: (date) => {
-          if(date) {
-            const raw = new Date(date);
-            const formatted = this.datePipe.transform(raw, 'dd MMM yyyy');
+        width: '20%',
+        filter: {
+          type: 'custom',
+          component: DatePickerComponent
+        },
+        valuePrepareFunction: (cell, row) => {
+          if(row.deadline) {
+            const formatted = this.datePipe.transform(row.deadline, 'dd MMM yyyy');
             return formatted;
           }
           return null;
-        },
-        filter: false,
+        }
       },   
       // recruiter: {
       //   title: 'Created By',
