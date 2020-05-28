@@ -12,6 +12,7 @@ export class JobFilterInterceptor implements HttpInterceptor {
     params: HttpParams;
     createdAtFilter: boolean;
     deadlineFilter: boolean;
+    sortFilter: boolean;
     isGetAllJobsUrl: boolean;
     isMethodGet: boolean;
     intercept(
@@ -21,6 +22,7 @@ export class JobFilterInterceptor implements HttpInterceptor {
         this.params = null;
         this.createdAtFilter = req.params.keys().includes('createdAt[after]');
         this.deadlineFilter = req.params.keys().includes('deadline[after]');
+        this.sortFilter = req.params.keys().includes('_sort');
 
         this.isGetAllJobsUrl = req.url.includes('/api/jobs');
         this.isMethodGet = req.method === 'GET';
@@ -33,7 +35,6 @@ export class JobFilterInterceptor implements HttpInterceptor {
 
             // If user uses createdAt filter
             if (this.createdAtFilter && this.newReq.params.get('createdAt[after]').includes('/')) {
-                console.log(this.newReq.params.get('createdAt[after]'))
                 const wrongReq: string = this.newReq.params.get('createdAt[after]');
                 const afterValue = wrongReq.slice(0, wrongReq.indexOf('/'));
                 const endValue = wrongReq.slice(wrongReq.indexOf('/') + 1);
@@ -61,7 +62,17 @@ export class JobFilterInterceptor implements HttpInterceptor {
                     ]
                 });
             } 
-        } 
+        }
+
+        if (this.isMethodGet && this.sortFilter) {
+            const field: string = this.newReq.params.get('_sort');
+            this.params = this.newReq.params.delete('_sort');
+            const order: string = this.newReq.params.get('_order');
+            this.params = this.params.delete('_order');
+            this.newReq = this.newReq.clone({
+                params: this.params.set('order['+field+']', order)
+            });
+        }
 
         return next.handle(this.newReq);
     }
