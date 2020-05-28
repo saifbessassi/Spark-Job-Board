@@ -61,4 +61,8 @@ export class DetailJobComponent implements OnInit {
     modalRef.componentInstance.candidateID = event.data.id;
   }
 
+  newDeadline($event) {
+    this.job.deadline = $event;
+  }
+
 }

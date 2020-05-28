@@ -34,6 +34,21 @@ export class JobService {
     return this.http.put<Job>(API_URL + '/api/jobs/' + id, job);
   }
 
+  editJobStatus(id, status: string, deadline?) {
+    let data;
+    if (deadline) {
+      data = {
+        status: status,
+        deadline: deadline
+      };
+    } else {
+      data = {
+        status: status
+      };
+    }
+    return this.http.put<Job>(API_URL + '/api/jobs/' + id, data);
+  }
+
   getRecentOpenJobs() {
     const today = this.todayDate();
     return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]='+today+'&order[createdAt]=desc&itemsPerPage=5');

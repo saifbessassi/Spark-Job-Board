@@ -12,8 +12,15 @@
 
 <section id="job-Details" class="background-color-white-drak" style="padding: 5%;">
     <div class="card">
-        <div class="card-header bg-white">
+        <div class="card-header bg-white d-flex">
             <h3>{{job?.title | titlecase }}</h3>
+            <sp-change-job-status
+              *ngIf="isRecruiter" 
+              class="ml-auto"
+              [jobID]="job?.id"
+              [status]="job?.status"
+              (newDeadline)="newDeadline($event)">
+            </sp-change-job-status>
         </div>
         <!-- Candidate view -->
         <div *ngIf="!isRecruiter" class="card-body">

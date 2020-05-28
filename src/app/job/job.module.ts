@@ -22,6 +22,7 @@ import { CandidatesListModule } from '../recruiter/components/candidate-list/can
 import { CandidateProfileModule } from '../recruiter/components/candidate-profile/candidate-profile.module';
 import { MailFormComponent } from '../recruiter/components/mail-form/mail-form.component';
 import { MailFormModule } from '../recruiter/components/mail-form/mail-form.module';
+import { ChangeJobStatusModule } from '../recruiter/components/change-job-status/change-job-status.module';
 
 
 @NgModule({
@@ -47,7 +48,8 @@ import { MailFormModule } from '../recruiter/components/mail-form/mail-form.modu
     Ng2SmartTableModule,
     CandidatesListModule,
     CandidateProfileModule,
-    MailFormModule
+    MailFormModule,
+    ChangeJobStatusModule
   ],
   entryComponents: [
     ApplyModalComponent,
