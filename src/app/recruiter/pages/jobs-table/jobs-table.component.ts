@@ -104,7 +104,7 @@ export class JobsTableComponent implements OnInit{
             row.skills.forEach(element => {
               skills.push(element.label);
             });
-            return skills;
+            return skills.sort((a,b)=> a.localeCompare(b));
           }
           return null;
         },

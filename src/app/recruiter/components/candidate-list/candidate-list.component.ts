@@ -149,7 +149,7 @@ export class CandidateListComponent implements OnInit {
               row.candidateSkills.forEach(element => {
                 skills.push(element.skill.label);
               });
-              return skills;
+              return skills.sort((a,b)=> a.localeCompare(b));
             }
             return null;
           },
@@ -217,7 +217,7 @@ export class CandidateListComponent implements OnInit {
               row.candidate.resume.skillsCandidate.forEach(element => {
                 skills.push(element.skill.label);
               });
-              return skills;
+              return skills.sort((a,b)=> a.localeCompare(b));
             }
             return null;
           },
