@@ -65,7 +65,7 @@ export class ApplyModalComponent implements OnInit {
     }
 
     this.messageForm = new FormGroup({
-      'message': new FormControl(null, Validators.maxLength(1000))
+      'message': new FormControl(null)
     })
   }
 

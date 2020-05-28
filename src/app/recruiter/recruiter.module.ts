@@ -8,7 +8,6 @@ import { RecruiterLayoutComponent } from './layout/recruiter-layout/recruiter-la
 import { SharedModule } from '../shared/shared.module';
 import { JobFormComponent } from './components/job-form/job-form.component';
 import { AddJobComponent } from './pages/add-job/add-job.component';
-import { EditorModule } from '@tinymce/tinymce-angular';
 import { EditJobComponent } from './components/edit-job/edit-job.component';
 import { AllCandidatesComponent } from './pages/all-candidates/all-candidates.component';
 import { CandidateProfileComponent } from './components/candidate-profile/candidate-profile.component';
@@ -50,7 +49,6 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
     RecruiterRoutingModule,
     Ng2SmartTableModule,
     SharedModule,
-    EditorModule,
     CandidatesListModule,
     CandidateProfileModule,
     MailFormModule,

@@ -6,6 +6,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnimatedDigitComponent } from './components/animated-digit/animated-digit.component';
+import { EditorModule } from '@tinymce/tinymce-angular';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { AnimatedDigitComponent } from './components/animated-digit/animated-dig
     FormsModule,
     ReactiveFormsModule,
     NgbModalModule,
-    NgbModule
+    NgbModule,
+    EditorModule
   ],
   exports: [
     CommonModule,
@@ -29,7 +31,8 @@ import { AnimatedDigitComponent } from './components/animated-digit/animated-dig
     ErrorMsgComponent,
     NgbModalModule,
     NgbModule,
-    AnimatedDigitComponent
+    AnimatedDigitComponent,
+    EditorModule
   ],
 })
 export class SharedModule { }

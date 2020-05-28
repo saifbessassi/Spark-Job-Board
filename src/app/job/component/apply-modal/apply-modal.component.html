@@ -78,12 +78,24 @@
                         <div id="test-l-3" class="content text-center">
                             <form [formGroup]="messageForm" (ngSubmit)="onApply()">
                                 <div class="form-group row py-3 px-5">
-                                    <p class="text-left"><b>Your application message (optional, maximum 1000 characters)</b></p>
-                                    <textarea 
+                                    <p class="text-left"><b>Your motivation (optional)</b></p>
+                                    <editor
+                                    class="w-100"
                                         formControlName="message"
-                                        class="form-control"
-                                        rows="3">
-                                    </textarea>
+                                        [init]="{
+                                            height: 250,
+                                            menubar: false,
+                                            plugins: [
+                                                'advlist autolink lists link image charmap print preview anchor',
+                                                'searchreplace visualblocks code fullscreen',
+                                                'insertdatetime media table paste code help wordcount'
+                                            ],
+                                            toolbar:
+                                                'undo redo | formatselect | bold italic backcolor | \
+                                                alignleft aligncenter alignright alignjustify | \
+                                                bullist numlist outdent indent | removeformat | help'
+                                            }"
+                                        ></editor>
                                 </div>
                                 <div *ngIf="error_msg" class="mb-3" style="color: #dc3545;">{{error_msg}}</div>
                                 <button type="submit" class="btn btn-primary">Apply</button>
