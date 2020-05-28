@@ -95,13 +95,13 @@ export class JobsTableComponent implements OnInit{
         type: 'string',
         width: '10%',
       },
-      skills: {
+      'skills.label': {
         title: 'Skills',
         type: 'string',
-        valuePrepareFunction: (data) => {
-          if(data) {
+        valuePrepareFunction: (value, row) => {
+          if(row.skills) {
             const skills = [];
-            data.forEach(element => {
+            row.skills.forEach(element => {
               skills.push(element.label);
             });
             return skills;
@@ -109,12 +109,12 @@ export class JobsTableComponent implements OnInit{
           return null;
         },
       },
-      category: {
+      'category.label': {
         title: 'category',
         type: 'date',
-        valuePrepareFunction: (data) => {
-          if (data) {
-            return data.label;
+        valuePrepareFunction: (value, row) => {
+          if (row.category) {
+            return row.category.label;
           }
           return null;
         },

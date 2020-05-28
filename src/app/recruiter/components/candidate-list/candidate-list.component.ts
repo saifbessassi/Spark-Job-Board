@@ -130,23 +130,23 @@ export class CandidateListComponent implements OnInit {
           title: 'Location',
           type: 'string',
         },
-        resume: {
+        'resume.seniorityLevel': {
           title: 'Seniority',
           type: 'string',
-          valuePrepareFunction: (data) => {
-            if (data) {
-              return data.seniorityLevel;
+          valuePrepareFunction: (value, row) => {
+            if (row.resume && row.resume.seniorityLevel) {
+              return row.resume.seniorityLevel;
             }
             return null;
           }
         },
-        candidateSkills: {
+        'candidateSkills.skill.label': {
           title: 'Skills',
           type: 'string',
-          valuePrepareFunction: (data) => {
-            if(data) {
+          valuePrepareFunction: (value, row) => {
+            if(row.candidateSkills) {
               const skills = [];
-              data.forEach(element => {
+              row.candidateSkills.forEach(element => {
                 skills.push(element.skill.label);
               });
               return skills;
