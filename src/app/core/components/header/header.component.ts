@@ -21,8 +21,8 @@ export class HeaderComponent implements OnInit {
   nameTwoLetter: string;
   appliedJobs: any;
   currentUser: any;
-  
-  
+
+
   constructor(
     private router: Router,
     private tokenService: TokenService,
@@ -34,18 +34,18 @@ export class HeaderComponent implements OnInit {
     this.authenticationService.currentUser.subscribe(x => {
       this.currentUser = x;
 
-      if(this.currentUser) {
+      if (this.currentUser) {
         this.fullname = this.currentUser.fullname;
         this.email = this.currentUser.email;
         this.photo = null;
         if (this.currentUser.picture) {
           if (this.currentUser.picture.includes('http')) {
-            this.photo = this.currentUser.picture
+            this.photo = this.currentUser.picture;
           } else {
-            this.photo = 'http://localhost:8000' + this.currentUser.picture
+            this.photo = 'http://localhost:8000' + this.currentUser.picture;
           }
         }
-        
+
 
         if (this.fullname && this.fullname.indexOf(' ') > -1) {
           this.nameTwoLetter = this.fullname[0] + this.fullname.split(' ')[1][0];

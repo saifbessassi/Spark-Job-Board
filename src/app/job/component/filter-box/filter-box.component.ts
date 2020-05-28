@@ -25,7 +25,7 @@ export class FilterBoxComponent implements OnInit {
   }
 
   onCheckBox(key: string, value: string) {
-    let choice = new FilterChoice();
+    const choice = new FilterChoice();
     choice.value = value;
     switch (key) {
       case 'Job Category':

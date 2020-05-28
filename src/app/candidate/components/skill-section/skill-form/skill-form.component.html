@@ -6,7 +6,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
+    <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
     <form [formGroup]="skillForm" (ngSubmit)="save()">
     
         <div class="modal-body">

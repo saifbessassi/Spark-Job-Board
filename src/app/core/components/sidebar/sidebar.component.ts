@@ -15,7 +15,7 @@ export class SidebarComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.sidebarService.change.subscribe(isClose => {
+    this.sidebarService.outputChange.subscribe(isClose => {
       this.isClose = isClose;
     });
   }

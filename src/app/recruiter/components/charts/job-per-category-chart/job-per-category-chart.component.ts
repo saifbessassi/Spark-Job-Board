@@ -13,7 +13,7 @@ export class JobPerCategoryChartComponent implements OnInit {
 
   nbJobs;
   allJobsNb: number;
-  
+
   labels: Label[] = [];
   data: MultiDataSet = [[]];
   doughnutChartType: ChartType = 'doughnut';
@@ -31,8 +31,8 @@ export class JobPerCategoryChartComponent implements OnInit {
         '#6c757d',
       ],
     }
-  ]
-  
+  ];
+
   constructor(
     private jobService: JobService
   ) { }
@@ -40,12 +40,12 @@ export class JobPerCategoryChartComponent implements OnInit {
   ngOnInit() {
     this.jobService.getNbJobsPerCategory().subscribe(
       res => {
-        for(let key in res) {
+        for (const key of Object.keys(res)) {
           this.data[0].push(res[key]);
           this.labels.push(key);
         }
       }
-    )
+    );
   }
 
 }

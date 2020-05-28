@@ -6,7 +6,7 @@ import { UserService } from '../services/user/user.service';
     providedIn: 'root',
 })
 export class MustBeConnected {
-    
+
     isConnected: boolean;
     constructor(
         private userService: UserService,

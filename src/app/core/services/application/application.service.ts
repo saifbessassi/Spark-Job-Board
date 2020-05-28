@@ -10,18 +10,18 @@ const API_URL = environment.API_URL;
 export class ApplicationService {
 
   constructor(private http: HttpClient) { }
- 
+
   apply(jobId: number, candidateId: number, message: string) {
     const application = {
       job: '/api/jobs/' + jobId,
       candidate: '/api/candidates/' + candidateId,
-      message: message
-    }
+      message
+    };
     return this.http.post(API_URL + '/api/job_applications', application);
   }
 
   makeDecision(status: string, id) {
-    const statusJson = {status: status}
+    const statusJson = {status};
     return this.http.put(API_URL + '/api/job_applications/' + id, statusJson);
   }
 

@@ -9,10 +9,10 @@ const API_URL = environment.API_URL;
     providedIn: 'root',
 })
 export class LanguageCandidateService {
-    
+
     constructor(
         private http: HttpClient
-    ){}
+    ) {}
 
     edit(lang: LanguageCandidateRequest) {
         lang.language = '/api/languages/' + lang.language;

@@ -24,7 +24,7 @@ import { ApplicationsModule } from './components/applications/applications.modul
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     ProfileComponent
   ],
   imports: [

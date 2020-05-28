@@ -14,7 +14,7 @@ export class ChangeJobStatusComponent implements OnInit {
   @Input() status: string;
   @Output() newDeadline = new EventEmitter<Date>();
   isLoading: boolean;
-  error_msg: string;
+  errorMsg: string;
   minStartDate: any;
   deadline: any;
 
@@ -22,9 +22,8 @@ export class ChangeJobStatusComponent implements OnInit {
     private jobService: JobService,
     private modalService: NgbModal,
     private ngbDateService: NgbDateService
-  ) 
-  {
-    this.minStartDate = this.ngbDateService.dateToString(new Date().setDate(new Date().getDate()+1));
+  ) {
+    this.minStartDate = this.ngbDateService.dateToString(new Date().setDate(new Date().getDate() + 1));
   }
 
   ngOnInit() {
@@ -32,19 +31,19 @@ export class ChangeJobStatusComponent implements OnInit {
 
   onChangeStatus(status: string, content?) {
     this.isLoading = true;
-    this.error_msg = null;
+    this.errorMsg = null;
     if (content) {
       this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
-        let date = this.ngbDateService.stringToDate(this.deadline);
+        const date = this.ngbDateService.stringToDate(this.deadline);
         date.setDate(date.getDate() + 1);
         if (date.toString() !== 'Invalid Date') {
           this.edit(status, date);
           this.newDeadline.emit(this.ngbDateService.stringToDate(this.deadline));
         } else {
-          this.error_msg = 'Invalid Date';
+          this.errorMsg = 'Invalid Date';
           this.isLoading = false;
         }
-      },(raison) => {
+      }, (raison) => {
         this.isLoading = false;
       });
     } else {
@@ -59,10 +58,10 @@ export class ChangeJobStatusComponent implements OnInit {
         this.isLoading = false;
       },
       err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
       }
-    )
+    );
   }
 
   isValidDeadline() {

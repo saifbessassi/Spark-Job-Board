@@ -27,10 +27,10 @@
             <!-- Jobs results -->
             <div class="col-lg-8 col-md-12">
                 <div class="vertical-space-30"></div>
-                <sp-error-msg [error_msg]="getJobs_error" *ngIf="!isLoading && getJobs_error"></sp-error-msg>
-                <div *ngIf="jobs.length && !getJobs_error" class="row" style="padding: 1%;">
+                <sp-error-msg [errorMsg]="getJobsError" *ngIf="!isLoading && getJobsError"></sp-error-msg>
+                <div *ngIf="jobs.length && !getJobsError" class="row" style="padding: 1%;">
                     <div class="col-md-6">
-                        <h6 class="text-left" style="float: left;"><b>{{nb_jobs}}</b> results</h6>
+                        <h6 class="text-left" style="float: left;"><b>{{nbJobs}}</b> results</h6>
                     </div>
                     <div class="col-md-6 text-right">
                         <label style="margin-right: 3%;">Sorted by: </label>
@@ -42,14 +42,14 @@
                         </select>
                     </div>
                 </div>
-                <h5 *ngIf="!jobs.length && !getJobs_error">There are no job offers at the moment.</h5>
+                <h5 *ngIf="!jobs.length && !getJobsError">There are no job offers at the moment.</h5>
                 <sp-job-post  *ngFor="let job of jobs" [job]="job"></sp-job-post>
                 <div class="vertical-space-20"></div>
                 <sp-pagination
-                    *ngIf="nb_jobs > nb_jobs_per_page"
+                    *ngIf="nbJobs > nbJobsPerPage"
                     (pageNumber)="onPage($event)" 
-                    [nbItems]="nb_jobs" 
-                    [nbItemsPerPage]="nb_jobs_per_page" 
+                    [nbItems]="nbJobs" 
+                    [nbItemsPerPage]="nbJobsPerPage" 
                     [currentPage]="pageParam">
                 </sp-pagination>
             </div>

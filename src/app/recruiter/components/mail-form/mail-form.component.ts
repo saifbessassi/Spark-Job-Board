@@ -13,34 +13,34 @@ export class MailFormComponent implements OnInit {
   email: string;
   mailForm: FormGroup;
   isLoading: boolean;
-  error_msg: string;
+  errorMsg: string;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private recruiterService: RecruiterService
   ) { }
 
   ngOnInit() {
     this.mailForm = new FormGroup({
-      'subject': new FormControl(null, Validators.required),
-      'message': new FormControl(null, Validators.required),
-      'email': new FormControl(this.email)
-    })
+      subject: new FormControl(null, Validators.required),
+      message: new FormControl(null, Validators.required),
+      email: new FormControl(this.email)
+    });
   }
 
   onSubmit() {
     this.isLoading = true;
-    this.error_msg = null;
+    this.errorMsg = null;
     this.recruiterService.sendMail(this.mailForm.value).subscribe(
       res => {
-        this._activeModal.dismiss();
+        this.activeModal.dismiss();
         this.isLoading = false;
       },
       err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
       }
-    )
+    );
   }
 
 }

@@ -20,7 +20,7 @@ const routes: Routes = [
     ]
   },
   { path: '', redirectTo: 'signin', pathMatch: 'full' }
-  
+
 ];
 
 @NgModule({

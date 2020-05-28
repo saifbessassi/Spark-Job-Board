@@ -13,12 +13,12 @@ import { first } from 'rxjs/operators';
 export class SocialAuthenticationComponent implements OnInit {
 
   @Output() outputIsLoading = new EventEmitter<boolean>();
-  @Output() outputError_msg = new EventEmitter<string>();
+  @Output() outputerrorMsg = new EventEmitter<string>();
   @Output() outputAuth = new EventEmitter<boolean>();
   @Input() location: string;
 
   isLoading: boolean;
-  error_msg: string;
+  errorMsg: string;
 
   constructor(
     private tokenService: TokenService,
@@ -44,16 +44,16 @@ export class SocialAuthenticationComponent implements OnInit {
       default:
         break;
     }
-    
+
     this.OAuth.signIn(providerID).then(user => {
       let token = user.authToken;
-      if(provider === 'google') {
+      if (provider === 'google') {
         token = user.idToken;
       }
       this.socialSigninReq(token, provider);
     }, err => {
-      this.error_msg = err;
-      this.outputError_msg.emit(this.error_msg);
+      this.errorMsg = err;
+      this.outputerrorMsg.emit(this.errorMsg);
       this.isLoading = false;
       this.outputIsLoading.emit(this.isLoading);
   });
@@ -73,11 +73,11 @@ export class SocialAuthenticationComponent implements OnInit {
           this.outputIsLoading.emit(this.isLoading);
         },
         error => {
-          this.error_msg = error.error;
-          this.outputError_msg.emit(this.error_msg);
+          this.errorMsg = error.error;
+          this.outputerrorMsg.emit(this.errorMsg);
           this.isLoading = false;
           this.outputIsLoading.emit(this.isLoading);
         }
-      )
+      );
   }
 }

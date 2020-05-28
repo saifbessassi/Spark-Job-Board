@@ -6,7 +6,7 @@ import {
   ViewChild,
   OnChanges,
   SimpleChanges
-} from "@angular/core";
+} from '@angular/core';
 
 @Component({
   selector: 'sp-animated-digit',
@@ -18,16 +18,16 @@ export class AnimatedDigitComponent implements AfterViewInit, OnChanges {
   @Input() duration: number;
   @Input() digit: number | string;
   @Input() steps: number;
-  @ViewChild("animatedDigit", {static: false}) animatedDigit: ElementRef;
+  @ViewChild('animatedDigit', {static: false}) animatedDigit: ElementRef;
 
   animateCount() {
     if (!this.duration) {
       this.duration = 1000;
     }
 
-    if (typeof this.digit === "number") {
+    if (typeof this.digit === 'number') {
       this.counterFunc(this.digit, this.duration, this.animatedDigit);
-    } else if (typeof this.digit === "string") {
+    } else if (typeof this.digit === 'string') {
       this.counterFunc(+this.digit, this.duration, this.animatedDigit);
     }
   }
@@ -65,7 +65,7 @@ export class AnimatedDigitComponent implements AfterViewInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes["digit"]) {
+    if (changes.digit) {
       this.animateCount();
     }
   }

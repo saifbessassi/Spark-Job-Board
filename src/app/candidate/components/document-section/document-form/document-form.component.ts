@@ -14,13 +14,13 @@ export class DocumentFormComponent implements OnInit {
   cv: Document;
   selectedFile: File = null;
   resumeID: number;
-  error_msg: string[] = [];
+  errorMsg: string[] = [];
   isLoading = false;
   uploadProgress: number;
   isUploading: boolean;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private cvService: CvService,
     config: NgbProgressbarConfig
   ) {
@@ -35,50 +35,50 @@ export class DocumentFormComponent implements OnInit {
   }
 
   addCv(event) {
-    this.error_msg = [];
+    this.errorMsg = [];
     this.isUploading = true;
     this.uploadProgress = 0;
-    this.selectedFile = <File>event.target.files[0];
+    this.selectedFile = event.target.files[0] as File;
     this.cvService.add(this.selectedFile, this.resumeID).subscribe(events => {
       if (events.type === HttpEventType.UploadProgress) {
         this.uploadProgress = Math.round(events.loaded / events.total * 100);
       } else if (events.type === HttpEventType.Response) {
-        this.cv = <Document>events.body;
+        this.cv = events.body as Document;
         this.isUploading = false;
       }
     }, err => {
       err.error.violations.forEach(element => {
-        this.error_msg.push(element.message);
+        this.errorMsg.push(element.message);
       });
       this.isUploading = false;
-    })
+    });
   }
 
   deleteCv() {
-    if(confirm('Do you really want to delete your resume?')) {
+    if (confirm('Do you really want to delete your resume?')) {
       this.isUploading = true;
       this.uploadProgress = 0;
       this.cvService.delete(this.cv.id).subscribe(events => {
         if (events.type === HttpEventType.UploadProgress) {
           this.uploadProgress = Math.round(events.loaded / events.total * 100);
-          console.log(this.uploadProgress)
+          console.log(this.uploadProgress);
         } else if (events.type === HttpEventType.Response) {
           this.cv = null;
           this.isUploading = false;
         }
       }, err => {
-        this.error_msg.push('An error occurred, please try again later.');
+        this.errorMsg.push('An error occurred, please try again later.');
         this.isUploading = false;
-      })
+      });
     }
   }
 
   viewCv() {
-    window.open('http://localhost:8000' + this.cv.url, '_blanc')
+    window.open('http://localhost:8000' + this.cv.url, '_blanc');
   }
 
   dismissModal() {
-    this._activeModal.close(this.cv);
+    this.activeModal.close(this.cv);
   }
 
 }

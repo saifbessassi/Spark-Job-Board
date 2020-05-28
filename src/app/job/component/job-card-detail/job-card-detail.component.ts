@@ -15,27 +15,27 @@ import { User } from 'src/app/core/models/user.service';
 export class JobCardDetailComponent implements OnInit {
 
   @Input() job: Job;
-  isApplied: boolean = false;
+  isApplied = false;
   isRecruiter: boolean;
-  
+
   constructor(
     private modalService: NgbModal,
     private applyService: ApplicationService,
     private userService: UserService,
     private authService: AuthenticationService
-  ) { 
+  ) {
     this.authService.currentUser.subscribe(user => {
       this.isRecruiter = false;
       if (user) {
         this.isRecruiter = userService.isRecruiter(user);
       }
-    })
+    });
   }
 
   ngOnInit() {
     // this.isApplied = this.applyService.isApplied(this.job.id);
     this.authService.currentUser.subscribe(data => {
-      const user:User = data;
+      const user: User = data;
       if (user && this.userService.isCandidate(user)) {
         this.isApplied = user.appliedJobs.includes(this.job.id);
       } else {
@@ -49,7 +49,7 @@ export class JobCardDetailComponent implements OnInit {
     modalRef.componentInstance.jobId = this.job.id;
     modalRef.result.then(res => {
       this.isApplied = res;
-    })
+    });
   }
 
 }

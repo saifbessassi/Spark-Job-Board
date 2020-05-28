@@ -6,17 +6,17 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SharedModule } from '../shared/shared.module';
 import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { SignupComponent } from './components/signup/signup.component';
-import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from "angularx-social-login";
+import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { SocialAuthenticationComponent } from './components/social-authentication/social-authentication.component';
 
-let config = new AuthServiceConfig([
+const config = new AuthServiceConfig([
   {
     id: GoogleLoginProvider.PROVIDER_ID,
-    provider: new GoogleLoginProvider("269859930617-4k67asoa2fhi3fun17j4lkppvcgaennp.apps.googleusercontent.com")
+    provider: new GoogleLoginProvider('269859930617-4k67asoa2fhi3fun17j4lkppvcgaennp.apps.googleusercontent.com')
   },
   {
     id: FacebookLoginProvider.PROVIDER_ID,
-    provider: new FacebookLoginProvider("643671699786946")
+    provider: new FacebookLoginProvider('643671699786946')
   }
 ]);
 export function provideConfig() {
@@ -26,7 +26,7 @@ export function provideConfig() {
 
 @NgModule({
   declarations: [
-    SigninComponent, 
+    SigninComponent,
     AuthLayoutComponent, SignupComponent, SocialAuthenticationComponent],
   imports: [
     CommonModule,

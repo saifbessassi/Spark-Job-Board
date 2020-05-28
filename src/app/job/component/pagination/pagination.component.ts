@@ -22,12 +22,12 @@ export class PaginationComponent implements OnInit {
   createArray() {
     let x: number;
     if (this.nbItems % this.nbItemsPerPage !== 0) {
-      x = Math.floor(this.nbItems/this.nbItemsPerPage) + 1;
+      x = Math.floor(this.nbItems / this.nbItemsPerPage) + 1;
     } else {
-      x = this.nbItems/this.nbItemsPerPage;
+      x = this.nbItems / this.nbItemsPerPage;
     }
-    let tab: number[] = [];
-    for(var i = 1; i <= x; i++){
+    const tab: number[] = [];
+    for (let i = 1; i <= x; i++) {
       tab.push(i);
     }
     return tab;

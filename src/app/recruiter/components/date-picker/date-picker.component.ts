@@ -22,33 +22,34 @@ export class DatePickerComponent implements OnInit {
 
   ngOnInit() {
     this.dateForm = new FormGroup({
-      'dateStart': new FormControl(null, Validators.required),
-      'dateEnd': new FormControl({value: null, disable: true}),
+      dateStart: new FormControl(null, Validators.required),
+      dateEnd: new FormControl({value: null, disable: true}),
     });
 
     this.dateForm.get('dateStart').valueChanges.subscribe(res => {
       this.dateForm.get('dateEnd').reset();
-      if(this.dateForm.get('dateStart').invalid) {
+      if (this.dateForm.get('dateStart').invalid) {
         this.dateForm.get('dateEnd').disable();
       } else {
         this.dateForm.get('dateEnd').enable();
         this.start = res.year + '-' + res.month + '-' + res.day;
-        this.filter.emit(this.start)
+        this.filter.emit(this.start);
       }
-    })
+    });
 
     this.dateForm.get('dateEnd').valueChanges.subscribe(res => {
       if (res) {
         const end = this.start + '/' + res.year + '-' + res.month + '-' + res.day;
         this.filter.emit(end);
       }
-    })
+    });
 
 
   }
 
+  // tslint:disable-next-line
   ngOnChanges() {
-    
+
   }
 
 

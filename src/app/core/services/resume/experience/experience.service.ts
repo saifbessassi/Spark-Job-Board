@@ -9,10 +9,10 @@ const API_URL = environment.API_URL;
     providedIn: 'root',
 })
 export class ExperienceService {
-    
+
     constructor(
         private http: HttpClient
-    ){}
+    ) {}
 
     edit(exp: Experience) {
         return this.http.put(API_URL + '/api/experiences/' + exp.id, exp);

@@ -10,9 +10,9 @@ import { EditJobComponent } from '../../components/edit-job/edit-job.component';
 import { DatePickerComponent } from '../../components/date-picker/date-picker.component';
 
 export class NbJobsPerStatus {
-  closed: number = 0;
-  open: number = 0;
-  saved: number = 0;
+  closed = 0;
+  open = 0;
+  saved = 0;
 }
 
 @Component({
@@ -20,14 +20,7 @@ export class NbJobsPerStatus {
   templateUrl: './jobs-table.component.html',
   styleUrls: ['./jobs-table.component.scss']
 })
-export class JobsTableComponent implements OnInit{
-
-  allJobs: ServerDataSource;
-  allJobsNb: number = 0;
-  params: string;
-  jobStatus: string = '';
-  nbJobs = new NbJobsPerStatus;
-  nbResult: number;
+export class JobsTableComponent implements OnInit {
 
   constructor(
     private jobService: JobService,
@@ -36,8 +29,7 @@ export class JobsTableComponent implements OnInit{
     private datePipe: DatePipe,
     config: NgbModalConfig,
     private modalService: NgbModal,
-  ) 
-  {
+  ) {
     config.backdrop = 'static';
     config.keyboard = false;
     this.allJobs  = new ServerDataSource(
@@ -55,14 +47,12 @@ export class JobsTableComponent implements OnInit{
     });
   }
 
-  ngOnInit() {
-    this.jobService.getNbJobsPerStatus().subscribe((res: NbJobsPerStatus) => {
-      for(let key in res) {
-        this.nbJobs[key] = res[key];
-      }
-      this.allJobsNb = this.nbJobs.open + this.nbJobs.closed + this.nbJobs.saved
-    })
-  }
+  allJobs: ServerDataSource;
+  allJobsNb = 0;
+  params: string;
+  jobStatus = '';
+  nbJobs = new NbJobsPerStatus();
+  nbResult: number;
 
   settings = {
     mode: 'external',
@@ -99,12 +89,12 @@ export class JobsTableComponent implements OnInit{
         title: 'Skills',
         type: 'string',
         valuePrepareFunction: (value, row) => {
-          if(row.skills) {
+          if (row.skills) {
             const skills = [];
             row.skills.forEach(element => {
               skills.push(element.label);
             });
-            return skills.sort((a,b)=> a.localeCompare(b));
+            return skills.sort((a, b) => a.localeCompare(b));
           }
           return null;
         },
@@ -128,7 +118,7 @@ export class JobsTableComponent implements OnInit{
           component: DatePickerComponent
         },
         valuePrepareFunction: (cell, row) => {
-          if(row.createdAt) {
+          if (row.createdAt) {
             const formatted = this.datePipe.transform(row.createdAt, 'dd MMM yyyy');
             return formatted;
           }
@@ -144,13 +134,13 @@ export class JobsTableComponent implements OnInit{
           component: DatePickerComponent
         },
         valuePrepareFunction: (cell, row) => {
-          if(row.deadline) {
+          if (row.deadline) {
             const formatted = this.datePipe.transform(row.deadline, 'dd MMM yyyy');
             return formatted;
           }
           return null;
         }
-      },   
+      },
       // recruiter: {
       //   title: 'Created By',
       //   valuePrepareFunction: (data) => {
@@ -194,10 +184,19 @@ export class JobsTableComponent implements OnInit{
     },
   };
 
+  ngOnInit() {
+    this.jobService.getNbJobsPerStatus().subscribe((res: NbJobsPerStatus) => {
+      for (const key of Object.keys(res)) {
+        this.nbJobs[key] = res[key];
+      }
+      this.allJobsNb = this.nbJobs.open + this.nbJobs.closed + this.nbJobs.saved;
+    });
+  }
+
   onDeleteJob(event) {
     if (
       window.confirm(
-        'If you delete a job you will lose all its applications. Are you sure you want to delete job "' + event.data.title +'"?'
+        'If you delete a job you will lose all its applications. Are you sure you want to delete job "' + event.data.title + '"?'
       )
     ) {
       this.jobService.deleteJob(event.data.id).subscribe(res => {
@@ -216,9 +215,9 @@ export class JobsTableComponent implements OnInit{
     const modalRef = this.modalService.open(EditJobComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.job = job;
     modalRef.result.then(res => {
-      console.log(res)
-      this.allJobs.update(job, res)
-    })
+      console.log(res);
+      this.allJobs.update(job, res);
+    });
   }
 
   onAction(event) {
@@ -232,7 +231,7 @@ export class JobsTableComponent implements OnInit{
       case 'delete':
         this.onDeleteJob(event);
         break;
-    
+
       default:
         break;
     }

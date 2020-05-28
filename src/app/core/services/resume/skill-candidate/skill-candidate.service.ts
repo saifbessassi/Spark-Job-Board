@@ -9,10 +9,10 @@ const API_URL = environment.API_URL;
     providedIn: 'root',
 })
 export class SkillCandidateService {
-    
+
     constructor(
         private http: HttpClient
-    ){}
+    ) {}
 
     edit(skill: SkillCandidateRequest) {
         skill.skill = '/api/skills/' + skill.skill;

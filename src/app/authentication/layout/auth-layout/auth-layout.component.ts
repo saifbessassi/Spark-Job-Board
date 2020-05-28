@@ -16,7 +16,7 @@ export class AuthLayoutComponent implements OnInit {
   }
 
   goBack() {
-    this.location.back()
+    this.location.back();
   }
 
 }

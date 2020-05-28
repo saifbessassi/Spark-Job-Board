@@ -11,14 +11,14 @@ const API_URL = environment.API_URL;
 
 interface RefreshResponse {
   token: string;
-  refresh_token: string
+  refresh_token: string;
 }
 
 @Injectable({
   providedIn: 'root',
 })
 export class TokenService {
-  
+
   constructor(
     private http: HttpClient
   ) { }
@@ -46,17 +46,17 @@ export class TokenService {
 
   refreshToken() {
     const refresh = {
-      'refresh_token': this.getRefreshToken()
-    }
+      refresh_token: this.getRefreshToken()
+    };
     return this.http.post<RefreshResponse>(API_URL + '/api/token/refresh', refresh)
       .pipe(tap((data) => {
         const payload = jwt_decode(data.token);
-        let token = new Token();
-  
+        const token = new Token();
+
         token.access_token = data.token;
         token.refrech_token = data.refresh_token;
-        token.exp = payload['exp'];
-        token.iat = payload['iat'];
+        token.exp = payload.exp;
+        token.iat = payload.iat;
         localStorage.setItem('token', JSON.stringify(token));
       }));
   }

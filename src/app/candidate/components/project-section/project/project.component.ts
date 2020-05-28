@@ -13,9 +13,9 @@ export class ProjectComponent implements OnInit {
 
   @Input() projects: Project[];
   @Input() resumeID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   isLoading = false;
-  
+
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -33,7 +33,7 @@ export class ProjectComponent implements OnInit {
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.projects.push(res);
-    })
+    });
   }
 
   openEditForm(project, index) {
@@ -42,18 +42,18 @@ export class ProjectComponent implements OnInit {
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
       this.projects[res.index] = res.project;
-    })
+    });
   }
 
   delete(id: number, index: number) {
-    if(confirm('Do you really want to delete this project?')) {
+    if (confirm('Do you really want to delete this project?')) {
       this.isLoading = true;
       this.projectService.delete(id).subscribe(res => {
         this.projects.splice(index, 1);
         this.isLoading = false;
       }, err => {
         this.isLoading = false;
-      })
+      });
     } else {
       this.isLoading = false;
     }

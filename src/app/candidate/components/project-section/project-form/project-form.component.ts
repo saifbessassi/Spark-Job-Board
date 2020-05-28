@@ -16,11 +16,11 @@ export class ProjectFormComponent implements OnInit {
   id: number;
   project: Project;
   projectForm: FormGroup;
-  error_msg: string;
+  errorMsg: string;
   isLoading = false;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private projectService: ProjectService
   ) { }
 
@@ -30,16 +30,16 @@ export class ProjectFormComponent implements OnInit {
 
   initForm() {
     this.projectForm = new FormGroup({
-      'title': new FormControl(
-        null, 
+      title: new FormControl(
+        null,
         [
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(150)
         ]
       ),
-      'description': new FormControl(
-        null, 
+      description: new FormControl(
+        null,
         [
           Validators.required,
           Validators.minLength(30),
@@ -47,10 +47,10 @@ export class ProjectFormComponent implements OnInit {
         ]
       )
     });
-    if(this.project) {
+    if (this.project) {
       this.projectForm.setValue({
-        'title': this.project.title,
-        'description': this.project.description
+        title: this.project.title,
+        description: this.project.description
       });
     }
   }
@@ -63,26 +63,26 @@ export class ProjectFormComponent implements OnInit {
     this.project = this.projectForm.value;
     if (this.resumeID) {
       this.projectService.add(this.project, this.resumeID).subscribe(res => {
-        this._activeModal.close(res);
+        this.activeModal.close(res);
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     } else {
       this.project.id = this.id;
       this.projectService.edit(this.project).subscribe(res => {
-        this._activeModal.close({project: this.project, index: this.index});
+        this.activeModal.close({project: this.project, index: this.index});
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     }
   }
 
   dismissModal() {
-    this._activeModal.dismiss();
+    this.activeModal.dismiss();
   }
 
 }

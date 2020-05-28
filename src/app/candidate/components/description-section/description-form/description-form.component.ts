@@ -13,11 +13,11 @@ export class DescriptionFormComponent implements OnInit {
   description: string;
   resumeID: number;
   descForm: FormGroup;
-  error_msg: string;
+  errorMsg: string;
   isLoading = false;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private descService: DescriptionService
   ) { }
 
@@ -27,29 +27,29 @@ export class DescriptionFormComponent implements OnInit {
 
   initForm() {
     this.descForm = new FormGroup({
-      'description': new FormControl(
-        this.description, 
+      description: new FormControl(
+        this.description,
         [
           Validators.minLength(30),
           Validators.maxLength(255)
         ]
       )
-    })
+    });
   }
 
   save() {
     this.isLoading = true;
     this.description = this.descForm.value.description;
     this.descService.edit(this.description, this.resumeID).subscribe(res => {
-      this._activeModal.close(this.description);
+      this.activeModal.close(this.description);
       this.isLoading = false;
     }, err => {
-      this.error_msg = 'An error occurred, please try again later.';
+      this.errorMsg = 'An error occurred, please try again later.';
       this.isLoading = false;
-    })
+    });
   }
 
   dismissModal() {
-    this._activeModal.dismiss();
+    this.activeModal.dismiss();
   }
 }

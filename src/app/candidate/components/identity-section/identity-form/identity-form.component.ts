@@ -18,19 +18,18 @@ export class IdentityFormComponent implements OnInit {
   identity: CandidateIdentity;
   identityForm: FormGroup;
   selectedPicture: File = null;
-  error_msg: string;
+  errorMsg: string;
   isLoading = false;
   isUploading = false;
   previewPicture: any;
   uploadProgress: number;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private candidateService: CandidateService,
-    private authService:AuthenticationService,
+    private authService: AuthenticationService,
     config: NgbProgressbarConfig
-  ) 
-  {
+  ) {
     config.max = 100;
     config.striped = true;
     config.animated = true;
@@ -44,30 +43,30 @@ export class IdentityFormComponent implements OnInit {
 
   initForm() {
     this.identityForm = new FormGroup({
-      'fullname': new FormControl(
-        this.identity.fullname, 
+      fullname: new FormControl(
+        this.identity.fullname,
         [
           Validators.required,
           Validators.maxLength(255)
         ]
       ),
-      'address': new FormControl(
-        this.identity.address, 
+      address: new FormControl(
+        this.identity.address,
         [
           Validators.minLength(3),
           Validators.maxLength(255)
         ]
       ),
-      'phone': new FormControl(
-        this.identity.phone, 
+      phone: new FormControl(
+        this.identity.phone,
         [
           Validators.required,
           Validators.maxLength(8),
           Validators.minLength(8)
         ]
       ),
-      'seniorityLevel': new FormControl(
-        this.identity.resume.seniorityLevel, 
+      seniorityLevel: new FormControl(
+        this.identity.resume.seniorityLevel,
         [
           Validators.required
         ]
@@ -77,49 +76,49 @@ export class IdentityFormComponent implements OnInit {
 
   save() {
     this.isLoading = true;
-    this.error_msg = null;
+    this.errorMsg = null;
     this.identity.address = this.identityForm.value.address;
     this.identity.fullname = this.identityForm.value.fullname;
     this.identity.phone = this.identityForm.value.phone;
     this.identity.resume.seniorityLevel = this.identityForm.value.seniorityLevel;
     this.candidateService.edit(this.identity).subscribe(res => {
-      this._activeModal.close(this.identity);
+      this.activeModal.close(this.identity);
       this.isLoading = false;
     }, err => {
-      this.error_msg = 'An error occurred, please try again later.';
+      this.errorMsg = 'An error occurred, please try again later.';
       this.isLoading = false;
-    })
+    });
   }
 
   dismissModal() {
-    this._activeModal.dismiss();
+    this.activeModal.dismiss();
   }
 
   savePicture() {
-    this.error_msg = null;
+    this.errorMsg = null;
     this.isUploading = true;
     this.uploadProgress = 0;
     this.candidateService.addPicture(this.selectedPicture).subscribe(events => {
       if (events.type === HttpEventType.UploadProgress) {
         this.uploadProgress = Math.round(events.loaded / events.total * 100);
       } else if (events.type === HttpEventType.Response) {
-        this.identity.picture = <Picture>events.body;
+        this.identity.picture = events.body as Picture;
         this.previewPicture = null;
         this.authService.updatePicture(this.identity.picture.url);
         this.isUploading = false;
       }
     }, err => {
-      this.error_msg = 'An error occurred, please try again later.';
+      this.errorMsg = 'An error occurred, please try again later.';
       this.previewPicture = null;
       this.selectedPicture = null;
       this.isUploading = false;
-    })
+    });
   }
 
   deletePicture() {
     this.isUploading = true;
-    this.error_msg = null;
-    if(confirm('Do you really want to delete your picture?')) {
+    this.errorMsg = null;
+    if (confirm('Do you really want to delete your picture?')) {
       this.candidateService.deletePicture(this.identity.picture.id).subscribe(events => {
         if (events.type === HttpEventType.UploadProgress) {
           this.uploadProgress = Math.round(events.loaded / events.total * 100);
@@ -130,19 +129,19 @@ export class IdentityFormComponent implements OnInit {
           this.isUploading = false;
         }
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isUploading = false;
-      })
+      });
     }
   }
 
   preview($event) {
     this.selectedPicture = $event.target.files[0];
-    var reader = new FileReader();
-    reader.readAsDataURL(this.selectedPicture); 
-    reader.onload = (_event) => { 
+    const reader = new FileReader();
+    reader.readAsDataURL(this.selectedPicture);
+    reader.onload = (event) => {
       this.previewPicture = reader.result;
-    }
+    };
   }
 
 }

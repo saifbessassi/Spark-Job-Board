@@ -44,8 +44,8 @@
         
                 <h3 class="text-center">Recent Job Post</h3>
                 <div class="vertical-space-60"></div>
-                <h5 *ngIf="msg_error">{{msg_error}}</h5>
-                <h5 *ngIf="!recentJobs.length && !msg_error && !isLoading">There are no job offers at the moment.</h5>
+                <h5 *ngIf="errorMsg">{{errorMsg}}</h5>
+                <h5 *ngIf="!recentJobs.length && !errorMsg && !isLoading">There are no job offers at the moment.</h5>
                 
                 <sp-job-post *ngFor="let job of recentJobs" [job]=job></sp-job-post>
                 

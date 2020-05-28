@@ -6,7 +6,7 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
+    <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
     <form [formGroup]="descForm" (ngSubmit)="save()">
         <div class="modal-body">
             <p class="text-muted">A description is useful to understand who you are at a glance, it can make a real difference!</p>

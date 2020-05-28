@@ -15,8 +15,8 @@ import { Education } from 'src/app/core/models/candidate/education.model';
 })
 export class ProfileComponent implements OnInit {
 
-  isLoading: boolean = false;
-  error_msg: boolean;
+  isLoading = false;
+  errorMsg: boolean;
   candidate: Candidate;
   resume: Resume;
   identity: CandidateIdentity;
@@ -30,12 +30,12 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.error_msg = false;
+    this.errorMsg = false;
     this.candidateService.getCandidateProfile().subscribe( (res: Candidate) => {
         this.candidate = res;
         this.resume = this.candidate.resume;
-        this.experiences = this.resume.experiences.sort((b,a)=> a.dateStart.toString().localeCompare(b.dateStart.toString()));
-        this.educations = this.resume.educations.sort((b,a)=> a.dateStart.toString().localeCompare(b.dateStart.toString()));
+        this.experiences = this.resume.experiences.sort((b, a) => a.dateStart.toString().localeCompare(b.dateStart.toString()));
+        this.educations = this.resume.educations.sort((b, a) => a.dateStart.toString().localeCompare(b.dateStart.toString()));
         this.identity = new CandidateIdentity(
           this.candidate.fullname,
           this.candidate.email,
@@ -46,12 +46,12 @@ export class ProfileComponent implements OnInit {
             id: '/api/resumes/' + this.resume.id,
             seniorityLevel: this.resume.seniorityLevel
           }
-        )
+        );
         this.isLoading = false;
     }, err => {
-        this.error_msg = true;
+        this.errorMsg = true;
         this.isLoading = false;
-    })
+    });
   }
 
 }

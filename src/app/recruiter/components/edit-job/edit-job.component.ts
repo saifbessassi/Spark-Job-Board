@@ -12,14 +12,14 @@ export class EditJobComponent implements OnInit {
   job: Job;
 
   constructor(
-    private _activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal
   ) { }
 
   ngOnInit() {
   }
 
   dismissModal() {
-    this._activeModal.dismiss();
+    this.activeModal.dismiss();
   }
 
 }

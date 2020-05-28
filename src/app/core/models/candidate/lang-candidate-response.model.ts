@@ -5,5 +5,5 @@ export class LanguageCandidateResponse {
     public proficiency: string;
     public language: Language;
 
-    public constructor () {}
+    public constructor() {}
 }

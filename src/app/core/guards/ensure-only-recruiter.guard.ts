@@ -8,7 +8,7 @@ import { AuthenticationService } from '../services/auth/authentication.service';
     providedIn: 'root',
 })
 export class EnsureOnlyRecruiterGuard {
-    
+
     isRecruiter: boolean;
 
     constructor(
@@ -23,7 +23,7 @@ export class EnsureOnlyRecruiterGuard {
             } else {
                 this.isRecruiter = false;
             }
-        })
+        });
     }
 
     canActivate() {

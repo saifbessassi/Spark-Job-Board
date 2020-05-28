@@ -35,8 +35,8 @@
             <button *ngIf="!isUploading" type="button" class="btn btn-lg sp-btn-red mb-3" (click)="fileInput.click()">
                 <i class="fas fa-upload"></i> Add my resume
             </button>
-            <div *ngIf="error_msg?.length">
-                <div class="mb-3" *ngFor="let item of error_msg" style="font-size: 80%;color: #dc3545;">{{item}}</div>
+            <div *ngIf="errorMsg?.length">
+                <div class="mb-3" *ngFor="let item of errorMsg" style="font-size: 80%;color: #dc3545;">{{item}}</div>
             </div>
             <p class="text-muted mb-0">Maximum size : 2 MB</p>
             <p class="text-muted">Format : PDF</p>

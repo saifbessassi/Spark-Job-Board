@@ -9,19 +9,19 @@ import { RecruiterService } from 'src/app/core/services/recruiter/recruiter.serv
 export class TotalCountComponent implements OnInit {
 
   total: any = [];
-  error_msg: string;
+  errorMsg: string;
 
   constructor(
     private recruiterService: RecruiterService
   ) { }
 
   ngOnInit() {
-    this.error_msg = null;
+    this.errorMsg = null;
     this.recruiterService.getTotalCount().subscribe( res => {
       this.total = res;
     }, err => {
-      this.error_msg = 'Unknown error! Please try again later.';
-    })
+      this.errorMsg = 'Unknown error! Please try again later.';
+    });
   }
 
 }

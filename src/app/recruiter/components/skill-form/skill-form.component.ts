@@ -15,19 +15,19 @@ export class SkillFormComponent implements OnInit {
   allSkills: Skill[];
   skillForm: FormGroup;
   isLoading: boolean;
-  error_msg: string;
+  errorMsg: string;
 
   constructor(
     private skillService: SkillService,
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private formBuilder: FormBuilder,
     private existValidator: ExistSkillValidator
   ) { }
 
   ngOnInit() {
-    console.log(this.allSkills)
+    console.log(this.allSkills);
     this.skillForm = this.formBuilder.group({
-      'label': new FormControl(null, [Validators.required])
+      label: new FormControl(null, [Validators.required])
     }, {
       validator: this.existValidator.exist('label', this.allSkills),
   });
@@ -37,14 +37,14 @@ export class SkillFormComponent implements OnInit {
     this.isLoading = true;
     this.skillService.addSkill(this.skillForm.value).subscribe(
       (res: Skill) => {
-        this._activeModal.close({id: res.id, label: res.label});
+        this.activeModal.close({id: res.id, label: res.label});
         this.isLoading = false;
       },
       err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
       }
-    )
+    );
   }
 
 }

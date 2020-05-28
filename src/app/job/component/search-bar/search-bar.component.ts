@@ -24,25 +24,25 @@ export class SearchBarComponent implements OnInit {
 
   initSearchForm() {
     this.searchForm = new FormGroup({
-      'skill': new FormControl(null),
-      'experience': new FormControl(null),
-      'location': new FormControl(null),
+      skill: new FormControl(null),
+      experience: new FormControl(null),
+      location: new FormControl(null),
     });
   }
 
   onSearchSubmit() {
-    let params = [];
+    const params = [];
     const searchFormValue = this.searchForm.value;
     if (searchFormValue.skill) {
-      params.push({key: 'skills.label', value : searchFormValue.skill})
+      params.push({key: 'skills.label', value : searchFormValue.skill});
     }
     if (searchFormValue.experience) {
-      params.push({key: 'seniorityLevel', value: searchFormValue.experience})
+      params.push({key: 'seniorityLevel', value: searchFormValue.experience});
     }
     if (searchFormValue.location) {
-      params.push({key: 'location', value: searchFormValue.location})
+      params.push({key: 'location', value: searchFormValue.location});
     }
-    console.log(params)
+    console.log(params);
     this.router.navigate(['/jobs'], { state: {data: params} });
   }
 

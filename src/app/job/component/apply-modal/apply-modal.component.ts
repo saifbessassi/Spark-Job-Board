@@ -23,11 +23,11 @@ export class ApplyModalComponent implements OnInit {
   candidate: Candidate;
   isConnected: boolean;
   isRecruiter: boolean;
-  error_msg: string;
-  candidateLoading: boolean = false;
+  errorMsg: string;
+  candidateLoading = false;
   canApply: boolean;
   messageForm: FormGroup;
-  isLoading: boolean = false;
+  isLoading = false;
   isApplied: boolean;
 
   next() {
@@ -35,10 +35,9 @@ export class ApplyModalComponent implements OnInit {
   }
 
   constructor(
-    public activeModal: NgbActiveModal,
     private userService: UserService,
     private authenticationService: AuthenticationService,
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private candidateService: CandidateService,
     private router: Router,
     private applyService: ApplicationService
@@ -59,17 +58,17 @@ export class ApplyModalComponent implements OnInit {
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
       linear: true,
       animation: true
-    })
+    });
     if (this.isConnected) {
       this.goStep2();
     }
 
     this.messageForm = new FormGroup({
-      'message': new FormControl(null)
-    })
+      message: new FormControl(null)
+    });
   }
 
-  // Get boolean from signin-component: true if candidate sign in succefully 
+  // Get boolean from signin-component: true if candidate sign in succefully
   getAuthResult($event) {
     if ($event) {
       this.goStep2();
@@ -83,9 +82,9 @@ export class ApplyModalComponent implements OnInit {
       this.candidate = res;
       this.candidateLoading = false;
     }, err => {
-      this.error_msg = 'An error occurred, please try again later.';
+      this.errorMsg = 'An error occurred, please try again later.';
       this.candidateLoading = false;
-    })
+    });
   }
 
   // Get boolean from resume-summary-component: true if candidate can apply
@@ -110,17 +109,17 @@ export class ApplyModalComponent implements OnInit {
       this.dismissModal(true);
     }, err => {
       if (err.error['hydra:description']) {
-        this.error_msg = err.error['hydra:description'];
+        this.errorMsg = err.error['hydra:description'];
       } else {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
       }
       this.isLoading = false;
-    })
+    });
   }
 
   // Close the modal
   dismissModal(res?) {
-    this._activeModal.close(res);
+    this.activeModal.close(res);
   }
 
   // Go to step two
@@ -151,7 +150,7 @@ export class ApplyModalComponent implements OnInit {
           resolve();
         }
       });
-    })
-    
+    });
+
   }
 }

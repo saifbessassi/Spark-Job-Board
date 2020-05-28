@@ -9,5 +9,5 @@ export class Experience {
     public description: string;
     public resume: string;
 
-    public constructor () {}
+    public constructor() {}
 }

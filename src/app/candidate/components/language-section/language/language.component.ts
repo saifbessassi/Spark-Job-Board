@@ -13,11 +13,11 @@ export class LanguageComponent implements OnInit {
 
   @Input() languages: LanguageCandidateResponse[];
   @Input() resumeID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   isLoading = false;
-  
+
   constructor(
-    config: NgbModalConfig, 
+    config: NgbModalConfig,
     private modalService: NgbModal,
     private langCandidateService: LanguageCandidateService
   ) {
@@ -33,7 +33,7 @@ export class LanguageComponent implements OnInit {
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.languages.push(res);
-    })
+    });
   }
 
   openEditForm(lang, index) {
@@ -42,18 +42,18 @@ export class LanguageComponent implements OnInit {
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
       this.languages[res.index] = res.language;
-    })
+    });
   }
 
   delete(id: number, index: number) {
-    if(confirm('Do you really want to delete this language?')) {
+    if (confirm('Do you really want to delete this language?')) {
       this.isLoading = true;
       this.langCandidateService.delete(id).subscribe(res => {
         this.languages.splice(index, 1);
         this.isLoading = false;
       }, err => {
         this.isLoading = false;
-      })
+      });
     } else {
       this.isLoading = false;
     }

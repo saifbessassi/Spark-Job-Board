@@ -8,7 +8,7 @@ import { AuthenticationService } from '../services/auth/authentication.service';
     providedIn: 'root',
 })
 export class EnsureOnlyNonConnectedVisitAuthPages {
-    
+
     tokenValue: string;
     tokenIsValid: boolean;
     constructor(

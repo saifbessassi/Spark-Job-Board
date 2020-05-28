@@ -22,7 +22,7 @@ export class JobPostComponent implements OnInit {
 
   ngOnInit() {
     this.authService.currentUser.subscribe(data => {
-      const user:User = data;
+      const user: User = data;
       if (user && this.userService.isCandidate(user)) {
         this.isApplied = user.appliedJobs.includes(this.job.id);
       } else {

@@ -11,7 +11,7 @@ export class CategoryBoxComponent implements OnInit {
 
   @Input() label: string;
   @Input() count: string;
-  
+
   constructor(
     private router: Router
   ) { }

@@ -19,8 +19,8 @@ export class FooterComponent implements OnInit {
 
   initNewslettreForm() {
     this.newsletterForm = new FormGroup({
-      'email': new FormControl(null, Validators.email)
-    })
+      email: new FormControl(null, Validators.email)
+    });
   }
 
   onSubmit() {

@@ -7,12 +7,12 @@ import { AuthenticationService } from '../auth/authentication.service';
 import { BehaviorSubject, Observable } from 'rxjs';
 
 export class NbCandPerStatus {
-  total: number = 0;
-  applied: number = 0;
-  unapplied: number = 0;
-  accepted: number = 0;
-  waiting: number = 0;
-  rejected: number = 0;
+  total = 0;
+  applied = 0;
+  unapplied = 0;
+  accepted = 0;
+  waiting = 0;
+  rejected = 0;
 }
 
 const API_URL = environment.API_URL;
@@ -30,10 +30,10 @@ export class CandidateService {
     private authenticationService: AuthenticationService
   ) {
     this.authenticationService.currentUser.subscribe(data => {
-      if(data) {
+      if (data) {
         this.candidateID = data.id;
       }
-    })
+    });
     this.nbCandPerStatus = new BehaviorSubject<NbCandPerStatus>(null);
     this.currentNbCandPerStatus = this.nbCandPerStatus.asObservable();
   }
@@ -43,7 +43,7 @@ export class CandidateService {
   }
 
   changeNbCandPerStatus(newStatus: string, oldStatus: string) {
-    let app = this.nbCandPerStatus.getValue();
+    const app = this.nbCandPerStatus.getValue();
     switch (newStatus) {
       case 'accepted':
         app.accepted++;

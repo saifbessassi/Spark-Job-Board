@@ -13,9 +13,9 @@ export class ExperienceComponent implements OnInit {
 
   @Input() experiences: Experience[];
   @Input() resumeID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   isLoading = false;
-  
+
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -33,7 +33,7 @@ export class ExperienceComponent implements OnInit {
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.experiences.push(res);
-    })
+    });
   }
 
   openEditForm(exp, index) {
@@ -42,18 +42,18 @@ export class ExperienceComponent implements OnInit {
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
       this.experiences[res.index] = res.exp;
-    })
+    });
   }
 
   delete(id: number, index: number) {
-    if(confirm('Do you really want to delete this experience?')) {
+    if (confirm('Do you really want to delete this experience?')) {
       this.isLoading = true;
       this.experienceService.delete(id).subscribe(res => {
         this.experiences.splice(index, 1);
         this.isLoading = false;
       }, err => {
         this.isLoading = false;
-      })
+      });
     } else {
       this.isLoading = false;
     }

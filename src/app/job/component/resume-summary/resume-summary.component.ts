@@ -19,11 +19,11 @@ export class ResumeSummaryComponent implements OnInit {
   nbProject: number;
   nbSkill: number;
   nbLanguage: number;
-  percentage: number = 0;
-  
+  percentage = 0;
+
   constructor(
     private router: Router,
-    private _activeModal: NgbActiveModal
+    private activeModal: NgbActiveModal
   ) { }
 
   goProfile() {
@@ -57,7 +57,7 @@ export class ResumeSummaryComponent implements OnInit {
       }
 
       this.outputCanApply.emit(this.canApply);
-      
+
       if (this.nbEducation !== 0) {
         this.percentage += 1;
       }
@@ -91,12 +91,12 @@ export class ResumeSummaryComponent implements OnInit {
       if (this.candidate.resume.description) {
         this.percentage += 1;
       }
-      this.percentage = Math.round(this.percentage / 11 *100);
+      this.percentage = Math.round(this.percentage / 11 * 100);
     }
   }
 
   dismissModal() {
-    this._activeModal.close();
+    this.activeModal.close();
   }
 
 }

@@ -3,11 +3,11 @@
 <div class="card-body">
     <h1 class="text-center">Sign Up</h1>
 
-    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
-    <div *ngIf="signup_error?.length">
-        <sp-error-msg *ngFor="let error of signup_error" [error_msg]="error"></sp-error-msg>
+    <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
+    <div *ngIf="signupError?.length">
+        <sp-error-msg *ngFor="let error of signupError" [errorMsg]="error"></sp-error-msg>
     </div>
-    <h4 *ngIf="success_msg"  class="success-msg">{{success_msg}}</h4>
+    <h4 *ngIf="successMsg"  class="success-msg">{{successMsg}}</h4>
 
     <!-- <div class="row justify-content-center">  
         <button (click)="socialSignUp('facebook')" type="button" class="sp-btn btn-facebook">
@@ -136,7 +136,7 @@
             </form>
             <sp-social-authentication
                 (outputIsLoading)="getSocialAuthIsLoading($event)"
-                (outputError_msg)="getSocialAuthError_msg($event)"
+                (outputerrorMsg)="getSocialAutherrorMsg($event)"
                 (outputAuth)="getSocialAuthTrue($event)"
                 [location]="'signup'">
 

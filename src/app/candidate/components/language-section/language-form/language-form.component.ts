@@ -21,11 +21,11 @@ export class LanguageFormComponent implements OnInit {
   resumeID: number;
   index: number;
   id: number;
-  error_msg: string;
+  errorMsg: string;
   isLoading = false;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private langCandidateService: LanguageCandidateService,
     private langService: LanguageService
   ) { }
@@ -33,64 +33,64 @@ export class LanguageFormComponent implements OnInit {
   ngOnInit() {
     this.langService.getAllLanguages().subscribe(res => {
       this.allLang = res;
-    })
+    });
     this.initForm();
   }
 
   initForm() {
     this.langForm = new FormGroup({
-      'id': new FormControl(
+      id: new FormControl(
         null,
         [
           Validators.required
         ]
       ),
-      'proficiency': new FormControl(
+      proficiency: new FormControl(
         null,
         [
           Validators.required
         ]
         ),
     });
-    if(this.langResponse) {
+    if (this.langResponse) {
       this.langForm.setValue({
-        'id': this.langResponse.language.id,
-        'proficiency': this.langResponse.proficiency,
+        id: this.langResponse.language.id,
+        proficiency: this.langResponse.proficiency,
       });
     }
   }
 
   save() {
-    console.log(this.langForm.value)
+    console.log(this.langForm.value);
     this.isLoading = true;
     if (this.langResponse) {
       this.id = this.langResponse.id;
     }
-    
+
     this.langRequest.proficiency = this.langForm.value.proficiency;
     this.langRequest.language = this.langForm.value.id;
     if (this.resumeID) {
       this.langCandidateService.add(this.langRequest, this.resumeID).subscribe(res => {
-        this._activeModal.close(res);
+        this.activeModal.close(res);
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     } else {
       this.langRequest.id = this.id;
       this.langCandidateService.edit(this.langRequest).subscribe(res => {
-        this._activeModal.close({language: res, index: this.index});
+        this.activeModal.close({language: res, index: this.index});
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     }
   }
 
   dismissModal() {
-    this._activeModal.dismiss();
+    this.activeModal.dismiss();
   }
 
 }

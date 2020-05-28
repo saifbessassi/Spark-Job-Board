@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <form [formGroup]="jobForm" (ngSubmit)="onSave()">
 
-    <h3 class="text-danger text-center my-3">{{error_msg}}</h3>
+    <h3 class="text-danger text-center my-3">{{errorMsg}}</h3>
     <div class="form-group">
         <label for="inputTitle">Title: <span class="obligatory">*</span></label>
         <input

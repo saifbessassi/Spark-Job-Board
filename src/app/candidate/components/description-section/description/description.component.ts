@@ -11,7 +11,7 @@ export class DescriptionComponent implements OnInit {
 
   @Input() description: string;
   @Input() resumeID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
 
   constructor(
     config: NgbModalConfig,
@@ -31,7 +31,7 @@ export class DescriptionComponent implements OnInit {
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.description = res;
-    })
+    });
   }
 
 }

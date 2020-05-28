@@ -11,9 +11,9 @@ import { NbJobsPerStatus } from 'src/app/recruiter/pages/jobs-table/jobs-table.c
 })
 export class JobPerStatusChartComponent implements OnInit {
 
-  nbJobs = new NbJobsPerStatus;
+  nbJobs = new NbJobsPerStatus();
   allJobsNb: number;
-  
+
   labels: Label[] = [];
   data: MultiDataSet = [[]];
   doughnutChartType: ChartType = 'doughnut';
@@ -26,8 +26,8 @@ export class JobPerStatusChartComponent implements OnInit {
         '#ffc107',
       ],
     }
-  ]
-  
+  ];
+
   constructor(
     private jobService: JobService
   ) { }
@@ -35,17 +35,17 @@ export class JobPerStatusChartComponent implements OnInit {
   ngOnInit() {
     this.jobService.getNbJobsPerStatus().subscribe(
       res => {
-        for(let key in res) {
+        for (const key of Object.keys(res)) {
           this.nbJobs[key] = res[key];
         }
         this.allJobsNb = this.nbJobs.open + this.nbJobs.closed + this.nbJobs.saved;
-        let nb = [];
-        for(let key in this.nbJobs) {
+        const nb = [];
+        for (const key of Object.keys(this.nbJobs)) {
           this.data[0].push(this.nbJobs[key]);
           this.labels.push(key);
         }
       }
-    )
+    );
   }
 
 }

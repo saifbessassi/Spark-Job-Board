@@ -2,13 +2,13 @@
 <div class="px-3">
     <div class="modal-header border-none pb-0">
         <h4 class="modal-title" id="modal-basic-title">New Category</h4>
-        <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss()">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
         <div class="modal-body">
-            <h6  class="text-danger mb-4 text-center" *ngIf="error_msg">{{error_msg}}</h6>
+            <h6  class="text-danger mb-4 text-center" *ngIf="errorMsg">{{errorMsg}}</h6>
             <div class="form-group">
                 <label>Category: <span class="obligatory">*</span></label>
                 <input

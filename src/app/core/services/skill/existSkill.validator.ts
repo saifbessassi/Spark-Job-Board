@@ -15,15 +15,15 @@ export class ExistSkillValidator {
                 // return if another validator has already found an error on the matchingControl
                 return;
             }
-            let skillsLabel = [];
-            allSkills.forEach(element => {
-                skillsLabel.push(element.label.toUpperCase());
-            })
+            const skillsLabel = [];
+            allSkills.forEach(skill => {
+                skillsLabel.push(skill.label.toUpperCase());
+            });
             if (skillsLabel.includes(control.value.toUpperCase())) {
-                control.setErrors({exist: true})
+                control.setErrors({exist: true});
             } else {
                 control.setErrors(null);
             }
-        }
+        };
     }
 }

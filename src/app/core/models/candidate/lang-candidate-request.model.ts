@@ -5,5 +5,5 @@ export class LanguageCandidateRequest {
     public language: string | number;
     public resume: string;
 
-    public constructor () {}
+    public constructor() {}
 }

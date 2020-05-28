@@ -13,9 +13,9 @@ export class SkillComponent implements OnInit {
 
   @Input() skills: SkillCandidateResponse[];
   @Input() resumeID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   isLoading = false;
-  
+
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -33,7 +33,7 @@ export class SkillComponent implements OnInit {
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.skills.push(res);
-    })
+    });
   }
 
   openEditForm(skill, index) {
@@ -42,18 +42,18 @@ export class SkillComponent implements OnInit {
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
       this.skills[res.index] = res.skill;
-    })
+    });
   }
 
   delete(id: number, index: number) {
-    if(confirm('Do you really want to delete this skill?')) {
+    if (confirm('Do you really want to delete this skill?')) {
       this.isLoading = true;
       this.skillCandidateService.delete(id).subscribe(res => {
         this.skills.splice(index, 1);
         this.isLoading = false;
       }, err => {
         this.isLoading = false;
-      })
+      });
     } else {
       this.isLoading = false;
     }

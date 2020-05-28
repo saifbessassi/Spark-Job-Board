@@ -5,6 +5,6 @@ export class Education {
     public school: string;
     public degree: string;
     public resume: string;
-    
-    public constructor () {}
+
+    public constructor() {}
 }

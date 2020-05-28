@@ -5,8 +5,8 @@
 </section>
 
 <!-- <section id="job-Details" class="background-color-white-drak" style="padding: 5%;">
-    <sp-error-msg [error_msg]="getJob_error" *ngIf="!isLoading && getJob_error"></sp-error-msg>
-    <sp-job-card-detail [job]="job" *ngIf="!getJob_error && !isLoading"></sp-job-card-detail>
+    <sp-error-msg [errorMsg]="getJobError" *ngIf="!isLoading && getJobError"></sp-error-msg>
+    <sp-job-card-detail [job]="job" *ngIf="!getJobError && !isLoading"></sp-job-card-detail>
 </section> -->
 
 
@@ -24,19 +24,19 @@
         </div>
         <!-- Candidate view -->
         <div *ngIf="!isRecruiter" class="card-body">
-            <sp-error-msg [error_msg]="getJob_error" *ngIf="!isLoading && getJob_error"></sp-error-msg>
-            <sp-job-card-detail id="info" [job]="job" *ngIf="!isRecruiter && !getJob_error && !isLoading"></sp-job-card-detail>
+            <sp-error-msg [errorMsg]="getJobError" *ngIf="!isLoading && getJobError"></sp-error-msg>
+            <sp-job-card-detail id="info" [job]="job" *ngIf="!isRecruiter && !getJobError && !isLoading"></sp-job-card-detail>
         </div>
 
         <!-- Recruiter view -->
         <div *ngIf="isRecruiter" class="card-body">
-          <sp-error-msg [error_msg]="getJob_error" *ngIf="!isLoading && getJob_error"></sp-error-msg>
+          <sp-error-msg [errorMsg]="getJobError" *ngIf="!isLoading && getJobError"></sp-error-msg>
 
           <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
               <li [ngbNavItem]="1">
                 <a ngbNavLink>Information</a>
                 <ng-template ngbNavContent>
-                  <sp-job-card-detail [job]="job" *ngIf="!getJob_error && !isLoading"></sp-job-card-detail>
+                  <sp-job-card-detail [job]="job" *ngIf="!getJobError && !isLoading"></sp-job-card-detail>
                 </ng-template>
               </li>
               <li [ngbNavItem]="2">

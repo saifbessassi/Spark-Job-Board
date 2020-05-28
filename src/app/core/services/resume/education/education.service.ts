@@ -9,10 +9,10 @@ const API_URL = environment.API_URL;
     providedIn: 'root',
 })
 export class EducationService {
-    
+
     constructor(
         private http: HttpClient
-    ){}
+    ) {}
 
     edit(edu: Education) {
         return this.http.put(API_URL + '/api/education/' + edu.id, edu);

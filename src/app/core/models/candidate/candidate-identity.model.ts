@@ -1,7 +1,7 @@
 import { Picture } from './picture.model';
 
 export class CandidateIdentity {
-    
+
     constructor(
         public fullname: string,
         public email: string,

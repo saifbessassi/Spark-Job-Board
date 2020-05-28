@@ -20,7 +20,7 @@ import { CategoryFormComponent } from '../category-form/category-form.component'
 export class JobFormComponent implements OnInit {
 
   @Input() job: Job;
-  @Input() _activeModal: NgbActiveModal;
+  @Input() activeModal: NgbActiveModal;
 
   jobForm: FormGroup;
   maxStartDate: any;
@@ -28,8 +28,8 @@ export class JobFormComponent implements OnInit {
   allSkills: Skill[];
   allCategories: Category[];
   isLoading: boolean;
-  error_msg: string;
-  action: string = 'add';
+  errorMsg: string;
+  action = 'add';
 
   constructor(
     private ngbDateService: NgbDateService,
@@ -38,60 +38,59 @@ export class JobFormComponent implements OnInit {
     private jobService: JobService,
     private router: Router,
     private modalService: NgbModal
-  ) 
-  {
+  ) {
     const today = new Date();
-    this.minStartDate = this.ngbDateService.dateToString(new Date(today.setDate(today.getDate()+1)));
-    this.maxStartDate = this.ngbDateService.dateToString(new Date(today.setFullYear(today.getFullYear()+1)));
+    this.minStartDate = this.ngbDateService.dateToString(new Date(today.setDate(today.getDate() + 1)));
+    this.maxStartDate = this.ngbDateService.dateToString(new Date(today.setFullYear(today.getFullYear() + 1)));
   }
 
   ngOnInit() {
     this.skillService.getAllSkills().subscribe(res => {
       this.allSkills = res;
-    })
+    });
     this.categoryService.getAllCategories().subscribe(res => {
       this.allCategories = res;
-    })
+    });
     this.initForm();
   }
 
   initForm() {
     this.jobForm = new FormGroup({
-      'title' : new FormControl(null, [Validators.required, Validators.minLength(7), Validators.maxLength(255)]),
-      'employmentType' : new FormControl(null, Validators.required),
-      'seniorityLevel' : new FormControl(null, Validators.required),
-      'location' : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
-      'skills' : new FormControl(null, Validators.required),
-      'category' : new FormControl(null, Validators.required),
-      'description' : new FormControl(null, [Validators.required]),
-      'deadline' : new FormControl(null, [Validators.required]),
+      title : new FormControl(null, [Validators.required, Validators.minLength(7), Validators.maxLength(255)]),
+      employmentType : new FormControl(null, Validators.required),
+      seniorityLevel : new FormControl(null, Validators.required),
+      location : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(255)]),
+      skills : new FormControl(null, Validators.required),
+      category : new FormControl(null, Validators.required),
+      description : new FormControl(null, [Validators.required]),
+      deadline : new FormControl(null, [Validators.required]),
     });
     if (this.job) {
       this.action = 'edit';
-      let jobSkillsIDs: number[] = [];
+      const jobSkillsIDs: number[] = [];
       let cat = null;
       this.job.skills.forEach(skill => {
         jobSkillsIDs.push(skill.id);
-      })
+      });
       if (this.job.category) {
-        cat = this.job.category.id
+        cat = this.job.category.id;
       }
       this.jobForm.setValue({
-        'title': this.job.title,
-        'employmentType' : this.job.employmentType,
-        'seniorityLevel' : this.job.seniorityLevel,
-        'location' : this.job.location,
-        'skills' : jobSkillsIDs,
-        'category' : cat,
-        'description' : this.job.description,
-        'deadline' : this.ngbDateService.dateToString(this.job.deadline),
-      })
+        title: this.job.title,
+        employmentType : this.job.employmentType,
+        seniorityLevel : this.job.seniorityLevel,
+        location : this.job.location,
+        skills : jobSkillsIDs,
+        category : cat,
+        description : this.job.description,
+        deadline : this.ngbDateService.dateToString(this.job.deadline),
+      });
     }
   }
 
   onSave() {
     this.isLoading = true;
-    let newJob = this.jobForm.value;
+    const newJob = this.jobForm.value;
     newJob.deadline = this.ngbDateService.stringToDate(newJob.deadline);
     if (this.action === 'add') {
       this.addNewJob(newJob);
@@ -107,23 +106,23 @@ export class JobFormComponent implements OnInit {
         this.isLoading = false;
       },
       err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
       }
-    )
+    );
   }
 
   editJob(job, id) {
     this.jobService.editJob(job, id).subscribe(
       res => {
-        this._activeModal.close(res);
+        this.activeModal.close(res);
         this.isLoading = false;
       },
       err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
       }
-    )
+    );
   }
 
   addSkill() {
@@ -131,7 +130,7 @@ export class JobFormComponent implements OnInit {
     modalRef.componentInstance.allSkills = this.allSkills;
     modalRef.result.then((newSkill) => {
       this.allSkills.push(newSkill);
-    }, rejected => {})
+    }, rejected => {});
   }
 
   addCategory() {
@@ -139,6 +138,6 @@ export class JobFormComponent implements OnInit {
     modalRef.componentInstance.allCategories = this.allCategories;
     modalRef.result.then((newCategory) => {
       this.allCategories.push(newCategory);
-    }, rejected => {})
+    }, rejected => {});
   }
 }

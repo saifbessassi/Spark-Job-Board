@@ -10,19 +10,19 @@ import { FilterChoice } from 'src/app/core/models/filter-choice.model';
 })
 export class AllJobsComponent implements OnInit {
 
-  title = "Our Available Offers";
-  text = "";
-  nb_jobs: number;
-  nb_jobs_per_page: number = 10;
+  title = 'Our Available Offers';
+  text = '';
+  nbJobs: number;
+  nbJobsPerPage = 10;
   isLoading = false;
   jobs: Job[] = [];
-  category_filter_param;
-  getJobs_error: string;
-  getFilters_error: string;
+  categoryFilterParam;
+  getJobsError: string;
+  getFiltersError: string;
   filterOptions: any;
   filterParams: FilterChoice[] = [];
-  orderParam: string = "";
-  pageParam: number = 1;
+  orderParam = '';
+  pageParam = 1;
   checkedValues: string[] = [];
   filterChoice: FilterChoice;
 
@@ -32,12 +32,12 @@ export class AllJobsComponent implements OnInit {
 
   ngOnInit() {
     if (history.state.data) {
-      // this.category_filter_param = history.state.data[0];
-      // const key = this.category_filter_param.key;
-      // const value = this.category_filter_param.value;
+      // this.categoryFilterParam = history.state.data[0];
+      // const key = this.categoryFilterParam.key;
+      // const value = this.categoryFilterParam.value;
       // this.checkedValue = value;
       history.state.data.forEach(element => {
-        this.checkedValues.push(element.value)
+        this.checkedValues.push(element.value);
       });
       this.filterParams = (history.state.data);
     }
@@ -49,21 +49,21 @@ export class AllJobsComponent implements OnInit {
     this.jobService.getFilterOptions().subscribe( res => {
       this.filterOptions = res;
     }, err => {
-      this.getFilters_error = err.statusText + '! Please try again later.';
-    })
-    
+      this.getFiltersError = err.statusText + '! Please try again later.';
+    });
+
   }
 
   getJobs() {
     this.isLoading = true;
     this.jobService.getCandidateJobs(this.filterParams, this.pageParam, this.orderParam).subscribe( res => {
       this.jobs = res['hydra:member'];
-      this.nb_jobs = res['hydra:totalItems'];
+      this.nbJobs = res['hydra:totalItems'];
       this.isLoading = false;
     }, err => {
-      this.getJobs_error = err.statusText + '! Please try again later.';
+      this.getJobsError = err.statusText + '! Please try again later.';
       this.isLoading = false;
-    })
+    });
   }
 
   addFilter($event) {

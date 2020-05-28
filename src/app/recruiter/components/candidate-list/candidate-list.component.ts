@@ -18,11 +18,11 @@ import { MailFormComponent } from '../mail-form/mail-form.component';
 export class CandidateListComponent implements OnInit {
 
   @Input() jobID: number;
-  @Input() columnDecision: boolean = false;
+  @Input() columnDecision = false;
   allCand: ServerDataSource;
   params: string;
-  candStatus: string = '';
-  nbCand = new NbCandPerStatus;
+  candStatus = '';
+  nbCand = new NbCandPerStatus();
   endpoint: string;
   settings: any;
 
@@ -31,8 +31,7 @@ export class CandidateListComponent implements OnInit {
     private candidateService: CandidateService,
     private http: HttpClient,
     private modalService: NgbModal,
-  ) 
-  { }
+  ) { }
 
   ngOnInit() {
     // Get numbers of applications per status
@@ -43,7 +42,7 @@ export class CandidateListComponent implements OnInit {
 
       this.jobService.getNbApplicationPerStatus(this.jobID).subscribe(
         (res: NbCandPerStatus) => {
-          for (var key in this.nbCand) {
+          for (const key in this.nbCand) {
             if (res[key]) {
               this.nbCand[key] = res[key];
             } else {
@@ -51,17 +50,15 @@ export class CandidateListComponent implements OnInit {
             }
           }
         }
-      )
-    } 
-    // Get number of candidates par applications status
-    else {
+      );
+    } else {
       // Endpoint to get all candidates
       this.endpoint = 'http://localhost:8000/api/candidates?';
       this.setSettingsAllCandidates();
 
       this.candidateService.getNbCandidate().subscribe(
         (res: NbCandPerStatus) => {
-          for (var key in this.nbCand) {
+          for (const key in this.nbCand) {
             if (res[key]) {
               this.nbCand[key] = res[key];
             } else {
@@ -69,7 +66,7 @@ export class CandidateListComponent implements OnInit {
             }
           }
         }
-      )
+      );
     }
     // set value of behaviour subject
     this.candidateService.setNbCandPerStatus(this.nbCand);
@@ -87,7 +84,7 @@ export class CandidateListComponent implements OnInit {
     );
     // Add column with decisions buttons
     if (this.columnDecision) {
-      this.settings.columns['decision'] = {
+      this.settings.columns.decision = {
         title: 'Decesion',
         type: 'custom',
         filter: false,
@@ -100,7 +97,7 @@ export class CandidateListComponent implements OnInit {
             this.allCand.refresh();
           });
         },
-      }
+      };
     }
   }
 
@@ -144,12 +141,12 @@ export class CandidateListComponent implements OnInit {
           title: 'Skills',
           type: 'string',
           valuePrepareFunction: (value, row) => {
-            if(row.candidateSkills) {
+            if (row.candidateSkills) {
               const skills = [];
               row.candidateSkills.forEach(element => {
                 skills.push(element.skill.label);
               });
-              return skills.sort((a,b)=> a.localeCompare(b));
+              return skills.sort((a, b) => a.localeCompare(b));
             }
             return null;
           },
@@ -212,12 +209,12 @@ export class CandidateListComponent implements OnInit {
           title: 'Skills',
           type: 'string',
           valuePrepareFunction: (value, row) => {
-            if(row.candidate.resume) {
+            if (row.candidate.resume) {
               const skills = [];
               row.candidate.resume.skillsCandidate.forEach(element => {
                 skills.push(element.skill.label);
               });
-              return skills.sort((a,b)=> a.localeCompare(b));
+              return skills.sort((a, b) => a.localeCompare(b));
             }
             return null;
           },
@@ -243,9 +240,7 @@ export class CandidateListComponent implements OnInit {
     // If we filter applications
     if (this.candStatus && this.jobID) {
       statusFilter = '&status[]=' + this.candStatus;
-    }
-    // If we filter candidates
-    else if (this.candStatus) {
+    } else if (this.candStatus) {
       switch (this.candStatus) {
         case 'true':
           statusFilter = '&applied=' + this.candStatus;
@@ -256,7 +251,7 @@ export class CandidateListComponent implements OnInit {
         default:
           statusFilter = '&jobApplications.status[]=' + this.candStatus;
           break;
-      } 
+      }
     }
 
     this.allCand  = new ServerDataSource(
@@ -284,7 +279,7 @@ export class CandidateListComponent implements OnInit {
           if (res) {
             this.allCand.refresh();
           }
-        })
+        });
         break;
       case 'contact':
         const contactModal = this.modalService.open(MailFormComponent, { centered: true, size: 'xl' });
@@ -297,6 +292,6 @@ export class CandidateListComponent implements OnInit {
       default:
         break;
     }
-    
+
   }
 }

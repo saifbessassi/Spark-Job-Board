@@ -61,7 +61,7 @@ export class JobFilterInterceptor implements HttpInterceptor {
                             .set('deadline[before]', endValue),
                     ]
                 });
-            } 
+            }
         }
 
         if (this.isMethodGet && this.sortFilter) {
@@ -70,7 +70,7 @@ export class JobFilterInterceptor implements HttpInterceptor {
             const order: string = this.newReq.params.get('_order');
             this.params = this.params.delete('_order');
             this.newReq = this.newReq.clone({
-                params: this.params.set('order['+field+']', order)
+                params: this.params.set('order[' + field + ']', order)
             });
         }
 

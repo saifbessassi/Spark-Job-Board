@@ -13,9 +13,9 @@ export class DocumentComponent implements OnInit {
 
   @Input() cv: Document;
   @Input() resumeID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   isLoading = false;
-  
+
   constructor(
     config: NgbModalConfig,
     private modalService: NgbModal,
@@ -26,7 +26,7 @@ export class DocumentComponent implements OnInit {
   }
 
   viewCv() {
-    window.open('http://localhost:8000' + this.cv.url, '_blanc')
+    window.open('http://localhost:8000' + this.cv.url, '_blanc');
   }
 
   ngOnInit() {
@@ -38,6 +38,6 @@ export class DocumentComponent implements OnInit {
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.cv = res;
-    })
+    });
   }
 }

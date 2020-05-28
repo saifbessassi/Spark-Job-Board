@@ -8,10 +8,10 @@ const API_URL = environment.API_URL;
     providedIn: 'root',
 })
 export class DescriptionService {
-    
+
     constructor(
         private http: HttpClient
-    ){}
+    ) {}
 
     edit(desc: string, resumeID: number) {
         const d = {description: desc};

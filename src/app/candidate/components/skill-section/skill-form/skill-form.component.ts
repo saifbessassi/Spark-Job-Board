@@ -21,11 +21,11 @@ export class SkillFormComponent implements OnInit {
   resumeID: number;
   index: number;
   id: number;
-  error_msg: string;
+  errorMsg: string;
   isLoading = false;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private skillService: SkillService,
     private skillCandidateService: SkillCandidateService
   ) { }
@@ -33,29 +33,29 @@ export class SkillFormComponent implements OnInit {
   ngOnInit() {
     this.skillService.getAllSkills().subscribe(res => {
       this.allSkills = res;
-    })
+    });
     this.initForm();
   }
 
   initForm() {
     this.skillForm = new FormGroup({
-      'id': new FormControl(
+      id: new FormControl(
         null,
         [
           Validators.required
         ]
       ),
-      'proficiency': new FormControl(
+      proficiency: new FormControl(
         null,
         [
           Validators.required
         ]
         ),
     });
-    if(this.skillResponse) {
+    if (this.skillResponse) {
       this.skillForm.setValue({
-        'id': this.skillResponse.skill.id,
-        'proficiency': this.skillResponse.proficiency,
+        id: this.skillResponse.skill.id,
+        proficiency: this.skillResponse.proficiency,
       });
     }
   }
@@ -65,33 +65,33 @@ export class SkillFormComponent implements OnInit {
     if (this.skillResponse) {
       this.id = this.skillResponse.id;
     }
-    
+
     this.skillRequest.proficiency = this.skillForm.value.proficiency;
     this.skillRequest.skill = this.skillForm.value.id;
     if (this.resumeID) {
       this.skillCandidateService.add(this.skillRequest, this.resumeID).subscribe(res => {
-        this._activeModal.close(res);
+        this.activeModal.close(res);
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     } else {
       this.skillRequest.id = this.id;
       // this.skillResponse.proficiency = this.skillForm.value.proficiency;
       // this.skillResponse.skill = this.skillForm.value.proficiency;
       this.skillCandidateService.edit(this.skillRequest).subscribe(res => {
-        this._activeModal.close({skill: res, index: this.index});
+        this.activeModal.close({skill: res, index: this.index});
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     }
   }
 
   dismissModal() {
-    this._activeModal.dismiss();
+    this.activeModal.dismiss();
   }
 
 }

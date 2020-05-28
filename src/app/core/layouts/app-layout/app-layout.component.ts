@@ -22,7 +22,7 @@ export class AppLayoutComponent implements OnInit {
       } else {
         this.isRecruiter = false;
       }
-    })
+    });
   }
 
   ngOnInit() {

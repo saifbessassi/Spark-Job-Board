@@ -10,14 +10,14 @@ export class NgbDateService {
     dateToString(date) {
         const d = new Date(date);
         return {
-          'day': d.getDate(),
-          'month': d.getMonth() + 1,
-          'year': d.getFullYear()
-        }
+          day: d.getDate(),
+          month: d.getMonth() + 1,
+          year: d.getFullYear()
+        };
     }
-    
+
     stringToDate(date) {
-        let d = date.year + '-' + date.month + '-' + date.day;
+        const d = date.year + '-' + date.month + '-' + date.day;
         return new Date(d);
     }
 }

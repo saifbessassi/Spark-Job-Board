@@ -11,7 +11,7 @@ const API_URL = environment.API_URL;
 
 interface SigninResponse {
   token: string;
-  refresh_token: string
+  refresh_token: string;
 }
 
 @Injectable({
@@ -41,11 +41,11 @@ export class AuthenticationService {
 
   // // To change provider's token for our application's token
   socialSignin(token: string, provider: string) {
-    const request_data = {
-      'token': token,
-      'provider': provider,
+    const requestData = {
+      token,
+      provider,
     };
-    return this.http.post<SigninResponse>(API_URL + '/api/candidate/social-login', request_data)
+    return this.http.post<SigninResponse>(API_URL + '/api/candidate/social-login', requestData)
       .pipe(map(res => {
         return this.handleAuthentication(res);
       }));
@@ -60,35 +60,35 @@ export class AuthenticationService {
   // store user details and jwt token in local storage to keep user logged in between page refreshes
   handleAuthentication(data: SigninResponse) {
     const payload = jwt_decode(data.token);
-    let user = new User();
-    let token = new Token();
+    const user = new User();
+    const token = new Token();
 
     token.access_token = data.token;
     token.refrech_token = data.refresh_token;
-    token.exp = payload['exp'];
-    token.iat = payload['iat'];
-    user.id = payload['id'];
-    user.email = payload['username'];
-    user.fullname = payload['fullname'];
-    user.picture = payload['picture'];
-    user.roles = payload['roles'];
+    token.exp = payload.exp;
+    token.iat = payload.iat;
+    user.id = payload.id;
+    user.email = payload.username;
+    user.fullname = payload.fullname;
+    user.picture = payload.picture;
+    user.roles = payload.roles;
 
     // If user is a candidate, get his applied jobs
     if (user.roles.includes('ROLE_CANDIDATE')) {
       this.http.get(API_URL + '/api/job_applications/applied?id=' + user.id).subscribe(
         res => {
-          user.appliedJobs = res['jobs'];
+          user.appliedJobs = res.jobs;
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('token', JSON.stringify(token));
           this.currentUserSubject.next(user);
         }
-      )
+      );
     } else {
       localStorage.setItem('currentUser', JSON.stringify(user));
       localStorage.setItem('token', JSON.stringify(token));
       this.currentUserSubject.next(user);
     }
-    
+
     return user;
   }
 
@@ -103,7 +103,7 @@ export class AuthenticationService {
 
   // Update picture in localStorage
   updatePicture(picture?) {
-    let user = this.currentUserValue;
+    const user = this.currentUserValue;
     if (picture) {
       user.picture = picture;
     } else {
@@ -115,7 +115,7 @@ export class AuthenticationService {
 
   // Update appliedJobs in localStorage
   addAppliedJob(jobID) {
-    let user = this.currentUserValue;
+    const user = this.currentUserValue;
     user.appliedJobs.push(jobID);
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);

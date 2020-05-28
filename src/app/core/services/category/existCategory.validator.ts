@@ -14,15 +14,15 @@ export class ExistCategoryValidator {
                 // return if another validator has already found an error on the matchingControl
                 return;
             }
-            let categoryLabel = [];
+            const categoryLabel = [];
             allCategories.forEach(element => {
                 categoryLabel.push(element.label.toUpperCase());
-            })
+            });
             if (categoryLabel.includes(control.value.toUpperCase())) {
-                control.setErrors({exist: true})
+                control.setErrors({exist: true});
             } else {
                 control.setErrors(null);
             }
-        }
+        };
     }
 }

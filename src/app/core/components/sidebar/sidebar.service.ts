@@ -7,10 +7,10 @@ import { Injectable, Output, EventEmitter } from '@angular/core';
 
     isClose = false;
 
-    @Output() change: EventEmitter<boolean> = new EventEmitter();
+    @Output() outputChange: EventEmitter<boolean> = new EventEmitter();
 
     toggle() {
         this.isClose = !this.isClose;
-        this.change.emit(this.isClose);
+        this.outputChange.emit(this.isClose);
     }
   }

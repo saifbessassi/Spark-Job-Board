@@ -2,11 +2,11 @@
 <div class="px-3">
     <div class="modal-header border-none pb-0">
         <h4 class="modal-title" id="modal-basic-title">New message</h4>
-        <button type="button" class="close" aria-label="Close" (click)="_activeModal.dismiss()">
+        <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
+    <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
     <form [formGroup]="mailForm" (ngSubmit)="onSubmit()">
     
         <div class="modal-body">

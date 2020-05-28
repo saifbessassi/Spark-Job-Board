@@ -5,5 +5,5 @@ export class SkillCandidateRequest {
     public skill: string | number;
     public resume: string;
 
-    public constructor () {}
+    public constructor() {}
 }

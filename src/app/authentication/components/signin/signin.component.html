@@ -4,9 +4,9 @@
     <h1 class="text-center">Sign In</h1>
     <p class="text-center">Hello! Sign in with your email.</p>
 
-    <sp-error-msg *ngIf="error_msg" [error_msg]="error_msg"></sp-error-msg>
-    <div *ngIf="login_error?.length">
-        <sp-error-msg *ngFor="let error of login_error" [error_msg]="error"></sp-error-msg>
+    <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
+    <div *ngIf="loginError?.length">
+        <sp-error-msg *ngFor="let error of loginError" [errorMsg]="error"></sp-error-msg>
     </div>
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -67,7 +67,7 @@
             </form>
             <sp-social-authentication
                 (outputIsLoading)="getSocialAuthIsLoading($event)"
-                (outputError_msg)="getSocialAuthError_msg($event)"
+                (outputerrorMsg)="getSocialAutherrorMsg($event)"
                 (outputAuth)="getSocialAuthTrue($event)"
                 [location]="location">
 

@@ -9,7 +9,7 @@ import { ApplicationService } from 'src/app/core/services/application/applicatio
 })
 export class RecentApplicationsComponent implements OnInit {
 
-  msg_error: string;
+  errorMsg: string;
   recentApplications: Application[] = [];
 
   constructor(
@@ -19,10 +19,10 @@ export class RecentApplicationsComponent implements OnInit {
   ngOnInit() {
     this.applicationService.getRecentApplications().subscribe( res => {
       this.recentApplications = res['hydra:member'];
-      console.log(this.recentApplications)
+      console.log(this.recentApplications);
     }, err => {
-      this.msg_error = 'Unknown error! Please try again later.';
-    })
+      this.errorMsg = 'Unknown error! Please try again later.';
+    });
   }
 
 }

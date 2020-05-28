@@ -13,15 +13,15 @@ import { first } from 'rxjs/operators';
 })
 export class SigninComponent implements OnInit {
 
-  @Input() location: string = 'signin';
+  @Input() location = 'signin';
   @Output() outputAuth = new EventEmitter<boolean>();
 
   focus;
   focus1;
   isLoading = false;
-  error_msg = null;
+  errorMsg = null;
   loginForm: FormGroup;
-  login_error: string[] = [];
+  loginError: string[] = [];
 
 
   constructor(
@@ -34,13 +34,13 @@ export class SigninComponent implements OnInit {
   ngOnInit() {
 
     this.loginForm = new FormGroup({
-      'email' : new FormControl(null, [Validators.required, Validators.email]),
-      'password' : new FormControl(null, [Validators.required, Validators.minLength(8)]),
+      email : new FormControl(null, [Validators.required, Validators.email]),
+      password : new FormControl(null, [Validators.required, Validators.minLength(8)]),
     });
   }
 
   emailSignin() {
-    this.login_error = [];
+    this.loginError = [];
     this.isLoading = true;
     const candidate = this.loginForm.value;
 
@@ -56,11 +56,11 @@ export class SigninComponent implements OnInit {
           this.isLoading = false;
         },
         error => {
-          console.log(error)
-          this.login_error.push(error.error.message);
+          console.log(error);
+          this.loginError.push(error.error.message);
           this.isLoading = false;
         }
-      )
+      );
 
     // this.authenticationService.signin(candidate).subscribe(res => {
     //   this.tokenService.setToken(res.token);
@@ -70,10 +70,10 @@ export class SigninComponent implements OnInit {
     //   } else if (this.location === 'apply') {
     //     this.outputAuth.emit(true);
     //   }
-      
+
     //   this.isLoading = false;
     // }, errors => {
-    //   this.login_error.push(errors.error.message);
+    //   this.loginError.push(errors.error.message);
     //   this.isLoading = false;
     // });
   }
@@ -82,10 +82,10 @@ export class SigninComponent implements OnInit {
     this.isLoading = $event;
   }
 
-  getSocialAuthError_msg($event) {
-    this.error_msg = $event;
+  getSocialAutherrorMsg($event) {
+    this.errorMsg = $event;
   }
-  
+
   getSocialAuthTrue($event) {
     this.outputAuth.emit($event);
   }

@@ -21,8 +21,8 @@ export class DetailJobComponent implements OnInit {
   isLoading = false;
   job: Job;
   jobId: number;
-  getJob_error: string;
-  isRecruiter: boolean = false;
+  getJobError: string;
+  isRecruiter = false;
 
   constructor(
     private jobService: JobService,
@@ -30,13 +30,13 @@ export class DetailJobComponent implements OnInit {
     private authService: AuthenticationService,
     private userService: UserService,
     private modalService: NgbModal
-  ) { 
+  ) {
     this.jobId = this.activatedRoute.snapshot.params.id;
   }
 
   ngOnInit() {
     this.authService.currentUser.subscribe(data => {
-      const user:User = data;
+      const user: User = data;
       if (this.userService.isRecruiter(user)) {
         this.isRecruiter = true;
       } else {
@@ -48,12 +48,12 @@ export class DetailJobComponent implements OnInit {
       this.job = res;
       this.isLoading = false;
     }, err => {
-      this.getJob_error = err.statusText;
-      if (this.getJob_error === 'Not Found') {
-        this.getJob_error = 'No job found with id ' + this.jobId + ' !';
+      this.getJobError = err.statusText;
+      if (this.getJobError === 'Not Found') {
+        this.getJobError = 'No job found with id ' + this.jobId + ' !';
       }
       this.isLoading = false;
-    })
+    });
   }
 
   onAction(event) {

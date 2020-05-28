@@ -12,7 +12,7 @@ import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 export class ApplicationsComponent implements OnInit {
 
   @Input() candidateID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   applications: Application[];
   nbCandPerStatus: NbCandPerStatus;
   @Output() outputIsDecisionMaked = new EventEmitter<boolean>();
@@ -27,12 +27,12 @@ export class ApplicationsComponent implements OnInit {
   ngOnInit() {
     this.candidateService.currentNbCandPerStatus.subscribe(data => {
       this.nbCandPerStatus = data;
-    })
+    });
     this.candidateService.getCandidateApplications(this.candidateID).subscribe((res: Application[]) => {
       this.applications = res;
     }, err => {
-      console.log(err)
-    })
+      console.log(err);
+    });
   }
 
   onDecision(status: string, id: number, index: number) {
@@ -46,7 +46,7 @@ export class ApplicationsComponent implements OnInit {
 
   openMotivation(motivation, message) {
     this.modalService.open(motivation, {scrollable: true, size: 'md'});
-    this.message = message
+    this.message = message;
   }
 
 }

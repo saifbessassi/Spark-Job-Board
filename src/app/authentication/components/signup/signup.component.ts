@@ -15,17 +15,17 @@ import { first } from 'rxjs/operators';
 export class SignupComponent implements OnInit {
 
   @Input() location: string;
-  
+
   focus;
   focus1;
   focus2;
   focus3;
   signupForm: FormGroup;
   isAgree: boolean;
-  signup_error = [];
+  signupError = [];
   isLoading = false;
-  error_msg: string;
-  success_msg: string;
+  errorMsg: string;
+  successMsg: string;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -38,19 +38,19 @@ export class SignupComponent implements OnInit {
 
   ngOnInit() {
     this.signupForm = this.formBuilder.group({
-        'fullname' : new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
-        'email' : new FormControl(null, [Validators.required, Validators.email]),
-        'password' : new FormControl(null, [Validators.required, Validators.minLength(8)]),
-        'retypedPassword' : new FormControl(null, [Validators.required]),
-        'isAgree': new FormControl(null, Validators.required),
+        fullname : new FormControl(null, [Validators.required, Validators.minLength(6), Validators.maxLength(30)]),
+        email : new FormControl(null, [Validators.required, Validators.email]),
+        password : new FormControl(null, [Validators.required, Validators.minLength(8)]),
+        retypedPassword : new FormControl(null, [Validators.required]),
+        isAgree: new FormControl(null, Validators.required),
     }, {
         validator: this.passwordValidator.MustMatch('password', 'retypedPassword'),
     });
   }
 
   signup() {
-    this.signup_error = [];
-    this.success_msg = null;
+    this.signupError = [];
+    this.successMsg = null;
     this.isLoading = true;
     const candidate = {
         email: this.signupForm.get('email').value,
@@ -59,14 +59,14 @@ export class SignupComponent implements OnInit {
         retypedPassword: this.signupForm.get('retypedPassword').value,
     };
     this.authenticationService.signup(candidate).subscribe(res => {
-        this.success_msg = 'You have successfully registered. Please check your email inbox to verify your account';
+        this.successMsg = 'You have successfully registered. Please check your email inbox to verify your account';
         setTimeout(() => {
             this.router.navigate(['auth/signin']);
         }, 6000);
         this.isLoading = false;
     }, errors => {
         errors.error.violations.forEach(element => {
-            this.signup_error.push(element.propertyPath + ': ' + element.message);
+            this.signupError.push(element.propertyPath + ': ' + element.message);
         });
         this.isLoading = false;
     });
@@ -85,15 +85,15 @@ export class SignupComponent implements OnInit {
       default:
         break;
     }
-    
+
     this.OAuth.signIn(providerID).then(user => {
       let token = user.authToken;
-      if(provider === 'google') {
+      if (provider === 'google') {
         token = user.idToken;
       }
       this.socialSignupReq(token, provider);
     }, err => {
-      this.error_msg = err;
+      this.errorMsg = err;
       this.isLoading = false;
     });
   }
@@ -107,18 +107,18 @@ export class SignupComponent implements OnInit {
           this.isLoading = false;
         },
         error => {
-          this.error_msg = error.error;
+          this.errorMsg = error.error;
           this.isLoading = false;
         }
-      )
+      );
   }
 
   getSocialAuthIsLoading($event) {
     this.isLoading = $event;
   }
 
-  getSocialAuthError_msg($event) {
-    this.error_msg = $event;
+  getSocialAutherrorMsg($event) {
+    this.errorMsg = $event;
   }
 
 }

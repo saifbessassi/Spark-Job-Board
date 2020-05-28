@@ -18,7 +18,7 @@ export class UserService {
         // this.user = JSON.parse(localStorage.getItem('currentUser'));
         authService.currentUser.subscribe(data => {
             this.user = data;
-        })
+        });
     }
 
     isRecruiter(user: User) {
@@ -48,7 +48,7 @@ export class UserService {
         }
         const exp = new Date(0);
         exp.setUTCSeconds(token.exp);
-        const current_date = new Date();
-        return exp > current_date;
+        const currentDate = new Date();
+        return exp > currentDate;
     }
 }

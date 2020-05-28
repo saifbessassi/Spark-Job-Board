@@ -9,10 +9,10 @@ const API_URL = environment.API_URL;
     providedIn: 'root',
 })
 export class CvService {
-    
+
     constructor(
         private http: HttpClient
-    ){}
+    ) {}
 
     add(file: File, resumeID: number) {
         const fb = new FormData();

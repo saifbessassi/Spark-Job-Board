@@ -14,15 +14,16 @@ import { JobFiltersOptions } from 'src/app/core/models/job-filters-options.model
 })
 export class LandingComponent implements OnInit {
 
-  title = "Find Jobs Now more Easy Way";
-  text = "Spark-it is a digital services company. We offer digital development and consulting solutions for all market players: Start-up, SMEs and large groups.";
-  
+  title = 'Find Jobs Now more Easy Way';
+  // tslint:disable-next-line:max-line-length
+  text = 'Spark-it is a digital services company. We offer digital development and consulting solutions for all market players: Start-up, SMEs and large groups.';
+
   isLoading = false;
-  isLoadingCategory = false
+  isLoadingCategory = false;
   recentJobs: Job[] = [];
   searchForm: FormGroup;
   nbJobsPerCategory: any = null;
-  msg_error: string;
+  errorMsg: string;
   filterOptions: JobFiltersOptions;
 
   constructor(
@@ -38,8 +39,8 @@ export class LandingComponent implements OnInit {
       this.isLoading = false;
     }, err => {
       this.isLoading = false;
-      this.msg_error = 'Unknown error! Please try again later.';
-    })
+      this.errorMsg = 'Unknown error! Please try again later.';
+    });
 
     // Get number of jobs per category
     this.isLoadingCategory = true;
@@ -48,13 +49,13 @@ export class LandingComponent implements OnInit {
       this.isLoadingCategory = false;
     }, err => {
       this.isLoadingCategory = false;
-    })
+    });
 
     // Get filter options with jobs count
     this.jobService.getFilterOptions().subscribe( res => {
       this.filterOptions = res;
     }, err => {
-    })
+    });
 
     // Initialise search form
     this.initSearchForm();
@@ -62,28 +63,28 @@ export class LandingComponent implements OnInit {
 
   initSearchForm() {
     this.searchForm = new FormGroup({
-      'title': new FormControl(null),
-      'category': new FormControl(null),
-      'location': new FormControl(null),
+      title: new FormControl(null),
+      category: new FormControl(null),
+      location: new FormControl(null),
     });
   }
 
   onSearchSubmit() {
-    let params = [];
+    const params = [];
     const searchFormValue = this.searchForm.value;
     if (searchFormValue.title) {
-      params.push({key: 'title', value : searchFormValue.title})
+      params.push({key: 'title', value : searchFormValue.title});
     }
     if (searchFormValue.category) {
-      params.push({key: 'category', value: searchFormValue.category})
+      params.push({key: 'category', value: searchFormValue.category});
     }
     if (searchFormValue.location) {
-      params.push({key: 'location', value: searchFormValue.location})
+      params.push({key: 'location', value: searchFormValue.location});
     }
-    
+
     this.router.navigate(['/cand/jobs'], { state: {data: params} });
   }
 
-  
+
 
 }

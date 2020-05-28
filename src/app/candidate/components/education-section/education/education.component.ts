@@ -13,7 +13,7 @@ export class EducationComponent implements OnInit {
 
   @Input() educations: Education[];
   @Input() resumeID: number;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   isLoading = false;
 
   constructor(
@@ -33,7 +33,7 @@ export class EducationComponent implements OnInit {
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.educations.push(res);
-    })
+    });
   }
 
   openEditForm(edu, index) {
@@ -42,18 +42,18 @@ export class EducationComponent implements OnInit {
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
       this.educations[res.index] = res.edu;
-    })
+    });
   }
 
   delete(id: number, index: number) {
-    if(confirm('Do you really want to delete this education?')) {
+    if (confirm('Do you really want to delete this education?')) {
       this.isLoading = true;
       this.educationService.delete(id).subscribe(res => {
         this.educations.splice(index, 1);
         this.isLoading = false;
       }, err => {
         this.isLoading = false;
-      })
+      });
     } else {
       this.isLoading = false;
     }

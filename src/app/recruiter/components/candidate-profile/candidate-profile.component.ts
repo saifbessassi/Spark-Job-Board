@@ -15,7 +15,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 export class CandidateProfileComponent implements OnInit {
 
   candidateID: number;
-  error_msg: boolean;
+  errorMsg: boolean;
   candidate: Candidate;
   resume: Resume;
   identity: CandidateIdentity;
@@ -23,10 +23,10 @@ export class CandidateProfileComponent implements OnInit {
   educations: Education[] = [];
   pictureURL: string;
   isLoading: boolean;
-  isDecicionMaked: boolean = false;
-  
+  isDecicionMaked = false;
+
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private candidateService: CandidateService
   ) { }
 
@@ -34,16 +34,16 @@ export class CandidateProfileComponent implements OnInit {
     this.isLoading = true;
     this.candidateService.getCandidateProfileByID(this.candidateID).subscribe( (res: Candidate) => {
       this.candidate = res;
-      console.log(this.candidate)
+      console.log(this.candidate);
       this.resume = this.candidate.resume;
       let seniority = null;
       if (this.resume) {
-        this.experiences = this.resume.experiences.sort((b,a)=> a.dateStart.toString().localeCompare(b.dateStart.toString()));
-        this.educations = this.resume.educations.sort((b,a)=> a.dateStart.toString().localeCompare(b.dateStart.toString()));
+        this.experiences = this.resume.experiences.sort((b, a) => a.dateStart.toString().localeCompare(b.dateStart.toString()));
+        this.educations = this.resume.educations.sort((b, a) => a.dateStart.toString().localeCompare(b.dateStart.toString()));
         seniority = {
           id: '/api/resumes/' + this.resume.id,
           seniorityLevel: this.resume.seniorityLevel
-        }
+        };
       }
       this.identity = new CandidateIdentity(
         this.candidate.fullname,
@@ -52,12 +52,12 @@ export class CandidateProfileComponent implements OnInit {
         this.candidate.address,
         this.candidate.phone,
         seniority
-      )
+      );
       this.isLoading = false;
     }, err => {
-        this.error_msg = true;
+        this.errorMsg = true;
         this.isLoading = false;
-    })
+    });
   }
 
   outputIsDecisionMaked($event) {

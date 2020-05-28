@@ -17,13 +17,13 @@ export class EducationFormComponent implements OnInit {
   id: number;
   education: Education;
   eduForm: FormGroup;
-  error_msg: string;
+  errorMsg: string;
   maxStartDate: any;
   minStartDate: any;
   isLoading = false;
 
   constructor(
-    private _activeModal: NgbActiveModal,
+    private activeModal: NgbActiveModal,
     private ngbDateService: NgbDateService,
     private educationService: EducationService
   ) {
@@ -38,41 +38,41 @@ export class EducationFormComponent implements OnInit {
 
   initForm() {
     this.eduForm = new FormGroup({
-      'school': new FormControl(
-        null, 
+      school: new FormControl(
+        null,
         [
           Validators.required,
           Validators.minLength(8),
           Validators.maxLength(200)
         ]
       ),
-      'degree': new FormControl(
-        null, 
+      degree: new FormControl(
+        null,
         [
           Validators.required,
           Validators.minLength(6),
           Validators.maxLength(200)
         ]
       ),
-      'dateStart': new FormControl(
+      dateStart: new FormControl(
         null,
         [
           Validators.required
         ]
       ),
-      'dateEnd': new FormControl(
+      dateEnd: new FormControl(
         null,
         [
           Validators.required
         ]
         ),
     });
-    if(this.education) {
+    if (this.education) {
       this.eduForm.setValue({
-        'school': this.education.school,
-        'degree': this.education.degree,
-        'dateStart': this.ngbDateService.dateToString(this.education.dateStart),
-        'dateEnd': this.ngbDateService.dateToString(this.education.dateEnd)
+        school: this.education.school,
+        degree: this.education.degree,
+        dateStart: this.ngbDateService.dateToString(this.education.dateStart),
+        dateEnd: this.ngbDateService.dateToString(this.education.dateEnd)
       });
     }
   }
@@ -87,37 +87,37 @@ export class EducationFormComponent implements OnInit {
     this.education.dateEnd = this.ngbDateService.stringToDate(this.eduForm.value.dateEnd);
     if (this.resumeID) {
       this.educationService.add(this.education, this.resumeID).subscribe(res => {
-        this._activeModal.close(res);
+        this.activeModal.close(res);
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     } else {
       this.education.id = this.id;
       this.educationService.edit(this.education).subscribe(res => {
-        this._activeModal.close({edu: this.education, index: this.index});
+        this.activeModal.close({edu: this.education, index: this.index});
         this.isLoading = false;
       }, err => {
-        this.error_msg = 'An error occurred, please try again later.';
+        this.errorMsg = 'An error occurred, please try again later.';
         this.isLoading = false;
-      })
+      });
     }
   }
 
   dismissModal() {
-    this._activeModal.dismiss();
+    this.activeModal.dismiss();
   }
 
   onDateStartChange() {
-    this.eduForm.get('dateStart').valueChanges.subscribe(res =>{
+    this.eduForm.get('dateStart').valueChanges.subscribe(res => {
       this.eduForm.get('dateEnd').reset();
-      if(this.eduForm.get('dateStart').invalid) {
+      if (this.eduForm.get('dateStart').invalid) {
         this.eduForm.get('dateEnd').disable();
       } else {
         this.eduForm.get('dateEnd').enable();
       }
-    })
+    });
   }
 
 }

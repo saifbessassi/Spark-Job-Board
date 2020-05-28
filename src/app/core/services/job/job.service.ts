@@ -14,12 +14,12 @@ export class JobService {
   constructor(private http: HttpClient) { }
 
   getOneJob(id: number) {
-    return this.http.get<Job>(API_URL + '/api/jobs/' + id +'.json');
+    return this.http.get<Job>(API_URL + '/api/jobs/' + id + '.json');
   }
 
   addNewJob(job) {
     job.skills.forEach((element, index) => {
-      job['skills'][index] = '/api/skills/' + element;
+      job.skills[index] = '/api/skills/' + element;
     });
     job.category = '/api/categories/' + job.category;
     job.status = 'open';
@@ -28,7 +28,7 @@ export class JobService {
 
   editJob(job, id) {
     job.skills.forEach((element, index) => {
-      job['skills'][index] = '/api/skills/' + element;
+      job.skills[index] = '/api/skills/' + element;
     });
     job.category = '/api/categories/' + job.category;
     return this.http.put<Job>(API_URL + '/api/jobs/' + id, job);
@@ -38,12 +38,12 @@ export class JobService {
     let data;
     if (deadline) {
       data = {
-        status: status,
-        deadline: deadline
+        status,
+        deadline
       };
     } else {
       data = {
-        status: status
+        status
       };
     }
     return this.http.put<Job>(API_URL + '/api/jobs/' + id, data);
@@ -51,7 +51,7 @@ export class JobService {
 
   getRecentOpenJobs() {
     const today = this.todayDate();
-    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]='+today+'&order[createdAt]=desc&itemsPerPage=5');
+    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]=' + today + '&order[createdAt]=desc&itemsPerPage=5');
   }
 
   getRecentJobs() {
@@ -61,25 +61,25 @@ export class JobService {
   getCandidateJobs(options: {key: string, value: string}[], pageNb: number, orderParam?: string) {
     let filter = '';
     let pageParam = '';
-    if(options) {
+    if (options) {
       options.forEach(option => {
         filter += '&' + option.key + '[]=' + option.value;
-      })
+      });
     }
-    if(orderParam) {
+    if (orderParam) {
       orderParam = '&' + orderParam;
     }
     if (pageNb) {
       pageParam = '&_page=' + pageNb;
     }
     const today = this.todayDate();
-    
-    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]='+today + filter + orderParam + pageParam);
+
+    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]=' + today + filter + orderParam + pageParam);
   }
 
   getNbJobsPerCategory(isOpen?: boolean) {
-    if (isOpen != undefined) {
-      return this.http.get(API_URL + '/api/jobs/nb-per-category', {params: {'open': isOpen.toString()}});
+    if (isOpen !== undefined) {
+      return this.http.get(API_URL + '/api/jobs/nb-per-category', {params: {open: isOpen.toString()}});
     }
     return this.http.get(API_URL + '/api/jobs/nb-per-category');
   }
@@ -101,7 +101,7 @@ export class JobService {
   }
 
   todayDate() {
-    let today = new Date();
+    const today = new Date();
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const yyyy = today.getFullYear();

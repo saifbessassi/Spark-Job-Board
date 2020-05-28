@@ -1,4 +1,4 @@
-import { Routes } from "@angular/router";
+import { Routes } from '@angular/router';
 import { MustBeConnected } from '../guards/must-be-connected.guard';
 import { EnsureOnlyRecruiterGuard } from '../guards/ensure-only-recruiter.guard';
 

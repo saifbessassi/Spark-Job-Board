@@ -11,9 +11,9 @@ import { IdentityFormComponent } from '../identity-form/identity-form.component'
 export class IdentityComponent implements OnInit {
 
   @Input() identity: CandidateIdentity;
-  @Input() isRecruiter: boolean = false;
+  @Input() isRecruiter = false;
   isLoading = false;
-  
+
   constructor(config: NgbModalConfig, private modalService: NgbModal) {
     config.backdrop = 'static';
     config.keyboard = false;
@@ -27,7 +27,7 @@ export class IdentityComponent implements OnInit {
     modalRef.componentInstance.identity = this.identity;
     modalRef.result.then(res => {
       this.identity = res;
-    })
+    });
   }
 
 }
