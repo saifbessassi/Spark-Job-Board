@@ -96,7 +96,7 @@
                     <i class="far fa-calendar-alt"></i>
                 </button>
                 </div>
-                <div class="invalid-feedback mt-3">
+                <div class="invalid-feedback mt-3" *ngIf="jobForm.get('deadline').errors?.required">
                     Start date is required.
                 </div>
             </div>

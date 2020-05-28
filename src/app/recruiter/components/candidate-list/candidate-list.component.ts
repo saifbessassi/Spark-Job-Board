@@ -274,7 +274,7 @@ export class CandidateListComponent implements OnInit {
   onAction(event) {
     switch (event.action) {
       case 'view':
-        const viewModal = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl' });
+        const viewModal = this.modalService.open(CandidateProfileComponent, { centered: true, size: 'xl', scrollable: true });
         if (this.jobID) {
           viewModal.componentInstance.candidateID = event.data.candidate.id;
         } else {
