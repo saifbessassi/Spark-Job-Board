@@ -137,13 +137,13 @@ export class CandidateListComponent implements OnInit {
             return null;
           }
         },
-        'candidateSkills.skill.label': {
+        'resume.skillsCandidate.skill.label': {
           title: 'Skills',
           type: 'string',
           valuePrepareFunction: (value, row) => {
-            if (row.candidateSkills) {
+            if (row.resume && row.resume.skillsCandidate) {
               const skills = [];
-              row.candidateSkills.forEach(element => {
+              row.resume.skillsCandidate.forEach(element => {
                 skills.push(element.skill.label);
               });
               return skills.sort((a, b) => a.localeCompare(b));
