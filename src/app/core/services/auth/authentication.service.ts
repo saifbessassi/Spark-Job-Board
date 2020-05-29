@@ -77,7 +77,7 @@ export class AuthenticationService {
     if (user.roles.includes('ROLE_CANDIDATE')) {
       this.http.get(API_URL + '/api/job_applications/applied?id=' + user.id).subscribe(
         res => {
-          user.appliedJobs = res.jobs;
+          user.appliedJobs = res['jobs'];
           localStorage.setItem('currentUser', JSON.stringify(user));
           localStorage.setItem('token', JSON.stringify(token));
           this.currentUserSubject.next(user);
