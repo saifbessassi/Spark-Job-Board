@@ -2,21 +2,22 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
-const API_URL = environment.API_URL;
 
 @Injectable({
   providedIn: 'root',
 })
 export class RecruiterService {
 
-  constructor(private http: HttpClient) { }
+readonly API_URL = environment.API_URL + '/api';
 
-  sendMail(mail) {
-    return this.http.post(API_URL + '/api/send-mail', mail);
+constructor(private http: HttpClient) { }
+
+  sendMail(mail: {subject: string, message: string, email: string}) {
+    return this.http.post(this.API_URL + '/send-mail', mail);
   }
 
   getTotalCount() {
-    return this.http.get(API_URL + '/api/total-count');
+    return this.http.get(this.API_URL + '/total-count');
   }
 }
 
