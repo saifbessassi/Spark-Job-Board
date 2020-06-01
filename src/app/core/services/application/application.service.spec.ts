@@ -74,7 +74,7 @@ describe('applicationService', () => {
 
         it('should be OK returning no applications', () => {
             applicationService.getRecentApplications().subscribe(
-                applications => expect(applications['hydra:member'].length).toEqual(0, 'should have no applications'),
+                (applications: any) => expect(applications.length).toEqual(0, 'should have no applications'),
                 fail
             );
 

@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Document } from 'src/app/core/models/candidate/document.model';
 
-const API_URL = environment.API_URL;
 
 @Injectable({
     providedIn: 'root',
 })
 export class CvService {
+
+    readonly API_URL = environment.API_URL + '/api/documents';
 
     constructor(
         private http: HttpClient
@@ -18,14 +19,14 @@ export class CvService {
         const fb = new FormData();
         fb.append('file', file);
         fb.append('resumeID', resumeID.toString());
-        return this.http.post(API_URL + '/api/documents', fb , {
+        return this.http.post(this.API_URL, fb , {
             reportProgress: true,
             observe: 'events'
         });
     }
 
     delete(id) {
-        return this.http.delete(API_URL + '/api/documents/' + id , {
+        return this.http.delete(this.API_URL + '/' + id , {
             reportProgress: true,
             observe: 'events'
         });
