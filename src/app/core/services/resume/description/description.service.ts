@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 
-const API_URL = environment.API_URL;
 
 @Injectable({
     providedIn: 'root',
 })
 export class DescriptionService {
+
+    readonly API_URL = environment.API_URL + '/api/resumes';
 
     constructor(
         private http: HttpClient
@@ -15,6 +16,6 @@ export class DescriptionService {
 
     edit(desc: string, resumeID: number) {
         const d = {description: desc};
-        return this.http.put(API_URL + '/api/resumes/' + resumeID, d);
+        return this.http.put(this.API_URL + '/' + resumeID, d);
     }
 }
