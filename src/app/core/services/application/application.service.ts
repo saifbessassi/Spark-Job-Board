@@ -2,12 +2,14 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
-const API_URL = environment.API_URL;
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApplicationService {
+
+  readonly API_URL = environment.API_URL + '/api/job_applications';
 
   constructor(private http: HttpClient) { }
 
@@ -17,15 +19,15 @@ export class ApplicationService {
       candidate: '/api/candidates/' + candidateId,
       message
     };
-    return this.http.post(API_URL + '/api/job_applications', application);
+    return this.http.post(this.API_URL, application);
   }
 
   makeDecision(status: string, id) {
     const statusJson = {status};
-    return this.http.put(API_URL + '/api/job_applications/' + id, statusJson);
+    return this.http.put(this.API_URL + '/' + id, statusJson);
   }
 
   getRecentApplications() {
-    return this.http.get(API_URL + '/api/job_applications?order[applicationDate]=desc&itemsPerPage=5');
+    return this.http.get(this.API_URL + '?order[applicationDate]=desc&itemsPerPage=5');
   }
 }
