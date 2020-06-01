@@ -3,21 +3,22 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Category } from '../../models/job/category.model';
 
-const API_URL = environment.API_URL;
 
 @Injectable({
   providedIn: 'root',
 })
 export class CategoryService {
 
+  readonly API_URL = environment.API_URL + '/api/categories.json';
+
   constructor(private http: HttpClient) { }
 
   getAllCategories() {
-    return this.http.get<Category[]>(API_URL + '/api/categories.json');
+    return this.http.get<Category[]>(this.API_URL);
   }
 
   addCategory(category) {
-    return this.http.post(API_URL + '/api/categories.json', category);
+    return this.http.post(this.API_URL, category);
   }
 }
 
