@@ -4,7 +4,7 @@ export class Education {
     public dateEnd: Date;
     public school: string;
     public degree: string;
-    public resume: string;
+    public resume?: string;
 
     public constructor() {}
 }

@@ -7,7 +7,7 @@ export class Experience {
     public title: string;
     public location: string;
     public description: string;
-    public resume: string;
+    public resume?: string;
 
     public constructor() {}
 }
