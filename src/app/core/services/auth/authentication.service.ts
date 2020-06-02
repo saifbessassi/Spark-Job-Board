@@ -7,7 +7,6 @@ import * as jwt_decode from 'jwt-decode';
 import { User } from '../../models/user.service';
 import { Token } from '../../models/token.model';
 
-const API_URL = environment.API_URL;
 
 interface SigninResponse {
   token: string;
@@ -18,6 +17,9 @@ interface SigninResponse {
   providedIn: 'root',
 })
 export class AuthenticationService {
+
+  readonly API_URL = environment.API_URL;
+
   private currentUserSubject: BehaviorSubject<User>;
   public currentUser: Observable<User>;
 
@@ -33,7 +35,7 @@ export class AuthenticationService {
   }
 
   signin(credentials) {
-    return this.http.post<SigninResponse>(API_URL + '/api/login_check', credentials)
+    return this.http.post<SigninResponse>(this.API_URL + '/api/login_check', credentials)
       .pipe(map(res => {
         return this.handleAuthentication(res);
       }));
@@ -45,7 +47,7 @@ export class AuthenticationService {
       token,
       provider,
     };
-    return this.http.post<SigninResponse>(API_URL + '/api/candidate/social-login', requestData)
+    return this.http.post<SigninResponse>(this.API_URL + '/api/candidate/social-login', requestData)
       .pipe(map(res => {
         return this.handleAuthentication(res);
       }));
@@ -75,7 +77,7 @@ export class AuthenticationService {
 
     // If user is a candidate, get his applied jobs
     if (user.roles.includes('ROLE_CANDIDATE')) {
-      this.http.get(API_URL + '/api/job_applications/applied?id=' + user.id).subscribe(
+      this.getAppliedJobs(user.id).subscribe(
         res => {
           user.appliedJobs = res['jobs'];
           localStorage.setItem('currentUser', JSON.stringify(user));
@@ -92,8 +94,12 @@ export class AuthenticationService {
     return user;
   }
 
+  getAppliedJobs(candidateID: number) {
+    return this.http.get(this.API_URL + '/api/job_applications/applied?id=' + candidateID);
+  }
+
   signup(candidate) {
-    return this.http.post(API_URL + '/api/candidates', candidate);
+    return this.http.post(this.API_URL + '/api/candidates', candidate);
   }
 
   // changePassword(passwords) {
