@@ -3,12 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { LanguageCandidateRequest } from 'src/app/core/models/candidate/lang-candidate-request.model';
 
-const API_URL = environment.API_URL;
 
 @Injectable({
     providedIn: 'root',
 })
 export class LanguageCandidateService {
+
+    readonly API_URL = environment.API_URL + '/api/language_candidates';
 
     constructor(
         private http: HttpClient
@@ -16,16 +17,16 @@ export class LanguageCandidateService {
 
     edit(lang: LanguageCandidateRequest) {
         lang.language = '/api/languages/' + lang.language;
-        return this.http.put(API_URL + '/api/language_candidates/' + lang.id, lang);
+        return this.http.put(this.API_URL + '/' + lang.id, lang);
     }
 
     add(lang: LanguageCandidateRequest, resumeID: number) {
         lang.resume = '/api/resumes/' + resumeID;
         lang.language = '/api/languages/' + lang.language;
-        return this.http.post(API_URL + '/api/language_candidates', lang);
+        return this.http.post(this.API_URL, lang);
     }
 
     delete(id: number) {
-        return this.http.delete(API_URL + '/api/language_candidates/' + id);
+        return this.http.delete(this.API_URL + '/' + id);
     }
 }
