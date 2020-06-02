@@ -19,7 +19,7 @@ export class ProfileComponent implements OnInit {
   errorMsg: boolean;
   candidate: Candidate;
   resume: Resume;
-  identity: CandidateIdentity;
+  identity = new CandidateIdentity;
   experiences: Experience[];
   educations: Education[];
   pictureURL: string;
@@ -36,17 +36,15 @@ export class ProfileComponent implements OnInit {
         this.resume = this.candidate.resume;
         this.experiences = this.resume.experiences.sort((b, a) => a.dateStart.toString().localeCompare(b.dateStart.toString()));
         this.educations = this.resume.educations.sort((b, a) => a.dateStart.toString().localeCompare(b.dateStart.toString()));
-        this.identity = new CandidateIdentity(
-          this.candidate.fullname,
-          this.candidate.email,
-          this.candidate.picture,
-          this.candidate.address,
-          this.candidate.phone,
-          {
-            id: '/api/resumes/' + this.resume.id,
-            seniorityLevel: this.resume.seniorityLevel
-          }
-        );
+        this.identity.fullname = this.candidate.fullname;
+        this.identity.email = this.candidate.email
+        this.identity.picture = this.candidate.picture;
+        this.identity.address = this.candidate.address;
+        this.identity.phone = this.candidate.phone;
+        this.identity.resume = {
+          id: '/api/resumes/' + this.resume.id,
+          seniorityLevel: this.resume.seniorityLevel
+        }
         this.isLoading = false;
     }, err => {
         this.errorMsg = true;

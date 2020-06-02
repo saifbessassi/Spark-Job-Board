@@ -18,7 +18,7 @@ export class CandidateProfileComponent implements OnInit {
   errorMsg: boolean;
   candidate: Candidate;
   resume: Resume;
-  identity: CandidateIdentity;
+  identity = new CandidateIdentity;
   experiences: Experience[] = [];
   educations: Education[] = [];
   pictureURL: string;
@@ -45,14 +45,12 @@ export class CandidateProfileComponent implements OnInit {
           seniorityLevel: this.resume.seniorityLevel
         };
       }
-      this.identity = new CandidateIdentity(
-        this.candidate.fullname,
-        this.candidate.email,
-        this.candidate.picture,
-        this.candidate.address,
-        this.candidate.phone,
-        seniority
-      );
+      this.identity.fullname = this.candidate.fullname;
+      this.identity.email = this.candidate.email
+      this.identity.picture = this.candidate.picture;
+      this.identity.address = this.candidate.address;
+      this.identity.phone = this.candidate.phone;
+      this.identity.resume = seniority
       this.isLoading = false;
     }, err => {
         this.errorMsg = true;
