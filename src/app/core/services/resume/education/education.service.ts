@@ -3,27 +3,28 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Education } from 'src/app/core/models/candidate/education.model';
 
-const API_URL = environment.API_URL;
 
 @Injectable({
     providedIn: 'root',
 })
 export class EducationService {
 
+    readonly API_URL = environment.API_URL + '/api/education';
+
     constructor(
         private http: HttpClient
     ) {}
 
     edit(edu: Education) {
-        return this.http.put(API_URL + '/api/education/' + edu.id, edu);
+        return this.http.put(this.API_URL + '/' + edu.id, edu);
     }
 
     add(edu: Education, resumeID: number) {
         edu.resume = '/api/resumes/' + resumeID;
-        return this.http.post(API_URL + '/api/education', edu);
+        return this.http.post(this.API_URL, edu);
     }
 
     delete(id: number) {
-        return this.http.delete(API_URL + '/api/education/' + id);
+        return this.http.delete(this.API_URL + '/' + id);
     }
 }
