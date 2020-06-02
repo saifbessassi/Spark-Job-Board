@@ -15,11 +15,13 @@ export class NbCandPerStatus {
   rejected = 0;
 }
 
-const API_URL = environment.API_URL;
 @Injectable({
   providedIn: 'root'
 })
 export class CandidateService {
+
+  readonly API_URL_CANDIDATE = environment.API_URL + '/api/candidates';
+  readonly API_URL = environment.API_URL;
 
   candidateID: number;
   private nbCandPerStatus: BehaviorSubject<NbCandPerStatus>;
@@ -74,11 +76,11 @@ export class CandidateService {
   }
 
   getCandidateProfile() {
-    return this.http.get(API_URL + '/api/candidates/' + this.candidateID + '.json');
+    return this.http.get(this.API_URL_CANDIDATE + '/' + this.candidateID + '.json');
   }
 
   getCandidateProfileByID(id: number) {
-    return this.http.get(API_URL + '/api/candidates/' + id + '.json');
+    return this.http.get(this.API_URL_CANDIDATE + '/' + id + '.json');
   }
 
   getCandidateApplications(id?: number) {
@@ -86,31 +88,31 @@ export class CandidateService {
     if (id) {
       candId = id;
     }
-    return this.http.get(API_URL + '/api/job_applications.json?candidate.id=' + candId);
+    return this.http.get(this.API_URL + '/api/job_applications.json?candidate.id=' + candId);
   }
 
   edit(identity: CandidateIdentity) {
-    return this.http.put(API_URL + '/api/candidates/' + this.candidateID, identity);
+    return this.http.put(this.API_URL_CANDIDATE + '/' + this.candidateID, identity);
   }
 
   addPicture(file: File) {
     const fb = new FormData();
     fb.append('file', file);
     fb.append('userID', this.candidateID.toString());
-    return this.http.post(API_URL + '/api/pictures', fb , {
+    return this.http.post(this.API_URL + '/api/pictures', fb , {
         reportProgress: true,
         observe: 'events'
     });
   }
 
   deletePicture(id) {
-      return this.http.delete(API_URL + '/api/pictures/' + id , {
+      return this.http.delete(this.API_URL + '/api/pictures/' + id , {
         reportProgress: true,
         observe: 'events'
     });
   }
 
   getNbCandidate() {
-    return this.http.get(API_URL + '/api/candidates/count');
+    return this.http.get(this.API_URL_CANDIDATE + '/count');
   }
 }
