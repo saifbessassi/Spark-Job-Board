@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { LanguageFormComponent } from '../language-form/language-form.component';
-import { LanguageCandidateResponse } from 'src/app/core/models/candidate/lang-candidate-response.model';
+import { LanguageCandidate } from 'src/app/core/models/candidate/lang-candidate.model';
 import { LanguageCandidateService } from 'src/app/core/services/resume/lang-candidate/lang-candidate.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { LanguageCandidateService } from 'src/app/core/services/resume/lang-cand
 })
 export class LanguageComponent implements OnInit {
 
-  @Input() languages: LanguageCandidateResponse[];
+  @Input() languages: LanguageCandidate[];
   @Input() resumeID: number;
   @Input() isRecruiter = false;
   isLoading = false;

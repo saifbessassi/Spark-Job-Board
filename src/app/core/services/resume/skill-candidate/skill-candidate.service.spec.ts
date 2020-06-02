@@ -2,7 +2,7 @@ import { HttpTestingController, HttpClientTestingModule } from "@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { HttpResponse } from '@angular/common/http';
 import { SkillCandidateService } from './skill-candidate.service';
-import { SkillCandidateRequest } from 'src/app/core/models/candidate/skill-candidate-request.model';
+import { SkillCandidate } from 'src/app/core/models/candidate/skill-candidate.model';
 
 describe('skillCandidateService', () => {
     let httpTestingController: HttpTestingController;
@@ -23,7 +23,7 @@ describe('skillCandidateService', () => {
     });
 
     describe('#add', () => {
-        let skillCandidate = new SkillCandidateRequest();
+        let skillCandidate = new SkillCandidate();
         skillCandidate.skill = 2;
         skillCandidate.proficiency = 'novice';
         const resumeID = 1;
@@ -79,7 +79,7 @@ describe('skillCandidateService', () => {
     });
 
     describe('#edit', () => {
-        let skillCandidate = new SkillCandidateRequest();
+        let skillCandidate = new SkillCandidate();
         skillCandidate.skill = 2;
         skillCandidate.proficiency = 'novice';
         skillCandidate.id = 1;

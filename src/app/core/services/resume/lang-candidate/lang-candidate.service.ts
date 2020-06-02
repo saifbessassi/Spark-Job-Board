@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { LanguageCandidateRequest } from 'src/app/core/models/candidate/lang-candidate-request.model';
+import { LanguageCandidate } from 'src/app/core/models/candidate/lang-candidate.model';
 
 
 @Injectable({
@@ -15,12 +15,12 @@ export class LanguageCandidateService {
         private http: HttpClient
     ) {}
 
-    edit(lang: LanguageCandidateRequest) {
+    edit(lang: LanguageCandidate) {
         lang.language = '/api/languages/' + lang.language;
         return this.http.put(this.API_URL + '/' + lang.id, lang);
     }
 
-    add(lang: LanguageCandidateRequest, resumeID: number) {
+    add(lang: LanguageCandidate, resumeID: number) {
         lang.resume = '/api/resumes/' + resumeID;
         lang.language = '/api/languages/' + lang.language;
         return this.http.post(this.API_URL, lang);

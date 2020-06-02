@@ -2,7 +2,7 @@ import { HttpTestingController, HttpClientTestingModule } from "@angular/common/
 import { TestBed } from '@angular/core/testing';
 import { HttpResponse } from '@angular/common/http';
 import { LanguageCandidateService } from './lang-candidate.service';
-import { LanguageCandidateRequest } from 'src/app/core/models/candidate/lang-candidate-request.model';
+import { LanguageCandidate } from 'src/app/core/models/candidate/lang-candidate.model';
 
 describe('languageCandidateService', () => {
     let httpTestingController: HttpTestingController;
@@ -23,7 +23,7 @@ describe('languageCandidateService', () => {
     });
 
     describe('#add', () => {
-        let langCandidate = new LanguageCandidateRequest();
+        let langCandidate = new LanguageCandidate();
         langCandidate.language = 2;
         langCandidate.proficiency = 'Professional working proficiency';
         const resumeID = 1;
@@ -79,7 +79,7 @@ describe('languageCandidateService', () => {
     });
 
     describe('#edit', () => {
-        let langCandidate = new LanguageCandidateRequest();
+        let langCandidate = new LanguageCandidate();
         langCandidate.language = 2;
         langCandidate.proficiency = 'Professional working proficiency';
         langCandidate.id = 1;

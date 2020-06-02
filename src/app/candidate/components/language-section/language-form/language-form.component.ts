@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { LanguageCandidateRequest } from 'src/app/core/models/candidate/lang-candidate-request.model';
-import { LanguageCandidateResponse } from 'src/app/core/models/candidate/lang-candidate-response.model';
+import { LanguageCandidate } from 'src/app/core/models/candidate/lang-candidate.model';
 import { LanguageCandidateService } from 'src/app/core/services/resume/lang-candidate/lang-candidate.service';
 import { LanguageService } from 'src/app/core/services/language/language.service';
 import { Language } from 'src/app/core/models/language.model';
@@ -14,8 +13,8 @@ import { Language } from 'src/app/core/models/language.model';
 })
 export class LanguageFormComponent implements OnInit {
 
-  langRequest = new LanguageCandidateRequest();
-  langResponse: LanguageCandidateResponse;
+  langRequest = new LanguageCandidate();
+  langResponse: LanguageCandidate;
   langForm: FormGroup;
   allLang: Language[] = [];
   resumeID: number;
@@ -54,7 +53,7 @@ export class LanguageFormComponent implements OnInit {
     });
     if (this.langResponse) {
       this.langForm.setValue({
-        id: this.langResponse.language.id,
+        id: this.langResponse.language['id'],
         proficiency: this.langResponse.proficiency,
       });
     }

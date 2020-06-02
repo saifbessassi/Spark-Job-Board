@@ -3,9 +3,8 @@ import { Skill } from 'src/app/core/models/skill.model';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { SkillService } from 'src/app/core/services/skill/skill.service';
-import { SkillCandidateResponse } from 'src/app/core/models/candidate/skill-candidate-response.model';
+import { SkillCandidate } from 'src/app/core/models/candidate/skill-candidate.model';
 import { SkillCandidateService } from 'src/app/core/services/resume/skill-candidate/skill-candidate.service';
-import { SkillCandidateRequest } from 'src/app/core/models/candidate/skill-candidate-request.model';
 
 @Component({
   selector: 'sp-skill-form',
@@ -14,8 +13,8 @@ import { SkillCandidateRequest } from 'src/app/core/models/candidate/skill-candi
 })
 export class SkillFormComponent implements OnInit {
 
-  skillRequest = new SkillCandidateRequest();
-  skillResponse: SkillCandidateResponse;
+  skillRequest = new SkillCandidate();
+  skillResponse: SkillCandidate;
   skillForm: FormGroup;
   allSkills: Skill[] = [];
   resumeID: number;
@@ -54,7 +53,7 @@ export class SkillFormComponent implements OnInit {
     });
     if (this.skillResponse) {
       this.skillForm.setValue({
-        id: this.skillResponse.skill.id,
+        id: this.skillResponse.skill['id'],
         proficiency: this.skillResponse.proficiency,
       });
     }

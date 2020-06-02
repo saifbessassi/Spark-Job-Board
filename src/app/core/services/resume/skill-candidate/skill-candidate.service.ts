@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { SkillCandidateRequest } from 'src/app/core/models/candidate/skill-candidate-request.model';
+import { SkillCandidate } from 'src/app/core/models/candidate/skill-candidate.model';
 
 
 @Injectable({
@@ -15,12 +15,12 @@ export class SkillCandidateService {
         private http: HttpClient
     ) {}
 
-    edit(skill: SkillCandidateRequest) {
+    edit(skill: SkillCandidate) {
         skill.skill = '/api/skills/' + skill.skill;
         return this.http.put(this.API_URL + '/' + skill.id, skill);
     }
 
-    add(skill: SkillCandidateRequest, resumeID: number) {
+    add(skill: SkillCandidate, resumeID: number) {
         skill.resume = '/api/resumes/' + resumeID;
         skill.skill = '/api/skills/' + skill.skill;
         return this.http.post(this.API_URL, skill);

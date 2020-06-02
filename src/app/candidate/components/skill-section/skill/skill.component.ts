@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { SkillFormComponent } from '../skill-form/skill-form.component';
-import { SkillCandidateResponse } from 'src/app/core/models/candidate/skill-candidate-response.model';
+import { SkillCandidate } from 'src/app/core/models/candidate/skill-candidate.model';
 import { SkillCandidateService } from 'src/app/core/services/resume/skill-candidate/skill-candidate.service';
 
 @Component({
@@ -11,7 +11,7 @@ import { SkillCandidateService } from 'src/app/core/services/resume/skill-candid
 })
 export class SkillComponent implements OnInit {
 
-  @Input() skills: SkillCandidateResponse[];
+  @Input() skills: SkillCandidate[];
   @Input() resumeID: number;
   @Input() isRecruiter = false;
   isLoading = false;
