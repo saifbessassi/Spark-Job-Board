@@ -4,17 +4,18 @@ import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Job } from '../../models/job';
 import { JobFiltersOptions } from '../../models/job-filters-options.model';
 
-const API_URL = environment.API_URL;
 
 @Injectable({
   providedIn: 'root'
 })
 export class JobService {
 
+  readonly API_URL = environment.API_URL + '/api/jobs';
+
   constructor(private http: HttpClient) { }
 
   getOneJob(id: number) {
-    return this.http.get<Job>(API_URL + '/api/jobs/' + id + '.json');
+    return this.http.get<Job>(this.API_URL + '/' + id + '.json');
   }
 
   addNewJob(job) {
@@ -23,7 +24,7 @@ export class JobService {
     });
     job.category = '/api/categories/' + job.category;
     job.status = 'open';
-    return this.http.post<Job>(API_URL + '/api/jobs', job);
+    return this.http.post<Job>(this.API_URL, job);
   }
 
   editJob(job, id) {
@@ -31,7 +32,11 @@ export class JobService {
       job.skills[index] = '/api/skills/' + element;
     });
     job.category = '/api/categories/' + job.category;
-    return this.http.put<Job>(API_URL + '/api/jobs/' + id, job);
+    return this.http.put<Job>(this.API_URL + '/' + id, job);
+  }
+  
+  deleteJob(id) {
+    return this.http.delete(this.API_URL + '/' + id);
   }
 
   editJobStatus(id, status: string, deadline?) {
@@ -46,16 +51,16 @@ export class JobService {
         status
       };
     }
-    return this.http.put<Job>(API_URL + '/api/jobs/' + id, data);
+    return this.http.put<Job>(this.API_URL + '/' + id, data);
   }
 
   getRecentOpenJobs() {
     const today = this.todayDate();
-    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]=' + today + '&order[createdAt]=desc&itemsPerPage=5');
+    return this.http.get(this.API_URL + '?status=open&deadline[before]=' + today + '&order[createdAt]=desc&itemsPerPage=5');
   }
 
   getRecentJobs() {
-    return this.http.get(API_URL + '/api/jobs?order[createdAt]=desc&itemsPerPage=5');
+    return this.http.get(this.API_URL + '?order[createdAt]=desc&itemsPerPage=5');
   }
 
   getCandidateJobs(options: {key: string, value: string}[], pageNb: number, orderParam?: string) {
@@ -74,30 +79,26 @@ export class JobService {
     }
     const today = this.todayDate();
 
-    return this.http.get(API_URL + '/api/jobs?status=open&deadline[before]=' + today + filter + orderParam + pageParam);
+    return this.http.get(this.API_URL + '?status=open&deadline[before]=' + today + filter + orderParam + pageParam);
   }
 
   getNbJobsPerCategory(isOpen?: boolean) {
     if (isOpen !== undefined) {
-      return this.http.get(API_URL + '/api/jobs/nb-per-category', {params: {open: isOpen.toString()}});
+      return this.http.get(this.API_URL + '/nb-per-category', {params: {open: isOpen.toString()}});
     }
-    return this.http.get(API_URL + '/api/jobs/nb-per-category');
+    return this.http.get(this.API_URL + '/nb-per-category');
   }
 
   getNbJobsPerStatus() {
-    return this.http.get(API_URL + '/api/jobs/nb-per-status');
+    return this.http.get(this.API_URL + '/nb-per-status');
   }
 
   getNbApplicationPerStatus(jobID: number) {
-    return this.http.get(API_URL + '/api/jobs/nb-applications/' + jobID);
+    return this.http.get(this.API_URL + '/nb-applications/' + jobID);
   }
 
   getFilterOptions() {
-    return this.http.get<JobFiltersOptions>(API_URL + '/api/jobs/filter-options');
-  }
-
-  deleteJob(id) {
-    return this.http.delete(API_URL + '/api/jobs/' + id);
+    return this.http.get<JobFiltersOptions>(this.API_URL + '/filter-options');
   }
 
   todayDate() {
