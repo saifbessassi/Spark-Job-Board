@@ -46,14 +46,6 @@ export class ApplyModalComponent implements OnInit {
   ngOnInit() {
     this.isConnected = this.userService.isConnected();
 
-    // this.authenticationService.currentUser.subscribe(data => {
-    //   console.log('applyyyy');
-    //   if (data) {
-    //     this.isApplied = data.appliedJobs.includes(this.jobId);
-    //   } else {
-    //     this.isApplied = false;
-    //   }
-    // })
     // Init Stepper
     this.stepper = new Stepper(document.querySelector('#stepper1'), {
       linear: true,

@@ -60,7 +60,6 @@ export class LanguageFormComponent implements OnInit {
   }
 
   save() {
-    console.log(this.langForm.value);
     this.isLoading = true;
     if (this.langResponse) {
       this.id = this.langResponse.id;

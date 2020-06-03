@@ -20,7 +20,6 @@ export class EnsureOnlyNonConnectedVisitAuthPages {
 
     canActivate() {
         this.tokenIsValid = this.userService.isConnected();
-        // this.tokenValue = this.tokenService.getToken();
         if ( this.tokenIsValid ) {
             this.router.navigate(['/']);
             return false;

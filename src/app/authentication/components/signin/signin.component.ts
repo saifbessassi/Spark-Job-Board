@@ -56,26 +56,10 @@ export class SigninComponent implements OnInit {
           this.isLoading = false;
         },
         error => {
-          console.log(error);
           this.loginError.push(error.error.message);
           this.isLoading = false;
         }
       );
-
-    // this.authenticationService.signin(candidate).subscribe(res => {
-    //   this.tokenService.setToken(res.token);
-    //   this.tokenService.setRefreshToken(res.refresh_token);
-    //   if (this.location === 'signin') {
-    //     this.router.navigate(['/']);
-    //   } else if (this.location === 'apply') {
-    //     this.outputAuth.emit(true);
-    //   }
-
-    //   this.isLoading = false;
-    // }, errors => {
-    //   this.loginError.push(errors.error.message);
-    //   this.isLoading = false;
-    // });
   }
 
   getSocialAuthIsLoading($event) {

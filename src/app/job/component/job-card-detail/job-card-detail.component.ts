@@ -33,7 +33,6 @@ export class JobCardDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    // this.isApplied = this.applyService.isApplied(this.job.id);
     this.authService.currentUser.subscribe(data => {
       const user: User = data;
       if (user && this.userService.isCandidate(user)) {

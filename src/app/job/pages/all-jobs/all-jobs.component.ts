@@ -32,10 +32,6 @@ export class AllJobsComponent implements OnInit {
 
   ngOnInit() {
     if (history.state.data) {
-      // this.categoryFilterParam = history.state.data[0];
-      // const key = this.categoryFilterParam.key;
-      // const value = this.categoryFilterParam.value;
-      // this.checkedValue = value;
       history.state.data.forEach(element => {
         this.checkedValues.push(element.value);
       });

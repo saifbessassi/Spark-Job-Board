@@ -223,14 +223,6 @@ export class CandidateListComponent implements OnInit {
           title: 'Status',
           type: 'string'
         }
-        // jobApplications: {
-        //   title: 'Applications',
-        //   type: 'string',
-        //   filter: false,
-        //   valuePrepareFunction: (data) => {
-        //     return data.length;
-        //   }
-        // }
       },
     };
   }

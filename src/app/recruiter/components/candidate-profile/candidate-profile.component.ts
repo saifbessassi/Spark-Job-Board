@@ -34,7 +34,6 @@ export class CandidateProfileComponent implements OnInit {
     this.isLoading = true;
     this.candidateService.getCandidateProfileByID(this.candidateID).subscribe( (res: Candidate) => {
       this.candidate = res;
-      console.log(this.candidate);
       this.resume = this.candidate.resume;
       let seniority = null;
       if (this.resume) {

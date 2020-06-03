@@ -141,46 +141,6 @@ export class JobsTableComponent implements OnInit {
           return null;
         }
       },
-      // recruiter: {
-      //   title: 'Created By',
-      //   valuePrepareFunction: (data) => {
-      //     return data.fullname;
-      //   },
-      // },
-      // employmentType: {
-      //   title: 'Type',
-      //   type: 'string',
-      //   filter: {
-      //     type: 'list',
-      //     config: {
-      //       selectText: 'Select type...',
-      //       list: [
-      //         { value: 'Full-time', title: 'Full-time' },
-      //         { value: 'Part-time', title: 'Part-time' },
-      //         { value: 'Contract', title: 'Contract' },
-      //         { value: 'Temporary', title: 'Temporary' },
-      //         { value: 'Volunteer', title: 'Volunteer' },
-      //         { value: 'Internship', title: 'Internship' },
-      //       ],
-      //     },
-      //   },
-      // },
-      // seniorityLevel: {
-      //   title: 'Seniority',
-      //   type: 'string',
-      //   filter: {
-      //     type: 'list',
-      //     config: {
-      //       selectText: 'Select seniority...',
-      //       list: [
-      //         { value: '0 to 2 years', title: '0 to 2 years' },
-      //         { value: '3 to 5 years', title: '3 to 5 years' },
-      //         { value: '6 to 9 years', title: '6 to 9 years' },
-      //         { value: '10 years or more', title: '10 years or more' },
-      //       ],
-      //     },
-      //   },
-      // },
     },
   };
 
@@ -215,7 +175,6 @@ export class JobsTableComponent implements OnInit {
     const modalRef = this.modalService.open(EditJobComponent, { centered: true, size: 'lg' });
     modalRef.componentInstance.job = job;
     modalRef.result.then(res => {
-      console.log(res);
       this.allJobs.update(job, res);
     });
   }

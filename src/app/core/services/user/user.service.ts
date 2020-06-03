@@ -15,7 +15,6 @@ export class UserService {
         private tokenService: TokenService,
         private authService: AuthenticationService
     ) {
-        // this.user = JSON.parse(localStorage.getItem('currentUser'));
         authService.currentUser.subscribe(data => {
             this.user = data;
         });

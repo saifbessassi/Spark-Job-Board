@@ -42,7 +42,6 @@ export class SearchBarComponent implements OnInit {
     if (searchFormValue.location) {
       params.push({key: 'location', value: searchFormValue.location});
     }
-    console.log(params);
     this.router.navigate(['/jobs'], { state: {data: params} });
   }
 

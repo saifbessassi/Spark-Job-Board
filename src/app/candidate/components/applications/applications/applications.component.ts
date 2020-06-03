@@ -31,7 +31,7 @@ export class ApplicationsComponent implements OnInit {
     this.candidateService.getCandidateApplications(this.candidateID).subscribe((res: Application[]) => {
       this.applications = res;
     }, err => {
-      console.log(err);
+      
     });
   }
 

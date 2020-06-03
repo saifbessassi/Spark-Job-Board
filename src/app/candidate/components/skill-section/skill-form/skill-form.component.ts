@@ -77,8 +77,6 @@ export class SkillFormComponent implements OnInit {
       });
     } else {
       this.skillRequest.id = this.id;
-      // this.skillResponse.proficiency = this.skillForm.value.proficiency;
-      // this.skillResponse.skill = this.skillForm.value.proficiency;
       this.skillCandidateService.edit(this.skillRequest).subscribe(res => {
         this.activeModal.close({skill: res, index: this.index});
         this.isLoading = false;

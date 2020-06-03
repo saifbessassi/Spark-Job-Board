@@ -19,7 +19,6 @@ export class RecentApplicationsComponent implements OnInit {
   ngOnInit() {
     this.applicationService.getRecentApplications().subscribe( res => {
       this.recentApplications = res['hydra:member'];
-      console.log(this.recentApplications);
     }, err => {
       this.errorMsg = 'Unknown error! Please try again later.';
     });

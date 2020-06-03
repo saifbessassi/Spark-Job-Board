@@ -19,7 +19,6 @@ export class RecentJobsComponent implements OnInit {
   ngOnInit() {
     this.jobService.getRecentJobs().subscribe( res => {
       this.recentJobs = res['hydra:member'];
-      console.log(this.recentJobs);
     }, err => {
       this.errorMsg = 'Unknown error! Please try again later.';
     });

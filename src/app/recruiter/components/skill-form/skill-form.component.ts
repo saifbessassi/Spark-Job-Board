@@ -25,7 +25,6 @@ export class SkillFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.allSkills);
     this.skillForm = this.formBuilder.group({
       label: new FormControl(null, [Validators.required])
     }, {

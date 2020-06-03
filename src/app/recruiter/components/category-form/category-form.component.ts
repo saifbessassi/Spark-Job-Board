@@ -25,7 +25,6 @@ export class CategoryFormComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    console.log(this.allCategories);
     this.categoryForm = this.formBuilder.group({
       label: new FormControl(null, [Validators.required])
     }, {

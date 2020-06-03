@@ -61,7 +61,6 @@ export class DocumentFormComponent implements OnInit {
       this.cvService.delete(this.cv.id).subscribe(events => {
         if (events.type === HttpEventType.UploadProgress) {
           this.uploadProgress = Math.round(events.loaded / events.total * 100);
-          console.log(this.uploadProgress);
         } else if (events.type === HttpEventType.Response) {
           this.cv = null;
           this.isUploading = false;
