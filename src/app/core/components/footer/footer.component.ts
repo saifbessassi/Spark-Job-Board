@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'sp-footer',
@@ -8,23 +7,9 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 })
 export class FooterComponent implements OnInit {
 
-  newsletterForm: FormGroup;
-
   constructor() { }
 
   ngOnInit() {
-    // Initialise newslettre form
-    this.initNewslettreForm();
-  }
-
-  initNewslettreForm() {
-    this.newsletterForm = new FormGroup({
-      email: new FormControl(null, Validators.email)
-    });
-  }
-
-  onSubmit() {
-    console.log(this.newsletterForm.value);
   }
 
 }
