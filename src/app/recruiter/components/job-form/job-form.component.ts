@@ -73,7 +73,7 @@ export class JobFormComponent implements OnInit {
         jobSkillsIDs.push(skill.id);
       });
       if (this.job.category) {
-        cat = this.job.category.id;
+        cat = this.job.category['id'];
       }
       this.jobForm.setValue({
         title: this.job.title,

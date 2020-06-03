@@ -6,15 +6,17 @@ export class Job {
     public id: number;
     public title: string;
     public location: string;
-    public category: Category;
+    public category: Category | number;
     public description: string;
     public employmentType: string;
     public seniorityLevel: string;
     public status: string;
-    public skills: Skill [];
+    public skills: Skill [] | number [];
     public createdAt: Date;
     public updatedAt: Date;
     public deadline: Date;
+    public createdBy: string;
+    public updatedBy: string;
 
     constructor(
 
