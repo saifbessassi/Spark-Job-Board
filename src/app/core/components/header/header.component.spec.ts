@@ -25,14 +25,8 @@ describe('HeaderComponent', () => {
     roles: ['ROLE_CANDIDATE'],
     picture: 'photo.jpeg'
   }
-  // let currentUserSpy: jasmine.Spy;
 
   beforeEach(async(() => {
-    // const routerSpy = jasmine.createSpyObj('Router', ['navigate']);
-    // const authenticationService = jasmine.createSpyObj('AuthenticationService', ['currentUser']);
-    
-    // let currentUser = of(user);
-    // currentUserSpy = authenticationService.currentUser.and.returnValue( of(user) );
 
     TestBed.configureTestingModule({
       declarations: [ 
@@ -46,8 +40,6 @@ describe('HeaderComponent', () => {
         {provide: SidebarService, useValue: {
           toggle: () => {}
         }}
-        // { provide: Router, useValue: routerSpy },
-        // { provide: AuthenticationService, useValue: authenticationService }
       ]
     })
     .compileComponents();
