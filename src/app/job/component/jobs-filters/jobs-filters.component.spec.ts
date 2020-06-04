@@ -1,6 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { JobsFiltersComponent } from './jobs-filters.component';
+import { Component, Input } from '@angular/core';
+
+@Component({selector: 'sp-filter-box', template: ''})
+export class FilterBoxStubComponent {
+  @Input() filterPossibilities;
+  @Input() filterName;
+  @Input() checkedValues;
+}
 
 describe('JobsFiltersComponent', () => {
   let component: JobsFiltersComponent;
@@ -8,7 +16,10 @@ describe('JobsFiltersComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ JobsFiltersComponent ]
+      declarations: [ 
+        JobsFiltersComponent,
+        FilterBoxStubComponent 
+      ]
     })
     .compileComponents();
   }));
@@ -22,4 +33,12 @@ describe('JobsFiltersComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should raise filterChoice event', () => {
+    let event = {data: 'this is an event'};
+    let res;
+    component.filterChoice.subscribe(data => res = data);
+    component.filter(event);
+    expect(res).toEqual(event);
+  })
 });
