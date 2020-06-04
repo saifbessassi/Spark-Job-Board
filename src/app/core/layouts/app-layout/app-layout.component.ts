@@ -9,23 +9,24 @@ import { UserService } from '../../services/user/user.service';
 })
 export class AppLayoutComponent implements OnInit {
 
-  isRecruiter: boolean;
+  isRecruiter: boolean = false;
 
   constructor(
     private authService: AuthenticationService,
     private userService: UserService
   ) {
-    this.isRecruiter = false;
+    
+  }
+
+  ngOnInit() {
+    // this.isRecruiter = false;
     this.authService.currentUser.subscribe(user => {
       if (user) {
-        this.isRecruiter = userService.isRecruiter(user);
+        this.isRecruiter = this.userService.isRecruiter(user);
       } else {
         this.isRecruiter = false;
       }
     });
-  }
-
-  ngOnInit() {
   }
 
 }
