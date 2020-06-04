@@ -23,17 +23,17 @@
                         </li>                         
                     </ul>
                     <div *ngIf="!currentUser" class="signin-btn" style="font-weight: bold;">
-                        <a type="button" [routerLink]="['/auth/signin']" routerLinkActive="router-link-active">Sign in</a>
+                        <a id="signin" type="button" [routerLink]="['/auth/signin']" routerLinkActive="router-link-active">Sign in</a>
                     </div>
                     <ul *ngIf="currentUser" class="navbar-nav align-items-lg-center main_nav">
                         <li class="nav-item px-3 py-2 dropdown">
-                            <a type="button" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink-4" data-toggle="dropdown"
+                            <a type="button" class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown"
                                 aria-haspopup="true" aria-expanded="false" style="color: #fff;padding: 0;">
                                 <div *ngIf="!photo" id="profile-picture-lettre-container">{{nameTwoLetter | uppercase}}</div>
                                 <img *ngIf="photo" src="{{photo}}" class="img-fluid rounded-circle shadow-lg" style="width: 2.5rem;">
                                 {{fullname}}
                             </a>
-                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+                            <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item nav-link profile-dropdown-link"[routerLink]="['/candidate/profile']">My account</a>
                                 <a class="dropdown-item nav-link profile-dropdown-link" type="button" (click)="logout()">Log out</a>
                             </div>
