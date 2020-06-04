@@ -20,7 +20,7 @@
         </div>
         <div class="col-md-4 justify-content-center">
                 <button type="button" [routerLink]="['/jobs', job.id]" class="btn sp-btn-red my-3">View job</button>
-                <button type="button" class="btn btn-secondary ml-auto apply mb-3" disabled *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
+                <button id="applied" type="button" class="btn btn-secondary ml-auto apply mb-3" disabled *ngIf="isApplied"><i class="fas fa-check"></i> Applied</button>
                 <p class="date-time text-left">Posted on: {{job?.createdAt | date: 'dd MMM yyyy'}}</p>
                 <p class="date-time text-left">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</p>
         </div>
