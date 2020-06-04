@@ -427,7 +427,7 @@ describe('JobService', () => {
           fail
       );
       
-      const req = httpTestingController.expectOne(jobService.API_URL + '?status=open&deadline[before]=05-03-2020&order[createdAt]=desc&itemsPerPage=5');
+      const req = httpTestingController.expectOne(jobService.API_URL + '.json?status=open&deadline[after]=05-03-2020&order[createdAt]=desc&itemsPerPage=5');
       expect(req.request.method).toEqual('GET');
 
       req.flush(expectedJobs);
@@ -439,7 +439,7 @@ describe('JobService', () => {
           fail
       );
 
-      const req = httpTestingController.expectOne(jobService.API_URL + '?status=open&deadline[before]=05-03-2020&order[createdAt]=desc&itemsPerPage=5');
+      const req = httpTestingController.expectOne(jobService.API_URL + '.json?status=open&deadline[after]=05-03-2020&order[createdAt]=desc&itemsPerPage=5');
       req.flush([]);
     });
   });

@@ -56,7 +56,7 @@ export class JobService {
 
   getRecentOpenJobs() {
     const today = this.todayDate();
-    return this.http.get(this.API_URL + '?status=open&deadline[before]=' + today + '&order[createdAt]=desc&itemsPerPage=5');
+    return this.http.get(this.API_URL + '.json?status=open&deadline[after]=' + today + '&order[createdAt]=desc&itemsPerPage=5');
   }
 
   getRecentJobs() {
@@ -106,6 +106,6 @@ export class JobService {
     const dd = String(today.getDate()).padStart(2, '0');
     const mm = String(today.getMonth() + 1).padStart(2, '0');
     const yyyy = today.getFullYear();
-    return mm + '-' + dd + '-' + yyyy;
+    return dd + '-' + mm + '-' + yyyy;
   }
 }

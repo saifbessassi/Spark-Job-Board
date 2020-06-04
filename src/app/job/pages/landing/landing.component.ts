@@ -34,8 +34,8 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     // Get recent jobs
     this.isLoading = true;
-    this.jobService.getRecentOpenJobs().subscribe( res => {
-      this.recentJobs = res['hydra:member'];
+    this.jobService.getRecentOpenJobs().subscribe( (res: Job[]) => {
+      this.recentJobs = res;
       this.isLoading = false;
     }, err => {
       this.isLoading = false;
