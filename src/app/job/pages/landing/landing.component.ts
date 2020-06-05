@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SharedModule } from 'src/app/shared/shared.module';
-import { FormGroup, FormControl } from '@angular/forms';
-import { Router } from '@angular/router';
 import { Job } from 'src/app/core/models/job';
 import { JobService } from 'src/app/core/services/job/job.service';
-import { FilterChoice } from 'src/app/core/models/filter-choice.model';
 import { JobFiltersOptions } from 'src/app/core/models/job-filters-options.model';
 
 @Component({
@@ -21,14 +17,12 @@ export class LandingComponent implements OnInit {
   isLoading = false;
   isLoadingCategory = false;
   recentJobs: Job[] = [];
-  searchForm: FormGroup;
   nbJobsPerCategory: any = null;
   errorMsg: string;
   filterOptions: JobFiltersOptions;
 
   constructor(
-    private jobService: JobService,
-    private router: Router
+    private jobService: JobService
   ) { }
 
   ngOnInit() {
@@ -56,35 +50,5 @@ export class LandingComponent implements OnInit {
       this.filterOptions = res;
     }, err => {
     });
-
-    // Initialise search form
-    this.initSearchForm();
   }
-
-  initSearchForm() {
-    this.searchForm = new FormGroup({
-      title: new FormControl(null),
-      category: new FormControl(null),
-      location: new FormControl(null),
-    });
-  }
-
-  onSearchSubmit() {
-    const params = [];
-    const searchFormValue = this.searchForm.value;
-    if (searchFormValue.title) {
-      params.push({key: 'title', value : searchFormValue.title});
-    }
-    if (searchFormValue.category) {
-      params.push({key: 'category', value: searchFormValue.category});
-    }
-    if (searchFormValue.location) {
-      params.push({key: 'location', value: searchFormValue.location});
-    }
-
-    this.router.navigate(['/cand/jobs'], { state: {data: params} });
-  }
-
-
-
 }
