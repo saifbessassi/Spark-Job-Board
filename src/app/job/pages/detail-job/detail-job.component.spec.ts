@@ -9,8 +9,6 @@ import { AuthenticationService } from 'src/app/core/services/auth/authentication
 import { User } from 'src/app/core/models/user.service';
 import { UserService } from 'src/app/core/services/user/user.service';
 import { ActivatedRoute } from '@angular/router';
-import { ActivatedRouteStub } from 'src/testing';
-import { By } from '@angular/platform-browser';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({selector: 'sp-spinner', template: ''})
