@@ -34,4 +34,25 @@ describe('SearchBarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('#onSearchSubmit', () => {
+    const formValues = {
+      skill: 'Php',
+      experience: '0 to 2 years',
+      location: 'sfax'
+    };
+    component.searchForm.setValue(formValues);
+    component.onSearchSubmit();
+    const spy = routerSpy.navigate as jasmine.Spy;
+    const navArgs = spy.calls.first();
+    const url = navArgs.args[0];
+    const urlParam = navArgs.args[1].state.data;
+    const expectedParam = [
+      {key: "skills.label", value: "Php"},
+      {key: "seniorityLevel", value: "0 to 2 years"},
+      {key: "location", value: "sfax"}
+    ];
+    expect(urlParam).toEqual(expectedParam);
+  });
+
 });
