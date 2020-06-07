@@ -46,4 +46,21 @@ describe('JobCardDetailComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should be candidate', () => {
+    expect(component.isRecruiter).toBeFalsy();
+  });
+
+  it('should be applied', () => {
+    component.ngOnInit();
+    expect(component.isApplied).toBeTruthy();
+  });
+
+  it('should be not applied', () => {
+    job.id = 1111;
+    component.job = job;
+    fixture.detectChanges();
+    component.ngOnInit();
+    expect(component.isApplied).toBeFalsy();
+  });
 });
