@@ -31,7 +31,7 @@ describe('FilterBoxComponent', () => {
     expect(c).toEqual('textwithoutspaces', 'should remove spaces');
   });
 
-  it('should raise filterChoice event when clicked', () => {
+  it('should raise filterChoice event when clicked (skills)', () => {
     let expectedRes = new FilterChoice;
     expectedRes.value = "Angular";
     expectedRes.key = "skills.label";
@@ -39,5 +39,35 @@ describe('FilterBoxComponent', () => {
     component.filterChoice.subscribe((data: FilterChoice) => res = data);
     component.onCheckBox('Job Skills', 'Angular');
     expect(res).toEqual(expectedRes);
-  })
+  });
+
+  it('should raise filterChoice event when clicked (category)', () => {
+    let expectedRes = new FilterChoice;
+    expectedRes.value = "web development";
+    expectedRes.key = "category.label";
+    let res = new FilterChoice;
+    component.filterChoice.subscribe((data: FilterChoice) => res = data);
+    component.onCheckBox('Job Category', 'web development');
+    expect(res).toEqual(expectedRes);
+  });
+
+  it('should raise filterChoice event when clicked (type)', () => {
+    let expectedRes = new FilterChoice;
+    expectedRes.value = "CDI";
+    expectedRes.key = "employmentType";
+    let res = new FilterChoice;
+    component.filterChoice.subscribe((data: FilterChoice) => res = data);
+    component.onCheckBox('Job Type', 'CDI');
+    expect(res).toEqual(expectedRes);
+  });
+
+  it('should raise filterChoice event when clicked (experience)', () => {
+    let expectedRes = new FilterChoice;
+    expectedRes.value = "0 to 2 years";
+    expectedRes.key = "seniorityLevel";
+    let res = new FilterChoice;
+    component.filterChoice.subscribe((data: FilterChoice) => res = data);
+    component.onCheckBox('Job Experience', '0 to 2 years');
+    expect(res).toEqual(expectedRes);
+  });
 });
