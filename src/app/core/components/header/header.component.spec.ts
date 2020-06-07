@@ -36,7 +36,15 @@ describe('HeaderComponent', () => {
        ],
        providers: [
         {provide: Router, useValue: {navigate: () => {}}},
-        {provide: AuthenticationService, useValue: {currentUser: of(user)}},
+        {
+          provide: AuthenticationService, useValue: {
+            currentUser: of(user),
+            logout: () => {
+              localStorage.removeItem('currentUser');
+              localStorage.removeItem('token');
+            }
+          }
+        },
         {provide: SidebarService, useValue: {
           toggle: () => {}
         }}
@@ -56,6 +64,12 @@ describe('HeaderComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should logout', () => {
+    component.logout();
+    expect(localStorage.getItem('currentUser')).toBeNull();
+    expect(localStorage.getItem('token')).toBeNull();
   });
 
   describe('connected user', () => {
@@ -85,6 +99,6 @@ describe('HeaderComponent', () => {
       const signinDe = navbarDe.query(By.css('#signin'));
       const a: HTMLElement = signinDe.nativeElement;
       expect(a.textContent).toContain('Sign in');
-    })
-  })
+    });
+  });
 });
