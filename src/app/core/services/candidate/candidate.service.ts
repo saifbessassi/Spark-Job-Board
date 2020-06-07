@@ -36,7 +36,7 @@ export class CandidateService {
         this.candidateID = data.id;
       }
     });
-    this.nbCandPerStatus = new BehaviorSubject<NbCandPerStatus>(null);
+    this.nbCandPerStatus = new BehaviorSubject<NbCandPerStatus>(new NbCandPerStatus);
     this.currentNbCandPerStatus = this.nbCandPerStatus.asObservable();
   }
 

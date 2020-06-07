@@ -502,4 +502,75 @@ describe('candidateService', () => {
             req.flush(expectedNbCandPerStatus);
         });
     });
+
+    describe('changeNbCandPerStatus', () => {
+        beforeEach(() => {
+            const expectedNbCandPerStatus: NbCandPerStatus = {
+                accepted: 1,
+                rejected: 2,
+                waiting: 3,
+                applied: 0,
+                unapplied: 0,
+                total: 6
+            };
+            candidateService.setNbCandPerStatus(expectedNbCandPerStatus);
+        });
+
+        it('should change rejected to accepted', () => {
+            candidateService.changeNbCandPerStatus('accepted', 'rejected');
+            candidateService.currentNbCandPerStatus.subscribe(
+                data => {
+                    expect(data.accepted).toEqual(2);
+                    expect(data.rejected).toEqual(1);
+                }
+            )
+        });
+        it('should change waiting to accepted', () => {
+            candidateService.changeNbCandPerStatus('accepted', 'waiting');
+            candidateService.currentNbCandPerStatus.subscribe(
+                data => {
+                    expect(data.accepted).toEqual(2);
+                    expect(data.rejected).toEqual(2);
+                }
+            )
+        });
+
+        it('should change accepted to rejected', () => {
+            candidateService.changeNbCandPerStatus('rejected', 'accepted');
+            candidateService.currentNbCandPerStatus.subscribe(
+                data => {
+                    expect(data.rejected).toEqual(3);
+                    expect(data.accepted).toEqual(0);
+                }
+            )
+        });
+        it('should change waiting to rejected', () => {
+            candidateService.changeNbCandPerStatus('rejected', 'waiting');
+            candidateService.currentNbCandPerStatus.subscribe(
+                data => {
+                    expect(data.rejected).toEqual(3);
+                    expect(data.waiting).toEqual(2);
+                }
+            )
+        });
+
+        it('should change accepted to waiting', () => {
+            candidateService.changeNbCandPerStatus('waiting', 'accepted');
+            candidateService.currentNbCandPerStatus.subscribe(
+                data => {
+                    expect(data.waiting).toEqual(4);
+                    expect(data.accepted).toEqual(0);
+                }
+            )
+        });
+        it('should change waiting to waiting', () => {
+            candidateService.changeNbCandPerStatus('waiting', 'rejected');
+            candidateService.currentNbCandPerStatus.subscribe(
+                data => {
+                    expect(data.rejected).toEqual(1);
+                    expect(data.waiting).toEqual(4);
+                }
+            )
+        });
+    })
 });
