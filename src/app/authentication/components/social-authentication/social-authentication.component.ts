@@ -1,6 +1,5 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { AuthService as SocialAuthService, GoogleLoginProvider, FacebookLoginProvider } from 'angularx-social-login';
-import { TokenService } from 'src/app/core/services/token/token.service';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
 import { Router } from '@angular/router';
 import { first } from 'rxjs/operators';
@@ -21,7 +20,6 @@ export class SocialAuthenticationComponent implements OnInit {
   errorMsg: string;
 
   constructor(
-    private tokenService: TokenService,
     public OAuth: SocialAuthService,
     private authenticationService: AuthenticationService,
     private router: Router
@@ -42,7 +40,8 @@ export class SocialAuthenticationComponent implements OnInit {
         providerID = FacebookLoginProvider.PROVIDER_ID;
         break;
       default:
-        break;
+        this.errorMsg = 'An error occurred, please try again later.';
+        return;
     }
 
     this.OAuth.signIn(providerID).then(user => {
@@ -56,7 +55,7 @@ export class SocialAuthenticationComponent implements OnInit {
       this.outputerrorMsg.emit(this.errorMsg);
       this.isLoading = false;
       this.outputIsLoading.emit(this.isLoading);
-  });
+    });
   }
 
   socialSigninReq(token: string, provider: string) {
