@@ -479,7 +479,7 @@ describe('candidateService', () => {
         });
     });
 
-    describe('#getCandidateProfile',() => {
+    describe('#getNbCandidate',() => {
         let expectedNbCandPerStatus: NbCandPerStatus = {
             total: 154,
             applied: 81,
