@@ -6,14 +6,11 @@ import { Location } from '@angular/common';
   templateUrl: './auth-layout.component.html',
   styleUrls: ['./auth-layout.component.scss']
 })
-export class AuthLayoutComponent implements OnInit {
+export class AuthLayoutComponent {
 
   constructor(
     private location: Location
   ) { }
-
-  ngOnInit() {
-  }
 
   goBack() {
     this.location.back();
