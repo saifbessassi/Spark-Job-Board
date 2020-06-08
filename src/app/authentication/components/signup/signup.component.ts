@@ -33,7 +33,6 @@ export class SignupComponent implements OnInit {
     private router: Router,
     private passwordValidator: PasswordValidator,
     public OAuth: SocialAuthService,
-    private tokenService: TokenService,
   ) { }
 
   ngOnInit() {
@@ -83,7 +82,8 @@ export class SignupComponent implements OnInit {
         providerID = FacebookLoginProvider.PROVIDER_ID;
         break;
       default:
-        break;
+        this.errorMsg = 'An error occurred, please try again later.';
+        return;
     }
 
     this.OAuth.signIn(providerID).then(user => {
