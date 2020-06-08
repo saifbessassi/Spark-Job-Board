@@ -1,9 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthenticationService } from 'src/app/core/services/auth/authentication.service';
-import { TokenService } from 'src/app/core/services/token/token.service';
 import { Router } from '@angular/router';
-import { AuthService as SocialAuthService, GoogleLoginProvider, SocialUser, FacebookLoginProvider } from 'angularx-social-login';
 import { first } from 'rxjs/operators';
 
 @Component({
@@ -26,8 +24,6 @@ export class SigninComponent implements OnInit {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private tokenService: TokenService,
-    public OAuth: SocialAuthService,
     private router: Router,
   ) { }
 
