@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Document } from 'src/app/core/models/candidate/document.model';
-import { DomSanitizer } from '@angular/platform-browser';
 import { DocumentFormComponent } from '../document-form/document-form.component';
 
 @Component({
@@ -17,12 +16,8 @@ export class DocumentComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    config: NgbModalConfig,
-    private modalService: NgbModal,
-    private sanitizer: DomSanitizer
+    private modalService: NgbModal
     ) {
-    config.backdrop = 'static';
-    config.keyboard = false;
   }
 
   viewCv() {
@@ -33,7 +28,15 @@ export class DocumentComponent implements OnInit {
   }
 
   open() {
-    const modalRef = this.modalService.open(DocumentFormComponent, { centered: true, size: 'md' });
+    const modalRef = this.modalService.open(
+      DocumentFormComponent, 
+      { 
+        centered: true,
+        size: 'md',
+        backdrop: 'static',
+        keyboard: false 
+      }
+    );
     modalRef.componentInstance.cv = this.cv;
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
