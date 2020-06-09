@@ -13,8 +13,7 @@ import { Language } from 'src/app/core/models/language.model';
 })
 export class LanguageFormComponent implements OnInit {
 
-  langRequest = new LanguageCandidate();
-  langResponse: LanguageCandidate;
+  languageCandidate: LanguageCandidate;
   langForm: FormGroup;
   allLang: Language[] = [];
   resumeID: number;
@@ -51,24 +50,25 @@ export class LanguageFormComponent implements OnInit {
         ]
         ),
     });
-    if (this.langResponse) {
+    if (this.languageCandidate) {
       this.langForm.setValue({
-        id: this.langResponse.language['id'],
-        proficiency: this.langResponse.proficiency,
+        id: this.languageCandidate.language['id'],
+        proficiency: this.languageCandidate.proficiency,
       });
     }
   }
 
   save() {
     this.isLoading = true;
-    if (this.langResponse) {
-      this.id = this.langResponse.id;
+    if (this.languageCandidate) {
+      this.id = this.languageCandidate.id;
     }
 
-    this.langRequest.proficiency = this.langForm.value.proficiency;
-    this.langRequest.language = this.langForm.value.id;
     if (this.resumeID) {
-      this.langCandidateService.add(this.langRequest, this.resumeID).subscribe(res => {
+      this.languageCandidate = new LanguageCandidate;
+      this.languageCandidate.proficiency = this.langForm.value.proficiency;
+      this.languageCandidate.language = this.langForm.value.id;
+      this.langCandidateService.add(this.languageCandidate, this.resumeID).subscribe(res => {
         this.activeModal.close(res);
         this.isLoading = false;
       }, err => {
@@ -76,8 +76,10 @@ export class LanguageFormComponent implements OnInit {
         this.isLoading = false;
       });
     } else {
-      this.langRequest.id = this.id;
-      this.langCandidateService.edit(this.langRequest).subscribe(res => {
+      this.languageCandidate.proficiency = this.langForm.value.proficiency;
+      this.languageCandidate.language = this.langForm.value.id;
+      this.languageCandidate.id = this.id;
+      this.langCandidateService.edit(this.languageCandidate).subscribe(res => {
         this.activeModal.close({language: res, index: this.index});
         this.isLoading = false;
       }, err => {

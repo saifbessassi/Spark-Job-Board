@@ -38,7 +38,7 @@ export class LanguageComponent implements OnInit {
 
   openEditForm(lang, index) {
     const modalRef = this.modalService.open(LanguageFormComponent, { centered: true, size: 'lg' });
-    modalRef.componentInstance.langResponse = lang;
+    modalRef.componentInstance.languageCandidate = lang;
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
       this.languages[res.index] = res.language;
