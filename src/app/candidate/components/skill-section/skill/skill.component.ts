@@ -38,7 +38,7 @@ export class SkillComponent implements OnInit {
 
   openEditForm(skill, index) {
     const modalRef = this.modalService.open(SkillFormComponent, { centered: true, size: 'lg' });
-    modalRef.componentInstance.skillResponse = skill;
+    modalRef.componentInstance.skillCandidate = skill;
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
       this.skills[res.index] = res.skill;

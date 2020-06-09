@@ -13,8 +13,7 @@ import { SkillCandidateService } from 'src/app/core/services/resume/skill-candid
 })
 export class SkillFormComponent implements OnInit {
 
-  skillRequest = new SkillCandidate();
-  skillResponse: SkillCandidate;
+  skillCandidate: SkillCandidate;
   skillForm: FormGroup;
   allSkills: Skill[] = [];
   resumeID: number;
@@ -51,24 +50,25 @@ export class SkillFormComponent implements OnInit {
         ]
         ),
     });
-    if (this.skillResponse) {
+    if (this.skillCandidate) {
       this.skillForm.setValue({
-        id: this.skillResponse.skill['id'],
-        proficiency: this.skillResponse.proficiency,
+        id: this.skillCandidate.skill['id'],
+        proficiency: this.skillCandidate.proficiency,
       });
     }
   }
 
   save() {
     this.isLoading = true;
-    if (this.skillResponse) {
-      this.id = this.skillResponse.id;
+    if (this.skillCandidate) {
+      this.id = this.skillCandidate.id;
     }
 
-    this.skillRequest.proficiency = this.skillForm.value.proficiency;
-    this.skillRequest.skill = this.skillForm.value.id;
     if (this.resumeID) {
-      this.skillCandidateService.add(this.skillRequest, this.resumeID).subscribe(res => {
+      this.skillCandidate = new SkillCandidate;
+      this.skillCandidate.proficiency = this.skillForm.value.proficiency;
+      this.skillCandidate.skill = this.skillForm.value.id;
+      this.skillCandidateService.add(this.skillCandidate, this.resumeID).subscribe(res => {
         this.activeModal.close(res);
         this.isLoading = false;
       }, err => {
@@ -76,8 +76,10 @@ export class SkillFormComponent implements OnInit {
         this.isLoading = false;
       });
     } else {
-      this.skillRequest.id = this.id;
-      this.skillCandidateService.edit(this.skillRequest).subscribe(res => {
+      this.skillCandidate.proficiency = this.skillForm.value.proficiency;
+      this.skillCandidate.skill = this.skillForm.value.id;
+      this.skillCandidate.id = this.id;
+      this.skillCandidateService.edit(this.skillCandidate).subscribe(res => {
         this.activeModal.close({skill: res, index: this.index});
         this.isLoading = false;
       }, err => {
