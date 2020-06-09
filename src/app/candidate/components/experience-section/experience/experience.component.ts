@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Experience } from 'src/app/core/models/candidate/experience.model';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ExperienceFormComponent } from '../experience-form/experience-form.component';
 import { ExperienceService } from 'src/app/core/services/resume/experience/experience.service';
 
@@ -17,19 +17,24 @@ export class ExperienceComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    config: NgbModalConfig,
     private modalService: NgbModal,
     private experienceService: ExperienceService
     ) {
-    config.backdrop = 'static';
-    config.keyboard = false;
   }
 
   ngOnInit() {
   }
 
   openNewForm() {
-    const modalRef = this.modalService.open(ExperienceFormComponent, { centered: true, size: 'lg' });
+    const modalRef = this.modalService.open(
+      ExperienceFormComponent,
+      { 
+        centered: true, 
+        size: 'lg',
+        backdrop: 'static',
+        keyboard: false
+      }
+    );
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.experiences.push(res);
@@ -37,7 +42,15 @@ export class ExperienceComponent implements OnInit {
   }
 
   openEditForm(exp, index) {
-    const modalRef = this.modalService.open(ExperienceFormComponent, { centered: true, size: 'lg' });
+    const modalRef = this.modalService.open(
+      ExperienceFormComponent,
+      { 
+        centered: true, 
+        size: 'lg',
+        backdrop: 'static',
+        keyboard: false
+      }
+    );
     modalRef.componentInstance.experience = exp;
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
