@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Education } from 'src/app/core/models/candidate/education.model';
-import { NgbModalConfig, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EducationFormComponent } from '../education-form/education-form.component';
 import { EducationService } from 'src/app/core/services/resume/education/education.service';
 
@@ -17,19 +17,24 @@ export class EducationComponent implements OnInit {
   isLoading = false;
 
   constructor(
-    config: NgbModalConfig,
     private modalService: NgbModal,
     private educationService: EducationService
   ) {
-    config.backdrop = 'static';
-    config.keyboard = false;
   }
 
   ngOnInit() {
   }
 
   openNewForm() {
-    const modalRef = this.modalService.open(EducationFormComponent, { centered: true, size: 'lg' });
+    const modalRef = this.modalService.open(
+      EducationFormComponent, 
+      { 
+        centered: true, 
+        size: 'lg',
+        backdrop: 'static',
+        keyboard: false
+      }
+    );
     modalRef.componentInstance.resumeID = this.resumeID;
     modalRef.result.then(res => {
       this.educations.push(res);
@@ -37,7 +42,15 @@ export class EducationComponent implements OnInit {
   }
 
   openEditForm(edu, index) {
-    const modalRef = this.modalService.open(EducationFormComponent, { centered: true, size: 'lg' });
+    const modalRef = this.modalService.open(
+      EducationFormComponent, 
+      { 
+        centered: true, 
+        size: 'lg',
+        backdrop: 'static',
+        keyboard: false
+      }
+    );
     modalRef.componentInstance.education = edu;
     modalRef.componentInstance.index = index;
     modalRef.result.then(res => {
