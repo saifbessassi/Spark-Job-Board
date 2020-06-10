@@ -79,7 +79,7 @@ export class JobService {
     }
     const today = this.todayDate();
 
-    return this.http.get(this.API_URL + '?status=open&deadline[before]=' + today + filter + orderParam + pageParam);
+    return this.http.get(this.API_URL + '?status=open&deadline[after]=' + today + filter + orderParam + pageParam);
   }
 
   getNbJobsPerCategory(isOpen?: boolean) {
