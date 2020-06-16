@@ -26,7 +26,19 @@ export class HttpTokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (this.tokenService.getAccessToken() && !request.url.includes('refresh')) {
+    if (
+      request.url.includes('refresh') ||
+      request.url.includes('/nb-per-category') ||
+      request.url.includes('/api/login_check') ||
+      request.url.includes('/filter-options') ||
+      request.url.includes('/api/languages.json') ||
+      request.url.includes('/api/candidate/social-login') ||
+      (request.url.includes('/api/candidates') && request.method == 'POST') ||
+      (request.url.includes('/api/categories') && request.method == 'GET') ||
+      (request.url.includes('/api/categories') && request.method == 'GET') ||
+      (request.url.includes('/api/skills.json') && request.method == 'GET')
+    ) 
+    { } else {
       request = this.addToken(request, this.tokenService.getAccessToken());
     }
 
