@@ -199,8 +199,8 @@ export class CandidateListComponent implements OnInit {
           title: 'Seniority',
           type: 'string',
           valuePrepareFunction: (value, row) => {
-            if (row.resume) {
-              return row.resume.seniorityLevel;
+            if (row.candidate.resume) {
+              return row.candidate.resume.seniorityLevel;
             }
             return null;
           }
