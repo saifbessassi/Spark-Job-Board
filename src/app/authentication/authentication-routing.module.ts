@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SigninComponent } from './components/signin/signin.component';
-import { AuthLayoutComponent } from './layout/auth-layout/auth-layout.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { PasswordRequestRecoveryCodeComponent } from './components/password-request-recovery-code/password-request-recovery-code.component';
 
 
 const routes: Routes = [
@@ -16,6 +16,10 @@ const routes: Routes = [
       {
         path: 'signup',
         component: SignupComponent
+      },
+      {
+        path: 'password-recovery-code',
+        component: PasswordRequestRecoveryCodeComponent
       },
       { path: '', redirectTo: 'signin', pathMatch: 'full' }
     ]
