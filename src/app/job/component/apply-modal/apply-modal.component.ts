@@ -93,9 +93,8 @@ export class ApplyModalComponent implements OnInit {
   // Apply for a job
   onApply() {
     this.isLoading = true;
-    const candID = this.authenticationService.currentUserValue.id;
     const message = this.messageForm.value.message;
-    this.applyService.apply(this.jobId, candID, message).subscribe(res => {
+    this.applyService.apply(this.jobId, message).subscribe(res => {
       this.authenticationService.addAppliedJob(this.jobId);
       this.isLoading = false;
       this.dismissModal(true);

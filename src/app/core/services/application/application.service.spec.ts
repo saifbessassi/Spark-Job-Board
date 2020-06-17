@@ -160,7 +160,6 @@ describe('applicationService', () => {
     describe('#apply', () => {
 
         const jobID = 1;
-        const candidateID = 1;
         const message = 'this is a message for application';
         const expectedApplication = {
             id: 1,
@@ -172,7 +171,7 @@ describe('applicationService', () => {
         };
 
         it('should add a new application', () => {
-            applicationService.apply(jobID, candidateID, message).subscribe(
+            applicationService.apply(jobID, message).subscribe(
                 data => expect(data).toEqual(expectedApplication, 'should add and return the new application'),
                 fail
             );

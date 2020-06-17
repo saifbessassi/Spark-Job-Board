@@ -13,10 +13,9 @@ export class ApplicationService {
 
   constructor(private http: HttpClient) { }
 
-  apply(jobId: number, candidateId: number, message: string) {
+  apply(jobId: number, message: string) {
     const application = {
       job: '/api/jobs/' + jobId,
-      candidate: '/api/candidates/' + candidateId,
       message
     };
     return this.http.post(this.API_URL, application);
