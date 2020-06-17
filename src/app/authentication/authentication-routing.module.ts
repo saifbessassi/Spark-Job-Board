@@ -3,6 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PasswordRequestRecoveryCodeComponent } from './components/password-request-recovery-code/password-request-recovery-code.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,10 @@ const routes: Routes = [
       {
         path: 'password-recovery-code',
         component: PasswordRequestRecoveryCodeComponent
+      },
+      {
+        path: 'password-reset',
+        component: PasswordResetComponent
       },
       { path: '', redirectTo: 'signin', pathMatch: 'full' }
     ]

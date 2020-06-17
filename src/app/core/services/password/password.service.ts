@@ -21,4 +21,8 @@ export class PasswordService {
   resetPasswordWithCode(requestData) {
     return this.http.post(API_URL + '/api/users/reset-password', requestData);
   }
+
+  verifyPasswordRecoveryCode(code: string) {
+    return this.http.post(API_URL + '/api/users/verify-password-code', {passwordRecoveryCode: code});
+  }
 }

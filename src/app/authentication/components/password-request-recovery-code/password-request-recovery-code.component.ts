@@ -35,7 +35,7 @@ export class PasswordRequestRecoveryCodeComponent implements OnInit {
     this.passwordService.requesPasswordRecoveryCode(requestData).subscribe( (res: {message: string}) => {
       this.successMsg = res.message;
       setTimeout(() => {
-        this.router.navigate(['candidate/auth/reset-password-with-code']);
+        this.router.navigate(['auth/password-reset']);
       }, 3000);
       this.isLoading = false;
     }, err => {

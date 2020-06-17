@@ -9,6 +9,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { SocialLoginModule, AuthServiceConfig, FacebookLoginProvider, GoogleLoginProvider } from 'angularx-social-login';
 import { SocialAuthenticationComponent } from './components/social-authentication/social-authentication.component';
 import { PasswordRequestRecoveryCodeComponent } from './components/password-request-recovery-code/password-request-recovery-code.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 const config = new AuthServiceConfig([
   {
@@ -28,7 +29,7 @@ export function provideConfig() {
 @NgModule({
   declarations: [
     SigninComponent,
-    AuthLayoutComponent, SignupComponent, SocialAuthenticationComponent, PasswordRequestRecoveryCodeComponent],
+    AuthLayoutComponent, SignupComponent, SocialAuthenticationComponent, PasswordRequestRecoveryCodeComponent, PasswordResetComponent],
   imports: [
     CommonModule,
     AuthenticationRoutingModule,
