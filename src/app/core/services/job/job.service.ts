@@ -18,12 +18,15 @@ export class JobService {
     return this.http.get<Job>(this.API_URL + '/' + id + '.json');
   }
 
-  addNewJob(job) {
+  addNewJob(job, status?) {
     job.skills.forEach((element, index) => {
       job.skills[index] = '/api/skills/' + element;
     });
     job.category = '/api/categories/' + job.category;
     job.status = 'open';
+    if (status) {
+      job.status = status;
+    }
     return this.http.post<Job>(this.API_URL, job);
   }
 

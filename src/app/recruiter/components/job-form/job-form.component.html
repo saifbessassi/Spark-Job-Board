@@ -1,5 +1,5 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
-<form [formGroup]="jobForm" (ngSubmit)="onSave()">
+<form [formGroup]="jobForm">
 
     <h3 class="text-danger text-center my-3">{{errorMsg}}</h3>
     <div class="form-group">
@@ -50,7 +50,7 @@
             >
                 <option value="0 to 2 years">0 to 2 years</option>
                 <option value="3 to 5 years">3 to 5 years</option>
-                <option value="6 to 10 years">6 to 9 years</option>
+                <option value="6 to 9 years">6 to 9 years</option>
                 <option value="10 years or more">10 years or more</option>
             </select>
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('seniorityLevel').errors?.required">
@@ -164,11 +164,11 @@
         </div>
     </div>
     <div class="row justify-content-center">
-        <div class="col-sm-3 col-md-2">
-            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid" *ngIf="!action === 'edit'">Save Draft</button>
+        <div class="col-sm-3 col-md-2" *ngIf="action === 'add'">
+            <button (click)="onSave('saved')" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">Save Draft</button>
         </div>
         <div class="col-sm-3 col-md-2">
-            <button type="submit" class="btn btn-block sp-btn-red"[disabled]="!jobForm.valid">Submit</button>
+            <button (click)="onSave()" type="submit" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">Post</button>
         </div>
     </div>
 

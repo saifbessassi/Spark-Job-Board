@@ -75,6 +75,7 @@ export class JobFormComponent implements OnInit {
       if (this.job.category) {
         cat = this.job.category['id'];
       }
+      console.log(this.job)
       this.jobForm.setValue({
         title: this.job.title,
         employmentType : this.job.employmentType,
@@ -88,19 +89,19 @@ export class JobFormComponent implements OnInit {
     }
   }
 
-  onSave() {
+  onSave(status?) {
     this.isLoading = true;
     const newJob = this.jobForm.value;
     newJob.deadline = this.ngbDateService.stringToDate(newJob.deadline);
     if (this.action === 'add') {
-      this.addNewJob(newJob);
+      this.addNewJob(newJob, status);
     } else if (this.action === 'edit') {
       this.editJob(newJob, this.job.id);
     }
   }
 
-  addNewJob(newJob) {
-    this.jobService.addNewJob(newJob).subscribe(
+  addNewJob(newJob, status) {
+    this.jobService.addNewJob(newJob, status).subscribe(
       res => {
         this.router.navigate(['recruiter/jobs-list']);
         this.isLoading = false;
