@@ -34,7 +34,7 @@
                                 {{fullname}}
                             </a>
                             <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item nav-link profile-dropdown-link"[routerLink]="['/candidate/profile']">My account</a>
+                                <a *ngIf="!isRecruiter" class="dropdown-item nav-link profile-dropdown-link"[routerLink]="['/candidate/profile']">My account</a>
                                 <a class="dropdown-item nav-link profile-dropdown-link"[routerLink]="['/auth/password']">Change password</a>
                                 <a class="dropdown-item nav-link profile-dropdown-link" type="button" (click)="logout()">Log out</a>
                             </div>
