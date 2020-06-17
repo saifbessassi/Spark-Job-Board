@@ -102,11 +102,6 @@ export class AuthenticationService {
     return this.http.post(this.API_URL + '/api/candidates', candidate);
   }
 
-  // changePassword(passwords) {
-  //   const id = this.userService.getId();
-  //   return this.http.put<{token: string, refresh_token: string}>(API_URL + '/api/users/' + id + '/reset-password', passwords);
-  // }
-
   // Update picture in localStorage
   updatePicture(picture?) {
     const user = this.currentUserValue;

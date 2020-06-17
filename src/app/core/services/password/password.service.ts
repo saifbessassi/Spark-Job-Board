@@ -25,4 +25,9 @@ export class PasswordService {
   verifyPasswordRecoveryCode(code: string) {
     return this.http.post(API_URL + '/api/users/verify-password-code', {passwordRecoveryCode: code});
   }
+
+  changePassword(passwords) {
+    const id = JSON.parse(localStorage.getItem('currentUser')).id;
+    return this.http.put<{token: string, refresh_token: string}>(API_URL + '/api/users/' + id + '/reset-password', passwords);
+  }
 }
