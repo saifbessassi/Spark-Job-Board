@@ -38,7 +38,9 @@ export class HttpTokenInterceptor implements HttpInterceptor {
       (request.url.includes('/api/categories') && request.method == 'GET') ||
       (request.url.includes('/api/skills.json') && request.method == 'GET')
     ) 
-    { } else {
+    {
+      return next.handle(request);
+    } else {
       request = this.addToken(request, this.tokenService.getAccessToken());
     }
 
