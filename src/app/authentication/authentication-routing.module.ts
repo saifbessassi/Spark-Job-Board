@@ -4,6 +4,7 @@ import { SigninComponent } from './components/signin/signin.component';
 import { SignupComponent } from './components/signup/signup.component';
 import { PasswordRequestRecoveryCodeComponent } from './components/password-request-recovery-code/password-request-recovery-code.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { EnsureOnlyNonConnectedVisitAuthPages } from '../core/guards/ensure-only-non-connected-visit-auth-pages.service';
 
 
 const routes: Routes = [
@@ -12,18 +13,22 @@ const routes: Routes = [
     children: [
       {
         path: 'signin',
+        canActivate: [EnsureOnlyNonConnectedVisitAuthPages],
         component: SigninComponent
       },
       {
         path: 'signup',
+        canActivate: [EnsureOnlyNonConnectedVisitAuthPages],
         component: SignupComponent
       },
       {
         path: 'password-recovery-code',
+        canActivate: [EnsureOnlyNonConnectedVisitAuthPages],
         component: PasswordRequestRecoveryCodeComponent
       },
       {
         path: 'password-reset',
+        canActivate: [EnsureOnlyNonConnectedVisitAuthPages],
         component: PasswordResetComponent
       },
       { path: '', redirectTo: 'signin', pathMatch: 'full' }

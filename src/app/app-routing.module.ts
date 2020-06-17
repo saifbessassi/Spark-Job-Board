@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { AppLayoutComponent } from './core/layouts/app-layout/app-layout.component';
 import { ALL_ROUTES, AUTH_ROUTES } from './core/routes/all-routes';
 import { AuthLayoutComponent } from './authentication/layout/auth-layout/auth-layout.component';
-import { EnsureOnlyNonConnectedVisitAuthPages } from './core/guards/ensure-only-non-connected-visit-auth-pages.service';
 
 
 const routes: Routes = [
@@ -14,7 +13,6 @@ const routes: Routes = [
   },
   {
     path: 'auth',
-    canActivate: [EnsureOnlyNonConnectedVisitAuthPages],
     component: AuthLayoutComponent,
     children: AUTH_ROUTES
   }
