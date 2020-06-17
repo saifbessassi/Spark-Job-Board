@@ -23,6 +23,16 @@ export class TokenService {
     private http: HttpClient
   ) { }
 
+  setToken(data) {
+    const payload = jwt_decode(data.token);
+    const token = new Token();
+    token.exp = payload.exp;
+    token.iat = payload.iat;
+    token.access_token = data.token;
+    token.refrech_token = data.refresh_token;
+    localStorage.setItem('token', JSON.stringify(token));
+  }
+
   getAccessToken() {
     const token = JSON.parse(localStorage.getItem('token'));
     if (token) {
