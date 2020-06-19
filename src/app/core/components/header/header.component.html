@@ -12,6 +12,12 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar_global" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
                     <span style="color: #fff;font-size: 130%;"><i class="fa fa-bars"></i></span>
                 </button>
+                <a *ngIf="translate.currentLang === 'fr'" (click)="translate.use('en')" type="button" class="navbar-brand d-lg-none" style="vertical-align: middle;">
+                    <img src="assets/images/icone/en.svg" style="width: 25px;">
+                </a>
+                <a *ngIf="translate.currentLang === 'en'" (click)="translate.use('fr')" type="button" class="navbar-brand d-lg-none" style="vertical-align: middle;">
+                    <img src="assets/images/icone/fr.svg" style="width: 25px;">
+                </a>
             
                 <div class="collapse navbar-collapse" id="navbar_global">
                     <ul class="navbar-nav navbar-nav-hover align-items-lg-center mr-auto main_nav">
