@@ -10,10 +10,6 @@ import { JobFiltersOptions } from 'src/app/core/models/job-filters-options.model
 })
 export class LandingComponent implements OnInit {
 
-  title = 'Find Jobs Now more Easy Way';
-  // tslint:disable-next-line:max-line-length
-  text = 'Spark-it is a digital services company. We offer digital development and consulting solutions for all market players: Start-up, SMEs and large groups.';
-
   isLoading = false;
   isLoadingCategory = false;
   recentJobs: Job[] = [];

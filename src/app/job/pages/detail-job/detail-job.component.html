@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 
 <section id="intro">
-    <sp-carousel [title]="title" [text]="text"></sp-carousel>
+    <sp-carousel title="{{'PAGE_JOB.CAROUSEL_TITLE' | translate}}" [text]="''"></sp-carousel>
 </section>
 
 <section id="job-Details" class="background-color-white-drak" style="padding: 5%;">
@@ -28,13 +28,13 @@
 
           <ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs nav-fill">
               <li [ngbNavItem]="1">
-                <a ngbNavLink>Information</a>
+                <a ngbNavLink>{{ 'PAGE_JOB.INFORMATION' | translate }}</a>
                 <ng-template ngbNavContent>
                   <sp-job-card-detail [job]="job" *ngIf="!getJobError && !isLoading"></sp-job-card-detail>
                 </ng-template>
               </li>
               <li [ngbNavItem]="2">
-                <a ngbNavLink>Candidates</a>
+                <a ngbNavLink>{{ 'PAGE_JOB.CANDIDATES' | translate }}</a>
                 <ng-template ngbNavContent>
                   <sp-candidate-list [jobID]=job?.id [columnDecision]="true"></sp-candidate-list>
                 </ng-template>

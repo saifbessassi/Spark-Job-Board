@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">Presentation</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'DESCRIPTION.PRESENTATION' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -9,7 +9,7 @@
     <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
     <form [formGroup]="descForm" (ngSubmit)="save()">
         <div class="modal-body">
-            <p class="text-muted">A description is useful to understand who you are at a glance, it can make a real difference!</p>
+            <p class="text-muted">{{'DESCRIPTION.DESC' | translate}}!</p>
             <textarea 
                 class="form-control" 
                 placeholder="Write your introduction here"
@@ -19,14 +19,14 @@
                     'is-invalid': !descForm.get('description').valid && descForm.get('description').touched}">
             </textarea>
             <div class="invalid-feedback mt-3" *ngIf="descForm.get('description').errors?.minlength">
-                Presentation must be at least 30 characters.
+                {{'DESCRIPTION.MIN' | translate}}.
             </div>
             <div class="invalid-feedback mt-3" *ngIf="descForm.get('description').errors?.maxlength">
-                Presentation can contain maximum 255 characters.
+                {{'DESCRIPTION.MAX' | translate}}.
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red" [disabled]="!descForm.valid">Save</button>
+            <button type="submit" class="btn sp-btn-red" [disabled]="!descForm.valid">{{'SAVE' | translate}}</button>
         </div>
     </form>
 </div>

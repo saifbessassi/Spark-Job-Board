@@ -1,5 +1,5 @@
 <div class="row justify-content-center">
-    <div class="col-lg-5 align-self-center">
+    <div class="col-lg-6 align-self-center">
         <div class="row justify-content-center">
             <img *ngIf="!candidate?.picture" src="assets/images/default-avatar.svg" alt="">
             <img *ngIf="candidate?.picture" src="http://localhost:8000{{candidate?.picture.url}}" alt="">
@@ -8,11 +8,11 @@
             <h3>{{candidate?.fullname | titlecase }}</h3>
         </div>
     </div>
-    <div class="col-lg-5 align-self-center">
-        <ngb-progressbar type="danger" [value]="percentage"><span *ngIf="percentage === 100">Completed!</span></ngb-progressbar>
-        <p>Profile filled in {{percentage}}%</p>
+    <div class="col-lg-6 align-self-center">
+        <ngb-progressbar type="danger" [value]="percentage"><span *ngIf="percentage === 100">{{ 'RESUME_SUMMARY.COMPLETED' | translate }}!</span></ngb-progressbar>
+        <p>{{ 'RESUME_SUMMARY.FILLED' | translate }} {{percentage}}%</p>
         <div class="row justify-content-center">
-            <button (click)="goProfile()" class="btn sp-btn-white"><i class="fas fa-pen"></i> Complete your profile</button>
+            <button (click)="goProfile()" class="btn sp-btn-white"><i class="fas fa-pen"></i> {{ 'RESUME_SUMMARY.COMPLETE' | translate }}</button>
         </div>
     </div>
 </div>
@@ -26,22 +26,22 @@
             <p class="row" [ngClass]="{'text-danger': !candidate?.email}">
                 <span class="col-1"><i class="fas fa-envelope"></i></span>
                 <span class="col" *ngIf="candidate?.email">{{candidate?.email}}</span>
-                <span class="col" *ngIf="!candidate?.email">empty field</span> 
+                <span class="col" *ngIf="!candidate?.email">{{ 'RESUME_SUMMARY.EMPTY' | translate }}</span> 
             </p>
             <p class="row" [ngClass]="{'text-danger': !candidate?.address}">
                 <span class="col-1"><i class="fas fa-map-marked-alt"></i></span>
                 <span class="col" *ngIf="candidate?.address">{{candidate?.address | titlecase }}</span>
-                <span class="col" *ngIf="!candidate?.address">empty field</span>
+                <span class="col" *ngIf="!candidate?.address">{{ 'RESUME_SUMMARY.EMPTY' | translate }}</span>
             </p>
             <p class="row" [ngClass]="{'text-danger': !candidate?.phone}">
                 <span class="col-1"><i class="fas fa-phone"></i> </span>
                 <span class="col" *ngIf="candidate?.phone">{{candidate?.phone}} </span>
-                <span class="col" *ngIf="!candidate?.phone">empty field</span>
+                <span class="col" *ngIf="!candidate?.phone">{{ 'RESUME_SUMMARY.EMPTY' | translate }}</span>
             </p>
             <div class="row" [ngClass]="{'text-danger': !candidate?.resume.description}">
-                <h6>Presentation: </h6>
+                <h6>{{ 'PRESENTATION' | translate }}: </h6>
                 <p class="text-justify">{{candidate?.resume.description}}</p>
-                <p class="col" *ngIf="!candidate?.resume.description">empty field</p>
+                <p class="col" *ngIf="!candidate?.resume.description">{{ 'RESUME_SUMMARY.EMPTY' | translate }}</p>
             </div>
         </div>
     </div>
@@ -49,40 +49,40 @@
     <div class="col-lg-5 align-self-center justify-content-center">
         <p class="row px-3" [ngClass]="{'text-danger': !candidate?.resume.seniorityLevel}">
             <span class="col-1"><i class="far fa-calendar-alt"></i></span>
-            <span class="col-5">Seniority:</span>
+            <span class="col-5">{{ 'EXPERIENCES' | translate }}:</span>
             <span class="col-5 px-0">{{candidate?.resume.seniorityLevel}}</span>
-            <span class="col" *ngIf="!candidate?.resume.seniorityLevel">empty field</span>
+            <span class="col" *ngIf="!candidate?.resume.seniorityLevel">{{ 'RESUME_SUMMARY.EMPTY' | translate }}</span>
         </p>
         <p class="row px-3" [ngClass]="{'text-danger': !candidate?.resume.cv}">
             <span class="col-1"><i class="fas fa-file-pdf"></i></span>
-            <span class="col-8">Attached file:</span>
-            <span class="col-2" *ngIf="candidate?.resume.cv">yes</span>
-            <span class="col-2" *ngIf="!candidate?.resume.cv">no</span>
+            <span class="col-8">{{ 'RESUME_SUMMARY.ATTACHED' | translate }}:</span>
+            <span class="col-2" *ngIf="candidate?.resume.cv">{{ 'RESUME_SUMMARY.YES' | translate }}</span>
+            <span class="col-2" *ngIf="!candidate?.resume.cv">{{ 'RESUME_SUMMARY.NO' | translate }}</span>
         </p>
-        <h6>Number of filled fields:</h6>
+        <h6>{{ 'RESUME_SUMMARY.NB_FILLED' | translate }}:</h6>
         <p class="row px-3" [ngClass]="{'text-danger': !nbEducation}">
             <span class="col-1"><i class="fas fa-graduation-cap"></i></span>
-            <span class="col-8">Educations:</span>
+            <span class="col-8">{{ 'EDUCATIONS' | translate }}:</span>
             <span class="col-2">{{nbEducation}}</span> 
         </p>
         <p class="row px-3" [ngClass]="{'text-danger': !nbExperience}">
             <span class="col-1"><i class="fas fa-briefcase"></i></span>
-            <span class="col-8">Experiences:</span>
+            <span class="col-8">{{ 'EXPERIENCES' | translate }}:</span>
             <span class="col-2">{{nbExperience}}</span>
         </p>
         <p class="row px-3" [ngClass]="{'text-danger': !nbProject}">
             <span class="col-1"><i class="fas fa-tasks"></i></span>
-            <span class="col-8">Projects:</span>
+            <span class="col-8">{{ 'PROJECTS' | translate }}:</span>
             <span class="col-2">{{nbProject}}</span>
         </p>
         <p class="row px-3" [ngClass]="{'text-danger': !nbSkill}">
             <span class="col-1"><i class="fas fa-user-cog"></i></span>
-            <span class="col-8">Skills:</span>
+            <span class="col-8">{{ 'SKILLS' | translate }}:</span>
             <span class="col-2">{{nbSkill}}</span> 
         </p>
         <p class="row px-3" [ngClass]="{'text-danger': !nbLanguage}">
             <span class="col-1"><i class="fas fa-globe"></i></span>
-            <span class="col-8">Languages:</span>
+            <span class="col-8">{{ 'LANGUAGES' | translate }}:</span>
             <span class="col-2">{{nbLanguage}}</span>
         </p>
     </div>

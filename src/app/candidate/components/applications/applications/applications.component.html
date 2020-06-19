@@ -3,18 +3,18 @@
         <div class="row">
             <div class="col">
                 <header class="d-flex align-items-center mb-4">
-                    <h4>Applications</h4>
+                    <h4>{{'APPLICATION.APPS' | translate}}</h4>
                 </header>
                 <div class="row">
                     <div class="col">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th scope="col">Job</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Motivation</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Decision</th>
+                                    <th scope="col">{{'APPLICATION.JOB' | translate}}</th>
+                                    <th scope="col">{{'APPLICATION.DATE' | translate}}</th>
+                                    <th scope="col">{{'APPLICATION.MOTIVATION' | translate}}</th>
+                                    <th scope="col">{{'APPLICATION.STATUS' | translate}}</th>
+                                    <th scope="col">{{'APPLICATION.DECISION' | translate}}</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,7 +53,7 @@
                                     </td>
                                 </tr>
                                 <tr *ngIf="!applications?.length">
-                                    <td colspan="4">No Application</td>
+                                    <td colspan="4">{{'APPLICATION.NO_APP' | translate}}</td>
                                 </tr>
                             </tbody>
                         </table>

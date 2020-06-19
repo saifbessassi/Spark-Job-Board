@@ -1,33 +1,33 @@
 <nav id="sidebar" class="py-3" [ngClass]="{'active': isClose}">
     <div class="position-fixed">
     <div class="sidebar-header px-3 py-3">
-        <h3>Recruiter Space</h3>
-        <strong>RS</strong>
+        <h3>{{ 'SIDEBAR.SPACE' | translate}}</h3>
+        <strong>{{ 'SIDEBAR.SPACE_ABR' | translate}}</strong>
     </div>
 
     <ul class="nav flex-column">
         <li class="nav-item py-2" routerLinkActive="router-link-active">
             <a class="nav-link" [routerLink]="'/recruiter/dashboard'" routerLinkActive="router-link-active" >
                 <i class="fas fa-home"></i>
-                <span class="nav-title">Dashboard</span>
+                <span class="nav-title">{{ 'SIDEBAR.DASHBOARD' | translate}}</span>
             </a>
         </li>
         <li class="nav-item py-2" routerLinkActive="router-link-active">
             <a class="nav-link" [routerLink]="'/recruiter/jobs-list'" routerLinkActive="router-link-active" >
                 <i class="fas fa-briefcase mr-2"></i>
-                <span class="nav-title">All jobs</span>
+                <span class="nav-title">{{ 'SIDEBAR.JOBS' | translate}}</span>
             </a>
         </li>
         <li class="nav-item py-2" routerLinkActive="router-link-active">
             <a class="nav-link" [routerLink]="'/recruiter/add-job'" routerLinkActive="router-link-active" >
                 <i class="fas fa-folder-plus mr-2"></i>
-                <span class="nav-title">New Job</span>
+                <span class="nav-title">{{ 'SIDEBAR.NEWJOB' | translate}}</span>
             </a>
         </li>
         <li class="nav-item py-2" routerLinkActive="router-link-active">
             <a class="nav-link" [routerLink]="'/recruiter/all-candidates'" routerLinkActive="router-link-active" >
                 <i class="fas fa-users"></i>
-                <span class="nav-title">All candidates</span>
+                <span class="nav-title">{{'SIDEBAR.CANDIDATES' | translate}}</span>
             </a>
         </li>
     </ul>

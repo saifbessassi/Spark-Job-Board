@@ -5,22 +5,22 @@
         [(ngModel)]="candStatus" 
         (change)="onStatusFilter()">
         <label ngbButtonLabel class="btn-outline-secondary">
-            <input ngbButton type="radio" [value]="''"> All<span class="all-candidates"> Candidates</span> ({{nbCand?.total}})
+            <input ngbButton type="radio" [value]="''"> {{'RECRUITER.ALL' | translate}}<span class="all-candidates"> {{'RECRUITER.CANDIDATES' | translate}}</span> ({{nbCand?.total}})
         </label>
         <label *ngIf="!jobID" ngbButtonLabel class="btn-outline-secondary">
-            <input ngbButton type="radio" [value]="'true'"> Applied ({{nbCand?.applied}})
+            <input ngbButton type="radio" [value]="'true'"> {{'RECRUITER.APPLIED' | translate}} ({{nbCand?.applied}})
         </label>
         <label *ngIf="!jobID" ngbButtonLabel class="btn-outline-secondary">
-            <input ngbButton type="radio" [value]="'false'"> Unapplied ({{nbCand?.unapplied}})
+            <input ngbButton type="radio" [value]="'false'"> {{'RECRUITER.UNAPPLIED' | translate}} ({{nbCand?.unapplied}})
         </label>
         <label ngbButtonLabel class="btn-outline-secondary">
-            <input ngbButton type="radio" [value]="'accepted'"> Accepted ({{nbCand?.accepted}})
+            <input ngbButton type="radio" [value]="'accepted'"> {{'RECRUITER.ACCEPTED' | translate}} ({{nbCand?.accepted}})
         </label>
         <label ngbButtonLabel class="btn-outline-secondary">
-            <input ngbButton type="radio" [value]="'waiting'"> Waiting ({{nbCand?.waiting}})
+            <input ngbButton type="radio" [value]="'waiting'"> {{'RECRUITER.WAITING' | translate}} ({{nbCand?.waiting}})
         </label>
         <label ngbButtonLabel class="btn-outline-secondary">
-            <input ngbButton type="radio" [value]="'rejected'"> Rejected ({{nbCand?.rejected}})
+            <input ngbButton type="radio" [value]="'rejected'"> {{'RECRUITER.REJECTED' | translate}} ({{nbCand?.rejected}})
         </label>
     </div>
 </div>

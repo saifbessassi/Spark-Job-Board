@@ -9,6 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TopBarComponent } from './components/top-bar/top-bar.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { TranslateModule } from '@ngx-translate/core';
 
 
 
@@ -25,6 +26,7 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     RouterModule,
     HttpClientModule,
     ReactiveFormsModule,
+    TranslateModule
   ],
   exports: [
     HttpClientModule

@@ -7,6 +7,7 @@ import { ErrorMsgComponent } from './components/error-msg/error-msg.component';
 import { NgbModalModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { AnimatedDigitComponent } from './components/animated-digit/animated-digit.component';
 import { EditorModule } from '@tinymce/tinymce-angular';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     ReactiveFormsModule,
     NgbModalModule,
     NgbModule,
-    EditorModule
+    EditorModule,
+    TranslateModule
   ],
   exports: [
     CommonModule,
@@ -32,7 +34,8 @@ import { EditorModule } from '@tinymce/tinymce-angular';
     NgbModalModule,
     NgbModule,
     AnimatedDigitComponent,
-    EditorModule
+    EditorModule,
+    TranslateModule
   ],
 })
 export class SharedModule { }

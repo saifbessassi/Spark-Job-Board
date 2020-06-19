@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 
 <section id="intro">
-    <sp-carousel [title]="title" [text]="text"></sp-carousel>
+    <sp-carousel title="{{'ALL_JOBS.CAROUSEL_TITLE' | translate}}" [text]="''"></sp-carousel>
 </section>
 
 
@@ -10,7 +10,7 @@
     <div class="container-fluid text-center">
         
         <div class="vertical-space-30"></div>
-        <h3 class="text-center">Filter Jobs Result</h3>
+        <h3 class="text-center">{{ 'ALL_JOBS.FILTER_JOBS' | translate }}</h3>
 
         <div class="row">
     
@@ -30,19 +30,19 @@
                 <sp-error-msg [errorMsg]="getJobsError" *ngIf="!isLoading && getJobsError"></sp-error-msg>
                 <div *ngIf="jobs.length && !getJobsError" class="row" style="padding: 1%;">
                     <div class="col-md-6">
-                        <h6 class="text-left" style="float: left;"><b>{{nbJobs}}</b> results</h6>
+                        <h6 class="text-left" style="float: left;"><b>{{nbJobs}}</b> {{ 'ALL_JOBS.RESULTS' | translate }}</h6>
                     </div>
                     <div class="col-md-6 text-right">
-                        <label style="margin-right: 3%;">Sorted by: </label>
+                        <label style="margin-right: 3%;">{{ 'ALL_JOBS.SORTED' | translate }}: </label>
                         <select class="form-control form-control-sm" (change)="onOrder($event)" style="width: 50%; float: right; background-color: transparent;">
-                            <option value="order[createdAt]=desc" selected>Date: newest</option>
-                            <option value="order[createdAt]=asc">Date: oldest</option>
-                            <option value="order[deadline]=asc">Deadline: soonest</option>
-                            <option value="order[deadline]=desc">Deadline: farest</option>
+                            <option value="order[createdAt]=desc" selected>Date: {{ 'ALL_JOBS.NEWEST' | translate }}</option>
+                            <option value="order[createdAt]=asc">Date: {{ 'ALL_JOBS.OLDEST' | translate }}</option>
+                            <option value="order[deadline]=asc">{{ 'ALL_JOBS.DEADLINE' | translate }}: {{ 'ALL_JOBS.SOONEST' | translate }}</option>
+                            <option value="order[deadline]=desc">{{ 'ALL_JOBS.DEADLINE' | translate }}: {{ 'ALL_JOBS.FAREST' | translate }}</option>
                         </select>
                     </div>
                 </div>
-                <h5 *ngIf="!jobs.length && !getJobsError">There are no job offers at the moment.</h5>
+                <h5 *ngIf="!jobs.length && !getJobsError">{{ 'ALL_JOBS.NO_JOBS' | translate }}.</h5>
                 <sp-job-post  *ngFor="let job of jobs" [job]="job"></sp-job-post>
                 <div class="vertical-space-20"></div>
                 <sp-pagination

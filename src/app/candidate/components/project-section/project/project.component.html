@@ -5,7 +5,7 @@
             <div class="col">
                 <div *ngIf="projects?.length">
                     <header class="d-flex align-items-center mb-4">
-                        <h4>Project</h4>
+                        <h4>{{'PROJECT.PROJECT' | translate}}</h4>
                         <a *ngIf="!isRecruiter" (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
@@ -27,8 +27,8 @@
                             <img src="assets/images/icone/Projects.svg" alt="projects">
                         </div>
                         <div class="col-md-8">
-                            <h5 class="mb-4">Hey, this is quite empty here!</h5>
-                            <p>Add here every project that you have done in the past.</p>
+                            <h5 class="mb-4">{{'PROJECT.TITLE' | translate}}!</h5>
+                            <p>{{'PROJECT.DESC' | translate}}.</p>
                         </div>
                         <div class="col-md-2 text-center">
                             <button (click)="openNewForm()" type="button" class="sp-btn sp-btn-red"><i class="fas fa-plus"></i></button>

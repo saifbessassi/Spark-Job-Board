@@ -17,11 +17,11 @@
     <section class="pt-3">
         <div class="row text-center">
             <div class="col text-left">
-                <h5 class="mb-4">General information</h5>
+                <h5 class="mb-4">{{'IDENTITY.INFO' | translate}}</h5>
                 <div class="">
                     <p><i class="fas fa-envelope"></i>  {{identity?.email}}</p>
                     <p *ngIf="identity?.phone"><i class="fas fa-phone-alt"></i>  {{identity?.phone}}</p>
-                    <p *ngIf="identity?.resume && identity?.resume.seniorityLevel"><i class="far fa-calendar-alt"></i>  {{identity?.resume.seniorityLevel}} of experience</p>
+                    <p *ngIf="identity?.resume && identity?.resume.seniorityLevel"><i class="far fa-calendar-alt"></i>  {{identity?.resume.seniorityLevel}} {{'IDENTITY.EXP' | translate}}</p>
                 </div>
             </div>
         </div>

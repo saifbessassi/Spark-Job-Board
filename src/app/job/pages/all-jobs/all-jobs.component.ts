@@ -10,8 +10,6 @@ import { FilterChoice } from 'src/app/core/models/filter-choice.model';
 })
 export class AllJobsComponent implements OnInit {
 
-  title = 'Our Available Offers';
-  text = '';
   nbJobs: number;
   nbJobsPerPage = 10;
   isLoading = false;

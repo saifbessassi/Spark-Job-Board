@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">Education</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'EDUCATION.EDU' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,7 +11,7 @@
     
         <div class="modal-body">
             <div class="form-group">
-                <label for="inputSchool">School: <span class="obligatory">*</span></label>
+                <label for="inputSchool">{{'EDUCATION.SCHOOL' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="school"
                     type="text" 
@@ -19,40 +19,37 @@
                     [ngClass]="{'is-valid': eduForm.get('school').valid,
                                 'is-invalid': !eduForm.get('school').valid && eduForm.get('school').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="eduForm.get('school').errors?.required">
-                    School name is required.
+                    {{'EDUCATION.SCHOOL_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="eduForm.get('school').errors?.minlength">
-                    School name must be at least 8 characters.
+                    {{'EDUCATION.SCHOOL_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="eduForm.get('school').errors?.maxlength">
-                    School name can contain maximum 200 characters.
+                    {{'EDUCATION.SCHOOL_MAX' | translate}}.
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputDegree">Degree: <span class="obligatory">*</span></label>
+                <label for="inputDegree">{{'EDUCATION.DEGREE' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="degree" 
                     type="text" 
                     class="form-control"
                     [ngClass]="{'is-valid': eduForm.get('degree').valid,
                                 'is-invalid': !eduForm.get('degree').valid && eduForm.get('degree').touched}">
-                <div class="invalid-feedback mt-3">
-                    Degree is required.
-                </div>
                 <div class="invalid-feedback mt-3" *ngIf="eduForm.get('degree').errors?.required">
-                    Degree is required.
+                    {{'EDUCATION.DEGREE_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="eduForm.get('degree').errors?.minlength">
-                    Degree must be at least 6 characters.
+                    {{'EDUCATION.DEGREE_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="eduForm.get('degree').errors?.maxlength">
-                    Degree can contain maximum 200 characters.
+                    {{'EDUCATION.DEGREE_MAX' | translate}}.
                 </div>
             </div>
-            <h5>Date</h5>
+            <h5>{{'EDUCATION.DATE' | translate}}</h5>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="startDate">Start: <span class="obligatory">*</span></label>
+                    <label for="startDate">{{'EDUCATION.START' | translate}}: <span class="obligatory">*</span></label>
                     <div class="input-group">
                         <input 
                             formControlName="dateStart"
@@ -71,12 +68,12 @@
                         </button>
                         </div>
                         <div class="invalid-feedback mt-3">
-                            Start date is required.
+                            {{'EDUCATION.START_REQUIRED' | translate}}.
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="endDate">End: <span class="obligatory">*</span></label>
+                    <label for="endDate">{{'EDUCATION.END' | translate}}: <span class="obligatory">*</span></label>
                     <div class="input-group">
                         <input 
                             formControlName="dateEnd"
@@ -99,14 +96,14 @@
                         </button>
                         </div>
                         <div class="invalid-feedback mt-3">
-                            End date is required.
+                            {{'EDUCATION.END_REQUIRED' | translate}}.
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red"[disabled]="!eduForm.valid">Save</button>
+            <button type="submit" class="btn sp-btn-red"[disabled]="!eduForm.valid">{{'SAVE' | translate}}</button>
         </div>
 
     </form>

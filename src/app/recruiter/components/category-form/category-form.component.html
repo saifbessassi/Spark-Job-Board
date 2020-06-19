@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">New Category</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'CATEGORY.NEW' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -10,24 +10,24 @@
         <div class="modal-body">
             <h6  class="text-danger mb-4 text-center" *ngIf="errorMsg">{{errorMsg}}</h6>
             <div class="form-group">
-                <label>Category: <span class="obligatory">*</span></label>
+                <label>{{'CATEGORY.CAT' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="label" 
                     type="text" 
                     class="form-control mt-3"
-                    placeholder="Enter skill name"
+                    placeholder="{{'CATEGORY.PLACEHOLDER' | translate}}"
                     [ngClass]="{'is-valid': categoryForm.get('label').valid,
                     'is-invalid': (!categoryForm.get('label').valid && categoryForm.get('label').touched)}">
                 <div class="invalid-feedback mt-3" *ngIf="categoryForm.get('label').errors?.required">
-                    Category name is required.
+                    {{'CATEGORY.REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="categoryForm.get('label').errors?.exist">
-                    This value is already used.
+                    {{'CATEGORY.USED' | translate}}.
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red" [disabled]="!categoryForm.valid">Submit</button>
+            <button type="submit" class="btn sp-btn-red" [disabled]="!categoryForm.valid">{{'SUBMIT' | translate}}</button>
         </div>
     </form>
 </div>

@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 
 <div class="card-body">
-    <h1 class="text-center">Sign Up</h1>
+    <h1 class="text-center">{{'SIGNUP.SIGNUP' | translate}}</h1>
 
     <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
     <div *ngIf="signupError?.length">
@@ -26,90 +26,90 @@
 
                 <!-- Full name -->
                 <div class="form-control-group text-left mb-3">
-                    <label for="fullNameInput">Full name:</label>
+                    <label for="fullNameInput">{{'IDENTITY.FULLNAME' | translate}}:</label>
                     <input 
                         formControlName="fullname"
                         class="form-control"
-                        placeholder="Full name"
+                        placeholder="{{'IDENTITY.FULLNAME_PLACEHOLDER' | translate}}"
                         pattern="[a-zA-Z]+\s[a-zA-Z]+(\s[a-zA-Z]+)?"
                         type="text">
                     <div *ngIf="signupForm.get('fullname').touched && signupForm.get('fullname').errors">
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('fullname').errors.required">
-                            Full name is required !
+                            {{'IDENTITY.FULLNAME_REQUIRED' | translate}} !
                         </p>
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('fullname').errors.pattern">
-                            Full name must contains 2 or 3 words and only alphabetic characters !
+                            {{'IDENTITY.FULLNAME_FORMAT' | translate}} !
                         </p>
                     </div>
                 </div>
 
                 <!-- Email address -->
                 <div class="form-control-group text-left mb-3">
-                    <label for="emailInput">Email address:</label>
+                    <label for="emailInput">{{'PASSWORD.EMAIL' | translate}}:</label>
                     <input 
                         type="email"
                         class="form-control"
-                        placeholder="Enter email"
+                        placeholder="{{'PASSWORD.EMAIL_PLACEHOLDER' | translate}}"
                         formControlName="email"
                         pattern=".+@.+\..+">
                     <div *ngIf="signupForm.get('email').touched && signupForm.get('email').errors">
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('email').errors.required">
-                            Email is required !
+                            {{'PASSWORD.EMAIL_REQUIRED' | translate}} !
                         </p>
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('email').errors.pattern">
-                            Email must be a valid email address !
+                            {{'PASSWORD.EMAIL_VALID' | translate}} !
                         </p>
                     </div>
                 </div>
 
                 <!-- Password -->
                 <div class="form-control-group text-left mb-3">
-                    <label for="passwordInput">Password:</label>
+                    <label for="passwordInput">{{'PASSWORD.PASS' | translate}}:</label>
                     <input
                         type="password"
                         class="form-control"
-                        placeholder="Password"
+                        placeholder="{{'PASSWORD.PASS_PLACEHOLDER' | translate}}"
                         formControlName="password">
                     <div *ngIf="signupForm.get('password').touched && signupForm.get('password').errors">
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('password').errors.required">
-                            Password is required !
+                            {{'PASSWORD.PASS_REQUIRED' | translate}} !
                         </p>
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('password').errors.minlength">
-                            Password must be at least 8 characters !
+                            {{'PASSWORD.NEW_MIN' | translate}} !
                         </p>
                     </div>
                 </div>
 
                 <!-- Retyped password -->
                 <div class="form-control-group text-left mb-3">
-                    <label for="RetypedPasswordInput">Repeat password:</label>
+                    <label for="RetypedPasswordInput">{{'PASSWORD.RETYPED' | translate}}:</label>
                     <input
                         type="isAgree"
                         class="form-control"
-                        placeholder="Confirm Password"
+                        placeholder="{{'PASSWORD.RETYPED_PLACEHOLDER' | translate}}"
                         formControlName="retypedPassword">
                     <div *ngIf="signupForm.get('retypedPassword').touched && signupForm.get('retypedPassword').errors">
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('retypedPassword').errors.required">
-                            Password confirmation is required !
+                            {{'PASSWORD.RETYPED_REQUIRED' | translate}} !
                         </p>
                         <p 
                             class="text-danger"
                             *ngIf="signupForm.get('retypedPassword').errors.mustMatch">
-                            Passwords must match !
+                            {{'PASSWORD.MATCH' | translate}} !
                         </p>
                     </div>
                 </div>
@@ -121,17 +121,17 @@
                         class="form-check-input"
                         formControlName="isAgree">
                     <label for="agreeInput" class="form-check-label">
-                        I agree to let Spark-it keep my information for future purposes.
+                        {{'SIGNUP.AGREE' | translate}}.
                     </label>
                     <div *ngIf="signupForm.get('isAgree').touched && !signupForm.get('isAgree').value">
                         <p class="text-danger">
-                            You Should agree to let Spark-it keep your information for future purposes !
+                            {{'SIGNUP.AGREE_REQUIRED' | translate}} !
                         </p>
                     </div>
                 </div>
                 
                 <!-- Submit -->
-                <button type="submit" class="btn btn-block mb-3" [disabled]="!signupForm.valid || !signupForm.get('isAgree').value">Sign up</button>
+                <button type="submit" class="btn btn-block mb-3" [disabled]="!signupForm.valid || !signupForm.get('isAgree').value">{{'SIGNUP.SIGNUP' | translate}}</button>
 
             </form>
             <sp-social-authentication
@@ -143,6 +143,6 @@
             </sp-social-authentication>
         </div>
         <div class="vertical-space-30"></div>
-        <p>Already have an account? <a [routerLink]="['/auth/signin']"><u style="color: #ba0000;">Sign In</u></a></p>
+        <p>{{'AUTH.HAVE_ACCOUNT' | translate}}? <a [routerLink]="['/auth/signin']"><u style="color: #ba0000;">{{'AUTH.SIGNIN' | translate}}</u></a></p>
     </div>
 </div>

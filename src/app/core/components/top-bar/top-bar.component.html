@@ -14,6 +14,14 @@
                         <div class=" ml-auto">
                             <ul class="top_bar_contact_list" style="margin: 0;">
                                 <li>
+                                    <a *ngIf="translate.currentLang === 'fr'" (click)="translate.use('en')" type="button" class="navbar-brand" style="vertical-align: middle;">
+                                        <img src="assets/images/icone/en.svg" style="width: 25px;">
+                                    </a>
+                                    <a *ngIf="translate.currentLang === 'en'" (click)="translate.use('fr')" type="button" class="navbar-brand" style="vertical-align: middle;">
+                                        <img src="assets/images/icone/fr.svg" style="width: 25px;">
+                                    </a>
+                                </li>
+                                <li>
                                     <a class="navbar-brand" href="https://www.facebook.com/sparkittunisia" target="blank" style="vertical-align: middle;">
                                         <i class="fab fa-facebook-f social-network-header"></i>
                                     </a>

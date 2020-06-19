@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">Project</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'PROJECT.PROJECT' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,7 +11,7 @@
     
         <div class="modal-body">
             <div class="form-group">
-                <label for="inputSchool">Title: <span class="obligatory">*</span></label>
+                <label for="inputSchool">{{'PROJECT.PRJ_TITLE' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="title"
                     type="text" 
@@ -19,37 +19,37 @@
                     [ngClass]="{'is-valid': projectForm.get('title').valid,
                                 'is-invalid': !projectForm.get('title').valid && projectForm.get('title').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="projectForm.get('title').errors?.required">
-                    Title is required.
+                    {{'PROJECT.PRJ_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="projectForm.get('title').errors?.minlength">
-                    Title must be at least 8 characters.
+                    {{'PROJECT.PRJ_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="projectForm.get('title').errors?.maxlength">
-                    Title can contain maximum 150 characters.
+                    {{'PROJECT.PRJ_MAX' | translate}}.
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputDegree">Description: <span class="obligatory">*</span></label>
+                <label for="inputDegree">{{'PROJECT.PRJ_DESC' | translate}}: <span class="obligatory">*</span></label>
                 <textarea 
                     class="form-control" 
-                    placeholder="Write your introduction here"
+                    placeholder="{{'PROJECT.PRJ_DESC_PLACEHOLDER' | translate}}"
                     formControlName="description"
                     rows="3"
                     [ngClass]="{'is-valid': projectForm.get('description').valid,
                     'is-invalid': !projectForm.get('description').valid && projectForm.get('description').touched}"></textarea>
                 <div class="invalid-feedback mt-3" *ngIf="projectForm.get('description').errors?.required">
-                    Description is required.
+                    {{'PROJECT.PRJ_DESC_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="projectForm.get('description').errors?.minlength">
-                    Description must be at least 30 characters.
+                    {{'PROJECT.PRJ_DESC_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="projectForm.get('description').errors?.maxlength">
-                    Description can contain maximum 255 characters.
+                    {{'PROJECT.PRJ_DESC_MAX' | translate}}.
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red"[disabled]="!projectForm.valid">Save</button>
+            <button type="submit" class="btn sp-btn-red"[disabled]="!projectForm.valid">{{'SAVE' | translate}}</button>
         </div>
 
     </form>

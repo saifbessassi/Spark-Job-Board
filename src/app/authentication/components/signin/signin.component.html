@@ -1,8 +1,8 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 
 <div class="card-body">
-    <h1 class="text-center">Sign In</h1>
-    <p class="text-center">Hello! Sign in with your email.</p>
+    <h1 class="text-center">{{'AUTH.SIGNIN' | translate}}</h1>
+    <p class="text-center">{{'AUTH.SIGNIN_DESC' | translate}}.</p>
 
     <sp-error-msg *ngIf="errorMsg" [errorMsg]="errorMsg"></sp-error-msg>
     <div *ngIf="loginError?.length">
@@ -13,23 +13,23 @@
             <form role="form" [formGroup]="loginForm" (ngSubmit)="emailSignin()">
                 <!-- Email address -->
                 <div class="form-control-group text-left mb-3">
-                    <label for="emailInput">Email address:</label>
+                    <label for="emailInput">{{'PASSWORD.EMAIL' | translate}}:</label>
                     <input 
                         type="email"
                         class="form-control"
-                        placeholder="Enter email"
+                        placeholder="{{'PASSWORD.EMAIL_PLACEHOLDER' | translate}}"
                         formControlName="email"
                         pattern=".+@.+\..+">
                     <div *ngIf="loginForm.get('email').touched && loginForm.get('email').errors">
                         <p 
                             class="text-danger"
                             *ngIf="loginForm.get('email').errors.required">
-                            Email is required !
+                            {{'PASSWORD.EMAIL_REQUIRED' | translate}} !
                         </p>
                         <p 
                             class="text-danger"
                             *ngIf="loginForm.get('email').errors.pattern">
-                            Email must be a valid email address !
+                            {{'PASSWORD.EMAIL_VALID' | translate}} !
                         </p>
                     </div>
                 </div>
@@ -37,32 +37,32 @@
                 <!-- Password -->
                 <div class="form-control-group text-left mb-5">
                     <span>
-                        <label for="passwordInput">Password:</label>
+                        <label for="passwordInput">{{'PASSWORD.PASS' | translate}}:</label>
                         <a [routerLink]="['/auth/password-recovery-code']" class="text-left" style="float: right;">
-                            Forgot password?
+                            {{'SIGN.FORGOT' | translate}}?
                         </a>
                     </span>
                     <input
                         type="password"
                         class="form-control"
-                        placeholder="Password"
+                        placeholder="{{'PASSWORD.PASS_PLACEHOLDER' | translate}}"
                         formControlName="password">
                     <div *ngIf="loginForm.get('password').touched && loginForm.get('password').errors">
                         <p 
                             class="text-danger"
                             *ngIf="loginForm.get('password').errors.required">
-                            Password is required !
+                            {{'PASSWORD.PASS_REQUIRED' | translate}} !
                         </p>
                         <p 
                             class="text-danger"
                             *ngIf="loginForm.get('password').errors.minlength">
-                            Password must be at least 8 characters !
+                            {{'PASSWORD.NEW_MIN' | translate}} !
                         </p>
                     </div>
                 </div>
                 
                 <!-- Submit -->
-                <button type="submit" class="btn btn-block mb-3" [disabled]="!loginForm.valid">Sign in</button>
+                <button type="submit" class="btn btn-block mb-3" [disabled]="!loginForm.valid">{{'SIGN.SIGNIN' | translate}}</button>
             
             </form>
             <sp-social-authentication
@@ -74,6 +74,6 @@
             </sp-social-authentication>
         </div>
         <div class="vertical-space-30"></div>
-        <p>Don't have an account? <a [routerLink]="['/auth/signup']"><u style="color: #ba0000;">Register</u></a></p>
+        <p>{{'AUTH.DONT_HAVE_ACCOUNT' | translate}}? <a [routerLink]="['/auth/signup']"><u style="color: #ba0000;">{{'AUTH.REGISTER' | translate}}</u></a></p>
     </div>
 </div>

@@ -8,7 +8,7 @@
         <div class="col-lg-6 mb-5">
             <div class="card">
                 <div class="card-header bg-white">
-                    <h5>Number of jobs per status</h5>
+                    <h5>{{'DASHBOARD.NB_JOBS_STATUS' | translate}}</h5>
                 </div>
                 <div class="card-body">
                     <sp-job-per-status-chart></sp-job-per-status-chart>
@@ -18,7 +18,7 @@
         <div class="col-lg-6 mb-5">
             <div class="card">
                 <div class="card-header bg-white">
-                    <h5>Number of jobs per category</h5>
+                    <h5>{{'DASHBOARD.NB_JOBS_CAT' | translate}}</h5>
                 </div>
                 <div class="card-body">
                     <sp-job-per-category-chart></sp-job-per-category-chart>
@@ -31,20 +31,20 @@
         <div class="col-lg-6 mb-5">
             <div class="card">
                 <div class="card-header bg-white">
-                    <h5>Latest Jobs</h5>
+                    <h5>{{'DASHBOARD.LATEST_JOBS' | translate}}</h5>
                 </div>
                 <div class="card-body py-0">
                     <sp-recent-jobs></sp-recent-jobs>
                 </div>
                 <div class="card-footer bg-white text-center">
-                    <a type="button" [routerLink]="['/recruiter/jobs-list']" routerLinkActive="router-link-active" >View All Jobs</a>
+                    <a type="button" [routerLink]="['/recruiter/jobs-list']" routerLinkActive="router-link-active" >{{'DASHBOARD.VIEW_ALL' | translate}}</a>
                 </div>
             </div>
         </div>
         <div class="col-lg-6 mb-5">
             <div class="card">
                 <div class="card-header bg-white">
-                    <h5>Latest Applications</h5>
+                    <h5>{{'DASHBOARD.LATEST_APP' | translate}}</h5>
                 </div>
                 <div class="card-body py-0">
                     <sp-recent-applications></sp-recent-applications>

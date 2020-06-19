@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header bg-white">
-        <h3>List of jobs</h3>
+        <h3>{{'ALL_JOBS.LIST_JOBS' | translate}}</h3>
     </div>
     <div class="card-body">
         <div class="row status-btn justify-content-center">
@@ -10,16 +10,16 @@
                 [(ngModel)]="jobStatus" 
                 (change)="onStatusFilter()">
                 <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="''"> All<span class="jobs"> Jobs</span> ({{allJobsNb}})
+                <input ngbButton type="radio" [value]="''"> {{'JOB_STATUS.ALL' | translate}}<span class="jobs"> {{'JOB_STATUS.JOBS' | translate}}</span> ({{allJobsNb}})
                 </label>
                 <label ngbButtonLabel class="btn-outline-secondary">
-                    <input ngbButton type="radio" [value]="'open'"> Open<span class="jobs"> Jobs</span> ({{nbJobs?.open}})
+                    <input ngbButton type="radio" [value]="'open'"> {{'JOB_STATUS.OPEN' | translate}}<span class="jobs"> {{'JOB_STATUS.JOBS' | translate}}</span> ({{nbJobs?.open}})
                 </label>
                 <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="'closed'"> Closed<span class="jobs"> Jobs</span> ({{nbJobs?.closed}})
+                <input ngbButton type="radio" [value]="'closed'"> {{'JOB_STATUS.CLOSED' | translate}}<span class="jobs"> {{'JOB_STATUS.JOBS' | translate}}</span> ({{nbJobs?.closed}})
                 </label>
                 <label ngbButtonLabel class="btn-outline-secondary">
-                <input ngbButton type="radio" [value]="'saved'"> Saved<span class="jobs"> Jobs</span> ({{nbJobs?.saved}})
+                <input ngbButton type="radio" [value]="'saved'"> {{'JOB_STATUS.SAVED' | translate}}<span class="jobs"> {{'JOB_STATUS.JOBS' | translate}}</span> ({{nbJobs?.saved}})
                 </label>
             </div>
         </div>

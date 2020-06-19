@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">New message</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'MAIL_FORM.NEW' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,7 +11,7 @@
     
         <div class="modal-body">
             <div class="form-group">
-                <label for="subject">Subject: <span class="obligatory">*</span></label>
+                <label for="subject">{{'MAIL_FORM.SUBJECT' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="subject"
                     type="text" 
@@ -19,11 +19,11 @@
                     [ngClass]="{'is-valid': mailForm.get('subject').valid,
                                 'is-invalid': !mailForm.get('subject').valid && mailForm.get('subject').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="mailForm.get('subject').errors?.required">
-                    Subject is required.
+                    {{'MAIL_FORM.SUBJECT_REQUIRED' | translate}}.
                 </div>
             </div>
             <div class="form-group">
-                <label for="message">Message: <span class="obligatory">*</span></label>
+                <label for="message">{{'MAIL_FORM.MESSAGE' | translate}}: <span class="obligatory">*</span></label>
                 <editor
                     formControlName="message"
                     [ngClass]="{'message-valid': mailForm.get('message').valid,
@@ -44,12 +44,12 @@
                     >
                 </editor>
                 <div class="invalid-feedback mt-3" *ngIf="mailForm.get('message').errors?.required">
-                    Message is required.
+                    {{'MAIL_FORM.MESSAGE_REQUIRED' | translate}}.
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red"[disabled]="!mailForm.valid">Send</button>
+            <button type="submit" class="btn sp-btn-red"[disabled]="!mailForm.valid">{{'MAIL_FORM.SEND' | translate}}</button>
         </div>
 
     </form>

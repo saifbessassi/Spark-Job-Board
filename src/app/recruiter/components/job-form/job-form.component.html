@@ -3,7 +3,7 @@
 
     <h3 class="text-danger text-center my-3">{{errorMsg}}</h3>
     <div class="form-group">
-        <label for="inputTitle">Title: <span class="obligatory">*</span></label>
+        <label for="inputTitle">{{'JOB_FORM.TITLE' | translate}}: <span class="obligatory">*</span></label>
         <input
             formControlName="title"
             type="text" 
@@ -11,56 +11,56 @@
             [ngClass]="{'is-valid': jobForm.get('title').valid,
                         'is-invalid': !jobForm.get('title').valid && jobForm.get('title').touched}">
         <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.required">
-            Title is required.
+            {{'JOB_FORM.TITLE_REQUIRED' | translate}}.
         </div>
         <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.minlength">
-            Title must be at least 7 characters.
+            {{'JOB_FORM.TITLE_MIN' | translate}}.
         </div>
         <div class="invalid-feedback mt-3" *ngIf="jobForm.get('title').errors?.maxlength">
-            Title can contain maximum 255 characters.
+            {{'JOB_FORM.TITLE_MAX' | translate}}.
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="startDate">Employment type: <span class="obligatory">*</span></label>
+            <label for="startDate">{{'JOB_FORM.EMPLOYMENT' | translate}}: <span class="obligatory">*</span></label>
             <select 
                 formControlName="employmentType"
                 class="form-control custom-select"
                 [ngClass]="{'is-valid': jobForm.get('employmentType').valid,
                             'is-invalid': !jobForm.get('employmentType').valid && jobForm.get('employmentType').touched}"
             >
-                <option value="Full-time">Full-time</option>
-                <option value="Part-time">Part-time</option>
-                <option value="Contract">Contract</option>
-                <option value="Temporary">Temporary</option>
-                <option value="Volunteer">Volunteer</option>
-                <option value="Internship">Internship</option>
+                <option value="Full-time">{{'JOB_FORM.FUULTIME' | translate}}</option>
+                <option value="Part-time">{{'JOB_FORM.PARTTIME' | translate}}</option>
+                <option value="Contract">{{'JOB_FORM.CONTRACT' | translate}}</option>
+                <option value="Temporary">{{'JOB_FORM.TEMPORARY' | translate}}</option>
+                <option value="Volunteer">{{'JOB_FORM.VOLUNTEER' | translate}}</option>
+                <option value="Internship">{{'JOB_FORM.INTERNSHIP' | translate}}</option>
             </select>
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('employmentType').errors?.required">
-                Employment type is required.
+                {{'JOB_FORM.EMPLOYMENT_REQUIRED' | translate}}.
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label for="Seniority">Seniority level: <span class="obligatory">*</span></label>
+            <label for="Seniority">{{'JOB_FORM.SENIORITY' | translate}}: <span class="obligatory">*</span></label>
             <select 
                 formControlName="seniorityLevel"
                 class="form-control custom-select"
                 [ngClass]="{'is-valid': jobForm.get('seniorityLevel').valid,
                             'is-invalid': !jobForm.get('seniorityLevel').valid && jobForm.get('seniorityLevel').touched}"
             >
-                <option value="0 to 2 years">0 to 2 years</option>
-                <option value="3 to 5 years">3 to 5 years</option>
-                <option value="6 to 9 years">6 to 9 years</option>
-                <option value="10 years or more">10 years or more</option>
+                <option value="0 to 2 years">0 {{'JOB_FORM.TO' | translate}} 2 {{'JOB_FORM.YEARS' | translate}}</option>
+                <option value="3 to 5 years">3 {{'JOB_FORM.TO' | translate}} 5 {{'JOB_FORM.YEARS' | translate}}</option>
+                <option value="6 to 9 years">6 {{'JOB_FORM.TO' | translate}} 9 {{'JOB_FORM.YEARS' | translate}}</option>
+                <option value="10 years or more">10 {{'JOB_FORM.YEARSORMORE' | translate}}</option>
             </select>
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('seniorityLevel').errors?.required">
-                Seniority level is required.
+                {{'JOB_FORM.SENIORITY_REQUIRED' | translate}}.
             </div>
         </div>
     </div>
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label for="location">Location: <span class="obligatory">*</span></label>
+            <label for="location">{{'JOB_FORM.LOCATION' | translate}}: <span class="obligatory">*</span></label>
             <input
                 formControlName="location"
                 type="text" 
@@ -68,17 +68,17 @@
                 [ngClass]="{'is-valid': jobForm.get('location').valid,
                             'is-invalid': !jobForm.get('location').valid && jobForm.get('location').touched}">
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.required">
-                Location is required.
+                {{'JOB_FORM.LOCATION_REQUIRED' | translate}}.
             </div>
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.minlength">
-                Location must be at least 3 characters.
+                {{'JOB_FORM.LOCATION_MIN' | translate}}.
             </div>
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('location').errors?.maxlength">
-                Location can contain maximum 255 characters.
+                {{'JOB_FORM.LOCATION_MAX' | translate}}.
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label for="Seniority">Deadline: <span class="obligatory">*</span></label>
+            <label for="Seniority">{{'JOB_FORM.DEADLINE' | translate}}: <span class="obligatory">*</span></label>
             <div class="input-group">
                 <input 
                     formControlName="deadline"
@@ -97,7 +97,7 @@
                 </button>
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="jobForm.get('deadline').errors?.required">
-                    Start date is required.
+                    {{'JOB_FORM.DEADLINE_REQUIRED' | translate}}.
                 </div>
             </div>
         </div>
@@ -105,7 +105,7 @@
     <div class="form-row">
         <div class="form-group col-md-6">
             <div class="d-flex mr-4">
-                <label for="category">Category: <span class="obligatory">*</span></label>
+                <label for="category">{{'JOB_FORM.CATEGORY' | translate}}: <span class="obligatory">*</span></label>
                 <a (click)="addCategory()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
             </div>
             <select 
@@ -117,12 +117,12 @@
                     <option *ngFor="let cat of allCategories" [value]="cat?.id">{{cat?.label}}</option>
             </select>
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('category').errors?.required">
-                Category type is required.
+                {{'JOB_FORM.CATEGORY_REQUIRED' | translate}}.
             </div>
         </div>
         <div class="form-group col-md-6">
             <div class="d-flex mr-4">
-                <label for="Skills">Skills: <span class="obligatory">*</span></label>
+                <label for="Skills">{{'JOB_FORM.SKILLS' | translate}}: <span class="obligatory">*</span></label>
                 <a (click)="addSkill()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
             </div>
             <select 
@@ -135,12 +135,12 @@
                 <option *ngFor="let skill of allSkills" [value]="skill?.id">{{skill?.label}}</option>
             </select>
             <div class="invalid-feedback mt-3" *ngIf="jobForm.get('skills').errors?.required">
-                Skills are required.
+                {{'JOB_FORM.SKILLS_REQUIRED' | translate}}.
             </div>
         </div>
     </div>
     <div class="form-group">
-        <label for="description">Description: <span class="obligatory">*</span></label>
+        <label for="description">{{'JOB_FORM.DESCRIPTION' | translate}}: <span class="obligatory">*</span></label>
         <editor
             formControlName="description"
             [ngClass]="{'description-valid': jobForm.get('description').valid,
@@ -160,15 +160,15 @@
                 }"
             ></editor>
         <div class="invalid-feedback mt-3" *ngIf="jobForm.get('description').errors?.required">
-            Description is required.
+            {{'JOB_FORM.DESCRIPTION_REQUIRED' | translate}}.
         </div>
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-3 col-md-2" *ngIf="action === 'add'">
-            <button (click)="onSave('saved')" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">Save Draft</button>
+            <button (click)="onSave('saved')" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">{{'JOB_FORM.SAVE' | translate}}</button>
         </div>
         <div class="col-sm-3 col-md-2">
-            <button (click)="onSave()" type="submit" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">Post</button>
+            <button (click)="onSave()" type="submit" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">{{'JOB_FORM.POST' | translate}}</button>
         </div>
     </div>
 

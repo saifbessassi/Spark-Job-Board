@@ -4,7 +4,7 @@
             <div class="col">
                 <div *ngIf="skills?.length">
                     <header class="d-flex align-items-center mb-4">
-                        <h4>Skills</h4>
+                        <h4>{{'SKILLS.SKILL' | translate}}</h4>
                         <a *ngIf="!isRecruiter" (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
@@ -34,8 +34,8 @@
                     </div>
                     <div class="row text-center">
                         <div class="col text-center">
-                            <h5 class="mb-4">My skills</h5>
-                        <p>Add your technical skills!</p>
+                            <h5 class="mb-4">{{'SKILLS.MYSKILLS' | translate}}</h5>
+                            <p>{{'SKILLS.DESC' | translate}}!</p>
                         </div>
                     </div>
                     <div class="row">

@@ -4,7 +4,7 @@
             <div class="col">
                 <div *ngIf="educations?.length">
                     <header class="d-flex align-items-center mb-4">
-                        <h4>Education</h4>
+                        <h4>{{'EDUCATION.EDU' | translate}}</h4>
                         <a *ngIf="!isRecruiter" (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
@@ -29,8 +29,8 @@
                             <img src="assets/images/icone/Graduation.svg" alt="graduation">
                         </div>
                         <div class="col-md-8">
-                            <h5 class="mb-4">Hey, this is quite empty here!</h5>
-                            <p>Add here your academic background.</p>
+                            <h5 class="mb-4">{{'EDUCATION.TITLE' | translate}}</h5>
+                            <p>{{'EDUCATION.DESC' | translate}}.</p>
                         </div>
                         <div class="col-md-2 text-center">
                             <button class="sp-btn sp-btn-red" (click)="openNewForm()" type="button"><i class="fas fa-plus"></i></button>

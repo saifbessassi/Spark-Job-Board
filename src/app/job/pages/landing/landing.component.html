@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 
 <section id="intro">
-    <sp-carousel [title]="title" [text]="text"></sp-carousel>
+    <sp-carousel title="{{'LANDING.CAROUSEL_TITLE' | translate}}" text="{{'LANDING.CAROUSEL_TEXT' | translate}}"></sp-carousel>
 </section>
 
 <sp-search-bar [filterOptions]="filterOptions" style="position: relative; top: -40px;"></sp-search-bar>
@@ -11,7 +11,7 @@
 
 <section id="Job-Category">
     <div class="container-fluid">
-        <h3 class="text-center">Popular Category Jobs</h3>
+        <h3 class="text-center">{{'LANDING.POPULAR_CAT' | translate}}</h3>
         <div class="vertical-space-30"></div>
         <div class="row" *ngIf="nbJobsPerCategory">
             <div class="col-lg-3 col-md-6 max-width-50">
@@ -30,7 +30,7 @@
             
         </div>
         <div class="vertical-space-40"></div>
-        <a [routerLink]="['/jobs']" class="Brows-All-Category">Browse All Category</a>
+        <a [routerLink]="['/jobs']" class="Brows-All-Category">{{'LANDING.BROWSE_CAT' | translate}}</a>
     </div>
     <div class="vertical-space-85"></div>
 </section>
@@ -42,10 +42,10 @@
         <div class="row justify-content-center">
             <div class="col-md-9">
         
-                <h3 class="text-center">Recent Job Post</h3>
+                <h3 class="text-center">{{'LANDING.RECENT' | translate}}</h3>
                 <div class="vertical-space-60"></div>
                 <h5 *ngIf="errorMsg">{{errorMsg}}</h5>
-                <h5 *ngIf="!recentJobs.length && !errorMsg && !isLoading">There are no job offers at the moment.</h5>
+                <h5 *ngIf="!recentJobs.length && !errorMsg && !isLoading">{{'LANDING.NO_JOB' | translate}}.</h5>
                 
                 <sp-job-post *ngFor="let job of recentJobs" [job]=job></sp-job-post>
                 
@@ -54,7 +54,7 @@
             </div>
         </div>
         <div class="job-list">
-            <a [routerLink]="['/jobs']" class="Open-Jobs-Page margin-auto">Browse All Jobs</a>
+            <a [routerLink]="['/jobs']" class="Open-Jobs-Page margin-auto">{{'LANDING.BROWSE_JOB' | translate}}</a>
         </div>
     </div>
     <div class="vertical-space-60"></div>
@@ -66,35 +66,33 @@
         <div class="vertical-space-85"></div>
         <div class="row">
             <div class="col-lg-9 col-md-6  align-self-center">
-                <h3 class="title">Spark-it - Best Place to Find Jobs</h3>
+                <h3 class="title">Spark-it - {{'LANDING.BEST_PLACE' | translate}}</h3>
                 <div class="vertical-space-30"></div>
                 <p class="max-width">
-                    Young and dynamic, Spark-it has very quickly developed its activity by leveraging the experience of 
-                    developers who are now employees within our company. Their continuous training, professionalism and 
-                    expertise are all guarantees of results in the implementation of effective solutions for our customers.
+                    {{'LANDING.DESC' | translate}}
                 </p>
                 <div class="vertical-space-30"></div>
-                <h4>Why we are the best</h4>
+                <h4>{{'LANDING.WHY' | translate}}</h4>
                 <div class="vertical-space-30"></div>
                 <ul>
                     <li>
                         <p>
-                            <i class="fas fa-long-arrow-alt-right"></i>  We encourage career growth and we  give the tools and guidance to achieve subject matter expertise.
+                            <i class="fas fa-long-arrow-alt-right"></i>  {{'LANDING.WHY1' | translate}}.
                         </p>
                     </li>
                     <li>
                         <p>
-                            <i class="fas fa-long-arrow-alt-right"></i>  We have a fun environment to work in where you are surrounded by like-minded people who are passionate about tech.
+                            <i class="fas fa-long-arrow-alt-right"></i>  {{'LANDING.WHY2' | translate}}.
                         </p>
                     </li>
                     <li>
                         <p>
-                            <i class="fas fa-long-arrow-alt-right"></i>  We give opportunity to work on projects abroad with some of the world's leading brands.
+                            <i class="fas fa-long-arrow-alt-right"></i>  {{'LANDING.WHY3' | translate}}.
                         </p>
                     </li>
                 </ul>
                 <div class="vertical-space-30"></div>
-                <a [routerLink]="['/jobs']" class="Explore-New-Jobs">Explore New Jobs</a>
+                <a [routerLink]="['/jobs']" class="Explore-New-Jobs">{{'LANDING.EXPLOR_JOB' | translate}}</a>
             </div>
             <div class="col-lg-3 col-md-6">
                 <img src="assets/images/man.png" alt="man image" class="man-img">

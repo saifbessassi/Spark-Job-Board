@@ -1,14 +1,14 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">Resume</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'DOCUMENT.TITLE' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
     <div class="modal-body">
-        <p class="text-muted mb-0">Your profile resume will allow you to be shortlisted!</p>
-        <p class="text-muted mb-4">It will only be accessible to Spark-it company</p>
+        <p class="text-muted mb-0">{{'DOCUMENT.DESC' | translate}}!</p>
+        <p class="text-muted mb-4">{{'DOCUMENT.DESC2' | translate}}</p>
         <div *ngIf="isUploading" class="mb-4 px-4">
             <ngb-progressbar [value]="uploadProgress"></ngb-progressbar>
         </div>
@@ -17,8 +17,8 @@
                 <img src="assets/images/icone/pdf.svg" alt="projects">
             </div>
             <div class="col-md-7">
-                <h5 class="mb-4">Resume</h5>
-                <p>Updated on {{cv?.updatedAt | date: 'd/M/yyyy, h:mm a'}}</p>
+                <h5 class="mb-4">{{'DOCUMENT.TITLE' | translate}}</h5>
+                <p>{{'DOCUMENT.UPDATE' | translate}} {{cv?.updatedAt | date: 'd/M/yyyy, h:mm a'}}</p>
             </div>
             <div class="col-md-3 text-right">
                 <a (click)="viewCv()" type="button"><i class="fas fa-eye edit-btn-icon"></i></a>
@@ -33,13 +33,13 @@
             #fileInput>
         <div class="text-center" *ngIf="!cv">
             <button *ngIf="!isUploading" type="button" class="btn btn-lg sp-btn-red mb-3" (click)="fileInput.click()">
-                <i class="fas fa-upload"></i> Add my resume
+                <i class="fas fa-upload"></i> {{'DOCUMENT.ADD' | translate}}
             </button>
             <div *ngIf="errorMsg?.length">
                 <div class="mb-3" *ngFor="let item of errorMsg" style="font-size: 80%;color: #dc3545;">{{item}}</div>
             </div>
-            <p class="text-muted mb-0">Maximum size : 2 MB</p>
-            <p class="text-muted">Format : PDF</p>
+            <p class="text-muted mb-0">{{'DOCUMENT.MAX_SIZE' | translate}} : 2 MB</p>
+            <p class="text-muted">{{'DOCUMENT.FORMAT' | translate}} : PDF</p>
         </div>
     </div>
 </div>

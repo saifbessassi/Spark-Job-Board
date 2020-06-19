@@ -5,14 +5,14 @@
     *ngIf="status === 'closed' || status === 'saved'">
     <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     <i *ngIf="!isLoading" class="fas fa-lock-open"></i>
-    Open it
+    {{'JOB_STATUS.OPENIT' | translate}}
 </button>
 <button 
     class="btn btn-success mx-2"
     disabled
     *ngIf="status === 'open'">
     <i class="fas fa-lock-open"></i>
-    Open
+    {{'JOB_STATUS.OPEN' | translate}}
 </button>
 
 <button
@@ -22,14 +22,14 @@
     *ngIf="status === 'open'">
     <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
     <i *ngIf="!isLoading" class="fas fa-lock"></i>
-    Close it
+    {{'JOB_STATUS.CLOSEIT' | translate}}
 </button>
 <button 
     disabled
     class="btn btn-danger mx-2"
     *ngIf="status === 'closed'">
     <i class="fas fa-lock"></i>
-    Closed
+    {{'JOB_STATUS.CLOSED' | translate}}
 </button>
 
 <button 
@@ -37,7 +37,7 @@
     class="btn btn-secondary mx-2"
     *ngIf="status === 'saved'">
     <i class="fas fa-save"></i>
-    Saved
+    {{'JOB_STATUS.SAVED' | translate}}
 </button>
 
 <p class="mb-0"><small class="text-danger">{{errorMsg}}</small></p>
@@ -45,7 +45,7 @@
 
 <ng-template #content let-modal>
     <div class="modal-header">
-      <h4 class="modal-title" id="modal-basic-title">Deadline update</h4>
+      <h4 class="modal-title" id="modal-basic-title">{{'JOB_STATUS.D_UPDATE' | translate}}</h4>
       <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -53,7 +53,7 @@
     <div class="modal-body">
       <form>
         <div class="form-group">
-          <label class="mb-3">Deadline date</label>
+          <label class="mb-3">{{'JOB_STATUS.D_DATE' | translate}}</label>
           <div class="input-group">
             <input 
                 id="dateOfBirth"
@@ -79,7 +79,7 @@
         type="button" 
         class="btn btn-outline-dark" 
         (click)="modal.close('Save click')">
-        Save
+        {{'SAVE' | translate}}
       </button>
     </div>
 </ng-template>

@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">Experience</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'EXPERIENCE.EXP' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,7 +11,7 @@
     
         <div class="modal-body">
             <div class="form-group">
-                <label for="inputSchool">Title: <span class="obligatory">*</span></label>
+                <label for="inputSchool">{{'EXPERIENCE.EXP_TITLE' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="title"
                     type="text" 
@@ -19,17 +19,17 @@
                     [ngClass]="{'is-valid': expForm.get('title').valid,
                                 'is-invalid': !expForm.get('title').valid && expForm.get('title').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('title').errors?.required">
-                    Title is required.
+                    {{'EXPERIENCE.EXP_TITLE_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('title').errors?.minlength">
-                    Title must be at least 8 characters.
+                    {{'EXPERIENCE.EXP_TITLE_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('title').errors?.maxlength">
-                    Title can contain maximum 150 characters.
+                    {{'EXPERIENCE.EXP_TITLE_MAX' | translate}}.
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputSchool">Company: <span class="obligatory">*</span></label>
+                <label for="inputSchool">{{'EXPERIENCE.COMPANY' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="company"
                     type="text" 
@@ -37,17 +37,17 @@
                     [ngClass]="{'is-valid': expForm.get('company').valid,
                                 'is-invalid': !expForm.get('company').valid && expForm.get('company').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('company').errors?.required">
-                    Company name is required.
+                    {{'EXPERIENCE.COMPANY_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('company').errors?.minlength">
-                    Company name must be at least 2 characters.
+                    {{'EXPERIENCE.COMPANY_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('company').errors?.maxlength">
-                    Company name can contain maximum 200 characters.
+                    {{'EXPERIENCE.COMPANY_MAX' | translate}}.
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputDegree">Location: <span class="obligatory">*</span></label>
+                <label for="inputDegree">{{'EXPERIENCE.LOCATION' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="location" 
                     type="text" 
@@ -55,19 +55,19 @@
                     [ngClass]="{'is-valid': expForm.get('location').valid,
                                 'is-invalid': !expForm.get('location').valid && expForm.get('location').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('location').errors?.required">
-                    Location is required.
+                    {{'EXPERIENCE.LOCATION_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('location').errors?.minlength">
-                    Location must be at least 3 characters.
+                    {{'EXPERIENCE.LOCATION_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('location').errors?.maxlength">
-                    Location can contain maximum 150 characters.
+                    {{'EXPERIENCE.LOCATION_MAX' | translate}}.
                 </div>
             </div>
-            <h5>Date</h5>
+            <h5>{{'EXPERIENCE.DATE' | translate}}</h5>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="startDate">Start: <span class="obligatory">*</span></label>
+                    <label for="startDate">{{'EXPERIENCE.START' | translate}}: <span class="obligatory">*</span></label>
                     <div class="input-group">
                         <input 
                             formControlName="dateStart"
@@ -86,12 +86,12 @@
                         </button>
                         </div>
                         <div class="invalid-feedback mt-3">
-                            Start date is required.
+                            {{'EXPERIENCE.START_REQUIRED' | translate}}.
                         </div>
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="endDate">End: <span class="obligatory">*</span></label>
+                    <label for="endDate">{{'EXPERIENCE.END' | translate}}: <span class="obligatory">*</span></label>
                     <div class="input-group">
                         <input 
                             formControlName="dateEnd"
@@ -116,33 +116,33 @@
                         </button>
                         </div>
                         <div class="invalid-feedback mt-3">
-                            End date is required.
+                            {{'EXPERIENCE.END_REQUIRED' | translate}}.
                         </div>
                     </div>
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputDegree">Description: <span class="obligatory">*</span></label>
+                <label for="inputDegree">{{'EXPERIENCE.DESCRIPTION' | translate}}: <span class="obligatory">*</span></label>
                 <textarea 
                     class="form-control" 
-                    placeholder="Write your introduction here"
+                    placeholder="{{'EXPERIENCE.DESCRIPTION_PLACEHOLDER' | translate}}"
                     formControlName="description"
                     rows="3"
                     [ngClass]="{'is-valid': expForm.get('description').valid,
                     'is-invalid': !expForm.get('description').valid && expForm.get('description').touched}"></textarea>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('description').errors?.required">
-                    Description is required.
+                    {{'EXPERIENCE.DESCRIPTION_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('description').errors?.minlength">
-                    Description must be at least 30 characters.
+                    {{'EXPERIENCE.DESCRIPTION_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="expForm.get('description').errors?.maxlength">
-                    Description can contain maximum 255 characters.
+                    {{'EXPERIENCE.DESCRIPTION_MAX' | translate}}.
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red"[disabled]="!expForm.valid">Save</button>
+            <button type="submit" class="btn sp-btn-red"[disabled]="!expForm.valid">{{'SAVE' | translate}}</button>
         </div>
 
     </form>

@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">Language</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'LANGUAGES.LANGUAGE' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,7 +11,7 @@
     
         <div class="modal-body">
             <div class="form-group">
-                <label for="inputLanguage">Language: <span class="obligatory">*</span></label>
+                <label for="inputLanguage">{{'LANGUAGES.LANGUAGE' | translate}}: <span class="obligatory">*</span></label>
                 <select 
                     formControlName="id"
                     class="form-control"
@@ -21,11 +21,11 @@
                     <option *ngFor="let lang of allLang" value="{{lang.id}}">{{lang.label}}</option>
                 </select>
                 <div class="invalid-feedback mt-3">
-                    Language is required.
+                    {{'LANGUAGES.LANGUAGE_REQUIRED' | translate}}.
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputProficiency">Proficiency: <span class="obligatory">*</span></label>
+                <label for="inputProficiency">{{'LANGUAGES.PROFICIENCY' | translate}}: <span class="obligatory">*</span></label>
                 <select 
                     formControlName="proficiency"
                     class="form-control"
@@ -39,12 +39,12 @@
                     <option>Native or bilingual</option>
                 </select>
                 <div class="invalid-feedback mt-3">
-                    Proficiency is required.
+                    {{'LANGUAGES.PROFICIENCY_REQUIRED' | translate}}.
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red"[disabled]="!langForm.valid">Save</button>
+            <button type="submit" class="btn sp-btn-red"[disabled]="!langForm.valid">{{'SAVE' | translate}}</button>
         </div>
 
     </form>

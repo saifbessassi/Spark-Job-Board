@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">New Skill</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'SKILL_FORM.NEW' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -11,24 +11,24 @@
         <div class="modal-body">
             <h6  class="text-danger mb-4 text-center" *ngIf="errorMsg">{{errorMsg}}</h6>
             <div class="form-group">
-                <label>Skill: <span class="obligatory">*</span></label>
+                <label>{{'SKILL_FORM.SKILL' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="label" 
                     type="text" 
                     class="form-control"
-                    placeholder="Enter skill name"
+                    placeholder="{{'SKILL_FORM.PLACEHOLDER' | translate}}"
                     [ngClass]="{'is-valid': skillForm.get('label').valid,
                     'is-invalid': (!skillForm.get('label').valid && skillForm.get('label').touched)}">
                 <div class="invalid-feedback mt-3" *ngIf="skillForm.get('label').errors?.required">
-                    Skill name is required.
+                    {{'SKILL_FORM.SKILL_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="skillForm.get('label').errors?.exist">
-                    This value is already used.
+                    {{'SKILL_FORM.SKILL_USED' | translate}}.
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red" [disabled]="!skillForm.valid">Submit</button>
+            <button type="submit" class="btn sp-btn-red" [disabled]="!skillForm.valid">{{'SUBMIT' | translate}}</button>
         </div>
     </form>
 </div>

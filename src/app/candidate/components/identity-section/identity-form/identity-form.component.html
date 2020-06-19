@@ -1,7 +1,7 @@
 <sp-spinner *ngIf="isLoading"></sp-spinner>
 <div class="px-3">
     <div class="modal-header border-none pb-0">
-        <h4 class="modal-title" id="modal-basic-title">General Information</h4>
+        <h4 class="modal-title" id="modal-basic-title">{{'IDENTITY.INFO' | translate}}</h4>
         <button type="button" class="close" aria-label="Close" (click)="dismissModal()">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -28,10 +28,10 @@
                 </div>
                 <div class="row justify-content-center mb-3 d-block">
                     <p class="mb-0">
-                        <small>Maximum size : 1 MB</small>
+                        <small>{{'IDENTITY.PHOTO_MAX_SIZE' | translate}} : 1 MB</small>
                     </p>
                     <p class="mb-0">
-                        <small>Format : JPG, PNG</small>
+                        <small>{{'IDENTITY.PHOTO_FORMAT' | translate}} : JPG, PNG</small>
                     </p>
                 </div>
                 <form>
@@ -49,19 +49,19 @@
                             class="btn btn-outline-primary btn-picture"
                             (click)="fileInput.click()"
                             [disabled]="isUploading">
-                            <i class="fas fa-cog"></i> Modify
+                            <i class="fas fa-cog"></i> {{'IDENTITY.MODIFY' | translate}}
                         </button>
                         <button 
                             (click)="savePicture()"
                             class="btn btn-outline-success btn-picture" 
                             [disabled]="!previewPicture || isUploading">
-                            <i class="fas fa-pen"></i> Save
+                            <i class="fas fa-pen"></i> {{'SAVE' | translate}}
                         </button>
                         <button 
                             (click)="deletePicture()"
                             class="btn btn-outline-danger btn-picture"
                             [disabled]="isUploading || !identity?.picture">
-                            <i class="fas fa-trash"></i> Delete
+                            <i class="fas fa-trash"></i> {{'IDENTITY.DELETE' | translate}}
                         </button>
                     </div>
                 </form>
@@ -75,7 +75,7 @@
     
         <div class="modal-body">
             <div class="form-group">
-                <label for="inputFullname">Full name: <span class="obligatory">*</span></label>
+                <label for="inputFullname">{{'IDENTITY.FULLNAME' | translate}}: <span class="obligatory">*</span></label>
                 <input
                     formControlName="fullname"
                     type="text" 
@@ -84,37 +84,37 @@
                     [ngClass]="{'is-valid': identityForm.get('fullname').valid,
                                 'is-invalid': !identityForm.get('fullname').valid && identityForm.get('fullname').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="identityForm.get('fullname').errors?.required">
-                    Full name is required.
+                    {{'IDENTITY.FULLNAME_REQUIRED' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="identityForm.get('fullname').errors?.pattern">
-                    Full name must contains 2 or 3 words and only alphabetic characters !
+                    {{'IDENTITY.FULLNAME_FORMAT' | translate}} !
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="identityForm.get('fullname').errors?.maxlength">
-                    Full name can contain maximum 255 characters.
+                    {{'IDENTITY.FULLNAME_MAX' | translate}}.
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputAddress">Current address:</label>
+                <label for="inputAddress">{{'IDENTITY.ADDRESS' | translate}}:</label>
                 <input
                     formControlName="address"
-                    placeholder="Your current address"
+                    placeholder="{{'IDENTITY.ADDRESS_PLACEHOLDER' | translate}}"
                     type="text" 
                     class="form-control"
                     [ngClass]="{'is-valid': identityForm.get('address').valid,
                                 'is-invalid': !identityForm.get('address').valid && identityForm.get('address').touched}">
                 <div class="invalid-feedback mt-3" *ngIf="identityForm.get('address').errors?.minlength">
-                    Current address must be at least 3 characters.
+                    {{'IDENTITY.ADDRESS_MIN' | translate}}.
                 </div>
                 <div class="invalid-feedback mt-3" *ngIf="identityForm.get('address').errors?.maxlength">
-                    Current address can contain maximum 255 characters.
+                    {{'IDENTITY.ADDRESS_MAX' | translate}}.
                 </div>
             </div>
             <div class="form-row">
                 <div class="form-group col-md-6">
-                    <label for="inputPhone">Phone number: <span class="obligatory">*</span></label>
+                    <label for="inputPhone">{{'IDENTITY.PHONE' | translate}}: <span class="obligatory">*</span></label>
                     <input
                         formControlName="phone"
-                        placeholder="Your current phone number"
+                        placeholder="{{'IDENTITY.PHONE_PLACEHOLDER' | translate}}"
                         type="text" 
                         class="form-control"
                         pattern="[0-9]+"
@@ -122,36 +122,36 @@
                                 'is-invalid': !identityForm.get('phone').valid && 
                                 (identityForm.get('phone').touched || identityForm.get('phone').value)}">
                     <div class="invalid-feedback mt-3" *ngIf="identityForm.get('phone').errors?.required">
-                        Phone number is required.
+                        {{'IDENTITY.PHONE_REQUIRED' | translate}}.
                     </div>
                     <div class="invalid-feedback mt-3" *ngIf="identityForm.get('phone').errors?.pattern">
-                        Phone number is not valid.
+                        {{'IDENTITY.PHONE_VALID' | translate}}.
                     </div>
                     <div class="invalid-feedback mt-3" *ngIf="identityForm.get('phone').errors?.minlength || identityForm.get('phone').errors?.maxlength">
-                        Phone number must contain 8 characters.
+                        {{'IDENTITY.PHONE_LENGTH' | translate}}.
                     </div>
                 </div>
                 <div class="form-group col-md-6">
-                    <label for="inputPassword4">Seniority Level:</label>
+                    <label for="inputPassword4">{{'IDENTITY.SENIORITY' | translate}}:</label>
                     <select 
                         formControlName="seniorityLevel"
                         class="form-control"
                         [ngClass]="{'is-valid': identityForm.get('seniorityLevel').valid,
                                 'is-invalid': !identityForm.get('seniorityLevel').valid && identityForm.get('seniorityLevel').touched}"
                     >
-                        <option>0 to 2 years</option>
-                        <option>3 to 5 years</option>
-                        <option>6 to 9 years</option>
-                        <option>10 years or more</option>
+                        <option>0 {{'IDENTITY.TO' | translate}} 2 {{'IDENTITY.YEARS' | translate}}</option>
+                        <option>3 {{'IDENTITY.TO' | translate}} 5 {{'IDENTITY.YEARS' | translate}}</option>
+                        <option>6 {{'IDENTITY.TO' | translate}} 9 {{'IDENTITY.YEARS' | translate}}</option>
+                        <option>10 {{'IDENTITY.YEARSORMORE' | translate}}</option>
                     </select>
                     <div class="invalid-feedback mt-3" *ngIf="identityForm.get('seniorityLevel').errors?.required">
-                        Seniority Level is required.
+                        {{'IDENTITY.EXPERIENCE_REQUIRED' | translate}}.
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red"[disabled]="!identityForm.valid">Save</button>
+            <button type="submit" class="btn sp-btn-red"[disabled]="!identityForm.valid">{{'SAVE' | translate}}</button>
         </div>
 
     </form>

@@ -3,15 +3,15 @@
         <div class="col-md-8">
             <p>
                 <i class="fas fa-map-marked-alt"></i>
-                <span class="text">  Location: {{job?.location | titlecase }}</span>
+                <span class="text">  {{ 'JOB_DETAIL.LOCATION' | translate }}: {{job?.location | titlecase }}</span>
             </p>
             <p>
                 <i class="fas fa-file-signature"></i>
-                <span class="text">  Job Type: {{job?.employmentType | titlecase }}</span>
+                <span class="text">  {{ 'JOB_DETAIL.TYPE' | translate }}: {{job?.employmentType | titlecase }}</span>
             </p>
             <p>
                 <i class="fas fa-user-shield"></i>
-                <span class="text">  Experience: {{job?.seniorityLevel | titlecase }}</span>
+                <span class="text">  {{ 'JOB_DETAIL.EXPERIENCE' | translate }}: {{job?.seniorityLevel | titlecase }}</span>
             </p>
         </div>
         <div class="col-md-4 text-center my-auto">
@@ -20,17 +20,17 @@
                 (click)="openModal()" 
                 class="btn sp-btn-red apply w-50 mb-3" 
                 *ngIf="!isApplied && !isRecruiter">
-                Apply
+                {{ 'JOB_DETAIL.APPLY' | translate }}
             </button>
             <button 
                 type="button" 
                 class="btn btn-secondary apply w-50 mb-3" 
                 disabled  
                 *ngIf="isApplied && !isRecruiter">
-                <i class="fas fa-check"></i> Applied
+                <i class="fas fa-check"></i> {{ 'JOB_DETAIL.APPLIED' | translate }}
             </button>
             <p>
-                <span class="text">Deadline: {{job?.deadline | date: 'dd MMM yyyy'}}</span>
+                <span class="text">{{ 'JOB_DETAIL.DEADLINE' | translate }}: {{job?.deadline | date: 'dd MMM yyyy'}}</span>
             </p>
         </div>
     </div>
@@ -39,9 +39,9 @@
 
     <div class="row">
         <div class="col">
-            <h4 class="my-3">Job Description / Responsibility</h4>
+            <h4 class="my-3">{{ 'JOB_DETAIL.DESC' | translate }}</h4>
             <div [innerHTML]=job?.description></div>
-            <h4 class="my-3">Skills & Requirement</h4>
+            <h4 class="my-3">{{ 'JOB_DETAIL.SKILLS' | translate }}</h4>
             <ul class="pl-3">
                 <li class="list-style" *ngFor="let skill of job?.skills">
                     {{skill?.label}}
@@ -57,14 +57,14 @@
                 (click)="openModal()" 
                 class="btn sp-btn-red apply w-50" 
                 *ngIf="!isApplied && !isRecruiter">
-                Apply
+                {{ 'JOB_DETAIL.APPLY' | translate }}
             </button>
             <button 
                 type="button" 
                 class="btn btn-secondary apply w-50" 
                 disabled  
                 *ngIf="isApplied && !isRecruiter">
-                <i class="fas fa-check"></i> Applied
+                <i class="fas fa-check"></i> {{ 'JOB_DETAIL.APPLIED' | translate }}
             </button>
         </div>
     </div>

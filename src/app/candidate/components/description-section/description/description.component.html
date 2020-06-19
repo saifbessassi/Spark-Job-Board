@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col">
                 <div *ngIf="description">
-                    <h4 class="mb-4">Presentation</h4>
+                    <h4 class="mb-4">{{'DESCRIPTION.PRESENTATION' | translate}}</h4>
                     <p>{{description}}</p>
                     <div *ngIf="!isRecruiter" class="text-right">
                         <a (click)="open()" type="button"><i class="fas fa-pen edit-btn-icon"></i></a>
@@ -15,8 +15,8 @@
                             <img src="assets/images/icone/Notebook.svg" alt="notebook">
                         </div>
                         <div class="col-md-8">
-                            <h5 class="mb-4">Describe myself in a few lines</h5>
-                            <p>A description is useful to understand who you are at a glance, it can make a real difference!</p>
+                            <h5 class="mb-4">{{'DESCRIPTION.TITLE' | translate}}</h5>
+                            <p>{{'DESCRIPTION.DESC' | translate}}!</p>
                         </div>
                         <div class="col-md-2 text-center">
                             <button class="sp-btn sp-btn-red" (click)="open()" type="button"><i class="fas fa-plus"></i></button>

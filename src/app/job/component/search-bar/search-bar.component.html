@@ -12,7 +12,7 @@
                             <label class="col-sm-2 col-form-label d-none d-lg-block align-self-center"><i class="far fa-calendar-alt"></i></label>
                             <div class="col-sm-10">
                                 <select class="form-control search-slt" formControlName="experience">
-                                    <option [ngValue]="null">Select Experience Level</option>
+                                    <option [ngValue]="null">{{ 'SEARCH_BAR.EXPERIENCE' | translate }}</option>
                                     <option *ngFor="let experience of filterOptions?.experiences" [value]="experience.label">{{experience.label | titlecase }}</option>
                                 </select>
                             </div>
@@ -24,7 +24,7 @@
                             <label class="col-sm-2 col-form-label  d-none d-lg-block align-self-center"><i class="fas fa-cog"></i></label>
                             <div class="col-sm-10">
                                 <select class="form-control search-slt" formControlName="skill">
-                                    <option [ngValue]="null">Select Skill</option>
+                                    <option [ngValue]="null">{{ 'SEARCH_BAR.SKILL' | translate }}</option>
                                     <option *ngFor="let skill of filterOptions?.skills" [value]="skill.label">{{skill.label | titlecase }}</option>
                                 </select>
                             </div>
@@ -36,7 +36,7 @@
                             <label class="col-sm-2 col-form-label d-none d-lg-block align-self-center"><i class="fas fa-map-marker-alt"></i></label>
                             <div class="col-sm-10">
                                 <select class="form-control search-slt" formControlName="location">
-                                    <option [ngValue]="null">Select Location</option>
+                                    <option [ngValue]="null">{{ 'SEARCH_BAR.LOCATION' | translate }}</option>
                                     <option *ngFor="let location of filterOptions?.locations" [value]="location.label">{{location.label | titlecase }}</option>
                                 </select>
                             </div>
@@ -46,7 +46,7 @@
             </div>
             
             <div class="col-md-3 btn-col">
-                <button type="submit" class="btn wrn-btn">Search Jobs</button>
+                <button type="submit" class="btn wrn-btn">{{ 'SEARCH_BAR.SEARCH' | translate }}</button>
             </div>
         </div>
             

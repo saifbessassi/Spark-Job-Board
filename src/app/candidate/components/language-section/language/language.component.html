@@ -5,7 +5,7 @@
             <div class="col">
                 <div *ngIf="languages?.length">
                     <header class="d-flex align-items-center mb-4">
-                        <h4>Languages</h4>
+                        <h4>{{'LANGUAGES.LANGUAGES' | translate}}</h4>
                         <a *ngIf="!isRecruiter" (click)="openNewForm()" type="button" class="ml-auto"><i class="fas fa-plus edit-btn-icon"></i></a>
                     </header>
                     <div class="row">
@@ -35,8 +35,8 @@
                     </div>
                     <div class="row text-center">
                         <div class="col text-center">
-                            <h5 class="mb-4">My languages</h5>
-                        <p>Add your languages, even your native one!</p>
+                            <h5 class="mb-4">{{'LANGUAGES.MYLANGUAGES' | translate}}</h5>
+                        <p>{{'LANGUAGES.DESC' | translate}}</p>
                         </div>
                     </div>
                     <div class="row">
