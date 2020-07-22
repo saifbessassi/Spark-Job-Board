@@ -1,4 +1,4 @@
-<sp-spinner *ngIf="isLoading"></sp-spinner>
+<!-- <sp-spinner *ngIf="isLoading"></sp-spinner> -->
 <form [formGroup]="jobForm">
 
     <h3 class="text-danger text-center my-3">{{errorMsg}}</h3>
@@ -165,10 +165,16 @@
     </div>
     <div class="row justify-content-center">
         <div class="col-sm-3 col-md-2" *ngIf="action === 'add'">
-            <button (click)="onSave('saved')" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">{{'JOB_FORM.SAVE' | translate}}</button>
+            <button (click)="onSave('saved')" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {{'JOB_FORM.SAVE' | translate}}
+            </button>
         </div>
         <div class="col-sm-3 col-md-2">
-            <button (click)="onSave()" type="submit" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid">{{'JOB_FORM.POST' | translate}}</button>
+            <button (click)="onSave()" type="submit" class="btn btn-block sp-btn-red" [disabled]="!jobForm.valid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {{'JOB_FORM.POST' | translate}}
+            </button>
         </div>
     </div>
 

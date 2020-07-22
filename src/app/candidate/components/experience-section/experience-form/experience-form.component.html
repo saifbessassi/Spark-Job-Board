@@ -1,4 +1,4 @@
-<sp-spinner *ngIf="isLoading"></sp-spinner>
+<!-- <sp-spinner *ngIf="isLoading"></sp-spinner> -->
 <div class="px-3">
     <div class="modal-header border-none pb-0">
         <h4 class="modal-title" id="modal-basic-title">{{'EXPERIENCE.EXP' | translate}}</h4>
@@ -141,7 +141,9 @@
             </div>
         </div>
         <div class="modal-footer border-none pt-0">
-            <button type="submit" class="btn sp-btn-red"[disabled]="!expForm.valid">{{'SAVE' | translate}}</button>
+            <button type="submit" class="btn sp-btn-red"[disabled]="!expForm.valid || isLoading">
+                <span *ngIf="isLoading" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                {{'SAVE' | translate}}</button>
         </div>
 
     </form>
