@@ -13,6 +13,7 @@ export class ResumeSummaryComponent implements OnInit {
   @Input() candidate: Candidate;
   @Output() outputCanApply = new EventEmitter<boolean>();
 
+  photo: string;
   canApply: boolean;
   nbEducation: number;
   nbExperience: number;
@@ -38,6 +39,14 @@ export class ResumeSummaryComponent implements OnInit {
       this.nbProject = this.candidate.resume.projects.length;
       this.nbSkill = this.candidate.resume.skillsCandidate.length;
       this.nbLanguage = this.candidate.resume.languagesCandidate.length;
+      this.photo = null;
+        if (this.candidate.picture) {
+          if (this.candidate.picture.url.includes('http')) {
+            this.photo = this.candidate.picture.url;
+          } else {
+            this.photo = 'http://localhost:8000' + this.candidate.picture.url;
+          }
+        }
 
       if (
         this.candidate.phone &&
