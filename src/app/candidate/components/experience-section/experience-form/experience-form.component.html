@@ -101,7 +101,6 @@
                             ngbDatepicker 
                             #end="ngbDatepicker"
                             [disabled]="expForm.get('dateStart')?.invalid"
-                            [maxDate]="maxStartDate"
                             [minDate]="expForm.get('dateStart').value"
                             [ngClass]="{'is-valid': expForm.get('dateEnd').valid,
                                 'is-invalid': !expForm.get('dateEnd').valid && expForm.get('dateEnd').touched}">
