@@ -25,6 +25,7 @@ import { RecentJobsComponent } from './components/recent-jobs/recent-jobs.compon
 import { RecentApplicationsComponent } from './components/recent-applications/recent-applications.component';
 import { TotalCountComponent } from './components/total-count/total-count.component';
 import { DatePickerComponent } from './components/date-picker/date-picker.component';
+import { CandidatPerSkillsComponent } from './components/charts/candidat-per-skills/candidat-per-skills.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { DatePickerComponent } from './components/date-picker/date-picker.compon
     RecentApplicationsComponent,
     TotalCountComponent,
     DatePickerComponent,
+    CandidatPerSkillsComponent,
   ],
   imports: [
     CommonModule,

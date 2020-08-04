@@ -55,7 +55,8 @@
 		"LATEST_JOBS": "Latest Jobs",
 		"NB_JOBS_CAT": "Number of jobs per category",
 		"NB_JOBS_STATUS": "Number of jobs per status",
-		"VIEW_ALL": "View All Jobs"
+		"VIEW_ALL": "View All Jobs",
+		"NB_CANDIDATE_SKILLS": "Number of candidates per skill"
 	},
 	"DESCRIPTION": {
 		"DESC": "A description is useful to understand who you are at a glance, it can make a real difference",

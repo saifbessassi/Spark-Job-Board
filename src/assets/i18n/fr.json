@@ -53,9 +53,11 @@
 	"DASHBOARD": {
 		"LATEST_APP": "Dernières candidatures",
 		"LATEST_JOBS": "Dernières offres d'emploi",
-		"NB_JOBS_CAT": "Nombre d'offre par catégorie",
-		"NB_JOBS_STATUS": "Nombre d'offre par statut",
-		"VIEW_ALL": "Afficher tous les offres"
+		"NB_JOBS_CAT": "Nombre des offres par catégorie",
+		"NB_JOBS_STATUS": "Nombre des offres par statut",
+		"VIEW_ALL": "Afficher tous les offres",
+		"NB_CANDIDATE_SKILLS": "Nombre des candidats par compétence",
+		"NB_CANDIDATE": "Nombre candidats"
 	},
 	"DESCRIPTION": {
 		"DESC": "Une description est utile pour comprendre qui vous êtes en un coup d'œil, cela peut faire une réelle différence",

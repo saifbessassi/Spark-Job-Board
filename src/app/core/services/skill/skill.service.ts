@@ -20,5 +20,9 @@ constructor(private http: HttpClient) { }
   addSkill(skill) {
     return this.http.post(this.API_URL, skill);
   }
+
+  getNbCandidatePerSkill() {
+    return this.http.get(environment.API_URL + '/api/skills/nb-per-candidate');
+  }
 }
 
